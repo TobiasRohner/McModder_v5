@@ -37,7 +37,6 @@ public class <classname> {
 	public void init(FMLInitializationEvent event) {
 <commonInit>
 		if (event.getSide() == Side.CLIENT) {
-			RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 			<clientInit>
 		}
 	}

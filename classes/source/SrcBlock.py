@@ -26,4 +26,28 @@ import net.minecraftforge.fml.common.registry.GameRegistry;"""
 
 commonInit = """<instancename> = new <classname>();"""
 
-clientInit = """"""
+clientInit = """Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(<instancename>), 0, new ModelResourceLocation("<modid>:<unlocalizedName>", "inventory"));"""
+
+blockstatesJson = """{
+    "variants": {
+        "normal": { "model": "<modid>:<unlocalizedName>" }
+    }
+}"""
+
+blockmodelJson = """{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "<modid>:blocks/<unlocalizedName>"
+    }
+}"""
+
+itemmodelJson = """{
+    "parent":"<modid>:block/<unlocalizedName>",
+    "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}"""

@@ -57,8 +57,7 @@ public class TestProject {
 testitem_Instance = new testitem();
 testblock_Instance = new testblock();
 		if (event.getSide() == Side.CLIENT) {
-			RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-			        renderItem.getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
+			        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
 		}
 	}
 
