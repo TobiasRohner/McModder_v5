@@ -1,0 +1,12 @@
+package TestProject.Block;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+
+public class testblock extends Block {
+
+	public testblock() {
+		super(Material.rock);
+	}
+
+}

@@ -1,9 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "testproject
-testproject:items/testitem
-testitem"
+        "layer0": "testproject:items/testitem"
     },
     "display": {
         "thirdperson": {

@@ -21,7 +21,7 @@ private final String name = "<unlocalizedName>";
 imports = """import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;"""
 
-commonInit = """	<instancename> = new <classname>();"""
+commonInit = """<instancename> = new <classname>();"""
     
 clientInit = """        renderItem.getItemModelMesher().register(<instancename>, 0, new ModelResourceLocation("<modid>:<unlocalizedName>", "inventory"));"""
 

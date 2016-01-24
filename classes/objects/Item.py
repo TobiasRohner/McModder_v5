@@ -3,6 +3,7 @@ import os
 import sys
 import pickle
 import shutil
+from widgets import menus
 from classes import _base, source
 from PyQt4 import QtGui, QtCore, uic
 
@@ -40,6 +41,9 @@ class Item(_base):
     def initUI(self):
         
         self.ui = uic.loadUi(BASEPATH+"/ui/Item.ui", self)
+        
+        self.creativeDropdown = menus.CreativeTabDropdown.CreativeDropdown(self.mainWindow)
+        self.ui.propertiesForm.addRow(self.mainWindow.translations.getTranslation("creativeTab")+":", self.creativeDropdown)
         
         self.connect(self.nameInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setName)
         self.connect(self.textureInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setTexture)

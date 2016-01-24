@@ -194,6 +194,11 @@ class MainWindow(QtGui.QMainWindow):
         
         proj = self.currentProject()
         
+        #clear the current project
+        path = self.config["workspace"]+"/"+proj.name+"/java/src/main"
+        shutil.rmtree(path)
+        
+        #export the newly compiled source code
         for t in proj.objects.keys():
             for cls in proj.objects[t]:
                 cls.completeModData()

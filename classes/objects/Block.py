@@ -21,6 +21,23 @@ class Block(_base):
         self.textureMode = False
         self.texture = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
         self.transparency = "auto"
+        self.material = "Material.rock"
+        self.creativeTab = "CreativeTabs.tabBlock"
+        self.hardness = 2.0
+        self.resistance = 10.0
+        self.tool = "pickaxe"
+        self.harvestLevel = 0
+        
+        self.data = {"package":[],
+                     "imports":[],
+                     "classname":[],
+                     "unlocalizedName":[],
+                     "material":[],
+                     "creativeTab":[],
+                     "hardness":[],
+                     "resistance":[],
+                     "tool":[],
+                     "harvestLevel":[]}
         
         self.mainWindow.projectExplorer.updateWorkspace()
         
@@ -292,13 +309,46 @@ class Block(_base):
             
             data["declarations"] = ["    public static Block "+self.instancename()+";"]
             
-            src = source.SrcBlock.baseModSrc
+            src = source.SrcBlock.commonInit
             src = src.replace("<instancename>", self.instancename())
             src = src.replace("<classname>", self.classname())
-            src = src.replace("<name>", self.name)
-            data["preInit"] = [src]
+            data["commonInit"] = [src]
             
         return data
+        
+        
+    def completeModData(self):
+        """ask every class in the project, if it has to add something to the mod data of the base mod"""
+        for k in self.data.keys():
+            self.data[k] = []
+        
+        success = True
+        for t in self.project.objects.keys():
+            for cls in self.project.objects[t]:
+                
+                toAdd = cls.addToModData(self)
+                for entry in toAdd.keys():
+                    if entry in self.data.keys():
+                        self.data[entry] += toAdd[entry]
+                    else:
+                        self.mainWindow.console.write("WARNING: Object "+cls.identifier+"."+cls.name+" tried to add data to unknown Index "+entry)
+                        success = False
+                
+                if cls.identifier == "BaseMod":
+                    self.data["basemod"] += [cls.classname()]
+                    self.data["modid"] += [cls.modid()]
+                    self.data["imports"] += ["import "+cls.package()+"."+cls.classname()+";"]
+                        
+        self.data["package"] += [self.package()]
+        self.data["name"] += [self.name]
+        self.data["unlocalizedName"] += [self.unlocalizedName()]
+        self.data["classname"] += [self.classname()]
+        self.data["creativeTab"] += [self.creativeTab]
+        self.data["imports"] += [source.SrcItem.imports]
+        self.data["imports"] += ["import net.minecraft.creativetab.CreativeTabs;"]
+                        
+        if success:
+            self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
         
         
         
