@@ -48,6 +48,7 @@ class Block(_base):
         
         self.ui = uic.loadUi(BASEPATH+"/ui/Block.ui", self)
         
+        self.connect(self.nameInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setName)
         self.connect(self.textureModeInput, QtCore.SIGNAL("stateChanged(int)"), self.setTextureMode)
         self.connect(self.singleTextureInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setSingleTexture)
         self.connect(self.multiTextureTopInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureTop)
@@ -304,7 +305,7 @@ class Block(_base):
         
         if cls.identifier == "BaseMod":
             
-            data["imports"] = ["import "+self.package()+";",
+            data["imports"] = ["import "+self.package()+"."+self.classname()+";",
                                "import net.minecraft.block.Block;"]
             
             data["declarations"] = ["    public static Block "+self.instancename()+";"]
@@ -335,20 +336,42 @@ class Block(_base):
                         success = False
                 
                 if cls.identifier == "BaseMod":
-                    self.data["basemod"] += [cls.classname()]
-                    self.data["modid"] += [cls.modid()]
                     self.data["imports"] += ["import "+cls.package()+"."+cls.classname()+";"]
                         
         self.data["package"] += [self.package()]
-        self.data["name"] += [self.name]
         self.data["unlocalizedName"] += [self.unlocalizedName()]
         self.data["classname"] += [self.classname()]
         self.data["creativeTab"] += [self.creativeTab]
-        self.data["imports"] += [source.SrcItem.imports]
+        self.data["imports"] += [source.SrcBlock.imports]
         self.data["imports"] += ["import net.minecraft.creativetab.CreativeTabs;"]
+        self.data["material"] += [self.material]
+        self.data["hardness"] += [str(self.hardness)]
+        self.data["resistance"] += [str(self.resistance)]
+        self.data["tool"] += [self.tool]
+        self.data["harvestLevel"] += [str(self.harvestLevel)]
                         
         if success:
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
+            
+            
+    def generateSrc(self):
+        
+        src = source.SrcBlock.main
+        
+        for d in self.data.keys():
+            src = src.replace("<"+d+">", "\n".join(self.data[d]))
+            
+        return src
+        
+        
+    def export(self):
+        
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
+        if not os.path.exists(path):
+            os.makedirs(path)
+        f = open(path+"/"+"/"+self.classname()+".java", "w")
+        f.write(self.generateSrc())
+        f.close()
         
         
         

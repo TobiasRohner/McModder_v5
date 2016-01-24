@@ -3,7 +3,7 @@ package TestProject;
 
 import TestProject.Item.testitem;
 import net.minecraft.item.Item;
-import TestProject.Block.testblock;
+import TestProject.Block;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

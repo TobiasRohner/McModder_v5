@@ -162,6 +162,8 @@ class MainWindow(QtGui.QMainWindow):
         
     def runClient(self):
         
+        self.console.clear()
+        
         self.exportProject()
         
         path = self.config["workspace"]+"/"+self.currentProject().name
@@ -169,6 +171,8 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def createNewProject(self):
+        
+        self.console.clear()
             
         arg = Project.Constructor(self).getParams(self)
         if arg:
@@ -196,7 +200,8 @@ class MainWindow(QtGui.QMainWindow):
         
         #clear the current project
         path = self.config["workspace"]+"/"+proj.name+"/java/src/main"
-        shutil.rmtree(path)
+        if os.path.exists(path):
+            shutil.rmtree(path)
         
         #export the newly compiled source code
         for t in proj.objects.keys():

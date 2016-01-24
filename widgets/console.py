@@ -28,3 +28,10 @@ class Console(QtGui.QDockWidget):
     def write(self, text):
         
         self.textEdit.appendPlainText(text)
+        QtGui.qApp.processEvents()
+        
+        
+    def clear(self):
+        
+        self.textEdit.clear()
+        QtGui.qApp.processEvents()

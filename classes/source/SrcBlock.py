@@ -6,7 +6,7 @@ public class <classname> extends Block {
 	
 	private final String name = "<unlocalizedName>";
 
-	public testblock() {
+	public <classname>() {
 		super(<material>);
 		GameRegistry.registerBlock(this, name);
 		this.setUnlocalizedName(name);

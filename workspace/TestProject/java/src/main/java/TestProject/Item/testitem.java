@@ -12,7 +12,7 @@ private final String name = "testitem";
     public testitem() {
         GameRegistry.registerItem(this, name);
         this.setUnlocalizedName(name);
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setCreativeTab(CreativeTabs.tabMisc);
     }
 	
 	public String getName() {
