@@ -1,0 +1,10 @@
+(dp0
+S'version'
+p1
+V1.0
+p2
+sS'name'
+p3
+VTestProject
+p4
+s.

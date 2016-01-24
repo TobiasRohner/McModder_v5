@@ -1,0 +1,14 @@
+package TestProject.Item;
+
+import net.minecraft.item.Item;
+import TestProject.TestProject;
+import net.minecraft.creativetab.CreativeTabs;
+
+public class testitem extends Item{
+
+    public testitem() {
+        this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setTextureName(TestProject.MODID + ":e:/programmieren/python/mcmodder_v5/assets/textures/items/bla.png");
+    }
+
+}
