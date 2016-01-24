@@ -1,7 +1,6 @@
 package TestProject;
 
 
-import TestProject.Block.testblock;
 import TestProject.Item.testitem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -35,8 +33,7 @@ public class TestProject {
 
 
     //declarations
-    public static Item testitem_Instance;
-    public static Block testblock_Instance;
+        public static Item testitem_Instance;
    
     public static void registerEntity(Class entityClass, int entityID, String name) {
         EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
@@ -54,13 +51,11 @@ public class TestProject {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-	testitem_Instance = new testitem();
+testitem_Instance = new testitem();
 		if (event.getSide() == Side.CLIENT) {
 			RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 			        renderItem.getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
 		}
-		
-	testblock_Instance = new testblock();
 	}
 
 	@EventHandler

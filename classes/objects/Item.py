@@ -21,7 +21,7 @@ class Item(_base):
         
         self.name = name
         self.texture = BASEPATH+"/assets/textures/items/unknown.png"
-        self.creativeTab = "CreativeTabs.tabMisc"
+        self.creativeTab = "Misc"
         
         self.data = {"package":[],
                      "imports":[],
@@ -48,6 +48,7 @@ class Item(_base):
         self.connect(self.nameInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setName)
         self.connect(self.textureInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setTexture)
         self.connect(self.textureButton, QtCore.SIGNAL("clicked()"), self.setTextureButton)
+        self.connect(self.creativeDropdown, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setCreativeTab)
         
         
     def setName(self, name):
@@ -76,10 +77,18 @@ class Item(_base):
         self.save()
         
         
+    def setCreativeTab(self, tab):
+        
+        self.creativeTab = tab
+        
+        self.save()
+        
+        
     def renewWidgetEntrys(self):
         
         self.nameInput.setText(self.name)
         self.textureInput.setText(self.texture)
+        self.creativeDropdown.setCurrentIndex(self.creativeDropdown.findText(self.creativeTab))
         
         
     def save(self):
@@ -90,7 +99,8 @@ class Item(_base):
         f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
         
         data = {"name":self.name,
-                "texture":self.texture}
+                "texture":self.texture,
+                "creativeTab":self.creativeTab}
         pickle.dump(data, f)
         
         f.close()
@@ -148,7 +158,7 @@ class Item(_base):
         self.data["name"] += [self.name]
         self.data["unlocalizedName"] += [self.unlocalizedName()]
         self.data["classname"] += [self.classname()]
-        self.data["creativeTab"] += [self.creativeTab]
+        self.data["creativeTab"] += [self.creativeDropdown.getTabClass(self.creativeTab)]
         self.data["texture"] += [self.texture.split("/")[-1].split(".")[0]]
         self.data["imports"] += [source.SrcItem.imports]
                         

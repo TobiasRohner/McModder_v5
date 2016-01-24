@@ -54,3 +54,8 @@ class CreativeDropdown(QtGui.QComboBox):
         for name in self.tabs.keys():
             if self.findText(name) == -1:
                 self.addItem(name)
+                
+                
+    def getTabClass(self, tabName):
+        
+        return self.tabs[tabName]
