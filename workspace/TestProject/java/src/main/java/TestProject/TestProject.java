@@ -35,7 +35,7 @@ public class TestProject {
 
 
     //declarations
-        public static Item testitem_Instance;
+    public static Item testitem_Instance;
     public static Block testblock_Instance;
    
     public static void registerEntity(Class entityClass, int entityID, String name) {
@@ -57,7 +57,8 @@ public class TestProject {
 testitem_Instance = new testitem();
 testblock_Instance = new testblock();
 		if (event.getSide() == Side.CLIENT) {
-			        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(testblock_Instance), 0, new ModelResourceLocation("testproject:testblock", "inventory"));
 		}
 	}
 

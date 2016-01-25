@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;"""
 
 commonInit = """<instancename> = new <classname>();"""
 
-clientInit = """Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(<instancename>), 0, new ModelResourceLocation("<modid>:<unlocalizedName>", "inventory"));"""
+clientInit = """			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(<instancename>), 0, new ModelResourceLocation("<modid>:<unlocalizedName>", "inventory"));"""
 
 blockstatesJson = """{
     "variants": {

@@ -17,7 +17,7 @@ public class <classname> {
 
 
     //declarations
-    <declarations>
+<declarations>
    
     public static void registerEntity(Class entityClass, int entityID, String name) {
         EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
@@ -37,7 +37,7 @@ public class <classname> {
 	public void init(FMLInitializationEvent event) {
 <commonInit>
 		if (event.getSide() == Side.CLIENT) {
-			<clientInit>
+<clientInit>
 		}
 	}
 

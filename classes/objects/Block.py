@@ -317,6 +317,12 @@ class Block(_base):
             src = src.replace("<classname>", self.classname())
             data["commonInit"] = [src]
             
+            src = source.SrcBlock.clientInit
+            src = src.replace("<instancename>", self.instancename())
+            src = src.replace("<modid>", cls.modid())
+            src = src.replace("<unlocalizedName>", self.unlocalizedName())
+            data["clientInit"] = [src]
+            
         return data
         
         
