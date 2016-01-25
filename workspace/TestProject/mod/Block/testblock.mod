@@ -5,12 +5,12 @@ S'auto'
 p2
 sS'name'
 p3
-Vtestblock
+S'testblock'
 p4
 sS'texture'
 p5
 (lp6
-VE:/Programmieren/Python/McModder_v5/assets/textures/blocks/unknown.png
+S'E:/Programmieren/Python/McModder_v5/assets/textures/blocks/cake_top.png'
 p7
 ag7
 ag7

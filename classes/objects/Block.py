@@ -2,6 +2,7 @@
 import os
 import sys
 import pickle
+import shutil
 from PyQt4 import QtGui, QtCore, uic
 from classes import _base, source
 
@@ -37,7 +38,8 @@ class Block(_base):
                      "hardness":[],
                      "resistance":[],
                      "tool":[],
-                     "harvestLevel":[]}
+                     "harvestLevel":[],
+                     "modid":[]}
         
         self.mainWindow.projectExplorer.updateWorkspace()
         
@@ -337,6 +339,7 @@ class Block(_base):
                 
                 if cls.identifier == "BaseMod":
                     self.data["imports"] += ["import "+cls.package()+"."+cls.classname()+";"]
+                    self.data["modid"] += [cls.modid()]
                         
         self.data["package"] += [self.package()]
         self.data["unlocalizedName"] += [self.unlocalizedName()]
@@ -354,9 +357,7 @@ class Block(_base):
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
             
             
-    def generateSrc(self):
-        
-        src = source.SrcBlock.main
+    def generateSrc(self, src):
         
         for d in self.data.keys():
             src = src.replace("<"+d+">", "\n".join(self.data[d]))
@@ -369,9 +370,37 @@ class Block(_base):
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
-        f = open(path+"/"+"/"+self.classname()+".java", "w")
-        f.write(self.generateSrc())
+        f = open(path+"/"+self.classname()+".java", "w")
+        f.write(self.generateSrc(source.SrcBlock.main))
         f.close()
+        
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        f = open(path+"/"+self.classname()+".json", "w")
+        f.write(self.generateSrc(source.SrcBlock.blockstatesJson))
+        f.close()
+        
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        f = open(path+"/"+self.classname()+".json", "w")
+        f.write(self.generateSrc(source.SrcBlock.blockmodelJson))
+        f.close()
+        
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        f = open(path+"/"+self.classname()+".json", "w")
+        f.write(self.generateSrc(source.SrcBlock.itemmodelJson))
+        f.close()
+        
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        shutil.copy2(self.texture[0], path+"/"+self.unlocalizedName()+".png")
+        
+        self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
         
         
