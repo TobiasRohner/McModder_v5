@@ -6,6 +6,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.EnumWorldBlockLayer;
 
 public class testblock extends Block {
 	
@@ -21,6 +24,15 @@ public class testblock extends Block {
 		this.setHarvestLevel("pickaxe", 0);
 	}
 	
-
+@SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.CUTOUT;
+    }
+    
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
 }

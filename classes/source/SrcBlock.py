@@ -53,3 +53,14 @@ itemmodelJson = """{
         }
     }
 }"""
+
+renderLayerTransparent = """@SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.<layer>;
+    }
+    
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }"""

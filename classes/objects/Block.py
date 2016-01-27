@@ -6,6 +6,7 @@ import shutil
 from PyQt4 import QtGui, QtCore, uic
 from classes import _base, source
 from widgets import menus
+from utils import textureAttributes
 
 
 
@@ -71,9 +72,9 @@ class Block(_base):
         self.connect(self.multiTextureBackButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureBackButton)
         self.connect(self.multiTextureLeftButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureLeftButton)
         self.connect(self.multiTextureRightButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureRightButton)
-        self.connect(self.transparentButton, QtCore.SIGNAL("clicked(bool"), self.setTransparent)
-        self.connect(self.nonTransparentButton, QtCore.SIGNAL("clicked(bool"), self.setNonTransparent)
-        self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("clicked(bool"), self.setAutoDetectTransparent)
+        self.connect(self.transparentButton, QtCore.SIGNAL("toggled(bool)"), self.setTransparent)
+        self.connect(self.nonTransparentButton, QtCore.SIGNAL("toggled(bool)"), self.setNonTransparent)
+        self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("toggled(bool)"), self.setAutoDetectTransparent)
         self.connect(self.creativeDropdown, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setCreativeTab)
         
         
@@ -278,6 +279,24 @@ class Block(_base):
         self.creativeTab = tab
         
         self.save()
+        
+        
+    def getRenderLayer(self):
+        
+        if self.transparency == "nontransparent":
+            return "SOLID"
+            
+        else:
+            layer = "SOLID"
+            for tex in self.texture:
+                alpha = textureAttributes.transparency(tex)
+                if 0 in alpha and 255 in alpha and len(alpha) == 2:
+                    if layer != "TRANSLUCENT":
+                        layer = "CUTOUT"
+                if sum([0 if a==0 or a==255 else 1 for a in alpha]):
+                    layer = "TRANSLUCENT"
+                    
+        return layer
             
         
         
@@ -373,6 +392,16 @@ class Block(_base):
         self.data["resistance"] += [str(self.resistance)]
         self.data["tool"] += [self.tool]
         self.data["harvestLevel"] += [str(self.harvestLevel)]
+        if self.transparency == "auto" and self.getRenderLayer() != "SOLID":
+            self.data["additionalAttributes"] += [source.SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer())]
+            self.data["imports"] += ["import net.minecraftforge.fml.relauncher.Side;"]
+            self.data["imports"] += ["import net.minecraftforge.fml.relauncher.SideOnly;"]
+            self.data["imports"] += ["import net.minecraft.util.EnumWorldBlockLayer;"]
+        if self.transparency == "transparent":
+            self.data["additionalAttributes"] += [source.SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer().replace("SOLID", "CUTOUT"))]
+            self.data["imports"] += ["import net.minecraftforge.fml.relauncher.Side;"]
+            self.data["imports"] += ["import net.minecraftforge.fml.relauncher.SideOnly;"]
+            self.data["imports"] += ["import net.minecraft.util.EnumWorldBlockLayer;"]
                         
         if success:
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")

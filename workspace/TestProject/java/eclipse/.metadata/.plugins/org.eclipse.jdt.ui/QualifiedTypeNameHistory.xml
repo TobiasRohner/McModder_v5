@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="net.minecraft.entity.EntityList"/>
 <fullyQualifiedTypeName name="net.minecraftforge.fml.common.event.FMLPreInitializationEvent"/>
 <fullyQualifiedTypeName name="net.minecraftforge.fml.common.event.FMLPostInitializationEvent"/>
-<fullyQualifiedTypeName name="net.minecraftforge.fml.relauncher.Side"/>
 <fullyQualifiedTypeName name="net.minecraft.client.renderer.entity.RenderItem"/>
 <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
 <fullyQualifiedTypeName name="net.minecraft.client.resources.model.ModelResourceLocation"/>
@@ -16,4 +15,7 @@
 <fullyQualifiedTypeName name="TestProject.Block.testblock"/>
 <fullyQualifiedTypeName name="net.minecraft.block.Block"/>
 <fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
+<fullyQualifiedTypeName name="net.minecraftforge.fml.relauncher.SideOnly"/>
+<fullyQualifiedTypeName name="net.minecraftforge.fml.relauncher.Side"/>
+<fullyQualifiedTypeName name="net.minecraft.util.EnumWorldBlockLayer"/>
 </qualifiedTypeNameHistroy>
