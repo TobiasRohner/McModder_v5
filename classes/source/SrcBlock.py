@@ -36,10 +36,22 @@ blockstatesJson = """{
     }
 }"""
 
-blockmodelJson = """{
+blockmodelJsonSingleTexture = """{
     "parent": "block/cube_all",
     "textures": {
         "all": "<modid>:blocks/<unlocalizedName>"
+    }
+}"""
+
+blockmodelJsonMultiTexture = """{
+    "parent": "block/cube_all",
+    "textures": {
+        "down": "<modid>:blocks/<unlocalizedName>_down",
+        "up": "<modid>:blocks/<unlocalizedName>_up",
+        "north": "<modid>:blocks/<unlocalizedName>_north",
+        "south": "<modid>:blocks/<unlocalizedName>_south",
+        "west": "<modid>:blocks/<unlocalizedName>_west",
+        "east": "<modid>:blocks/<unlocalizedName>_east"
     }
 }"""
 

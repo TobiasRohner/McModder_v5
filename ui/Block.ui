@@ -62,7 +62,7 @@
           <item>
            <widget class="QStackedWidget" name="textureStack">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page">
              <layout class="QFormLayout" name="formLayout_2">
@@ -97,52 +97,52 @@
               <item row="0" column="0">
                <widget class="QLabel" name="label_4">
                 <property name="text">
-                 <string>Top:</string>
+                 <string>Down:</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="text">
-                 <string>Bottom:</string>
+                 <string>Up:</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
-                 <string>Front:</string>
+                 <string>North:</string>
                 </property>
                </widget>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Back:</string>
+                 <string>South:</string>
                 </property>
                </widget>
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="label_8">
                 <property name="text">
-                 <string>Left:</string>
+                 <string>West:</string>
                 </property>
                </widget>
               </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="text">
-                 <string>Right:</string>
+                 <string>East:</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureTopInput"/>
+                 <widget class="QLineEdit" name="multiTextureDownInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureTopButton">
+                 <widget class="QToolButton" name="multiTextureDownButton">
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -153,10 +153,10 @@
               <item row="1" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureBottomInput"/>
+                 <widget class="QLineEdit" name="multiTextureUpInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureBottomButton">
+                 <widget class="QToolButton" name="multiTextureUpButton">
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -167,10 +167,10 @@
               <item row="2" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureFrontInput"/>
+                 <widget class="QLineEdit" name="multiTextureNorthInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureFrontButton">
+                 <widget class="QToolButton" name="multiTextureNorthButton">
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -181,10 +181,10 @@
               <item row="3" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureBackInput"/>
+                 <widget class="QLineEdit" name="multiTextureSouthInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureBackButton">
+                 <widget class="QToolButton" name="multiTextureSouthButton">
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -195,10 +195,10 @@
               <item row="4" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_6">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureLeftInput"/>
+                 <widget class="QLineEdit" name="multiTextureWestInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureLeftButton">
+                 <widget class="QToolButton" name="multiTextureWestButton">
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -209,10 +209,10 @@
               <item row="5" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QLineEdit" name="multiTextureRightInput"/>
+                 <widget class="QLineEdit" name="multiTextureEastInput"/>
                 </item>
                 <item>
-                 <widget class="QToolButton" name="multiTextureRightButton">
+                 <widget class="QToolButton" name="multiTextureEastButton">
                   <property name="text">
                    <string>...</string>
                   </property>

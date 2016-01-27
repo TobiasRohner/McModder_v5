@@ -59,19 +59,19 @@ class Block(_base):
         self.connect(self.nameInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setName)
         self.connect(self.textureModeInput, QtCore.SIGNAL("stateChanged(int)"), self.setTextureMode)
         self.connect(self.singleTextureInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setSingleTexture)
-        self.connect(self.multiTextureTopInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureTop)
-        self.connect(self.multiTextureBottomInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureBottom)
-        self.connect(self.multiTextureFrontInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureFront)
-        self.connect(self.multiTextureBackInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureBack)
-        self.connect(self.multiTextureLeftInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureLeft)
-        self.connect(self.multiTextureRightInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureRight)
+        self.connect(self.multiTextureDownInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureDown)
+        self.connect(self.multiTextureUpInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureUp)
+        self.connect(self.multiTextureNorthInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureNorth)
+        self.connect(self.multiTextureSouthInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureSouth)
+        self.connect(self.multiTextureWestInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureWest)
+        self.connect(self.multiTextureEastInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setMultiTextureEast)
         self.connect(self.singleTextureButton, QtCore.SIGNAL("clicked()"), self.setSingleTextureButton)
-        self.connect(self.multiTextureTopButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureTopButton)
-        self.connect(self.multiTextureBottomButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureBottomButton)
-        self.connect(self.multiTextureFrontButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureFrontButton)
-        self.connect(self.multiTextureBackButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureBackButton)
-        self.connect(self.multiTextureLeftButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureLeftButton)
-        self.connect(self.multiTextureRightButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureRightButton)
+        self.connect(self.multiTextureDownButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureDownButton)
+        self.connect(self.multiTextureUpButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureUpButton)
+        self.connect(self.multiTextureNorthButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureNorthButton)
+        self.connect(self.multiTextureSouthButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureSouthButton)
+        self.connect(self.multiTextureWestButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureWestButton)
+        self.connect(self.multiTextureEastButton, QtCore.SIGNAL("clicked()"), self.setMultiTextureEastButton)
         self.connect(self.transparentButton, QtCore.SIGNAL("toggled(bool)"), self.setTransparent)
         self.connect(self.nonTransparentButton, QtCore.SIGNAL("toggled(bool)"), self.setNonTransparent)
         self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("toggled(bool)"), self.setAutoDetectTransparent)
@@ -98,17 +98,17 @@ class Block(_base):
         
         self.texture = [texture]*6
         
-        self.multiTextureTopInput.setText(texture)
-        self.multiTextureBottomInput.setText(texture)
-        self.multiTextureFrontInput.setText(texture)
-        self.multiTextureBackInput.setText(texture)
-        self.multiTextureLeftInput.setText(texture)
-        self.multiTextureRightInput.setText(texture)
+        self.multiTextureDownInput.setText(texture)
+        self.multiTextureUpInput.setText(texture)
+        self.multiTextureNorthInput.setText(texture)
+        self.multiTextureSouthInput.setText(texture)
+        self.multiTextureWestInput.setText(texture)
+        self.multiTextureEastInput.setText(texture)
         
         self.save()
         
         
-    def setMultiTextureTop(self, texture):
+    def setMultiTextureDown(self, texture):
         
         self.texture[0] = texture
         
@@ -117,35 +117,35 @@ class Block(_base):
         self.save()
         
         
-    def setMultiTextureBottom(self, texture):
+    def setMultiTextureUp(self, texture):
         
         self.texture[1] = texture
         
         self.save()
         
         
-    def setMultiTextureFront(self, texture):
+    def setMultiTextureNorth(self, texture):
         
         self.texture[2] = texture
         
         self.save()
         
         
-    def setMultiTextureBack(self, texture):
+    def setMultiTextureSouth(self, texture):
         
         self.texture[3] = texture
         
         self.save()
         
         
-    def setMultiTextureLeft(self, texture):
+    def setMultiTextureWest(self, texture):
         
         self.texture[4] = texture
         
         self.save()
         
         
-    def setMultiTextureRight(self, texture):
+    def setMultiTextureEast(self, texture):
         
         self.texture[5] = texture
         
@@ -161,17 +161,17 @@ class Block(_base):
         if txt != "":
             self.texture = [txt]*6
             self.singleTextureInput.setText(txt)
-            self.multiTextureTopInput.setText(txt)
-            self.multiTextureBottomInput.setText(txt)
-            self.multiTextureFrontInput.setText(txt)
-            self.multiTextureBackInput.setText(txt)
-            self.multiTextureLeftInput.setText(txt)
-            self.multiTextureRightInput.setText(txt)
+            self.multiTextureDownInput.setText(txt)
+            self.multiTextureUpInput.setText(txt)
+            self.multiTextureNorthInput.setText(txt)
+            self.multiTextureSouthInput.setText(txt)
+            self.multiTextureWestInput.setText(txt)
+            self.multiTextureEastInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureTopButton(self):
+    def setMultiTextureDownButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -179,13 +179,13 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[0] = txt
-            self.multiTextureTopInput.setText(txt)
+            self.multiTextureDownInput.setText(txt)
             self.singleTextureInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureBottomButton(self):
+    def setMultiTextureUpButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -193,12 +193,12 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[1] = txt
-            self.multiTextureBottomInput.setText(txt)
+            self.multiTextureUpInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureFrontButton(self):
+    def setMultiTextureNorthButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -206,12 +206,12 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[2] = txt
-            self.multiTextureFrontInput.setText(txt)
+            self.multiTextureNorthInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureBackButton(self):
+    def setMultiTextureSouthButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -219,12 +219,12 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[3] = txt
-            self.multiTextureBackInput.setText(txt)
+            self.multiTextureSouthInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureLeftButton(self):
+    def setMultiTextureWestButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -232,12 +232,12 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[4] = txt
-            self.multiTextureLeftInput.setText(txt)
+            self.multiTextureWestInput.setText(txt)
             
         self.save()
         
         
-    def setMultiTextureRightButton(self):
+    def setMultiTextureEastButton(self):
         
         txt = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
                                                           self.mainWindow.config["workspace"],
@@ -245,7 +245,7 @@ class Block(_base):
                                                           
         if txt != "":
             self.texture[5] = txt
-            self.multiTextureRightInput.setText(txt)
+            self.multiTextureEastInput.setText(txt)
             
         self.save()
         
@@ -321,12 +321,12 @@ class Block(_base):
         
         self.nameInput.setText(self.name)
         self.singleTextureInput.setText(self.texture[0])
-        self.multiTextureTopInput.setText(self.texture[0])
-        self.multiTextureBottomInput.setText(self.texture[1])
-        self.multiTextureFrontInput.setText(self.texture[2])
-        self.multiTextureBackInput.setText(self.texture[3])
-        self.multiTextureLeftInput.setText(self.texture[4])
-        self.multiTextureRightInput.setText(self.texture[5])
+        self.multiTextureDownInput.setText(self.texture[0])
+        self.multiTextureUpInput.setText(self.texture[1])
+        self.multiTextureNorthInput.setText(self.texture[2])
+        self.multiTextureSouthInput.setText(self.texture[3])
+        self.multiTextureWestInput.setText(self.texture[4])
+        self.multiTextureEastInput.setText(self.texture[5])
         self.transparentButton.setDown(self.transparency == "transparent")
         self.nonTransparentButton.setDown(self.transparency == "nontransparent")
         self.autoDetectTransparencyButton.setDown(self.transparency == "auto")
@@ -435,7 +435,10 @@ class Block(_base):
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
-        f.write(self.generateSrc(source.SrcBlock.blockmodelJson))
+        if self.textureMode:
+            f.write(self.generateSrc(source.SrcBlock.blockmodelJsonMultiTexture))
+        else:
+            f.write(self.generateSrc(source.SrcBlock.blockmodelJsonSingleTexture))
         f.close()
         
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
@@ -448,7 +451,15 @@ class Block(_base):
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
         if not os.path.exists(path):
             os.makedirs(path)
-        shutil.copy2(self.texture[0], path+"/"+self.unlocalizedName()+".png")
+        if self.textureMode:
+            shutil.copy2(self.texture[0], path+"/"+self.unlocalizedName()+"_down.png")
+            shutil.copy2(self.texture[1], path+"/"+self.unlocalizedName()+"_up.png")
+            shutil.copy2(self.texture[2], path+"/"+self.unlocalizedName()+"_north.png")
+            shutil.copy2(self.texture[3], path+"/"+self.unlocalizedName()+"_south.png")
+            shutil.copy2(self.texture[4], path+"/"+self.unlocalizedName()+"_west.png")
+            shutil.copy2(self.texture[5], path+"/"+self.unlocalizedName()+"_east.png")
+        else:
+            shutil.copy2(self.texture[0], path+"/"+self.unlocalizedName()+".png")
         
         self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
