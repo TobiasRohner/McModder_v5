@@ -152,7 +152,7 @@ class BaseMod(QtGui.QWidget):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.project.name.replace(" ", "")
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package()
         
         if not os.path.exists(path):
             os.makedirs(path)

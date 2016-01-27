@@ -15,10 +15,12 @@ public class testblock extends Block {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
 		this.setUnlocalizedName(name);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(CreativeTabs.tabFood);
 		this.setHardness(2.0F);
 		this.setResistance(10.0F);
 		this.setHarvestLevel("pickaxe", 0);
 	}
+	
+
 
 }

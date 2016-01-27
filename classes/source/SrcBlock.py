@@ -15,6 +15,8 @@ public class <classname> extends Block {
 		this.setResistance(<resistance>F);
 		this.setHarvestLevel("<tool>", <harvestLevel>);
 	}
+	
+<additionalAttributes>
 
 }
 """

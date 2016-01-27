@@ -5,6 +5,7 @@ import pickle
 import shutil
 from PyQt4 import QtGui, QtCore, uic
 from classes import _base, source
+from widgets import menus
 
 
 
@@ -23,7 +24,7 @@ class Block(_base):
         self.texture = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
         self.transparency = "auto"
         self.material = "Material.rock"
-        self.creativeTab = "CreativeTabs.tabBlock"
+        self.creativeTab = "Building Blocks"
         self.hardness = 2.0
         self.resistance = 10.0
         self.tool = "pickaxe"
@@ -39,7 +40,8 @@ class Block(_base):
                      "resistance":[],
                      "tool":[],
                      "harvestLevel":[],
-                     "modid":[]}
+                     "modid":[],
+                     "additionalAttributes":[]}
         
         self.mainWindow.projectExplorer.updateWorkspace()
         
@@ -49,6 +51,9 @@ class Block(_base):
     def initUI(self):
         
         self.ui = uic.loadUi(BASEPATH+"/ui/Block.ui", self)
+        
+        self.creativeDropdown = menus.CreativeTabDropdown.CreativeDropdown(self.mainWindow)
+        self.ui.propertiesForm.addRow(self.mainWindow.translations.getTranslation("creativeTab")+":", self.creativeDropdown)
         
         self.connect(self.nameInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setName)
         self.connect(self.textureModeInput, QtCore.SIGNAL("stateChanged(int)"), self.setTextureMode)
@@ -69,6 +74,7 @@ class Block(_base):
         self.connect(self.transparentButton, QtCore.SIGNAL("clicked(bool"), self.setTransparent)
         self.connect(self.nonTransparentButton, QtCore.SIGNAL("clicked(bool"), self.setNonTransparent)
         self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("clicked(bool"), self.setAutoDetectTransparent)
+        self.connect(self.creativeDropdown, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setCreativeTab)
         
         
     def setName(self, name):
@@ -265,6 +271,13 @@ class Block(_base):
             self.transparency = "auto"
             
         self.save()
+        
+        
+    def setCreativeTab(self, tab):
+        
+        self.creativeTab = tab
+        
+        self.save()
             
         
         
@@ -278,7 +291,8 @@ class Block(_base):
         data = {"name":self.name,
                 "textureMode":self.textureMode,
                 "texture":self.texture,
-                "transparency":self.transparency}
+                "transparency":self.transparency,
+                "creativeTab":self.creativeTab}
         pickle.dump(data, f)
         
         f.close()
@@ -299,6 +313,7 @@ class Block(_base):
         self.autoDetectTransparencyButton.setDown(self.transparency == "auto")
         self.textureModeInput.setCheckState(QtCore.Qt.Checked if self.textureMode else QtCore.Qt.Unchecked)
         self.textureStack.setCurrentIndex(1 if self.textureMode else 0)
+        self.creativeDropdown.setCurrentIndex(self.creativeDropdown.findText(self.creativeTab))
         
         
     def addToModData(self, cls):
@@ -350,7 +365,7 @@ class Block(_base):
         self.data["package"] += [self.package()]
         self.data["unlocalizedName"] += [self.unlocalizedName()]
         self.data["classname"] += [self.classname()]
-        self.data["creativeTab"] += [self.creativeTab]
+        self.data["creativeTab"] += [self.creativeDropdown.getTabClass(self.creativeTab)]
         self.data["imports"] += [source.SrcBlock.imports]
         self.data["imports"] += ["import net.minecraft.creativetab.CreativeTabs;"]
         self.data["material"] += [self.material]
