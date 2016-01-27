@@ -14,6 +14,7 @@ public class testblock extends Block {
 	
 	private final String name = "testblock";
 
+
 	public testblock() {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);

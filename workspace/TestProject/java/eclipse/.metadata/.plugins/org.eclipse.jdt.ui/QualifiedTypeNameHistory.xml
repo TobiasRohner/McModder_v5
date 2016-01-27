@@ -18,4 +18,15 @@
 <fullyQualifiedTypeName name="net.minecraftforge.fml.relauncher.SideOnly"/>
 <fullyQualifiedTypeName name="net.minecraftforge.fml.relauncher.Side"/>
 <fullyQualifiedTypeName name="net.minecraft.util.EnumWorldBlockLayer"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.EntityLiving"/>
+<fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="net.minecraft.block.properties.PropertyDirection"/>
+<fullyQualifiedTypeName name="net.minecraft.util.EnumFacing"/>
+<fullyQualifiedTypeName name="net.minecraft.block.state.IBlockState"/>
+<fullyQualifiedTypeName name="net.minecraft.world.World"/>
+<fullyQualifiedTypeName name="net.minecraft.util.BlockPos"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.EntityLivingBase"/>
+<fullyQualifiedTypeName name="net.minecraft.block.state.BlockState"/>
+<fullyQualifiedTypeName name="net.minecraft.block.properties.IProperty"/>
 </qualifiedTypeNameHistroy>

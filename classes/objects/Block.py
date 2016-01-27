@@ -21,7 +21,7 @@ class Block(_base):
         _base.__init__(self, mainWindow, "Block")
         
         self.name = name
-        self.textureMode = False
+        self.multitextured = False
         self.texture = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
         self.transparency = "auto"
         self.material = "Material.rock"
@@ -30,6 +30,7 @@ class Block(_base):
         self.resistance = 10.0
         self.tool = "pickaxe"
         self.harvestLevel = 0
+        self.rotateable = True
         
         self.data = {"package":[],
                      "imports":[],
@@ -42,7 +43,8 @@ class Block(_base):
                      "tool":[],
                      "harvestLevel":[],
                      "modid":[],
-                     "additionalAttributes":[]}
+                     "additionalAttributes":[],
+                     "additionalDeclarations":[]}
         
         self.mainWindow.projectExplorer.updateWorkspace()
         
@@ -76,6 +78,7 @@ class Block(_base):
         self.connect(self.nonTransparentButton, QtCore.SIGNAL("toggled(bool)"), self.setNonTransparent)
         self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("toggled(bool)"), self.setAutoDetectTransparent)
         self.connect(self.creativeDropdown, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setCreativeTab)
+        self.connect(self.rotateableInput, QtCore.SIGNAL("stateChanged(int)"), self.setRotateable)
         
         
     def setName(self, name):
@@ -87,9 +90,9 @@ class Block(_base):
         
     def setTextureMode(self, mode):
         
-        self.textureMode = mode == QtCore.Qt.Checked
+        self.multitextured = mode == QtCore.Qt.Checked
         
-        self.textureStack.setCurrentIndex(1 if self.textureMode else 0)
+        self.textureStack.setCurrentIndex(1 if self.multitextured else 0)
         
         self.save()
         
@@ -281,6 +284,13 @@ class Block(_base):
         self.save()
         
         
+    def setRotateable(self, rotateable):
+        
+        self.rotateable = rotateable
+        
+        self.save()
+        
+        
     def getRenderLayer(self):
         
         if self.transparency == "nontransparent":
@@ -308,10 +318,11 @@ class Block(_base):
         f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
         
         data = {"name":self.name,
-                "textureMode":self.textureMode,
+                "multitextured":self.multitextured,
                 "texture":self.texture,
                 "transparency":self.transparency,
-                "creativeTab":self.creativeTab}
+                "creativeTab":self.creativeTab,
+                "rotateable":self.rotateable}
         pickle.dump(data, f)
         
         f.close()
@@ -330,9 +341,10 @@ class Block(_base):
         self.transparentButton.setDown(self.transparency == "transparent")
         self.nonTransparentButton.setDown(self.transparency == "nontransparent")
         self.autoDetectTransparencyButton.setDown(self.transparency == "auto")
-        self.textureModeInput.setCheckState(QtCore.Qt.Checked if self.textureMode else QtCore.Qt.Unchecked)
-        self.textureStack.setCurrentIndex(1 if self.textureMode else 0)
+        self.textureModeInput.setCheckState(QtCore.Qt.Checked if self.multitextured else QtCore.Qt.Unchecked)
+        self.textureStack.setCurrentIndex(1 if self.multitextured else 0)
         self.creativeDropdown.setCurrentIndex(self.creativeDropdown.findText(self.creativeTab))
+        self.rotateableInput.setCheckState(QtCore.Qt.Checked if self.rotateable else QtCore.Qt.Unchecked)
         
         
     def addToModData(self, cls):
@@ -402,6 +414,17 @@ class Block(_base):
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.Side;"]
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.SideOnly;"]
             self.data["imports"] += ["import net.minecraft.util.EnumWorldBlockLayer;"]
+        if self.multitextured and self.rotateable:
+            self.data["additionalDeclarations"] += [source.SrcBlock.rotateableDeclarations]
+            self.data["additionalAttributes"] += [source.SrcBlock.rotateableAdditionalAttributes]
+            self.data["imports"] += ["import net.minecraft.block.properties.PropertyDirection;"]
+            self.data["imports"] += ["import net.minecraft.util.EnumFacing;"]
+            self.data["imports"] += ["import net.minecraft.block.state.IBlockState;"]
+            self.data["imports"] += ["import net.minecraft.world.World;"]
+            self.data["imports"] += ["import net.minecraft.util.BlockPos;"]
+            self.data["imports"] += ["import net.minecraft.entity.EntityLivingBase;"]
+            self.data["imports"] += ["import net.minecraft.block.state.BlockState;"]
+            self.data["imports"] += ["import net.minecraft.block.properties.IProperty;"]
                         
         if success:
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
@@ -416,7 +439,7 @@ class Block(_base):
         
         
     def export(self):
-        
+        """Export the main java file"""
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
@@ -424,23 +447,29 @@ class Block(_base):
         f.write(self.generateSrc(source.SrcBlock.main))
         f.close()
         
+        """Export the blockstates"""
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
-        f.write(self.generateSrc(source.SrcBlock.blockstatesJson))
+        if self.rotateable and self.multitextured:
+            f.write(self.generateSrc(source.SrcBlock.blockstatesJsonRotateable))
+        else:
+            f.write(self.generateSrc(source.SrcBlock.blockstatesJson))
         f.close()
         
+        """Export the blockmodel"""
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
-        if self.textureMode:
+        if self.multitextured:
             f.write(self.generateSrc(source.SrcBlock.blockmodelJsonMultiTexture))
         else:
             f.write(self.generateSrc(source.SrcBlock.blockmodelJsonSingleTexture))
         f.close()
         
+        """Export the itemmodel"""
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
         if not os.path.exists(path):
             os.makedirs(path)
@@ -448,10 +477,11 @@ class Block(_base):
         f.write(self.generateSrc(source.SrcBlock.itemmodelJson))
         f.close()
         
+        """Export the textures"""
         path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
         if not os.path.exists(path):
             os.makedirs(path)
-        if self.textureMode:
+        if self.multitextured:
             shutil.copy2(self.texture[0], path+"/"+self.unlocalizedName()+"_down.png")
             shutil.copy2(self.texture[1], path+"/"+self.unlocalizedName()+"_up.png")
             shutil.copy2(self.texture[2], path+"/"+self.unlocalizedName()+"_north.png")
