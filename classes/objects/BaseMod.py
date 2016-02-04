@@ -115,7 +115,7 @@ class BaseMod(QtGui.QWidget):
         success = True
         for t in self.project.objects.keys():
             for cls in self.project.objects[t]:
-                toAdd = cls.addToModData(self)
+                toAdd = cls.pull(self)
                 for entry in toAdd.keys():
                     if entry in self.data.keys():
                         self.data[entry] += toAdd[entry]
@@ -135,7 +135,7 @@ class BaseMod(QtGui.QWidget):
             self.mainWindow.console.write("BaseMod: Successfully completed Mod Data")
             
             
-    def addToModData(self, cls):
+    def pull(self, cls):
         #TODO
         return {}
         

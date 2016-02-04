@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-import inspect
 import shutil
+import imp
 import widgets
-from utils import translations, gradlew, Config, loadClassLibrary, History
-from classes import source
+from utils import translations, gradlew, Config, History
+from classes import Project, source
+from classes import objects
 from PyQt4 import QtGui, QtCore, uic
 
 
@@ -24,6 +25,8 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         
+        self.addons = []
+        
         #load the config
         self.config = Config(CONFIGPATH)
         if  not os.path.exists(CONFIGPATH):
@@ -37,6 +40,7 @@ class MainWindow(QtGui.QMainWindow):
         self.projects = []
         
         self.initUI()
+        self.initializeAddons()
         self.initializeProjects()
         
         self.projectExplorer.updateWorkspace()
@@ -91,8 +95,6 @@ class MainWindow(QtGui.QMainWindow):
         
         self.runToolbar.addAction(self.runClientMenubar)
         
-        self.initializeMinecraftObjects()
-        
         self.connect(self.newProjectMenubar, QtCore.SIGNAL('triggered()'), self.createNewProject)
         self.connect(self.exportProjectMenubar, QtCore.SIGNAL('triggered()'), self.exportProject)
         self.connect(self.exportJarMenubar, QtCore.SIGNAL('triggered()'), self.exportJar)
@@ -108,17 +110,19 @@ class MainWindow(QtGui.QMainWindow):
         
         self.config["workspace"] = QtGui.QFileDialog.getExistingDirectory(None, 'Select a workspace:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
         self.config["language"] = "English"
+        self.config["addons"] = [BASEPATH+"/classes/objects/Block.py",
+                                 BASEPATH+"/classes/objects/Item.py"]
         
         self.config.saveData()
         
         
-    def initializeMinecraftObjects(self):
-        
-        classes = [(cls, name) for name, cls in objects.__dict__.items() if inspect.ismodule(cls)]
-        for cls, name in classes:
-            if "init" in dir(cls):
-                cls.init(self)
-                print("Initialized "+name)
+#    def initializeMinecraftObjects(self):
+#        
+#        classes = [(cls, name) for name, cls in objects.__dict__.items() if inspect.ismodule(cls)]
+#        for cls, name in classes:
+#            if "init" in dir(cls):
+#                cls.init(self)
+#                print("Initialized "+name)
             
             
     def initializeProjects(self):
@@ -129,6 +133,18 @@ class MainWindow(QtGui.QMainWindow):
             self.projects[-1].load()
             
         self.projectExplorer.updateWorkspace()
+        
+        
+    def initializeAddons(self):
+        
+        for path in self.config["addons"]:
+            name = path.split("/")[-1].split(".")[0]
+            self.addons.append((name, imp.load_source(name, path)))
+        
+        for name, mod in self.addons:
+            if "init" in dir(mod):
+                mod.init(self)
+                print("Initialized "+name)
         
         
     def updateName(self, obj, name):
@@ -249,11 +265,6 @@ class MainWindow(QtGui.QMainWindow):
         
         
 if __name__ == "__main__":
-    
-    loadClassLibrary.loadClasses()
-    
-    from classes import objects
-    from classes import Project
     
     app = QtGui.QApplication(sys.argv)
     mainWindow = MainWindow()

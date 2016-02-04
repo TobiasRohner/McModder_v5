@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import abc
+import os
 import pickle
 from PyQt4 import QtGui
 
@@ -33,12 +34,11 @@ class _base(QtGui.QWidget):
         return
         
         
-    @abc.abstractmethod
     def save(self):
         
         return
-        
-        
+
+
     def load(self, path):
         
         f = open(path, "r")
@@ -60,7 +60,7 @@ class _base(QtGui.QWidget):
         
     
     @abc.abstractmethod
-    def addToModData(self, cls):
+    def pull(self, cls):
         
         return {}
         

@@ -34,4 +34,3 @@ class Console(QtGui.QDockWidget):
     def clear(self):
         
         self.textEdit.clear()
-        QtGui.qApp.processEvents()

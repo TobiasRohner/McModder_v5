@@ -9,6 +9,6 @@ S'E:/Programmieren/Python/McModder_v5/assets/textures/blocks/bedrock.png'
 p4
 sS'creativeTab'
 p5
-VMisc
+VRedstone
 p6
 s.

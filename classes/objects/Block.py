@@ -347,7 +347,7 @@ class Block(_base):
         self.rotateableInput.setCheckState(QtCore.Qt.Checked if self.rotateable else QtCore.Qt.Unchecked)
         
         
-    def addToModData(self, cls):
+    def pull(self, cls):
         
         data = {}
         
@@ -381,7 +381,7 @@ class Block(_base):
         for t in self.project.objects.keys():
             for cls in self.project.objects[t]:
                 
-                toAdd = cls.addToModData(self)
+                toAdd = cls.pull(self)
                 for entry in toAdd.keys():
                     if entry in self.data.keys():
                         self.data[entry] += toAdd[entry]

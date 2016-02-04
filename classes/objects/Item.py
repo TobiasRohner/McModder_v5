@@ -106,7 +106,7 @@ class Item(_base):
         f.close()
         
         
-    def addToModData(self, cls):
+    def pull(self, cls):
         
         data = {}
         
@@ -140,7 +140,7 @@ class Item(_base):
         for t in self.project.objects.keys():
             for cls in self.project.objects[t]:
                 
-                toAdd = cls.addToModData(self)
+                toAdd = cls.pull(self)
                 for entry in toAdd.keys():
                     if entry in self.data.keys():
                         self.data[entry] += toAdd[entry]
