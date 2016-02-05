@@ -69,6 +69,7 @@ class MainWindow(QtGui.QMainWindow):
         self.undoMenubar.setShortcut("Ctrl+Z")
         self.redoMenubar = QtGui.QAction(self.translations.getTranslation("redo"), self)
         self.redoMenubar.setShortcut("Ctrl+Y")
+        self.addonsMenubar = QtGui.QAction(self.translations.getTranslation("addons"), self)
         
         self.menubar = self.menuBar()
         
@@ -90,6 +91,8 @@ class MainWindow(QtGui.QMainWindow):
         
         self.runMenubar.addAction(self.runClientMenubar)
         
+        self.optionMenubar.addAction(self.addonsMenubar)
+        
         self.projectToolbar.addAction(self.newProjectMenubar)
         self.projectToolbar.addAction(self.exportProjectMenubar)
         
@@ -101,6 +104,7 @@ class MainWindow(QtGui.QMainWindow):
         self.connect(self.undoMenubar, QtCore.SIGNAL('triggered()'), self.undo)
         self.connect(self.redoMenubar, QtCore.SIGNAL('triggered()'), self.redo)
         self.connect(self.runClientMenubar, QtCore.SIGNAL('triggered()'), self.runClient)
+        self.connect(self.addonsMenubar, QtCore.SIGNAL('triggered()'), self.openAddonDialog)
         
         self.setCentralWidget(None)
         self.setDockNestingEnabled(True)
@@ -110,19 +114,11 @@ class MainWindow(QtGui.QMainWindow):
         
         self.config["workspace"] = QtGui.QFileDialog.getExistingDirectory(None, 'Select a workspace:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
         self.config["language"] = "English"
-        self.config["addons"] = [BASEPATH+"/classes/objects/Block.py",
+        self.config["addons"] = [BASEPATH+"/classes/objects/BaseMod.py",
+                                 BASEPATH+"/classes/objects/Block.py",
                                  BASEPATH+"/classes/objects/Item.py"]
         
         self.config.saveData()
-        
-        
-#    def initializeMinecraftObjects(self):
-#        
-#        classes = [(cls, name) for name, cls in objects.__dict__.items() if inspect.ismodule(cls)]
-#        for cls, name in classes:
-#            if "init" in dir(cls):
-#                cls.init(self)
-#                print("Initialized "+name)
             
             
     def initializeProjects(self):
@@ -137,14 +133,21 @@ class MainWindow(QtGui.QMainWindow):
         
     def initializeAddons(self):
         
+        self.addons = []
+        
         for path in self.config["addons"]:
             name = path.split("/")[-1].split(".")[0]
-            self.addons.append((name, imp.load_source(name, path)))
+            self.addons.append((name, path, imp.load_source(name, path)))
         
-        for name, mod in self.addons:
+        for name, path, mod in self.addons:
             if "init" in dir(mod):
                 mod.init(self)
                 print("Initialized "+name)
+                
+                
+    def openAddonDialog(self):
+        
+        widgets.Addons(self)
         
         
     def updateName(self, obj, name):
