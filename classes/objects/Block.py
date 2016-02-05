@@ -5,7 +5,7 @@ import pickle
 import shutil
 from PyQt4 import QtGui, QtCore, uic
 from classes import _base, source
-from widgets import menus
+from widgets import menus, BlockModelGenerator
 from utils import textureAttributes
 
 
@@ -79,6 +79,7 @@ class Block(_base):
         self.connect(self.autoDetectTransparencyButton, QtCore.SIGNAL("toggled(bool)"), self.setAutoDetectTransparent)
         self.connect(self.creativeDropdown, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setCreativeTab)
         self.connect(self.rotateableInput, QtCore.SIGNAL("stateChanged(int)"), self.setRotateable)
+        self.connect(self.editBlockButton, QtCore.SIGNAL("clicked()"), self.editBlock)
         
         
     def setName(self, name):
@@ -289,6 +290,11 @@ class Block(_base):
         self.rotateable = rotateable
         
         self.save()
+        
+        
+    def editBlock(self):
+        
+        BlockModelGenerator()
         
         
     def getRenderLayer(self):

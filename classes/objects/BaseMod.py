@@ -12,6 +12,9 @@ from classes import source
 BASEPATH = os.path.dirname(sys.argv[0])
 
 
+description = """This is the representation of the main Mod File, where all elements of the mod are initialized."""
+
+
 
 
 

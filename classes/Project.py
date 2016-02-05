@@ -16,8 +16,6 @@ class Project():
     
     def __init__(self, mainWindow, name):
         
-        from classes import objects
-        
         self.mainWindow = mainWindow
         
         self.name = name
@@ -33,12 +31,19 @@ class Project():
                 name, t = c.split(".")
                 if t == "mod":
                     if ident != "BaseMod":
-                        exec("cls = objects."+ident+"."+ident+"(self.mainWindow, name)")
+                        exec("cls = self.getModule('"+ident+"')."+ident+"(self.mainWindow, name)")
                     else:
                         cls = objects.BaseMod.BaseMod(self.mainWindow, self.name, name)
                     cls.project = self
                     cls.load(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+ident+"/"+name+".mod")
                     self.objects[ident].append(cls)
+                    
+                    
+    def getModule(self, name):
+        
+        for mod in self.mainWindow.addons:
+            if mod[0] == name:
+                return mod[2]
     
     
     def addObject(self, obj):

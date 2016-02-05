@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import imp
 from PyQt4 import QtGui, QtCore, uic
 
 
@@ -33,13 +34,27 @@ class Addons(QtGui.QDialog):
         self.connect(self.addAddonButton, QtCore.SIGNAL("clicked()"), self.addAddon)
         self.connect(self.removeAddonButton, QtCore.SIGNAL("clicked()"), self.removeAddon)
         self.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.accepted)
+        self.connect(self.addonList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.addonSelected)
         
         self.addonDescription.setReadOnly(True)
         
         
+    def descriptionText(self, name, path, description):
+
+        return "Name: "+name+"\nPath: "+path+"\n\n"+description
+        
+        
     def loadedAddons(self):
         
-        return [_AddonListEntry(addon[0], addon[1]) for addon in self.mainWindow.addons]
+        addons = []
+        for addon in self.mainWindow.addons:
+            name = addon[0]
+            path = addon[1]
+            description = ""
+            if "description" in dir(addon[2]):
+                description = addon[2].description
+            addons.append(_AddonListEntry(name, path, description))
+        return addons
         
         
     def addAddon(self):
@@ -49,14 +64,20 @@ class Addons(QtGui.QDialog):
                                                           self.mainWindow.translations.getTranslation("pyFiles")+" (*.py)"))
         if path != "":
             name = path.split("/")[-1].split(".")[0]
+            module = imp.load_source(name, path)
             if len(self.addonList.findItems(name, QtCore.Qt.MatchCaseSensitive)) == 0:
-                self.addonList.addItem(_AddonListEntry(name, path))
+                self.addonList.addItem(_AddonListEntry(name, path, module.description if "description" in dir(module) else ""))
             
             
     def removeAddon(self):
         
         idx = self.addonList.currentRow()
         self.addonList.takeItem(idx)
+        
+        
+    def addonSelected(self, addon):
+        
+        self.addonDescription.setPlainText(self.descriptionText(addon.name, addon.path, addon.description))
         
         
     def accepted(self):
@@ -73,7 +94,9 @@ class Addons(QtGui.QDialog):
         
 class _AddonListEntry(QtGui.QListWidgetItem):
     
-    def __init__(self, name, path):
+    def __init__(self, name, path, description):
         QtGui.QListWidgetItem.__init__(self, name)
         
+        self.name = name
         self.path = path
+        self.description = description

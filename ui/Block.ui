@@ -23,9 +23,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-53</y>
+        <y>0</y>
         <width>363</width>
-        <height>546</height>
+        <height>575</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -45,6 +45,13 @@
           <widget class="QLineEdit" name="nameInput"/>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="editBlockButton">
+         <property name="text">
+          <string>Edit Block</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox">
