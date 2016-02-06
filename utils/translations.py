@@ -21,7 +21,7 @@ class Translations():
         
     def loadLanguage(self):
         
-        f = open(BASEPATH+"/lang/"+self.lang+".lang")
+        f = open(BASEPATH+"/assets/lang/"+self.lang+".lang")
         
         lines = f.readlines()
         for line in lines:
@@ -30,7 +30,7 @@ class Translations():
             
         f.close()
         
-        f = open(BASEPATH+"/lang/English.lang")
+        f = open(BASEPATH+"/assets/lang/English.lang")
         
         lines = f.readlines()
         for line in lines:
