@@ -36,8 +36,6 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.mainLayout.insertWidget(0, self.GLWidget, 1)
         
-        self.cuboidList.addItem(Cuboid("default", [1.0,1.0,1.0]))
-        
         self.connect(self.dimensionsX, QtCore.SIGNAL("valueChanged(double)"), self.setDimensionX)
         self.connect(self.dimensionsY, QtCore.SIGNAL("valueChanged(double)"), self.setDimensionY)
         self.connect(self.dimensionsZ, QtCore.SIGNAL("valueChanged(double)"), self.setDimensionZ)
@@ -48,6 +46,8 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.rotationY, QtCore.SIGNAL("valueChanged(double)"), self.setRotationY)
         self.connect(self.rotationZ, QtCore.SIGNAL("valueChanged(double)"), self.setRotationZ)
         self.connect(self.cuboidList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.cuboidSelected)
+        self.connect(self.addCuboidButton, QtCore.SIGNAL("clicked()"), self.addCuboid)
+        self.connect(self.removeCuboidButton, QtCore.SIGNAL("clicked()"), self.removeCuboid)
             
             
     def cuboidSelected(self, cuboid):
@@ -131,9 +131,17 @@ class BlockModelGenerator(QtGui.QDialog):
         return self.cuboidList.currentItem()
         
         
-    def addCuboid(self, cub):
+    def addCuboid(self):
         
+        cub = Cuboid("unnamed", [1.0, 1.0, 1.0])
+        cub.loadShader("cuboid")
         self.cuboidList.addItem(cub)
+        self.GLWidget.updateGL()
+        
+        
+    def removeCuboid(self):
+        
+        self.cuboidList.takeItem(self.cuboidList.currentRow())
         
         
     def addTexture(self, mcPath):
@@ -185,7 +193,7 @@ class BlockModelGenerator(QtGui.QDialog):
         model = {}
         
         model["elements"] = []
-        for cub in self.cuboids:
+        for cub in self.cuboids():
             model["elements"].append(cub.getDictRepr())
             
         model["textures"] = {}
@@ -277,12 +285,8 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
 
 
     def resizeGL(self, width, height):
-        
-        side = min(width, height)
-        if side < 0:
-            return
 
-        GL.glViewport((width - side) / 2, (height - side) / 2, side, side)
+        GL.glViewport(0, 0, width, height)
 
         GL.glMatrixMode(GL.GL_PROJECTION)
         GL.glLoadIdentity()
