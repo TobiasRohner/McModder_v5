@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-import numpy as np
-import math
+from utils import mathUtils as mu
 from PyQt4 import QtGui, QtCore, QtOpenGL, uic
 from OpenGL import GL, GLU
 

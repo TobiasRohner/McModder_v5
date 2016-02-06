@@ -267,6 +267,139 @@ class Matrix4(Matrix):
         final += "|" +strMat[0][2]+strMat[1][2]+strMat[2][2]+strMat[3][2]+"|\n"
         final += "\\"+strMat[0][3]+strMat[1][3]+strMat[2][3]+strMat[3][3]+"/"
         return final
+        
+        
+        
+        
+class Matrix3Rotate(Matrix3):
+    
+    def __init__(self, rotx, roty, rotz):
+        Matrix3.__init__(self)
+        
+        sx = math.sin(rotx)
+        sy = math.sin(roty)
+        sz = math.sin(rotz)
+        cx = math.cos(rotx)
+        cy = math.cos(roty)
+        cz = math.cos(rotz)
+        
+        Rx = Matrix3([[1.0, 0.0, 0.0],
+                      [0.0,  cx,  sx],
+                      [0.0, -sx,  cx]])
+        Ry = Matrix3([[ cy, 0.0, -sy],
+                      [0.0, 1.0, 0.0],
+                      [ sy, 0.0,  cy]])
+        Rz = Matrix3([[ cz,  sz, 0.0],
+                      [-sz,  cz, 0.0],
+                      [0.0, 0.0, 1.0]])
+        Rxyz = Rz*Ry*Rx
+        
+        self.matrix = Rxyz.matrix
+        
+        
+        
+        
+class Matrix4Rotate(Matrix4):
+    
+    def __init__(self, rotx, roty, rotz):
+        Matrix4.__init__(self)
+        
+        sx = math.sin(rotx)
+        sy = math.sin(roty)
+        sz = math.sin(rotz)
+        cx = math.cos(rotx)
+        cy = math.cos(roty)
+        cz = math.cos(rotz)
+        
+        Rx = Matrix4([[1.0, 0.0, 0.0, 0.0],
+                      [0.0,  cx,  sx, 0.0],
+                      [0.0, -sx,  cx, 0.0],
+                      [0.0, 0.0, 0.0, 1.0]])
+        Ry = Matrix4([[ cy, 0.0, -sy, 0.0],
+                      [0.0, 1.0, 0.0, 0.0],
+                      [ sy, 0.0,  cy, 0.0],
+                      [0.0, 0.0, 0.0, 1.0]])
+        Rz = Matrix4([[ cz,  sz, 0.0, 0.0],
+                      [-sz,  cz, 0.0, 0.0],
+                      [0.0, 0.0, 1.0, 0.0],
+                      [0.0, 0.0, 0.0, 1.0]])
+        Rxyz = Rz*Ry*Rx
+        
+        self.matrix = Rxyz.matrix
+        
+        
+        
+        
+class Matrix3RotAround(Matrix3):
+    
+    def __init__(self, axis, angle):
+        Matrix3.__init__(self)
+        
+        s = math.sin(angle)
+        c = math.cos(angle)
+        
+        self.matrix[0][0] = axis[0]*axis[0]*(1.0-c) + c
+        self.matrix[0][1] = axis[1]*axis[0]*(1.0-c) + axis[2]*s
+        self.matrix[0][2] = axis[2]*axis[0]*(1.0-c) - axis[1]*s
+        self.matrix[1][0] = axis[0]*axis[1]*(1.0-c) - axis[2]*s
+        self.matrix[1][1] = axis[1]*axis[1]*(1.0-c) + c
+        self.matrix[1][2] = axis[2]*axis[1]*(1.0-c) + axis[0]*s
+        self.matrix[2][0] = axis[0]*axis[2]*(1.0-c) + axis[1]*s
+        self.matrix[2][1] = axis[1]*axis[2]*(1.0-c) - axis[0]*s
+        self.matrix[2][2] = axis[2]*axis[2]*(1.0-c) + c
+        
+        
+        
+        
+class Matrix4RotAround(Matrix4):
+    
+    def __init__(self, axis, angle):
+        Matrix4.__init__(self)
+        
+        s = math.sin(angle)
+        c = math.cos(angle)
+        
+        self.matrix[0][0] = axis[0]*axis[0]*(1.0-c) + c
+        self.matrix[0][1] = axis[1]*axis[0]*(1.0-c) + axis[2]*s
+        self.matrix[0][2] = axis[2]*axis[0]*(1.0-c) - axis[1]*s
+        self.matrix[0][3] = 0.0
+        self.matrix[1][0] = axis[0]*axis[1]*(1.0-c) - axis[2]*s
+        self.matrix[1][1] = axis[1]*axis[1]*(1.0-c) + c
+        self.matrix[1][2] = axis[2]*axis[1]*(1.0-c) + axis[0]*s
+        self.matrix[1][3] = 0.0
+        self.matrix[2][0] = axis[0]*axis[2]*(1.0-c) + axis[1]*s
+        self.matrix[2][1] = axis[1]*axis[2]*(1.0-c) - axis[0]*s
+        self.matrix[2][2] = axis[2]*axis[2]*(1.0-c) + c
+        self.matrix[2][3] = 0.0
+        self.matrix[3][0] = 0.0
+        self.matrix[3][1] = 0.0
+        self.matrix[3][2] = 0.0
+        self.matrix[3][3] = 1.0
+        
+        
+        
+        
+class Matrix4Translate(Matrix4):
+    
+    def __init__(self, x, y, z):
+        Matrix4.__init__(self, [[1.0, 0.0, 0.0, 0.0],
+                                [0.0, 1.0, 0.0, 0.0],
+                                [0.0, 0.0, 1.0, 0.0],
+                                [  x,   y,   z, 1.0]])
+                                
+                                
+                                
+                                
+class Matrix4Transform(Matrix4):
+    
+    def __init__(self, transx, transy, transz, rotx, roty, rotz):
+        Matrix4.__init__(self)
+        
+        Rxyz = Matrix4Rotate(rotx, roty, rotz)
+        Txyz = Matrix4Translate(transx, transy, transz)
+        Trans = Txyz*Rxyz
+        
+        self.matrix = Trans.matrix
             
             
             
@@ -485,3 +618,5 @@ if __name__ == "__main__":
     print(mat3)
     vec1 = Vector4(1,1,1,1)
     print(mat3*vec1)
+    rot = Matrix4Rotate(math.pi, 0, 0)
+    print(rot*vec1)
