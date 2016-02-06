@@ -132,7 +132,7 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         
 class Cuboid():
     
-    def __init__(self, name, corner1, corner2, uvs=[[0, [0,0, 1,1]],
+    def __init__(self, name, origin, dimensions, uvs=[[0, [0,0, 1,1]],
                                                     [0, [0,0, 1,1]],
                                                     [0, [0,0, 1,1]],
                                                     [0, [0,0, 1,1]],
@@ -140,8 +140,8 @@ class Cuboid():
                                                     [0, [0,0, 1,1]]]):
         
         self.name = name
-        self.corner1 = corner1
-        self.corner2 = corner2
+        self.origin = origin
+        self.dimensions = dimensions
         self.uvs = uvs
         self.rotation = [0.0,0.0,0.0]
         self.translation = [0.0,0.0,0.0]
