@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-import numpy as np
 import math
 from utils import mathUtils as mu
 from PyQt4 import QtGui, QtCore, QtOpenGL, uic
+from PIL import Image
 from OpenGL import GL, GLU
 from OpenGL.GL import shaders
-from OpenGL.arrays import vbo
 
 
 
@@ -83,12 +82,18 @@ class BlockModelGenerator(QtGui.QDialog):
         self.rotationX.setValue(cuboid.rotation[0])
         self.rotationY.setValue(cuboid.rotation[1])
         self.rotationZ.setValue(cuboid.rotation[2])
-        self.uvEditorDown.loadTexture(cuboid.textures[0])
-        self.uvEditorUp.loadTexture(cuboid.textures[1])
-        self.uvEditorNorth.loadTexture(cuboid.textures[2])
-        self.uvEditorSouth.loadTexture(cuboid.textures[3])
-        self.uvEditorWest.loadTexture(cuboid.textures[4])
-        self.uvEditorEast.loadTexture(cuboid.textures[5])
+        self.uvEditorDown.loadTexture(cuboid.textures[0][0])
+        self.uvEditorUp.loadTexture(cuboid.textures[1][0])
+        self.uvEditorNorth.loadTexture(cuboid.textures[2][0])
+        self.uvEditorSouth.loadTexture(cuboid.textures[3][0])
+        self.uvEditorWest.loadTexture(cuboid.textures[4][0])
+        self.uvEditorEast.loadTexture(cuboid.textures[5][0])
+        cuboid.setTexture(0, cuboid.textures[0][0])
+        cuboid.setTexture(1, cuboid.textures[1][0])
+        cuboid.setTexture(2, cuboid.textures[2][0])
+        cuboid.setTexture(3, cuboid.textures[3][0])
+        cuboid.setTexture(4, cuboid.textures[4][0])
+        cuboid.setTexture(5, cuboid.textures[5][0])
         
         
     def setDimensionX(self, dim):
@@ -160,7 +165,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[0] = tex
+            self.selectedCuboid().setTexture(0, tex)
             self.uvEditorDown.loadTexture(tex)
             
             
@@ -170,7 +175,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[1] = tex
+            self.selectedCuboid().setTexture(1, tex)
             self.uvEditorUp.loadTexture(tex)
             
             
@@ -180,7 +185,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[2] = tex
+            self.selectedCuboid().setTexture(2, tex)
             self.uvEditorNorth.loadTexture(tex)
             
             
@@ -190,7 +195,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[3] = tex
+            self.selectedCuboid().setTexture(3, tex)
             self.uvEditorSouth.loadTexture(tex)
             
             
@@ -200,7 +205,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[4] = tex
+            self.selectedCuboid().setTexture(4, tex)
             self.uvEditorWest.loadTexture(tex)
             
             
@@ -210,7 +215,7 @@ class BlockModelGenerator(QtGui.QDialog):
                                                           self.mainWindow.config["workspace"],
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
-            self.selectedCuboid().textures[5] = tex
+            self.selectedCuboid().setTexture(5, tex)
             self.uvEditorEast.loadTexture(tex)
             
             
@@ -558,7 +563,7 @@ class Cuboid(QtGui.QListWidgetItem):
         QtGui.QListWidgetItem.__init__(self, name)
         
         self.name = name
-        self.textures = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
+        self.textures = [[BASEPATH+"/assets/textures/blocks/unknown.png", 0]]*6
         self.dimensions = dimensions
         self.uvs = uvs
         self.rotation = [0.0,0.0,0.0]
@@ -614,6 +619,22 @@ class Cuboid(QtGui.QListWidgetItem):
         self.scalingMatrix = mu.Matrix4Scale(self.dimensions[0], self.dimensions[1], self.dimensions[2])
         
         
+    def setTexture(self, idx, path):
+        
+        self. textures[idx][0] = path
+        
+        im = Image.open(path)
+        width, height, data = im.size[0], im.size[1], im.convert("RGBA").tostring("raw", "RGBA", 0, -1)
+        activeTexture = GL.GL_TEXTURE0+idx
+        GL.glActiveTexture(activeTexture)
+        texID = GL.glGenTextures(1)
+        self.textures[idx][1] = texID
+        GL.glBindTexture(GL.GL_TEXTURE_2D, texID)
+        GL.glTexParameterf(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST)
+        GL.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL)
+        GL.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, width, height, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, data)
+        
+        
     def loadShader(self, name):
         
         vsh = open(BASEPATH+"/assets/shader/"+name+".vsh")
@@ -629,6 +650,9 @@ class Cuboid(QtGui.QListWidgetItem):
 
         for polIdx, pol in zip(range(len(self.verts)), self.verts):
             
+            GL.glActiveTexture(GL.GL_TEXTURE0+polIdx)
+            GL.glBindTexture(GL.GL_TEXTURE_2D, self.textures[polIdx][1])
+            
             shaders.glUseProgram(self.shader)
             loc = GL.glGetUniformLocation(self.shader, "u_translate")
             GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.translationMatrix.matrix)
@@ -636,6 +660,8 @@ class Cuboid(QtGui.QListWidgetItem):
             GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.rotationMatrix.matrix)
             loc = GL.glGetUniformLocation(self.shader, "u_scale")
             GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.scalingMatrix.matrix)
+            loc = GL.glGetUniformLocation(self.shader, "u_texture")
+            GL.glUniform1i(loc, self.textures[polIdx][1])
             
             GL.glBegin(GL.GL_POLYGON)
             
