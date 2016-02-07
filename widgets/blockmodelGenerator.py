@@ -472,10 +472,8 @@ class UVEditor(QtGui.QWidget):
         
     def drawTexture(self, painter):
         
-        textureWidth = self.texture.size().width()
-        textureHeight = self.texture.size().height()
         left = self.image2WidgetCoords((0, 0))
-        right = self.image2WidgetCoords((textureWidth, textureHeight))
+        right = self.image2WidgetCoords((1, 1))
         painter.drawPixmap(left[0],
                            left[1],
                            right[0]-left[0],
@@ -513,8 +511,8 @@ class UVEditor(QtGui.QWidget):
             yCorner = (self.height()-ySize)/2
             
         x, y = point
-        scaledX = int(xSize*float(x)/textureWidth)
-        scaledY = int(ySize*float(y)/textureHeight)
+        scaledX = int(xSize*x)
+        scaledY = int(ySize*y)
         translatedX = scaledX + xCorner
         translatedY = scaledY + yCorner
         
@@ -541,8 +539,8 @@ class UVEditor(QtGui.QWidget):
         x, y = point
         translatedX = x - xCorner
         translatedY = y - yCorner
-        scaledX = int(textureWidth*float(translatedX)/xSize)
-        scaledY = int(textureHeight*float(translatedY)/ySize)
+        scaledX = int(float(translatedX)/xSize)
+        scaledY = int(float(translatedY)/ySize)
         
         return (scaledX, scaledY)
 
@@ -551,12 +549,12 @@ class UVEditor(QtGui.QWidget):
         
 class Cuboid(QtGui.QListWidgetItem):
     
-    def __init__(self, name, dimensions, uvs=[[0, [0,0, 1,1]],
-                                              [0, [0,0, 1,1]],
-                                              [0, [0,0, 1,1]],
-                                              [0, [0,0, 1,1]],
-                                              [0, [0,0, 1,1]],
-                                              [0, [0,0, 1,1]]]):
+    def __init__(self, name, dimensions, uvs=[[[0,0], [1,1]],
+                                              [[0,0], [1,1]],
+                                              [[0,0], [1,1]],
+                                              [[0,0], [1,1]],
+                                              [[0,0], [1,1]],
+                                              [[0,0], [1,1]]]):
         QtGui.QListWidgetItem.__init__(self, name)
         
         self.name = name
@@ -568,10 +566,16 @@ class Cuboid(QtGui.QListWidgetItem):
         
         self.shader = 0
         
-        verts = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0], [0,0,1], [1,0,1], [1,1,1], [0,1,1]], dtype="f")
-        self.vertVBO = vbo.VBO(verts)
-        indices = np.array([3,2,1,0, 0,1,5,4, 0,4,7,3, 4,5,6,7, 3,7,6,2, 2,6,5,1], dtype=np.int32)
-        self.inxVBO = vbo.VBO(indices, target=GL.GL_ELEMENT_ARRAY_BUFFER)
+#        verts = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0], [0,0,1], [1,0,1], [1,1,1], [0,1,1]], dtype="f")
+#        self.vertVBO = [vbo.VBO(v) for v in verts]
+#        indices = np.array([3,2,1,0, 0,1,5,4, 0,4,7,3, 4,5,6,7, 3,7,6,2, 2,6,5,1], dtype=np.int32)
+#        self.inxVBO = vbo.VBO(indices, target=GL.GL_ELEMENT_ARRAY_BUFFER)
+        self.verts = [[[0,1,0], [1,1,0], [1,0,0], [0,0,0]],
+                     [[0,0,0], [1,0,0], [1,0,1], [0,0,1]],
+                     [[0,0,0], [0,0,1], [0,1,1], [0,1,0]],
+                     [[0,0,1], [1,0,1], [1,1,1], [0,1,1]],
+                     [[0,1,0], [0,1,1], [1,1,1], [1,1,0]],
+                     [[1,1,0], [1,1,1], [1,0,1], [1,0,0]]]
         
         self.rotationMatrix = mu.Matrix4Rotate(0.0, 0.0, 0.0)
         self.translationMatrix = mu.Matrix4Translate(0.0, 0.0, 0.0)
@@ -622,27 +626,30 @@ class Cuboid(QtGui.QListWidgetItem):
         
         
     def draw(self):
-        
-        shaders.glUseProgram(self.shader)
-        loc = GL.glGetUniformLocation(self.shader, "u_translate")
-        GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.translationMatrix.matrix)
-        loc = GL.glGetUniformLocation(self.shader, "u_rotate")
-        GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.rotationMatrix.matrix)
-        loc = GL.glGetUniformLocation(self.shader, "u_scale")
-        GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.scalingMatrix.matrix)
-        try:
-            self.inxVBO.bind()
-            self.vertVBO.bind()
-            try:
-                GL.glEnableClientState(GL.GL_VERTEX_ARRAY)
-                GL.glVertexPointerf(self.vertVBO)
-                #GL.glDrawArrays(GL.GL_QUADS, 0, 9)
-                GL.glDrawElementsui(GL.GL_QUADS, self.inxVBO)
-            finally:
-                self.vertVBO.unbind()
-                self.inxVBO.unbind()
-                GL.glDisableClientState(GL.GL_VERTEX_ARRAY)
-        finally:
+
+        for polIdx, pol in zip(range(len(self.verts)), self.verts):
+            
+            shaders.glUseProgram(self.shader)
+            loc = GL.glGetUniformLocation(self.shader, "u_translate")
+            GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.translationMatrix.matrix)
+            loc = GL.glGetUniformLocation(self.shader, "u_rotate")
+            GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.rotationMatrix.matrix)
+            loc = GL.glGetUniformLocation(self.shader, "u_scale")
+            GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.scalingMatrix.matrix)
+            
+            GL.glBegin(GL.GL_POLYGON)
+            
+            GL.glTexCoord2f(self.uvs[polIdx][0][0], self.uvs[polIdx][1][0])
+            GL.glVertex3f(pol[0][0], pol[0][1], pol[0][2])
+            GL.glTexCoord2f(self.uvs[polIdx][0][0], self.uvs[polIdx][1][1])
+            GL.glVertex3f(pol[1][0], pol[1][1], pol[1][2])
+            GL.glTexCoord2f(self.uvs[polIdx][0][1], self.uvs[polIdx][1][1])
+            GL.glVertex3f(pol[2][0], pol[2][1], pol[2][2])
+            GL.glTexCoord2f(self.uvs[polIdx][0][1], self.uvs[polIdx][1][0])
+            GL.glVertex3f(pol[3][0], pol[3][1], pol[3][2])
+            
+            GL.glEnd()
+            
             shaders.glUseProgram(0)
                     
                     
