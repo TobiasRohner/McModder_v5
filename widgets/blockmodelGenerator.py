@@ -18,10 +18,10 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 class BlockModelGenerator(QtGui.QDialog):
     
-    def __init__(self):
+    def __init__(self, mainWindow):
         QtGui.QDialog.__init__(self)
         
-        self.textures = []
+        self.mainWindow = mainWindow
         
         self.initUI()
         
@@ -34,7 +34,23 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.GLWidget = ModelGLWidget(self)
         
-        self.mainLayout.insertWidget(0, self.GLWidget, 1)
+        self.mainLayout.insertWidget(1, self.GLWidget, 1)
+        
+        self.uvEditorDown = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        self.uvEditorUp = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        self.uvEditorNorth = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        self.uvEditorSouth = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        self.uvEditorWest = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        self.uvEditorEast = UVEditor(self, BASEPATH+"/assets/textures/blocks/unknown.png")
+        
+        self.textureDownLayout.layout().insertWidget(0, self.uvEditorDown, 1)
+        self.textureUpLayout.layout().insertWidget(0, self.uvEditorUp, 1)
+        self.textureNorthLayout.layout().insertWidget(0, self.uvEditorNorth, 1)
+        self.textureSouthLayout.layout().insertWidget(0, self.uvEditorSouth, 1)
+        self.textureWestLayout.layout().insertWidget(0, self.uvEditorWest, 1)
+        self.textureEastLayout.layout().insertWidget(0, self.uvEditorEast, 1)
+        
+        self.scrollArea.setMinimumWidth(200)
         
         self.connect(self.dimensionsX, QtCore.SIGNAL("valueChanged(double)"), self.setDimensionX)
         self.connect(self.dimensionsY, QtCore.SIGNAL("valueChanged(double)"), self.setDimensionY)
@@ -48,6 +64,12 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.cuboidList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.cuboidSelected)
         self.connect(self.addCuboidButton, QtCore.SIGNAL("clicked()"), self.addCuboid)
         self.connect(self.removeCuboidButton, QtCore.SIGNAL("clicked()"), self.removeCuboid)
+        self.connect(self.changeDownTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureDown)
+        self.connect(self.changeUpTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureUp)
+        self.connect(self.changeNorthTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureNorth)
+        self.connect(self.changeSouthTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureSouth)
+        self.connect(self.changeWestTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureWest)
+        self.connect(self.changeEastTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureEast)
             
             
     def cuboidSelected(self, cuboid):
@@ -61,6 +83,12 @@ class BlockModelGenerator(QtGui.QDialog):
         self.rotationX.setValue(cuboid.rotation[0])
         self.rotationY.setValue(cuboid.rotation[1])
         self.rotationZ.setValue(cuboid.rotation[2])
+        self.uvEditorDown.loadTexture(cuboid.textures[0])
+        self.uvEditorUp.loadTexture(cuboid.textures[1])
+        self.uvEditorNorth.loadTexture(cuboid.textures[2])
+        self.uvEditorSouth.loadTexture(cuboid.textures[3])
+        self.uvEditorWest.loadTexture(cuboid.textures[4])
+        self.uvEditorEast.loadTexture(cuboid.textures[5])
         
         
     def setDimensionX(self, dim):
@@ -124,6 +152,66 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotation[2] = rot/180.0*math.pi
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        
+        
+    def changeTextureDown(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[0] = tex
+            self.uvEditorDown.loadTexture(tex)
+            
+            
+    def changeTextureUp(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[1] = tex
+            self.uvEditorUp.loadTexture(tex)
+            
+            
+    def changeTextureNorth(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[2] = tex
+            self.uvEditorNorth.loadTexture(tex)
+            
+            
+    def changeTextureSouth(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[3] = tex
+            self.uvEditorSouth.loadTexture(tex)
+            
+            
+    def changeTextureWest(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[4] = tex
+            self.uvEditorWest.loadTexture(tex)
+            
+            
+    def changeTextureEast(self):
+        
+        tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
+                                                          self.mainWindow.config["workspace"],
+                                                          self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
+        if tex != "":
+            self.selectedCuboid().textures[5] = tex
+            self.uvEditorEast.loadTexture(tex)
             
             
     def selectedCuboid(self):
@@ -142,6 +230,7 @@ class BlockModelGenerator(QtGui.QDialog):
     def removeCuboid(self):
         
         self.cuboidList.takeItem(self.cuboidList.currentRow())
+        self.GLWidget.updateGL()
         
         
     def addTexture(self, mcPath):
@@ -336,6 +425,126 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         while angle > 360 * 16:
             angle -= 360 * 16
         return angle
+        
+        
+        
+        
+class UVEditor(QtGui.QWidget):
+    
+    def __init__(self, modelGenerator, texture):
+        QtGui.QWidget.__init__(self)
+        
+        self.modelGenerator = modelGenerator
+        
+        self.texture = None
+        self.uvs = [[0,0], [0,0]]
+        
+        self.loadTexture(texture)
+        
+        self.initUI()
+        
+        
+    def initUI(self):
+        
+        self.setMinimumSize(100, 100)
+        
+        
+    def loadTexture(self, path):
+        
+        self.texture = QtGui.QPixmap(path)
+        self.repaint()
+        
+        
+    def updateUVs(self, uvs):
+        
+        self.uvs = uvs
+        self.repaint()
+        
+        
+    def paintEvent(self, event):
+        
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        self.drawTexture(qp)
+        self.drawUVs(qp)
+        qp.end()
+        
+        
+    def drawTexture(self, painter):
+        
+        textureWidth = self.texture.size().width()
+        textureHeight = self.texture.size().height()
+        left = self.image2WidgetCoords((0, 0))
+        right = self.image2WidgetCoords((textureWidth, textureHeight))
+        painter.drawPixmap(left[0],
+                           left[1],
+                           right[0]-left[0],
+                           right[1]-left[1],
+                           self.texture)
+        
+        
+    def drawUVs(self, painter):
+        
+        left = self.image2WidgetCoords((self.uvs[0][0], self.uvs[0][1]))
+        right = self.image2WidgetCoords((self.uvs[1][0], self.uvs[1][1]))
+            
+        painter.fillRect(left[0],
+                         left[1],
+                         right[0]-left[0],
+                         right[1]-left[1],
+                         QtGui.QColor(255, 255, 255, 127))
+                         
+                         
+    def image2WidgetCoords(self, point):
+        
+        textureWidth = self.texture.size().width()
+        textureHeight = self.texture.size().height()
+        aspect = float(textureWidth) / textureHeight
+        
+        if aspect < float(self.width()) / self.height():
+            xSize = int(aspect * self.height())
+            ySize = self.height()
+            xCorner = (self.width()-xSize)/2
+            yCorner = 0
+        else:
+            xSize = self.width()
+            ySize = xSize/aspect
+            xCorner = 0
+            yCorner = (self.height()-ySize)/2
+            
+        x, y = point
+        scaledX = int(xSize*float(x)/textureWidth)
+        scaledY = int(ySize*float(y)/textureHeight)
+        translatedX = scaledX + xCorner
+        translatedY = scaledY + yCorner
+        
+        return (translatedX, translatedY)
+        
+        
+    def widget2ImageCoords(self, point):
+        
+        textureWidth = self.texture.size().width()
+        textureHeight = self.texture.size().height()
+        aspect = float(textureWidth) / textureHeight
+        
+        if aspect < float(self.width()) / self.height():
+            xSize = int(aspect * self.height())
+            ySize = self.height()
+            xCorner = (self.width()-xSize)/2
+            yCorner = 0
+        else:
+            xSize = self.width()
+            ySize = xSize/aspect
+            xCorner = 0
+            yCorner = (self.height()-ySize)/2
+            
+        x, y = point
+        translatedX = x - xCorner
+        translatedY = y - yCorner
+        scaledX = int(textureWidth*float(translatedX)/xSize)
+        scaledY = int(textureHeight*float(translatedY)/ySize)
+        
+        return (scaledX, scaledY)
 
         
         
@@ -351,6 +560,7 @@ class Cuboid(QtGui.QListWidgetItem):
         QtGui.QListWidgetItem.__init__(self, name)
         
         self.name = name
+        self.textures = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
         self.dimensions = dimensions
         self.uvs = uvs
         self.rotation = [0.0,0.0,0.0]

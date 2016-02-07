@@ -294,7 +294,7 @@ class Block(_base):
         
     def editBlock(self):
         
-        BlockModelGenerator()
+        BlockModelGenerator(self.mainWindow)
         
         
     def getRenderLayer(self):
