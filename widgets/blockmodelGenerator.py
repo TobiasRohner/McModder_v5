@@ -74,6 +74,12 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.changeSouthTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureSouth)
         self.connect(self.changeWestTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureWest)
         self.connect(self.changeEastTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureEast)
+        self.connect(self.uvEditorDown, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsDown)
+        self.connect(self.uvEditorUp, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsUp)
+        self.connect(self.uvEditorNorth, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsNorth)
+        self.connect(self.uvEditorSouth, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsSouth)
+        self.connect(self.uvEditorWest, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsWest)
+        self.connect(self.uvEditorEast, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsEast)
             
             
     def cuboidSelected(self, cuboid):
@@ -108,22 +114,40 @@ class BlockModelGenerator(QtGui.QDialog):
         self.GLWidget.updateGL()
         
         
-    def updateUVs(self):
+    def updateUVsDown(self, uvs):
         
-        dim = self.selectedCuboid().dimensions
-        uvs = [[self.uvEditorDown.uvs[0], [0.0625*dim[0], 0.0625*dim[1]]],
-               [self.uvEditorUp.uvs[0], [0.0625*dim[0], 0.0625*dim[1]]],
-               [self.uvEditorNorth.uvs[0], [0.0625*dim[0], 0.0625*dim[2]]],
-               [self.uvEditorSouth.uvs[0], [0.0625*dim[0], 0.0625*dim[2]]],
-               [self.uvEditorWest.uvs[0], [0.0625*dim[1], 0.0625*dim[2]]],
-               [self.uvEditorEast.uvs[0], [0.0625*dim[1], 0.0625*dim[2]]]]
-        self.selectedCuboid().uvs = uvs
-        self.uvEditorDown.updateUVs(uvs[0])
-        self.uvEditorUp.updateUVs(uvs[1])
-        self.uvEditorNorth.updateUVs(uvs[2])
-        self.uvEditorSouth.updateUVs(uvs[3])
-        self.uvEditorWest.updateUVs(uvs[4])
-        self.uvEditorEast.updateUVs(uvs[5])
+        self.selectedCuboid().uvs[0] = uvs
+        self.GLWidget.updateGL()
+        
+        
+    def updateUVsUp(self, uvs):
+        
+        self.selectedCuboid().uvs[1] = uvs
+        self.GLWidget.updateGL()
+        
+        
+    def updateUVsNorth(self, uvs):
+        
+        self.selectedCuboid().uvs[2] = uvs
+        self.GLWidget.updateGL()
+        
+        
+    def updateUVsSouth(self, uvs):
+        
+        self.selectedCuboid().uvs[3] = uvs
+        self.GLWidget.updateGL()
+        
+        
+    def updateUVsWest(self, uvs):
+        
+        self.selectedCuboid().uvs[4] = uvs
+        self.GLWidget.updateGL()
+        
+        
+    def updateUVsEast(self, uvs):
+        
+        self.selectedCuboid().uvs[5] = uvs
+        self.GLWidget.updateGL()
         
         
     def setDimensionX(self, dim):
@@ -524,7 +548,11 @@ class UVEditor(QtGui.QWidget):
         self.modelGenerator = modelGenerator
         
         self.texture = None
-        self.uvs = [[0,0], [0,0]]
+        self.uvs = [[0.0,0.0], [0.0,0.0]]
+        
+        self.selectedCorners = [False, False, False, False]
+        self.moved = [[0.0, 0.0], [0.0, 0.0]]
+        self.lastPos = QtCore.QPoint()
         
         self.loadTexture(texture)
         
@@ -557,6 +585,70 @@ class UVEditor(QtGui.QWidget):
         qp.end()
         
         
+    def mousePressEvent(self, event):
+        
+        self.lastPos = event.pos()
+        
+        imgCoords = self.widget2ImageCoords([event.pos().x(), event.pos().y()])
+        uvSize = [self.uvs[1][0]-self.uvs[0][0], self.uvs[1][1]-self.uvs[0][1]]
+        
+        if imgCoords[1] > self.uvs[0][1]-uvSize[1]/10 and imgCoords[1] < self.uvs[0][1]+uvSize[1]/10:
+            self.selectedCorners[0] = True
+        if imgCoords[0] > self.uvs[1][0]-uvSize[0]/10 and imgCoords[0] < self.uvs[1][0]+uvSize[0]/10:
+            self.selectedCorners[1] = True
+        if imgCoords[1] > self.uvs[1][1]-uvSize[1]/10 and imgCoords[1] < self.uvs[1][1]+uvSize[1]/10:
+            self.selectedCorners[2] = True
+        if imgCoords[0] > self.uvs[0][0]-uvSize[0]/10 and imgCoords[0] < self.uvs[0][0]+uvSize[0]/10:
+            self.selectedCorners[3] = True
+        if (imgCoords[0] > self.uvs[0][0]+uvSize[0]/10 and imgCoords[0] < self.uvs[1][0]-uvSize[0]/10
+        and imgCoords[1] > self.uvs[0][1]+uvSize[1]/10 and imgCoords[1] < self.uvs[1][1]-uvSize[1]/10):
+            self.selectedCorners[0] = True
+            self.selectedCorners[1] = True
+            self.selectedCorners[2] = True
+            self.selectedCorners[3] = True
+    
+    
+    def mouseReleaseEvent(self, event):
+        
+        self.uvs = [[self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]],
+                    [self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]]]
+        
+        self.selectedCorners = [False, False, False, False]
+        self.moved = [[0.0, 0.0], [0.0, 0.0]]
+        
+        
+    def mouseMoveEvent(self, event):
+        
+        if event.buttons() & QtCore.Qt.LeftButton:
+            
+            textureWidth = self.texture.size().width()
+            textureHeight = self.texture.size().height()
+            aspect = float(textureWidth) / textureHeight
+            
+            if aspect < float(self.width()) / self.height():
+                xSize = int(aspect * self.height())
+                ySize = self.height()
+            else:
+                xSize = self.width()
+                ySize = xSize/aspect
+            dx = event.x() - self.lastPos.x()
+            dy = event.y() - self.lastPos.y()
+            for corner in range(4):
+                if self.selectedCorners[corner]:
+                    if corner == 0:
+                        self.moved[0][1] = float(dy)/ySize
+                    if corner == 1:
+                        self.moved[1][0] = float(dx)/xSize
+                    if corner == 2:
+                        self.moved[1][1] = float(dy)/ySize
+                    if corner == 3:
+                        self.moved[0][0] = float(dx)/xSize
+                    self.emit(QtCore.SIGNAL("UPDATE_UVS"),
+                              [[self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]],
+                               [self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]]])
+            self.repaint()
+        
+        
     def drawTexture(self, painter):
         
         left = self.image2WidgetCoords((0, 0))
@@ -570,8 +662,8 @@ class UVEditor(QtGui.QWidget):
         
     def drawUVs(self, painter):
         
-        left = self.image2WidgetCoords((self.uvs[0][0], self.uvs[0][1]))
-        right = self.image2WidgetCoords((self.uvs[1][0], self.uvs[1][1]))
+        left = self.image2WidgetCoords((self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]))
+        right = self.image2WidgetCoords((self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]))
             
         painter.fillRect(left[0],
                          left[1],
@@ -671,11 +763,11 @@ class Cuboid(QtGui.QListWidgetItem):
 #        indices = np.array([3,2,1,0, 0,1,5,4, 0,4,7,3, 4,5,6,7, 3,7,6,2, 2,6,5,1], dtype=np.int32)
 #        self.inxVBO = vbo.VBO(indices, target=GL.GL_ELEMENT_ARRAY_BUFFER)
         self.verts = [[[0,1,0], [1,1,0], [1,0,0], [0,0,0]],
-                     [[1,1,1], [0,1,1], [0,0,1], [1,0,1]],
-                     [[0,0,0], [0,0,1], [0,1,1], [0,1,0]],
-                     [[1,1,0], [1,1,1], [1,0,1], [1,0,0]],
-                     [[1,0,0], [1,0,1], [0,0,1], [0,0,0]],
-                     [[0,1,0], [0,1,1], [1,1,1], [1,1,0]]]
+                      [[1,1,1], [0,1,1], [0,0,1], [1,0,1]],
+                      [[0,0,0], [0,0,1], [0,1,1], [0,1,0]],
+                      [[1,1,0], [1,1,1], [1,0,1], [1,0,0]],
+                      [[1,0,0], [1,0,1], [0,0,1], [0,0,0]],
+                      [[0,1,0], [0,1,1], [1,1,1], [1,1,0]]]
         
         self.rotationMatrix = mu.Matrix4Rotate(0.0, 0.0, 0.0)
         self.translationMatrix = mu.Matrix4Translate(0.0, 0.0, 0.0)
