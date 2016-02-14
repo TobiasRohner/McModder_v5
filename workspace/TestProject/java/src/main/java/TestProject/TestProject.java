@@ -3,6 +3,8 @@ package TestProject;
 
 import TestProject.Item.testitem;
 import net.minecraft.item.Item;
+import TestProject.Block.blablock;
+import net.minecraft.block.Block;
 import TestProject.Block.testblock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +38,7 @@ public class TestProject {
 
     //declarations
     public static Item testitem_Instance;
+    public static Block blablock_Instance;
     public static Block testblock_Instance;
    
     public static void registerEntity(Class entityClass, int entityID, String name) {
@@ -55,9 +58,11 @@ public class TestProject {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 testitem_Instance = new testitem();
+blablock_Instance = new blablock();
 testblock_Instance = new testblock();
 		if (event.getSide() == Side.CLIENT) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(testitem_Instance, 0, new ModelResourceLocation("testproject:testitem", "inventory"));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(blablock_Instance), 0, new ModelResourceLocation("testproject:blablock", "inventory"));
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(testblock_Instance), 0, new ModelResourceLocation("testproject:testblock", "inventory"));
 		}
 	}
