@@ -17,14 +17,19 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 class BlockModelGenerator(QtGui.QDialog):
     
-    def __init__(self, mainWindow):
+    def __init__(self, mainWindow, modeldata=None):
         QtGui.QDialog.__init__(self)
         
         self.mainWindow = mainWindow
         
+        self.textures = []
+        
         self.initUI()
         
         self.show()
+        
+        if modeldata:
+            self.loadData(modeldata)
         
         
     def initUI(self):
@@ -125,7 +130,6 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.selectedCuboid().dimensions[0] = dim
         self.selectedCuboid().updateScalingMatrix()
-        self.updateUVs()
         self.GLWidget.updateGL()
         
         
@@ -133,7 +137,6 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.selectedCuboid().dimensions[1] = dim
         self.selectedCuboid().updateScalingMatrix()
-        self.updateUVs()
         self.GLWidget.updateGL()
         
         
@@ -141,7 +144,6 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.selectedCuboid().dimensions[2] = dim
         self.selectedCuboid().updateScalingMatrix()
-        self.updateUVs()
         self.GLWidget.updateGL()
         
         
@@ -260,7 +262,7 @@ class BlockModelGenerator(QtGui.QDialog):
         
     def addCuboid(self):
         
-        cub = Cuboid("unnamed", [1.0, 1.0, 1.0])
+        cub = Cuboid("unnamed", [1.0, 1.0, 1.0], self)
         cub.loadShader("cuboid")
         self.cuboidList.addItem(cub)
         self.cuboidList.setCurrentItem(cub)
@@ -274,9 +276,11 @@ class BlockModelGenerator(QtGui.QDialog):
         self.GLWidget.updateGL()
         
         
-    def addTexture(self, mcPath):
+    def addTexture(self, path):
         
-        self.textures.append(mcPath)
+        if not path in self.textures:
+            self.textures.append(path)
+        return self.textures.index(path)
         
         
     def cuboids(self):
@@ -320,6 +324,7 @@ class BlockModelGenerator(QtGui.QDialog):
         
     def getJSON(self):
         
+        self.textures = []
         model = {}
         
         model["elements"] = []
@@ -328,9 +333,33 @@ class BlockModelGenerator(QtGui.QDialog):
             
         model["textures"] = {}
         for i in range(len(self.textures)):
-            model["textures"][str(i)] = self.textures[i]
+            model["textures"]["#"+str(i)] = self.textures[i]
             
         return self.dict2JSON(model)
+        
+        
+    def savedata(self):
+        
+        return {"cuboids":[cub.savedata() for cub in self.cuboids()]}
+        
+        
+    def loadData(self, data):
+        
+        for cubData in data["cuboids"]:
+            cub = Cuboid(cubData["name"], cubData["dimensions"], self)
+            cub.loadData(cubData)
+            cub.loadShader("cuboid")
+            self.cuboidList.addItem(cub)
+
+        self.GLWidget.updateGL()
+        
+        
+    @staticmethod
+    def getModel(mainWindow, modeldata):
+        
+        modeler = BlockModelGenerator(mainWindow, modeldata)
+        modeler.exec_()
+        return [modeler.savedata(), modeler.getJSON()]
         
         
         
@@ -612,12 +641,12 @@ class UVEditor(QtGui.QWidget):
         
 class Cuboid(QtGui.QListWidgetItem):
     
-    def __init__(self, name, dimensions, uvs=[[[0.0,0.0], [1.0,1.0]],
-                                              [[0.0,0.0], [1.0,1.0]],
-                                              [[0.0,0.0], [1.0,1.0]],
-                                              [[0.0,0.0], [1.0,1.0]],
-                                              [[0.0,0.0], [1.0,1.0]],
-                                              [[0.0,0.0], [1.0,1.0]]]):
+    def __init__(self, name, dimensions, modelGenerator, uvs=[[[0.0,0.0], [1.0,1.0]],
+                                                              [[0.0,0.0], [1.0,1.0]],
+                                                              [[0.0,0.0], [1.0,1.0]],
+                                                              [[0.0,0.0], [1.0,1.0]],
+                                                              [[0.0,0.0], [1.0,1.0]],
+                                                              [[0.0,0.0], [1.0,1.0]]]):
         QtGui.QListWidgetItem.__init__(self, name)
         
         self.name = name
@@ -632,6 +661,8 @@ class Cuboid(QtGui.QListWidgetItem):
         self.uvs = uvs
         self.rotation = [0.0,0.0,0.0]
         self.translation = [0.0,0.0,0.0]
+        
+        self.modelGenerator = modelGenerator
         
         self.shader = 0
         
@@ -652,6 +683,10 @@ class Cuboid(QtGui.QListWidgetItem):
         
         self.transformationMatrix = self.translationMatrix * self.rotationMatrix * self.scalingMatrix
         
+        self.gl2mcMat = mu.Matrix3([[0.0,0.0,1.0],
+                                    [1.0,0.0,0.0],
+                                    [0.0,1.0,0.0]])
+        
         self.initTextures()
         
         
@@ -660,6 +695,7 @@ class Cuboid(QtGui.QListWidgetItem):
         self.translation[0] = x
         self.translation[1] = y
         self.translation[2] = z
+        self.updateTranslationMatrix()
         
         
     def setRotation(self, x, y, z):
@@ -667,7 +703,15 @@ class Cuboid(QtGui.QListWidgetItem):
         self.rotation[0] = x
         self.rotation[1] = y
         self.rotation[2] = z
-        self.rotationMatrix = mu.Matrix4Rotate(x, y, z)
+        self.updateRotationMatrix()
+        
+        
+    def setDimensions(self, x, y, z):
+        
+        self.dimensions[0] = x
+        self.dimensions[1] = y
+        self.dimensions[2] = z
+        self.updateScalingMatrix()
         
         
     def updateRotationMatrix(self):
@@ -763,6 +807,11 @@ class Cuboid(QtGui.QListWidgetItem):
             GL.glEnd()
             
             shaders.glUseProgram(0)
+            
+            
+    def inMCCoordinates(self, pt):
+        
+        return (self.gl2mcMat*mu.Vector3(pt[0], pt[1], pt[2])).vector
                     
                     
     def getDictRepr(self):
@@ -770,16 +819,39 @@ class Cuboid(QtGui.QListWidgetItem):
         cub = {}
         
         cub["name"]  = self.name
-        cub["from"]  = self.corner1
-        cub["to"]    = self.corner2
-        cub["faces"] = {"north":{"texture":"#"+str(self.uvs[0][0]), "uv":self.uvs[0][1]},
-                        "east": {"texture":"#"+str(self.uvs[1][0]), "uv":self.uvs[1][1]},
-                        "south":{"texture":"#"+str(self.uvs[2][0]), "uv":self.uvs[2][1]},
-                        "west": {"texture":"#"+str(self.uvs[3][0]), "uv":self.uvs[3][1]},
-                        "up":   {"texture":"#"+str(self.uvs[4][0]), "uv":self.uvs[4][1]},
-                        "down": {"texture":"#"+str(self.uvs[5][0]), "uv":self.uvs[5][1]}}
+        cub["from"]  = self.inMCCoordinates(self.translation)
+        cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
+        cub["faces"] = {"north":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.uvs[0][1]},
+                        "east": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.uvs[1][1]},
+                        "south":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.uvs[2][1]},
+                        "west": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[3][0])), "uv":self.uvs[3][1]},
+                        "up":   {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[4][0])), "uv":self.uvs[4][1]},
+                        "down": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[5][0])), "uv":self.uvs[5][1]}}
                         
         return cub
+        
+        
+    def savedata(self):
+        
+        return {"name":self.name,
+                "dimensions":self.dimensions,
+                "translation":self.translation,
+                "rotation":self.rotation,
+                "uvs":self.uvs,
+                "textures":[tex[0] for tex in self.textures]}
+                
+                
+    def loadData(self, data):
+        
+        self.dimensions = data["dimensions"]
+        self.translation = data["translation"]
+        self.rotation = data["rotation"]
+        self.uvs = data["uvs"]
+        for idx in range(len(data["textures"])):
+            self.setTexture(idx, data["textures"][idx])
+        self.updateRotationMatrix()
+        self.updateScalingMatrix()
+        self.updateTranslationMatrix()
                         
                         
                         

@@ -32,6 +32,27 @@ class Block(_base):
         self.harvestLevel = 0
         self.rotateable = True
         
+        self.modeldata = [{'cuboids':
+                            [{'textures':
+                                [BASEPATH+'/assets/textures/blocks/unknown.png',
+                                 BASEPATH+'/assets/textures/blocks/unknown.png',
+                                 BASEPATH+'/assets/textures/blocks/unknown.png',
+                                 BASEPATH+'/assets/textures/blocks/unknown.png',
+                                 BASEPATH+'/assets/textures/blocks/unknown.png',
+                                 BASEPATH+'/assets/textures/blocks/unknown.png'],
+                            'name': 'unnamed',
+                            'uvs':
+                                [[[0.0, 0.0], [1.0, 1.0]],
+                                 [[0.0, 0.0], [1.0, 1.0]],
+                                 [[0.0, 0.0], [1.0, 1.0]],
+                                 [[0.0, 0.0], [1.0, 1.0]],
+                                 [[0.0, 0.0], [1.0, 1.0]],
+                                 [[0.0, 0.0], [1.0, 1.0]]],
+                            'translation': [0.0, 0.0, 0.0],
+                            'rotation': [0.0, 0.0, 0.0],
+                            'dimensions': [16.0, 16.0, 16.0]}]},
+                        ""]
+        
         self.data = {"package":[],
                      "imports":[],
                      "classname":[],
@@ -294,7 +315,8 @@ class Block(_base):
         
     def editBlock(self):
         
-        BlockModelGenerator(self.mainWindow)
+        self.modeldata = BlockModelGenerator.getModel(self.mainWindow, self.modeldata[0])
+        self.save()
         
         
     def getRenderLayer(self):
@@ -328,7 +350,8 @@ class Block(_base):
                 "texture":self.texture,
                 "transparency":self.transparency,
                 "creativeTab":self.creativeTab,
-                "rotateable":self.rotateable}
+                "rotateable":self.rotateable,
+                "modeldata":self.modeldata}
         pickle.dump(data, f)
         
         f.close()
