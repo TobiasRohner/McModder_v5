@@ -333,7 +333,7 @@ class BlockModelGenerator(QtGui.QDialog):
             
         model["textures"] = {}
         for i in range(len(self.textures)):
-            model["textures"]["#"+str(i)] = self.textures[i]
+            model["textures"]["#"+str(i)] = "<modid>:blocks/<unlocalizedName>_"+str(i)
             
         return self.dict2JSON(model)
         
@@ -359,7 +359,7 @@ class BlockModelGenerator(QtGui.QDialog):
         
         modeler = BlockModelGenerator(mainWindow, modeldata)
         modeler.exec_()
-        return [modeler.savedata(), modeler.getJSON()]
+        return [modeler.savedata(), modeler.getJSON(), modeler.textures]
         
         
         
@@ -812,6 +812,11 @@ class Cuboid(QtGui.QListWidgetItem):
     def inMCCoordinates(self, pt):
         
         return (self.gl2mcMat*mu.Vector3(pt[0], pt[1], pt[2])).vector
+        
+        
+    def getUVs(self, texIdx):
+        
+        return [16*coord for coord in self.uvs[texIdx][0]+self.uvs[texIdx][1]]
                     
                     
     def getDictRepr(self):
@@ -821,12 +826,12 @@ class Cuboid(QtGui.QListWidgetItem):
         cub["name"]  = self.name
         cub["from"]  = self.inMCCoordinates(self.translation)
         cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
-        cub["faces"] = {"north":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.uvs[0][1]},
-                        "east": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.uvs[1][1]},
-                        "south":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.uvs[2][1]},
-                        "west": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[3][0])), "uv":self.uvs[3][1]},
-                        "up":   {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[4][0])), "uv":self.uvs[4][1]},
-                        "down": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[5][0])), "uv":self.uvs[5][1]}}
+        cub["faces"] = {"north":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.getUVs(0)},
+                        "east": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.getUVs(1)},
+                        "south":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.getUVs(2)},
+                        "west": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[3][0])), "uv":self.getUVs(3)},
+                        "up":   {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[4][0])), "uv":self.getUVs(4)},
+                        "down": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[5][0])), "uv":self.getUVs(5)}}
                         
         return cub
         
