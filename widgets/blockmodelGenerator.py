@@ -63,9 +63,11 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.translationX, QtCore.SIGNAL("valueChanged(double)"), self.setTranslationX)
         self.connect(self.translationY, QtCore.SIGNAL("valueChanged(double)"), self.setTranslationY)
         self.connect(self.translationZ, QtCore.SIGNAL("valueChanged(double)"), self.setTranslationZ)
-        self.connect(self.rotationX, QtCore.SIGNAL("valueChanged(double)"), self.setRotationX)
-        self.connect(self.rotationY, QtCore.SIGNAL("valueChanged(double)"), self.setRotationY)
-        self.connect(self.rotationZ, QtCore.SIGNAL("valueChanged(double)"), self.setRotationZ)
+        self.connect(self.rotation, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setRotation)
+        self.connect(self.rotationAxisComboBox, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.setRotationAxis)
+        self.connect(self.rotationCenterX, QtCore.SIGNAL("valueChanged(double)"), self.setRotationCenterX)
+        self.connect(self.rotationCenterY, QtCore.SIGNAL("valueChanged(double)"), self.setRotationCenterY)
+        self.connect(self.rotationCenterZ, QtCore.SIGNAL("valueChanged(double)"), self.setRotationCenterZ)
         self.connect(self.cuboidList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.cuboidSelected)
         self.connect(self.cuboidList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.cuboidSelected)
         self.connect(self.addCuboidButton, QtCore.SIGNAL("clicked()"), self.addCuboid)
@@ -94,9 +96,20 @@ class BlockModelGenerator(QtGui.QDialog):
         self.translationX.setValue(cuboid.translation[0])
         self.translationY.setValue(cuboid.translation[1])
         self.translationZ.setValue(cuboid.translation[2])
-        self.rotationX.setValue(cuboid.rotation[0])
-        self.rotationY.setValue(cuboid.rotation[1])
-        self.rotationZ.setValue(cuboid.rotation[2])
+        idx = 2
+        if cuboid.rotation == -45:
+            idx = 0
+        elif cuboid.rotation == -22.5:
+            idx = 1
+        elif cuboid.rotation == 22.5:
+            idx = 3
+        elif cuboid.rotation == 45:
+            idx = 4
+        self.rotation.setCurrentIndex(idx)
+        self.rotationAxisComboBox.setCurrentIndex(cuboid.rotationAxis)
+        self.rotationCenterX.setValue(cuboid.rotationCenter[0])
+        self.rotationCenterY.setValue(cuboid.rotationCenter[1])
+        self.rotationCenterZ.setValue(cuboid.rotationCenter[2])
         self.uvEditorDown.loadTexture(cuboid.textures[0][0])
         self.uvEditorUp.loadTexture(cuboid.textures[1][0])
         self.uvEditorNorth.loadTexture(cuboid.textures[2][0])
@@ -196,23 +209,37 @@ class BlockModelGenerator(QtGui.QDialog):
         self.GLWidget.updateGL()
         
         
-    def setRotationX(self, rot):
+    def setRotationAxis(self, axis):
         
-        self.selectedCuboid().rotation[0] = rot/180.0*math.pi
+        self.selectedCuboid().rotationAxis = self.rotationAxisComboBox.findText(axis)
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
         
-    def setRotationY(self, rot):
+    def setRotation(self, rot):
         
-        self.selectedCuboid().rotation[1] = rot/180.0*math.pi
+        self.selectedCuboid().rotation = float(rot)
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
         
-    def setRotationZ(self, rot):
+    def setRotationCenterX(self, pos):
         
-        self.selectedCuboid().rotation[2] = rot/180.0*math.pi
+        self.selectedCuboid().rotationCenter[0] = pos
+        self.selectedCuboid().updateRotationMatrix()
+        self.GLWidget.updateGL()
+        
+        
+    def setRotationCenterY(self, pos):
+        
+        self.selectedCuboid().rotationCenter[1] = pos
+        self.selectedCuboid().updateRotationMatrix()
+        self.GLWidget.updateGL()
+        
+        
+    def setRotationCenterZ(self, pos):
+        
+        self.selectedCuboid().rotationCenter[2] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
@@ -794,7 +821,9 @@ class Cuboid(QtGui.QListWidgetItem):
         self.texIdx = None
         self.dimensions = dimensions
         self.uvs = uvs
-        self.rotation = [0.0,0.0,0.0]
+        self.rotation = 0.0
+        self.rotationAxis = 0
+        self.rotationCenter = [8.0,8.0,8.0]
         self.translation = [0.0,0.0,0.0]
         
         self.modelGenerator = modelGenerator
@@ -818,9 +847,10 @@ class Cuboid(QtGui.QListWidgetItem):
         
         self.transformationMatrix = self.translationMatrix * self.rotationMatrix * self.scalingMatrix
         
-        self.gl2mcMat = mu.Matrix3([[0.0,0.0,1.0],
-                                    [1.0,0.0,0.0],
-                                    [0.0,1.0,0.0]])
+        self.gl2mcMat = mu.Matrix4([[0.0,0.0,1.0,0.0],
+                                    [1.0,0.0,0.0,0.0],
+                                    [0.0,1.0,0.0,0.0],
+                                    [0.0,0.0,0.0,1.0]])
         
         self.initTextures()
         
@@ -851,7 +881,12 @@ class Cuboid(QtGui.QListWidgetItem):
         
     def updateRotationMatrix(self):
         
-        self.rotationMatrix = mu.Matrix4Rotate(self.rotation[0], self.rotation[1], self.rotation[2])
+        if self.rotationAxis == 0:
+            self.rotationMatrix = mu.Matrix4Rotate(2*math.pi/360.0*self.rotation, 0.0, 0.0)
+        if self.rotationAxis == 1:
+            self.rotationMatrix = mu.Matrix4Rotate(0.0, 2*math.pi/360.0*self.rotation, 0.0)
+        if self.rotationAxis == 2:
+            self.rotationMatrix = mu.Matrix4Rotate(0.0, 0.0, 2*math.pi/360.0*self.rotation)
         
         
     def updateTranslationMatrix(self):
@@ -927,6 +962,8 @@ class Cuboid(QtGui.QListWidgetItem):
             GL.glUniformMatrix4fv(loc, 1, GL.GL_FALSE, self.scalingMatrix.matrix)
             loc = GL.glGetUniformLocation(self.shader, "u_texture")
             GL.glUniform1i(loc, polIdx)
+            loc = GL.glGetUniformLocation(self.shader, "u_rotationCenter")
+            GL.glUniform4fv(loc, 1, self.rotationCenter)
             
             GL.glBegin(GL.GL_POLYGON)
             
@@ -946,7 +983,7 @@ class Cuboid(QtGui.QListWidgetItem):
             
     def inMCCoordinates(self, pt):
         
-        return (self.gl2mcMat*mu.Vector3(pt[0], pt[1], pt[2])).vector
+        return (self.gl2mcMat*mu.Vector4(pt[0], pt[1], pt[2], 1.0)).vector[:3]
         
         
     def getUVs(self, texIdx):
@@ -967,6 +1004,9 @@ class Cuboid(QtGui.QListWidgetItem):
         cub["name"]  = self.name
         cub["from"]  = self.inMCCoordinates(self.translation)
         cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
+        cub["rotation"] = {"origin": self.inMCCoordinates(self.rotationCenter),
+                           "axis": "z" if self.rotationAxis==0 else "x" if self.rotationAxis==1 else "y",
+                           "angle": self.rotation}
         cub["faces"] = {"down": {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.getUVs(0)},
                         "up":   {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.getUVs(1)},
                         "north":{"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.getUVs(2)},
@@ -983,6 +1023,7 @@ class Cuboid(QtGui.QListWidgetItem):
                 "dimensions":self.dimensions,
                 "translation":self.translation,
                 "rotation":self.rotation,
+                "rotationAxis":self.rotationAxis,
                 "uvs":self.uvs,
                 "textures":[tex[0] for tex in self.textures]}
                 
@@ -992,6 +1033,7 @@ class Cuboid(QtGui.QListWidgetItem):
         self.dimensions = data["dimensions"]
         self.translation = data["translation"]
         self.rotation = data["rotation"]
+        self.rotationAxis = data["rotationAxis"]
         self.uvs = data["uvs"]
         for idx in range(len(data["textures"])):
             self.setTexture(idx, data["textures"][idx])

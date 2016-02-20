@@ -48,7 +48,8 @@ class Block(_base):
                                  [[0.0, 0.0], [1.0, 1.0]],
                                  [[0.0, 0.0], [1.0, 1.0]]],
                             'translation': [0.0, 0.0, 0.0],
-                            'rotation': [0.0, 0.0, 0.0],
+                            'rotation': 0.0,
+                            'rotationAxis': 0,
                             'dimensions': [16.0, 16.0, 16.0]}]},
                         '{\n\t"textures": {\n\t\t"#0": "<modid>:blocks/<unlocalizedName>_0"\n\t},\n\t"elements": [\n\t\t{\n\t\t\t"to": [16.0, 16.0, 16.0],\n\t\t\t"from": [0.0, 0.0, 0.0],\n\t\t\t"name": "unnamed",\n\t\t\t"faces": {\n\t\t\t\t"north": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"west": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"up": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"down": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"east": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"south": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t]\n}',
                         BASEPATH+'/assets/textures/blocks/unknown.png']

@@ -262,36 +262,71 @@
          <property name="title">
           <string>Rotation</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
-           <widget class="QDoubleSpinBox" name="rotationX">
-            <property name="minimum">
-             <double>-360.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QDoubleSpinBox" name="rotationCenterX"/>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="rotationCenterY"/>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="rotationCenterZ"/>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="rotationY">
-            <property name="minimum">
-             <double>-360.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="rotationZ">
-            <property name="minimum">
-             <double>-360.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QComboBox" name="rotationAxisComboBox">
+              <item>
+               <property name="text">
+                <string>X-Axis</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Y-Axis</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Z-Axis</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="rotation">
+              <item>
+               <property name="text">
+                <string>-45</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>-22.5</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>22.5</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>45</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
