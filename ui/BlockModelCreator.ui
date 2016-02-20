@@ -44,7 +44,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>115</width>
+          <width>113</width>
           <height>574</height>
          </rect>
         </property>
@@ -176,6 +176,13 @@
           <widget class="QPushButton" name="removeCuboidButton">
            <property name="text">
             <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cloneCuboidButton">
+           <property name="text">
+            <string>Clone</string>
            </property>
           </widget>
          </item>

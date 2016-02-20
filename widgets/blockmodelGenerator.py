@@ -2,6 +2,7 @@
 import os
 import sys
 import math
+import copy
 from utils import mathUtils as mu
 from PyQt4 import QtGui, QtCore, QtOpenGL, uic
 from PIL import Image
@@ -66,8 +67,10 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.rotationY, QtCore.SIGNAL("valueChanged(double)"), self.setRotationY)
         self.connect(self.rotationZ, QtCore.SIGNAL("valueChanged(double)"), self.setRotationZ)
         self.connect(self.cuboidList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.cuboidSelected)
+        self.connect(self.cuboidList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.cuboidSelected)
         self.connect(self.addCuboidButton, QtCore.SIGNAL("clicked()"), self.addCuboid)
         self.connect(self.removeCuboidButton, QtCore.SIGNAL("clicked()"), self.removeCuboid)
+        self.connect(self.cloneCuboidButton, QtCore.SIGNAL("clicked()"), self.cloneCuboid)
         self.connect(self.changeDownTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureDown)
         self.connect(self.changeUpTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureUp)
         self.connect(self.changeNorthTextureButton, QtCore.SIGNAL("clicked()"), self.changeTextureNorth)
@@ -80,6 +83,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.connect(self.uvEditorSouth, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsSouth)
         self.connect(self.uvEditorWest, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsWest)
         self.connect(self.uvEditorEast, QtCore.SIGNAL("UPDATE_UVS"), self.updateUVsEast)
+        self.connect(self.cuboidList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.changeCuboidName)
             
             
     def cuboidSelected(self, cuboid):
@@ -99,12 +103,12 @@ class BlockModelGenerator(QtGui.QDialog):
         self.uvEditorSouth.loadTexture(cuboid.textures[3][0])
         self.uvEditorWest.loadTexture(cuboid.textures[4][0])
         self.uvEditorEast.loadTexture(cuboid.textures[5][0])
-        self.uvEditorDown.updateUVs(cuboid.uvs[0])
-        self.uvEditorUp.updateUVs(cuboid.uvs[1])
-        self.uvEditorNorth.updateUVs(cuboid.uvs[2])
-        self.uvEditorSouth.updateUVs(cuboid.uvs[3])
-        self.uvEditorWest.updateUVs(cuboid.uvs[4])
-        self.uvEditorEast.updateUVs(cuboid.uvs[5])
+        self.uvEditorDown.updateUVs(copy.deepcopy(cuboid.uvs[0]))
+        self.uvEditorUp.updateUVs(copy.deepcopy(cuboid.uvs[1]))
+        self.uvEditorNorth.updateUVs(copy.deepcopy(cuboid.uvs[2]))
+        self.uvEditorSouth.updateUVs(copy.deepcopy(cuboid.uvs[3]))
+        self.uvEditorWest.updateUVs(copy.deepcopy(cuboid.uvs[4]))
+        self.uvEditorEast.updateUVs(copy.deepcopy(cuboid.uvs[5]))
         cuboid.setTexture(0, cuboid.textures[0][0])
         cuboid.setTexture(1, cuboid.textures[1][0])
         cuboid.setTexture(2, cuboid.textures[2][0])
@@ -116,37 +120,37 @@ class BlockModelGenerator(QtGui.QDialog):
         
     def updateUVsDown(self, uvs):
         
-        self.selectedCuboid().uvs[0] = uvs
+        self.selectedCuboid().uvs[0] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
     def updateUVsUp(self, uvs):
         
-        self.selectedCuboid().uvs[1] = uvs
+        self.selectedCuboid().uvs[1] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
     def updateUVsNorth(self, uvs):
         
-        self.selectedCuboid().uvs[2] = uvs
+        self.selectedCuboid().uvs[2] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
     def updateUVsSouth(self, uvs):
         
-        self.selectedCuboid().uvs[3] = uvs
+        self.selectedCuboid().uvs[3] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
     def updateUVsWest(self, uvs):
         
-        self.selectedCuboid().uvs[4] = uvs
+        self.selectedCuboid().uvs[4] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
     def updateUVsEast(self, uvs):
         
-        self.selectedCuboid().uvs[5] = uvs
+        self.selectedCuboid().uvs[5] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
         
         
@@ -279,6 +283,16 @@ class BlockModelGenerator(QtGui.QDialog):
             self.GLWidget.updateGL()
             
             
+    def changeCuboidName(self, cuboid):
+        
+        dialog = QtGui.QInputDialog()
+        dialog.setTextValue(cuboid.name)
+        txt, ok = dialog.getText(self, "Change Name", "Name:")
+        
+        if ok:
+            cuboid.setName(txt)
+            
+            
     def selectedCuboid(self):
         
         return self.cuboidList.currentItem()
@@ -290,6 +304,28 @@ class BlockModelGenerator(QtGui.QDialog):
         cub.loadShader("cuboid")
         self.cuboidList.addItem(cub)
         self.cuboidList.setCurrentItem(cub)
+        self.cuboidSelected(cub)
+        self.GLWidget.updateGL()
+        
+        
+    def cloneCuboid(self):
+        
+        sel = self.selectedCuboid()
+        cub = Cuboid(sel.name+"_copy", copy.deepcopy(sel.dimensions), self)
+        cub.uvs = copy.deepcopy(sel.uvs)
+        cub.translation = copy.deepcopy(sel.translation)
+        cub.rotation = copy.deepcopy(sel.rotation)
+        cub.updateRotationMatrix()
+        cub.updateScalingMatrix()
+        cub.updateTranslationMatrix()
+        cub.loadShader("cuboid")
+        cub.setTexture(0, sel.textures[0][0])
+        cub.setTexture(1, sel.textures[1][0])
+        cub.setTexture(2, sel.textures[2][0])
+        cub.setTexture(3, sel.textures[3][0])
+        cub.setTexture(4, sel.textures[4][0])
+        cub.setTexture(5, sel.textures[5][0])
+        self.cuboidList.addItem(cub)
         self.cuboidSelected(cub)
         self.GLWidget.updateGL()
         
@@ -357,7 +393,7 @@ class BlockModelGenerator(QtGui.QDialog):
             
         model["textures"] = {}
         for i in range(len(self.textures)):
-            model["textures"]["#"+str(i)] = "<modid>:blocks/<unlocalizedName>_"+str(i)
+            model["textures"]["texture"+str(i)] = "<modid>:blocks/<unlocalizedName>_"+str(i)
             
         return self.dict2JSON(model)
         
@@ -446,6 +482,8 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         GL.glShadeModel(GL.GL_FLAT)
         GL.glEnable(GL.GL_DEPTH_TEST)
         GL.glEnable(GL.GL_CULL_FACE)
+        GL.glEnable(GL.GL_BLEND)
+        GL.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA)
         
         for cub in self.modelGenerator.cuboids():
             cub.loadShader("cuboid")
@@ -610,8 +648,8 @@ class UVEditor(QtGui.QWidget):
     
     def mouseReleaseEvent(self, event):
         
-        self.uvs = [[self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]],
-                    [self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]]]
+        self.uvs = [[self.crop(self.uvs[0][0]+self.moved[0][0], 0.0, 1.0), self.crop(self.uvs[0][1]+self.moved[0][1], 0.0, 1.0)],
+                    [self.crop(self.uvs[1][0]+self.moved[1][0], 0.0, 1.0), self.crop(self.uvs[1][1]+self.moved[1][1], 0.0, 1.0)]]
         
         self.selectedCorners = [False, False, False, False]
         self.moved = [[0.0, 0.0], [0.0, 0.0]]
@@ -636,17 +674,22 @@ class UVEditor(QtGui.QWidget):
             for corner in range(4):
                 if self.selectedCorners[corner]:
                     if corner == 0:
-                        self.moved[0][1] = float(dy)/ySize
+                        self.moved[0][1] = round(float(dy)/ySize*textureHeight)/textureHeight
                     if corner == 1:
-                        self.moved[1][0] = float(dx)/xSize
+                        self.moved[1][0] = round(float(dx)/xSize*textureWidth)/textureWidth
                     if corner == 2:
-                        self.moved[1][1] = float(dy)/ySize
+                        self.moved[1][1] = round(float(dy)/ySize*textureHeight)/textureHeight
                     if corner == 3:
-                        self.moved[0][0] = float(dx)/xSize
+                        self.moved[0][0] = round(float(dx)/xSize*textureWidth)/textureWidth
                     self.emit(QtCore.SIGNAL("UPDATE_UVS"),
-                              [[self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]],
-                               [self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]]])
+                              [[self.crop(self.uvs[0][0]+self.moved[0][0], 0.0, 1.0), self.crop(self.uvs[0][1]+self.moved[0][1], 0.0, 1.0)],
+                               [self.crop(self.uvs[1][0]+self.moved[1][0], 0.0, 1.0), self.crop(self.uvs[1][1]+self.moved[1][1], 0.0, 1.0)]])
             self.repaint()
+            
+            
+    def crop(self, value, minV, maxV):
+        
+        return min(max(value, minV), maxV)
         
         
     def drawTexture(self, painter):
@@ -662,8 +705,8 @@ class UVEditor(QtGui.QWidget):
         
     def drawUVs(self, painter):
         
-        left = self.image2WidgetCoords((self.uvs[0][0]+self.moved[0][0], self.uvs[0][1]+self.moved[0][1]))
-        right = self.image2WidgetCoords((self.uvs[1][0]+self.moved[1][0], self.uvs[1][1]+self.moved[1][1]))
+        left = self.image2WidgetCoords((self.crop(self.uvs[0][0]+self.moved[0][0], 0.0, 1.0), self.crop(self.uvs[0][1]+self.moved[0][1], 0.0, 1.0)))
+        right = self.image2WidgetCoords((self.crop(self.uvs[1][0]+self.moved[1][0], 0.0, 1.0), self.crop(self.uvs[1][1]+self.moved[1][1], 0.0, 1.0)))
             
         painter.fillRect(left[0],
                          left[1],
@@ -723,8 +766,8 @@ class UVEditor(QtGui.QWidget):
         x, y = point
         translatedX = x - xCorner
         translatedY = y - yCorner
-        scaledX = int(float(translatedX)/xSize)
-        scaledY = int(float(translatedY)/ySize)
+        scaledX = float(translatedX)/xSize
+        scaledY = float(translatedY)/ySize
         
         return (scaledX, scaledY)
 
@@ -762,12 +805,12 @@ class Cuboid(QtGui.QListWidgetItem):
 #        self.vertVBO = [vbo.VBO(v) for v in verts]
 #        indices = np.array([3,2,1,0, 0,1,5,4, 0,4,7,3, 4,5,6,7, 3,7,6,2, 2,6,5,1], dtype=np.int32)
 #        self.inxVBO = vbo.VBO(indices, target=GL.GL_ELEMENT_ARRAY_BUFFER)
-        self.verts = [[[0,1,0], [1,1,0], [1,0,0], [0,0,0]],
-                      [[1,1,1], [0,1,1], [0,0,1], [1,0,1]],
-                      [[0,0,0], [0,0,1], [0,1,1], [0,1,0]],
-                      [[1,1,0], [1,1,1], [1,0,1], [1,0,0]],
-                      [[1,0,0], [1,0,1], [0,0,1], [0,0,0]],
-                      [[0,1,0], [0,1,1], [1,1,1], [1,1,0]]]
+        self.verts = [[[1,0,0], [0,0,0], [0,1,0], [1,1,0]],
+                      [[0,0,1], [1,0,1], [1,1,1], [0,1,1]],
+                      [[0,1,1], [0,1,0], [0,0,0], [0,0,1]],
+                      [[1,0,1], [1,0,0], [1,1,0], [1,1,1]],
+                      [[0,0,1], [0,0,0], [1,0,0], [1,0,1]],
+                      [[1,1,1], [1,1,0], [0,1,0], [0,1,1]]]
         
         self.rotationMatrix = mu.Matrix4Rotate(0.0, 0.0, 0.0)
         self.translationMatrix = mu.Matrix4Translate(0.0, 0.0, 0.0)
@@ -887,13 +930,13 @@ class Cuboid(QtGui.QListWidgetItem):
             
             GL.glBegin(GL.GL_POLYGON)
             
-            GL.glTexCoord2f(self.uvs[polIdx][0][0], self.uvs[polIdx][0][1])
+            GL.glTexCoord2f(1.0-self.uvs[polIdx][0][0], 1.0-self.uvs[polIdx][0][1])
             GL.glVertex3f(pol[0][0], pol[0][1], pol[0][2])
-            GL.glTexCoord2f(self.uvs[polIdx][0][0], self.uvs[polIdx][1][1])
+            GL.glTexCoord2f(1.0-self.uvs[polIdx][0][0], 1.0-self.uvs[polIdx][1][1])
             GL.glVertex3f(pol[1][0], pol[1][1], pol[1][2])
-            GL.glTexCoord2f(self.uvs[polIdx][1][0], self.uvs[polIdx][1][1])
+            GL.glTexCoord2f(1.0-self.uvs[polIdx][1][0], 1.0-self.uvs[polIdx][1][1])
             GL.glVertex3f(pol[2][0], pol[2][1], pol[2][2])
-            GL.glTexCoord2f(self.uvs[polIdx][1][0], self.uvs[polIdx][0][1])
+            GL.glTexCoord2f(1.0-self.uvs[polIdx][1][0], 1.0-self.uvs[polIdx][0][1])
             GL.glVertex3f(pol[3][0], pol[3][1], pol[3][2])
             
             GL.glEnd()
@@ -909,6 +952,12 @@ class Cuboid(QtGui.QListWidgetItem):
     def getUVs(self, texIdx):
         
         return [16*coord for coord in self.uvs[texIdx][0]+self.uvs[texIdx][1]]
+        
+        
+    def setName(self, name):
+        
+        self.name = name
+        self.setText(name)
                     
                     
     def getDictRepr(self):
@@ -918,12 +967,12 @@ class Cuboid(QtGui.QListWidgetItem):
         cub["name"]  = self.name
         cub["from"]  = self.inMCCoordinates(self.translation)
         cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
-        cub["faces"] = {"north":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.getUVs(0)},
-                        "east": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.getUVs(1)},
-                        "south":{"texture":"#"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.getUVs(2)},
-                        "west": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[3][0])), "uv":self.getUVs(3)},
-                        "up":   {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[4][0])), "uv":self.getUVs(4)},
-                        "down": {"texture":"#"+str(self.modelGenerator.addTexture(self.textures[5][0])), "uv":self.getUVs(5)}}
+        cub["faces"] = {"down": {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.getUVs(0)},
+                        "up":   {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.getUVs(1)},
+                        "north":{"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.getUVs(2)},
+                        "south":{"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[3][0])), "uv":self.getUVs(3)},
+                        "west": {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[4][0])), "uv":self.getUVs(4)},
+                        "east": {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[5][0])), "uv":self.getUVs(5)}}
                         
         return cub
         
