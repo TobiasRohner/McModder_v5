@@ -19,6 +19,23 @@ VERSION = "0.0.1"
 
 
 
+def getPythonFiles(path):
+    
+    files = []
+    if os.path.isdir(path):
+        for c in os.listdir(path):
+            if os.path.isdir(path+"/"+c):
+                files += getPythonFiles(path+"/"+c)
+            else:
+                if c.split(".")[-1] == "py":
+                    files.append(path+"/"+c)
+    else:
+        files.append(path)
+    return files
+
+
+
+
 class MainWindow(QtGui.QMainWindow):
     
     def __init__(self):
@@ -137,8 +154,11 @@ class MainWindow(QtGui.QMainWindow):
         self.addons = []
         
         for path in self.config["addons"]:
-            name = path.split("/")[-1].split(".")[0]
-            self.addons.append((name, path, imp.load_source(name, path)))
+            for f in getPythonFiles(path):
+                name = f.split("/")[-1].split(".")[0]
+                mod = imp.load_source(name, f)
+                if "init" in dir(mod):
+                    self.addons.append((name, path, mod))
         
         for name, path, mod in self.addons:
             if "init" in dir(mod):

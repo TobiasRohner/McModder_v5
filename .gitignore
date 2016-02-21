@@ -109,4 +109,4 @@ $RECYCLE.BIN/
 *.lnk
 
 #modder workspace
-/workspace
+workspace/

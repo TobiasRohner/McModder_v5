@@ -2,11 +2,11 @@
 S'addons'
 p1
 (lp2
-S'E:\\Programmieren\\Python\\McModder_v5/addons/BaseMod/BaseMod.py'
+S'E:\\Programmieren\\Python\\McModder_v5/addons/BaseMod'
 p3
-aS'E:\\Programmieren\\Python\\McModder_v5/addons/Block/Block.py'
+aS'E:\\Programmieren\\Python\\McModder_v5/addons/Block'
 p4
-aS'E:\\Programmieren\\Python\\McModder_v5/addons/Item/Item.py'
+aS'E:\\Programmieren\\Python\\McModder_v5/addons/Item'
 p5
 asS'language'
 p6
