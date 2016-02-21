@@ -27,6 +27,7 @@ class BaseMod(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         
         self.identifier = "BaseMod"
+        self.classtype = "BaseMod"
         
         self.mainWindow = mainWindow
         self.project = project
@@ -62,7 +63,6 @@ class BaseMod(QtGui.QWidget):
         self.mainWindow.history.addStep(self.setVersion, [self.version], self.setName, [ver])
         
         self.version = ver
-        self.save()
         
         
     def renewWidgetEntrys(self):
@@ -71,17 +71,12 @@ class BaseMod(QtGui.QWidget):
         
         
     def save(self):
-        
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "version":self.version}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
     def load(self, path):

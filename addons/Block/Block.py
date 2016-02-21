@@ -23,7 +23,7 @@ BlockModelGenerator = imp.load_source("blockmodelGenerator", ADDONPATH+"/blockmo
 class Block(_base):
     
     def __init__(self, mainWindow, name):
-        _base.__init__(self, mainWindow, "Block")
+        _base.__init__(self, mainWindow, "Block", "Block")
         
         self.name = name
         self.texture = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
@@ -98,51 +98,38 @@ class Block(_base):
         
         self.mainWindow.updateName(self, name)
         
-        self.save()
-        
         
     def setTransparent(self, checked):
         
         if checked:
             self.transparency = "transparent"
-            
-        self.save()
         
         
     def setNonTransparent(self, checked):
         
         if checked:
             self.transparency = "nontransparent"
-            
-        self.save()
         
         
     def setAutoDetectTransparent(self, checked):
         
         if checked:
             self.transparency = "auto"
-            
-        self.save()
         
         
     def setCreativeTab(self, tab):
         
         self.creativeTab = tab
         
-        self.save()
-        
         
     def setRotateable(self, rotateable):
         
         self.rotateable = rotateable
         
-        self.save()
-        
         
     def editBlock(self):
         
         BlockModelGenerator(self.mainWindow, self)
-        self.save()
         
         
     def getRenderLayer(self):
@@ -167,19 +154,14 @@ class Block(_base):
         
     def save(self):
         
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "transparency":self.transparency,
                 "creativeTab":self.creativeTab,
                 "rotateable":self.rotateable,
                 "modeldata":self.modeldata}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
     def renewWidgetEntrys(self):

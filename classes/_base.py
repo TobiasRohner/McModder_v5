@@ -10,10 +10,11 @@ from PyQt4 import QtGui
 
 class _base(QtGui.QWidget):
     
-    def __init__(self, mainWindow, identifier):
+    def __init__(self, mainWindow, identifier, classtype):
         QtGui.QWidget.__init__(self)
         
         self.identifier = identifier
+        self.classtype = classtype
         
         self.mainWindow = mainWindow
         self.project = mainWindow.currentProject()

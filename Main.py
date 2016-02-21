@@ -3,6 +3,7 @@ import sys
 import os
 import shutil
 import imp
+import pickle
 import widgets
 from utils import translations, gradlew, Config, History
 from classes import Project, source
@@ -56,6 +57,7 @@ class MainWindow(QtGui.QMainWindow):
         self.projects = []
         
         self.baseModClass = None
+        self.guiClass = None
         
         self.initUI()
         self.initializeAddons()
@@ -141,10 +143,13 @@ class MainWindow(QtGui.QMainWindow):
             
     def initializeProjects(self):
         
-        proj = [f for f in os.listdir(self.config["workspace"]) if os.path.exists(self.config["workspace"]+"/"+f+"/mcmodderproject")]
-        for p in proj:
-            self.projects.append(Project.Project(self, p))
-            self.projects[-1].load()
+        f = open(self.config["workspace"]+"/moddata.mcmod")
+        data = pickle.load(f)
+        f.close()
+        
+        for key in data.keys():
+            self.projects.append(Project(self, key))
+            self.projects[-1].load(data[key])
             
         self.projectExplorer.updateWorkspace()
         
@@ -166,6 +171,8 @@ class MainWindow(QtGui.QMainWindow):
                 print("Initialized "+name)
                 if name == "BaseMod":
                     self.baseModClass = mod
+                elif name == "GUI":
+                    self.guiClass = mod
                 
                 
     def openAddonDialog(self):
@@ -275,6 +282,18 @@ class MainWindow(QtGui.QMainWindow):
                 shutil.copy2(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar",
                              path+"/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
                 os.remove(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
+                
+                
+    def save(self):
+        
+        f = open(self.config["workspace"]+"/moddata.mcmod", "w")
+        
+        data = {}
+        for proj in self.projects:
+            data[proj.name] = proj.save()
+        pickle.dump(data, f)
+        
+        f.close()
                 
                 
     def undo(self):

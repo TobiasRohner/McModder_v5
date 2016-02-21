@@ -21,7 +21,7 @@ SrcItem = imp.load_source("SrcItem", ADDONPATH+"/SrcItem.py")
 class Item(_base):
     
     def __init__(self, mainWindow, name):
-        _base.__init__(self, mainWindow, "Item")
+        _base.__init__(self, mainWindow, "Item", "Item")
         
         self.name = name
         self.texture = BASEPATH+"/assets/textures/items/unknown.png"
@@ -59,14 +59,10 @@ class Item(_base):
         
         self.mainWindow.updateName(self, name)
         
-        self.save()
-        
         
     def setTexture(self, texture):
         
         self.texture = texture
-        
-        self.save()
         
         
     def setTextureButton(self):
@@ -77,15 +73,11 @@ class Item(_base):
         if txt != "":
             self.texture = txt
             self.textureInput.setText(self.texture)
-            
-        self.save()
         
         
     def setCreativeTab(self, tab):
         
         self.creativeTab = tab
-        
-        self.save()
         
         
     def renewWidgetEntrys(self):
@@ -97,17 +89,12 @@ class Item(_base):
         
     def save(self):
         
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "texture":self.texture,
                 "creativeTab":self.creativeTab}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
     def pull(self, cls):

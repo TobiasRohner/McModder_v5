@@ -22,7 +22,7 @@ class Project():
         self.objects = {}
         
         
-    def load(self):
+    def load(self, data):
         
         for ident in os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod"):
             self.objects[ident] = []
@@ -54,7 +54,14 @@ class Project():
         
         obj.project = self
         
-        obj.save()
+        
+    def save(self):
+        
+        data = {}
+        for key in self.objects.keys():
+            for obj in self.objects[key]:
+                data[obj.name] = obj.save()
+        return data
         
         
         
