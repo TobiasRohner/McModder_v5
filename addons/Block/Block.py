@@ -141,7 +141,7 @@ class Block(_base):
         
     def editBlock(self):
         
-        self.modeldata = BlockModelGenerator.getModel(self.mainWindow, self.modeldata[0])
+        BlockModelGenerator(self.mainWindow, self)
         self.save()
         
         

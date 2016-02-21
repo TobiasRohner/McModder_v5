@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+
+ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+BASEPATH = os.path.dirname(sys.argv[0])
+
 import math
 import copy
 from utils import mathUtils as mu
@@ -11,17 +15,14 @@ from OpenGL.GL import shaders
 
 
 
-BASEPATH = os.path.dirname(sys.argv[0])
 
-
-
-
-class BlockModelGenerator(QtGui.QDialog):
+class BlockModelGenerator(QtGui.QMainWindow):
     
-    def __init__(self, mainWindow, modeldata=None):
-        QtGui.QDialog.__init__(self)
+    def __init__(self, mainWindow, master):
+        QtGui.QMainWindow.__init__(self)
         
         self.mainWindow = mainWindow
+        self.master = master
         
         self.textures = []
         
@@ -31,13 +32,12 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.show()
         
-        if modeldata:
-            self.loadData(modeldata)
+        self.loadData(self.master.modeldata[0])
         
         
     def initUI(self):
         
-        self.ui = uic.loadUi(BASEPATH+"/ui/BlockModelCreator.ui", self)
+        self.ui = uic.loadUi(ADDONPATH+"/BlockModelCreator.ui", self)
         
         self.GLWidget = ModelGLWidget(self)
         
@@ -137,36 +137,42 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.selectedCuboid().uvs[0] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def updateUVsUp(self, uvs):
         
         self.selectedCuboid().uvs[1] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def updateUVsNorth(self, uvs):
         
         self.selectedCuboid().uvs[2] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def updateUVsSouth(self, uvs):
         
         self.selectedCuboid().uvs[3] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def updateUVsWest(self, uvs):
         
         self.selectedCuboid().uvs[4] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def updateUVsEast(self, uvs):
         
         self.selectedCuboid().uvs[5] = copy.deepcopy(uvs)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setDimensionX(self, dim):
@@ -174,6 +180,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().dimensions[1] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setDimensionY(self, dim):
@@ -181,6 +188,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().dimensions[2] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setDimensionZ(self, dim):
@@ -188,6 +196,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().dimensions[0] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setTranslationX(self, trans):
@@ -195,6 +204,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().translation[1] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setTranslationY(self, trans):
@@ -202,6 +212,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().translation[2] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setTranslationZ(self, trans):
@@ -209,6 +220,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().translation[0] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setRotationAxis(self, axis):
@@ -216,6 +228,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotationAxis = self.rotationAxisComboBox.findText(axis)
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setRotation(self, rot):
@@ -223,6 +236,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotation = float(rot)
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setRotationCenterX(self, pos):
@@ -230,6 +244,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotationCenter[1] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setRotationCenterY(self, pos):
@@ -237,6 +252,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotationCenter[2] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def setRotationCenterZ(self, pos):
@@ -244,6 +260,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.selectedCuboid().rotationCenter[0] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
+        self.save()
         
         
     def changeTextureDown(self):
@@ -256,6 +273,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorDown.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeTextureUp(self):
@@ -268,6 +286,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorUp.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeTextureNorth(self):
@@ -280,6 +299,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorNorth.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeTextureSouth(self):
@@ -292,6 +312,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorSouth.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeTextureWest(self):
@@ -304,6 +325,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorWest.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeTextureEast(self):
@@ -316,6 +338,7 @@ class BlockModelGenerator(QtGui.QDialog):
             self.uvEditorEast.loadTexture(tex)
             self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
+            self.save()
             
             
     def changeCuboidName(self, cuboid):
@@ -326,6 +349,7 @@ class BlockModelGenerator(QtGui.QDialog):
         
         if ok:
             cuboid.setName(str(txt))
+            self.save()
             
             
     def selectedCuboid(self):
@@ -341,6 +365,7 @@ class BlockModelGenerator(QtGui.QDialog):
         self.cuboidList.setCurrentItem(cub)
         self.cuboidSelected(cub)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def cloneCuboid(self):
@@ -365,12 +390,14 @@ class BlockModelGenerator(QtGui.QDialog):
         self.cuboidList.addItem(cub)
         self.cuboidSelected(cub)
         self.GLWidget.updateGL()
+        self.save()
         
         
     def removeCuboid(self):
         
         self.cuboidList.takeItem(self.cuboidList.currentRow())
         self.GLWidget.updateGL()
+        self.save()
         
         
     def addTexture(self, path):
@@ -378,6 +405,12 @@ class BlockModelGenerator(QtGui.QDialog):
         if not path in self.textures:
             self.textures.append(path)
         return self.textures.index(path)
+        
+        
+    def save(self):
+        
+        self.master.modeldata = [self.savedata(), self.getJSON(), self.textures]
+        self.master.save()
         
         
     def cuboids(self):
@@ -449,14 +482,6 @@ class BlockModelGenerator(QtGui.QDialog):
             self.cuboidList.addItem(cub)
 
         self.GLWidget.updateGL()
-        
-        
-    @staticmethod
-    def getModel(mainWindow, modeldata):
-        
-        modeler = BlockModelGenerator(mainWindow, modeldata)
-        modeler.exec_()
-        return [modeler.savedata(), modeler.getJSON(), modeler.textures]
         
         
         

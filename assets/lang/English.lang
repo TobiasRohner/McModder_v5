@@ -1,6 +1,7 @@
 newProject=New Project
 newItem=New Item
 newBlock=New Block
+newCraftingTableRecipe=new Crafting Table Recipe
 projectName=Project Name
 projectExplorer=Project Explorer
 console=Console
@@ -29,3 +30,4 @@ addonSelection=Addon Selection
 pyFiles=Python Files
 restartRequired=Restart Required
 restartToLoadAddons=A restart of the program is needed for the addons to be loaded.
+craftingTableRecipe=Crafting Table Recipe
