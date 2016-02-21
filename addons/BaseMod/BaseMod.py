@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+
+ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+BASEPATH = os.path.dirname(sys.argv[0])
+
 import pickle
+import imp
 from PyQt4 import QtGui, QtCore, uic
 
-from classes import source
+SrcBaseMod = imp.load_source("SrcBaseMod", ADDONPATH+"/SrcBaseMod.py")
 
 
 
-
-BASEPATH = os.path.dirname(sys.argv[0])
 
 
 description = """This is the representation of the main Mod File, where all elements of the mod are initialized."""
@@ -49,7 +52,7 @@ class BaseMod(QtGui.QWidget):
         
     def initUI(self):
         
-        self.ui = uic.loadUi(BASEPATH+"/ui/BaseMod.ui", self)
+        self.ui = uic.loadUi(ADDONPATH+"/BaseMod.ui", self)
 
         self.connect(self.versionInput, QtCore.SIGNAL("textEdited(const QString&)"), self.setVersion)
         
@@ -131,8 +134,8 @@ class BaseMod(QtGui.QWidget):
         self.data["name"] += [self.project.name]
         self.data["modid"] += [self.modid()]
         self.data["version"] += [self.version]
-        self.data["proxies"] += [source.SrcBaseMod.proxies]
-        self.data["imports"] += [source.SrcBaseMod.imports]
+        self.data["proxies"] += [SrcBaseMod.proxies]
+        self.data["imports"] += [SrcBaseMod.imports]
                         
         if success:
             self.mainWindow.console.write("BaseMod: Successfully completed Mod Data")
@@ -145,7 +148,7 @@ class BaseMod(QtGui.QWidget):
         
     def generateSrc(self):
         
-        src = source.SrcBaseMod.main
+        src = SrcBaseMod.main
         
         for d in self.data.keys():
             src = src.replace("<"+d+">", "\n".join(self.data[d]))
@@ -179,7 +182,7 @@ class Constructor(QtGui.QDialog):
         
         
     def initUI(self, mainWindow):
-        self.ui = uic.loadUi(BASEPATH+"/ui/BaseMod_Constructor.ui", self)
+        self.ui = uic.loadUi(ADDONPATH+"/BaseMod_Constructor.ui", self)
         
         self.name.setText(mainWindow.translations.getTranslation("name"))
         self.modid.setText(mainWindow.translations.getTranslation("modid"))

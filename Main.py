@@ -6,7 +6,6 @@ import imp
 import widgets
 from utils import translations, gradlew, Config, History
 from classes import Project, source
-from classes import objects
 from PyQt4 import QtGui, QtCore, uic
 
 
@@ -38,6 +37,8 @@ class MainWindow(QtGui.QMainWindow):
         self.translations = translations.Translations(self.config["language"])
         
         self.projects = []
+        
+        self.baseModClass = None
         
         self.initUI()
         self.initializeAddons()
@@ -114,9 +115,9 @@ class MainWindow(QtGui.QMainWindow):
         
         self.config["workspace"] = QtGui.QFileDialog.getExistingDirectory(None, 'Select a workspace:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
         self.config["language"] = "English"
-        self.config["addons"] = [BASEPATH+"/classes/objects/BaseMod.py",
-                                 BASEPATH+"/classes/objects/Block.py",
-                                 BASEPATH+"/classes/objects/Item.py"]
+        self.config["addons"] = [BASEPATH+"/addons/BaseMod/BaseMod.py",
+                                 BASEPATH+"/addons/Block/Block.py",
+                                 BASEPATH+"/addons/Item/Item.py"]
         
         self.config.saveData()
             
@@ -143,6 +144,8 @@ class MainWindow(QtGui.QMainWindow):
             if "init" in dir(mod):
                 mod.init(self)
                 print("Initialized "+name)
+                if name == "BaseMod":
+                    self.baseModClass = mod
                 
                 
     def openAddonDialog(self):
@@ -208,7 +211,7 @@ class MainWindow(QtGui.QMainWindow):
             
             #generate a BaseMod instance
             self.projects.append(Project.Project(self, arg[0]))
-            self.projects[-1].addObject(objects.BaseMod.BaseMod(self, self.projects[-1], arg[0]))
+            self.projects[-1].addObject(self.baseModClass.BaseMod(self, self.projects[-1], arg[0]))
             
             self.projectExplorer.updateWorkspace()
             

@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+
+ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+BASEPATH = os.path.dirname(sys.argv[0])
+
 import pickle
 import shutil
+import imp
 from PyQt4 import QtGui, QtCore, uic
-from classes import _base, source
-from widgets import menus, BlockModelGenerator
+from classes import _base
+from widgets import menus
 from utils import textureAttributes
 
+SrcBlock = imp.load_source("SrcBlock", ADDONPATH+"/SrcBlock.py")
+BlockModelGenerator = imp.load_source("blockmodelGenerator", ADDONPATH+"/blockmodelGenerator.py").BlockModelGenerator
 
-
-BASEPATH = os.path.dirname(sys.argv[0])
 
 
 
@@ -75,7 +80,7 @@ class Block(_base):
         
     def initUI(self):
         
-        self.ui = uic.loadUi(BASEPATH+"/ui/Block.ui", self)
+        self.ui = uic.loadUi(ADDONPATH+"/Block.ui", self)
         
         self.creativeDropdown = menus.CreativeTabDropdown.CreativeDropdown(self.mainWindow)
         self.ui.propertiesForm.addRow(self.mainWindow.translations.getTranslation("creativeTab")+":", self.creativeDropdown)
@@ -180,9 +185,9 @@ class Block(_base):
     def renewWidgetEntrys(self):
         
         self.nameInput.setText(self.name)
-        self.transparentButton.setDown(self.transparency == "transparent")
-        self.nonTransparentButton.setDown(self.transparency == "nontransparent")
-        self.autoDetectTransparencyButton.setDown(self.transparency == "auto")
+        self.transparentButton.setChecked(self.transparency == "transparent")
+        self.nonTransparentButton.setChecked(self.transparency == "nontransparent")
+        self.autoDetectTransparencyButton.setChecked(self.transparency == "auto")
         self.creativeDropdown.setCurrentIndex(self.creativeDropdown.findText(self.creativeTab))
         self.rotateableInput.setCheckState(QtCore.Qt.Checked if self.rotateable else QtCore.Qt.Unchecked)
         
@@ -198,12 +203,12 @@ class Block(_base):
             
             data["declarations"] = ["    public static Block "+self.instancename()+";"]
             
-            src = source.SrcBlock.commonInit
+            src = SrcBlock.commonInit
             src = src.replace("<instancename>", self.instancename())
             src = src.replace("<classname>", self.classname())
             data["commonInit"] = [src]
             
-            src = source.SrcBlock.clientInit
+            src = SrcBlock.clientInit
             src = src.replace("<instancename>", self.instancename())
             src = src.replace("<modid>", cls.modid())
             src = src.replace("<unlocalizedName>", self.unlocalizedName())
@@ -237,7 +242,7 @@ class Block(_base):
         self.data["unlocalizedName"] += [self.unlocalizedName()]
         self.data["classname"] += [self.classname()]
         self.data["creativeTab"] += [self.creativeDropdown.getTabClass(self.creativeTab)]
-        self.data["imports"] += [source.SrcBlock.imports]
+        self.data["imports"] += [SrcBlock.imports]
         self.data["imports"] += ["import net.minecraft.creativetab.CreativeTabs;"]
         self.data["material"] += [self.material]
         self.data["hardness"] += [str(self.hardness)]
@@ -245,18 +250,18 @@ class Block(_base):
         self.data["tool"] += [self.tool]
         self.data["harvestLevel"] += [str(self.harvestLevel)]
         if self.transparency == "auto" and self.getRenderLayer() != "SOLID":
-            self.data["additionalAttributes"] += [source.SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer())]
+            self.data["additionalAttributes"] += [SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer())]
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.Side;"]
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.SideOnly;"]
             self.data["imports"] += ["import net.minecraft.util.EnumWorldBlockLayer;"]
         if self.transparency == "transparent":
-            self.data["additionalAttributes"] += [source.SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer().replace("SOLID", "CUTOUT"))]
+            self.data["additionalAttributes"] += [SrcBlock.renderLayerTransparent.replace("<layer>", self.getRenderLayer().replace("SOLID", "CUTOUT"))]
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.Side;"]
             self.data["imports"] += ["import net.minecraftforge.fml.relauncher.SideOnly;"]
             self.data["imports"] += ["import net.minecraft.util.EnumWorldBlockLayer;"]
         if self.rotateable:
-            self.data["additionalDeclarations"] += [source.SrcBlock.rotateableDeclarations]
-            self.data["additionalAttributes"] += [source.SrcBlock.rotateableAdditionalAttributes]
+            self.data["additionalDeclarations"] += [SrcBlock.rotateableDeclarations]
+            self.data["additionalAttributes"] += [SrcBlock.rotateableAdditionalAttributes]
             self.data["imports"] += ["import net.minecraft.block.properties.PropertyDirection;"]
             self.data["imports"] += ["import net.minecraft.util.EnumFacing;"]
             self.data["imports"] += ["import net.minecraft.block.state.IBlockState;"]
@@ -284,7 +289,7 @@ class Block(_base):
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".java", "w")
-        f.write(self.generateSrc(source.SrcBlock.main))
+        f.write(self.generateSrc(SrcBlock.main))
         f.close()
         
         """Export the blockstates"""
@@ -293,9 +298,9 @@ class Block(_base):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
         if self.rotateable:
-            f.write(self.generateSrc(source.SrcBlock.blockstatesJsonRotateable))
+            f.write(self.generateSrc(SrcBlock.blockstatesJsonRotateable))
         else:
-            f.write(self.generateSrc(source.SrcBlock.blockstatesJson))
+            f.write(self.generateSrc(SrcBlock.blockstatesJson))
         f.close()
         
         """Export the blockmodel"""
@@ -311,7 +316,7 @@ class Block(_base):
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
-        f.write(self.generateSrc(source.SrcBlock.itemmodelJson))
+        f.write(self.generateSrc(SrcBlock.itemmodelJson))
         f.close()
         
         """Export the textures"""

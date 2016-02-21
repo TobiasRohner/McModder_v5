@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+
+ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+BASEPATH = os.path.dirname(sys.argv[0])
+
 import pickle
 import shutil
+import imp
 from widgets import menus
-from classes import _base, source
+from classes import _base
 from PyQt4 import QtGui, QtCore, uic
 
+SrcItem = imp.load_source("SrcItem", ADDONPATH+"/SrcItem.py")
 
-
-BASEPATH = os.path.dirname(sys.argv[0])
 
 
 
@@ -40,7 +44,7 @@ class Item(_base):
         
     def initUI(self):
         
-        self.ui = uic.loadUi(BASEPATH+"/ui/Item.ui", self)
+        self.ui = uic.loadUi(ADDONPATH+"/Item.ui", self)
         
         self.creativeDropdown = menus.CreativeTabDropdown.CreativeDropdown(self.mainWindow)
         self.ui.propertiesForm.addRow(self.mainWindow.translations.getTranslation("creativeTab")+":", self.creativeDropdown)
@@ -117,12 +121,12 @@ class Item(_base):
             
             data["declarations"] = ["    public static Item "+self.instancename()+";"]
             
-            src = source.SrcItem.commonInit
+            src = SrcItem.commonInit
             src = src.replace("<instancename>", self.instancename())
             src = src.replace("<classname>", self.classname())
             data["commonInit"] = [src]
             
-            src = source.SrcItem.clientInit
+            src = SrcItem.clientInit
             src = src.replace("<instancename>", self.instancename())
             src = src.replace("<modid>", self.project.objects["BaseMod"][0].modid())
             src = src.replace("<unlocalizedName>", self.unlocalizedName())
@@ -160,7 +164,7 @@ class Item(_base):
         self.data["classname"] += [self.classname()]
         self.data["creativeTab"] += [self.creativeDropdown.getTabClass(self.creativeTab)]
         self.data["texture"] += [self.texture.split("/")[-1].split(".")[0]]
-        self.data["imports"] += [source.SrcItem.imports]
+        self.data["imports"] += [SrcItem.imports]
                         
         if success:
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
@@ -168,7 +172,7 @@ class Item(_base):
             
     def generateSrc(self):
         
-        src = source.SrcItem.main
+        src = SrcItem.main
         
         for d in self.data.keys():
             src = src.replace("<"+d+">", "\n".join(self.data[d]))
@@ -178,7 +182,7 @@ class Item(_base):
         
     def generateJsonSrc(self):
         
-        src = source.SrcItem.json
+        src = SrcItem.json
         
         for d in self.data.keys():
             src = src.replace("<"+d+">", "\n".join(self.data[d]))

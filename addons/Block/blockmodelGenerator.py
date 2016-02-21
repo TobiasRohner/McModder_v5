@@ -25,6 +25,8 @@ class BlockModelGenerator(QtGui.QDialog):
         
         self.textures = []
         
+        self.lastTexturePath = mainWindow.config["workspace"]
+        
         self.initUI()
         
         self.show()
@@ -90,12 +92,12 @@ class BlockModelGenerator(QtGui.QDialog):
             
     def cuboidSelected(self, cuboid):
         
-        self.dimensionsX.setValue(cuboid.dimensions[0])
-        self.dimensionsY.setValue(cuboid.dimensions[1])
-        self.dimensionsZ.setValue(cuboid.dimensions[2])
-        self.translationX.setValue(cuboid.translation[0])
-        self.translationY.setValue(cuboid.translation[1])
-        self.translationZ.setValue(cuboid.translation[2])
+        self.dimensionsX.setValue(cuboid.dimensions[1])
+        self.dimensionsY.setValue(cuboid.dimensions[2])
+        self.dimensionsZ.setValue(cuboid.dimensions[0])
+        self.translationX.setValue(cuboid.translation[1])
+        self.translationY.setValue(cuboid.translation[2])
+        self.translationZ.setValue(cuboid.translation[0])
         idx = 2
         if cuboid.rotation == -45:
             idx = 0
@@ -107,9 +109,9 @@ class BlockModelGenerator(QtGui.QDialog):
             idx = 4
         self.rotation.setCurrentIndex(idx)
         self.rotationAxisComboBox.setCurrentIndex(cuboid.rotationAxis)
-        self.rotationCenterX.setValue(cuboid.rotationCenter[0])
-        self.rotationCenterY.setValue(cuboid.rotationCenter[1])
-        self.rotationCenterZ.setValue(cuboid.rotationCenter[2])
+        self.rotationCenterX.setValue(cuboid.rotationCenter[1])
+        self.rotationCenterY.setValue(cuboid.rotationCenter[2])
+        self.rotationCenterZ.setValue(cuboid.rotationCenter[0])
         self.uvEditorDown.loadTexture(cuboid.textures[0][0])
         self.uvEditorUp.loadTexture(cuboid.textures[1][0])
         self.uvEditorNorth.loadTexture(cuboid.textures[2][0])
@@ -169,42 +171,42 @@ class BlockModelGenerator(QtGui.QDialog):
         
     def setDimensionX(self, dim):
         
-        self.selectedCuboid().dimensions[0] = dim
+        self.selectedCuboid().dimensions[1] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
         
         
     def setDimensionY(self, dim):
         
-        self.selectedCuboid().dimensions[1] = dim
+        self.selectedCuboid().dimensions[2] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
         
         
     def setDimensionZ(self, dim):
         
-        self.selectedCuboid().dimensions[2] = dim
+        self.selectedCuboid().dimensions[0] = dim
         self.selectedCuboid().updateScalingMatrix()
         self.GLWidget.updateGL()
         
         
     def setTranslationX(self, trans):
         
-        self.selectedCuboid().translation[0] = trans
+        self.selectedCuboid().translation[1] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
         
         
     def setTranslationY(self, trans):
         
-        self.selectedCuboid().translation[1] = trans
+        self.selectedCuboid().translation[2] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
         
         
     def setTranslationZ(self, trans):
         
-        self.selectedCuboid().translation[2] = trans
+        self.selectedCuboid().translation[0] = trans
         self.selectedCuboid().updateTranslationMatrix()
         self.GLWidget.updateGL()
         
@@ -225,21 +227,21 @@ class BlockModelGenerator(QtGui.QDialog):
         
     def setRotationCenterX(self, pos):
         
-        self.selectedCuboid().rotationCenter[0] = pos
+        self.selectedCuboid().rotationCenter[1] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
         
     def setRotationCenterY(self, pos):
         
-        self.selectedCuboid().rotationCenter[1] = pos
+        self.selectedCuboid().rotationCenter[2] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
         
     def setRotationCenterZ(self, pos):
         
-        self.selectedCuboid().rotationCenter[2] = pos
+        self.selectedCuboid().rotationCenter[0] = pos
         self.selectedCuboid().updateRotationMatrix()
         self.GLWidget.updateGL()
         
@@ -247,66 +249,72 @@ class BlockModelGenerator(QtGui.QDialog):
     def changeTextureDown(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(0, tex)
             self.uvEditorDown.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
     def changeTextureUp(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(1, tex)
             self.uvEditorUp.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
     def changeTextureNorth(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(2, tex)
             self.uvEditorNorth.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
     def changeTextureSouth(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(3, tex)
             self.uvEditorSouth.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
     def changeTextureWest(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(4, tex)
             self.uvEditorWest.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
     def changeTextureEast(self):
         
         tex = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("textureSelection"),
-                                                          self.mainWindow.config["workspace"],
+                                                          self.lastTexturePath,
                                                           self.mainWindow.translations.getTranslation("pngFiles")+" (*.png)"))
         if tex != "":
             self.selectedCuboid().setTexture(5, tex)
             self.uvEditorEast.loadTexture(tex)
+            self.lastTexturePath = "/".join(tex.split("/")[:-1])
             self.GLWidget.updateGL()
             
             
@@ -317,7 +325,7 @@ class BlockModelGenerator(QtGui.QDialog):
         txt, ok = dialog.getText(self, "Change Name", "Name:")
         
         if ok:
-            cuboid.setName(txt)
+            cuboid.setName(str(txt))
             
             
     def selectedCuboid(self):
@@ -341,7 +349,9 @@ class BlockModelGenerator(QtGui.QDialog):
         cub = Cuboid(sel.name+"_copy", copy.deepcopy(sel.dimensions), self)
         cub.uvs = copy.deepcopy(sel.uvs)
         cub.translation = copy.deepcopy(sel.translation)
-        cub.rotation = copy.deepcopy(sel.rotation)
+        cub.rotation = sel.rotation
+        cub.rotationAxis = sel.rotationAxis
+        cub.rotationCenter = copy.deepcopy(sel.rotationCenter)
         cub.updateRotationMatrix()
         cub.updateScalingMatrix()
         cub.updateTranslationMatrix()
@@ -559,13 +569,13 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
     def drawCoordinateSystem(self):
         
         GL.glBegin(GL.GL_LINES)
-        GL.glColor(1.0, 0.0, 0.0)
+        GL.glColor(0.0, 0.0, 1.0)
         GL.glVertex3f(-4.0, 0.0, 0.0)
         GL.glVertex3f(32.0, 0.0, 0.0)
-        GL.glColor(0.0, 1.0, 0.0)
+        GL.glColor(1.0, 0.0, 0.0)
         GL.glVertex3f(0.0, -4.0, 0.0)
         GL.glVertex3f(0.0, 32.0, 0.0)
-        GL.glColor(0.0, 0.0, 1.0)
+        GL.glColor(0.0, 1.0, 0.0)
         GL.glVertex3f(0.0, 0.0, -4.0)
         GL.glVertex3f(0.0, 0.0, 32.0)
         GL.glEnd()
@@ -1006,7 +1016,7 @@ class Cuboid(QtGui.QListWidgetItem):
         cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
         cub["rotation"] = {"origin": self.inMCCoordinates(self.rotationCenter),
                            "axis": "z" if self.rotationAxis==0 else "x" if self.rotationAxis==1 else "y",
-                           "angle": self.rotation}
+                           "angle": -self.rotation}
         cub["faces"] = {"down": {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[0][0])), "uv":self.getUVs(0)},
                         "up":   {"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[1][0])), "uv":self.getUVs(1)},
                         "north":{"texture":"texture"+str(self.modelGenerator.addTexture(self.textures[2][0])), "uv":self.getUVs(2)},

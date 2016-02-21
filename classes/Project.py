@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-from classes import objects
 from PyQt4 import QtGui, uic
 
 
@@ -33,7 +32,7 @@ class Project():
                     if ident != "BaseMod":
                         exec("cls = self.getModule('"+ident+"')."+ident+"(self.mainWindow, name)")
                     else:
-                        cls = objects.BaseMod.BaseMod(self.mainWindow, self.name, name)
+                        cls = self.mainWindow.baseModClass.BaseMod(self.mainWindow, self.name, name)
                     cls.project = self
                     cls.load(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+ident+"/"+name+".mod")
                     self.objects[ident].append(cls)
