@@ -79,18 +79,13 @@ class BaseMod(QtGui.QWidget):
         return data
         
         
-    def load(self, path):
-        
-        f = open(path, "r")
-        
-        data = pickle.load(f)
+    def load(self, data):
+
         for key in data.keys():
             value = data[key]
             if isinstance(value, u"".__class__) or isinstance(value, str):
                 value = '"'+value+'"'
             exec("self."+key+"="+str(value))
-        
-        f.close()
         
         
     def classname(self):
@@ -153,7 +148,7 @@ class BaseMod(QtGui.QWidget):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package()
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package()
         
         if not os.path.exists(path):
             os.makedirs(path)
@@ -163,6 +158,7 @@ class BaseMod(QtGui.QWidget):
         
         f.close()
         
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
         self.mainWindow.console.write("BaseMod: Successfully exported to "+path+"/"+self.name+".java")
         
         

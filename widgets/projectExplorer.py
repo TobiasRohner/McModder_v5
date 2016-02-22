@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import pickle
 from PyQt4 import QtGui, QtCore
 
 
@@ -35,23 +36,21 @@ class ProjectExplorer(QtGui.QDockWidget):
         
     def updateWorkspace(self):
         
-        folders = os.listdir(self.mainWindow.config["workspace"])
         #list all projects out of the folders
-        for folder in folders:
-            if os.path.exists(self.mainWindow.config["workspace"]+"/"+folder+"/mcmodderproject"):
-                exists = False
-                proj = None
-                for project in self.projects:
-                    if project.name == folder:
-                        exists = True
-                        proj = project
-                        break
-                if exists:
-                    proj.updateProject()
-                else:
-                    proj = Project(self.mainWindow, folder)
-                    self.projects.append(proj)
-                    proj.updateProject()
+        for proj in self.mainWindow.projects:
+            exists = False
+            p = None
+            for project in self.projects:
+                if project.name == proj.name:
+                    exists = True
+                    p = project
+                    break
+            if exists:
+                p.updateProject()
+            else:
+                p = Project(self.mainWindow, proj.name)
+                self.projects.append(p)
+                p.updateProject()
                     
         #self.treeWidget.clear()
         self.treeWidget.addTopLevelItems(self.projects)
@@ -112,27 +111,25 @@ class Project(QtGui.QTreeWidgetItem):
         
     def updateProject(self):
         
-        dirs = os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod")
-        for d in dirs:
+        data = self.mainWindow.getProject(self.name).save()
+        for name in data.keys():
+            ident = data[name]["identifier"]
             exists = False
             for c in range(self.childCount()):
-                if self.child(c).text(0) == d:
+                if self.child(c).text(0) == ident:
                     exists = True
                     subItem = self.child(c)
             if not exists:
                 subItem = QtGui.QTreeWidgetItem()
-                subItem.setText(0, d)
+                subItem.setText(0, ident)
                 self.addChild(subItem)
-            classes = os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+d)
-            for c in classes:
-                name, t = c.split(".")
-                if t == "mod":
-                    exists = False
-                    for c in range(subItem.childCount()):
-                        if subItem.child(c).text(0) == name:
-                            exists = True
-                            subsubItem = subItem.child(c)
-                    if not exists:
-                        subsubItem = QtGui.QTreeWidgetItem()
-                        subsubItem.setText(0, name)
-                        subItem.addChild(subsubItem)
+                
+            exists = False
+            for c in range(subItem.childCount()):
+                if subItem.child(c).text(0) == name:
+                    exists = True
+                    subsubItem = subItem.child(c)
+            if not exists:
+                subsubItem = QtGui.QTreeWidgetItem()
+                subsubItem.setText(0, name)
+                subItem.addChild(subsubItem)

@@ -179,25 +179,26 @@ class Item(_base):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+"/"+self.classname()+".java", "w")
         f.write(self.generateSrc())
         f.close()
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.unlocalizedName()+".json", "w")
         f.write(self.generateJsonSrc())
         f.close()
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/items"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/textures/items"
         if not os.path.exists(path):
             os.makedirs(path)
         shutil.copy2(self.texture, path+"/"+self.unlocalizedName()+".png")
         
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
         self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
         

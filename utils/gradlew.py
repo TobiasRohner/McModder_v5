@@ -43,10 +43,8 @@ def installForge(installationPath, console):
 
 def runClient(projectPath, console):
     
-    path = projectPath+"/java"
-    
-    os.chdir(path)
-    process = subprocess.Popen('"'+path+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
+    os.chdir(projectPath)
+    process = subprocess.Popen('"'+projectPath+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
     for line in iter(process.stdout.readline, ''):
         sys.stdout.write(line)
         console.write(line.replace("\n", "").replace("\r", ""))

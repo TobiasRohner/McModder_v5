@@ -79,6 +79,8 @@ class MainWindow(QtGui.QMainWindow):
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.console)
         
         self.newProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/newProject.png"), self.translations.getTranslation("newProject"), self)
+        self.saveProjectMenubar = QtGui.QAction(self.translations.getTranslation("save"), self)
+        self.saveProjectMenubar.setShortcut("Ctrl+S")
         self.exportProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/export.png"), self.translations.getTranslation("exportProject"), self)
         self.exportProjectMenubar.setShortcut("Ctrl+E")
         self.exportJarMenubar = QtGui.QAction(self.translations.getTranslation("exportJar"), self)
@@ -103,6 +105,7 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar = self.addToolBar("Run")
         
         self.fileMenubar.addAction(self.newProjectMenubar)
+        self.fileMenubar.addAction(self.saveProjectMenubar)
         self.fileMenubar.addAction(self.exportProjectMenubar)
         self.fileMenubar.addAction(self.exportJarMenubar)
         
@@ -119,6 +122,7 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar.addAction(self.runClientMenubar)
         
         self.connect(self.newProjectMenubar, QtCore.SIGNAL('triggered()'), self.createNewProject)
+        self.connect(self.saveProjectMenubar, QtCore.SIGNAL('triggered()'), self.save)
         self.connect(self.exportProjectMenubar, QtCore.SIGNAL('triggered()'), self.exportProject)
         self.connect(self.exportJarMenubar, QtCore.SIGNAL('triggered()'), self.exportJar)
         self.connect(self.undoMenubar, QtCore.SIGNAL('triggered()'), self.undo)
@@ -143,13 +147,14 @@ class MainWindow(QtGui.QMainWindow):
             
     def initializeProjects(self):
         
-        f = open(self.config["workspace"]+"/moddata.mcmod")
-        data = pickle.load(f)
-        f.close()
-        
-        for key in data.keys():
-            self.projects.append(Project(self, key))
-            self.projects[-1].load(data[key])
+        proj = [f for f in os.listdir(self.config["workspace"]) if os.path.exists(self.config["workspace"]+"/"+f+"/mcmodderproject")]
+        for p in proj:
+            f = open(self.config["workspace"]+"/"+p+"/moddata.mcmod")
+            data = pickle.load(f)
+            f.close()
+            
+            self.projects.append(Project.Project(self, p))
+            self.projects[-1].load(data)
             
         self.projectExplorer.updateWorkspace()
         
@@ -198,6 +203,13 @@ class MainWindow(QtGui.QMainWindow):
         return None
         
         
+    def getProject(self, name):
+        
+        for proj in self.projects:
+            if proj.name == name:
+                return proj
+        
+        
     def addObject(self, obj):
         
         proj = self.currentProject()
@@ -210,6 +222,8 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def runClient(self):
+        
+        self.save()
         
         self.console.clear()
         
@@ -227,18 +241,18 @@ class MainWindow(QtGui.QMainWindow):
         if arg:
             #build the file structure
             os.mkdir(self.config["workspace"]+"/"+arg[0])
-            os.mkdir(self.config["workspace"]+"/"+arg[0]+"/mod")
-            os.mkdir(self.config["workspace"]+"/"+arg[0]+"/java")
             #file to mark the folder as a project
             f = open(self.config["workspace"]+"/"+arg[0]+"/mcmodderproject", "w")
             f.write(VERSION)
             f.close()
             #install forge modloader
-            gradlew.installForge(self.config["workspace"]+"/"+arg[0]+"/java", self.console)
+            gradlew.installForge(self.config["workspace"]+"/"+arg[0], self.console)
             
             #generate a BaseMod instance
             self.projects.append(Project.Project(self, arg[0]))
             self.projects[-1].addObject(self.baseModClass.BaseMod(self, self.projects[-1], arg[0]))
+            
+            self.save(self.projects[-1])
             
             self.projectExplorer.updateWorkspace()
             
@@ -284,16 +298,19 @@ class MainWindow(QtGui.QMainWindow):
                 os.remove(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
                 
                 
-    def save(self):
+    def save(self, proj=None):
         
-        f = open(self.config["workspace"]+"/moddata.mcmod", "w")
+        if proj == None:
+            proj = self.currentProject()
         
-        data = {}
-        for proj in self.projects:
-            data[proj.name] = proj.save()
+        f = open(self.config["workspace"]+"/"+proj.name+"/moddata.mcmod", "w")
+        
+        data = proj.save()
         pickle.dump(data, f)
         
         f.close()
+        
+        self.projectExplorer.updateWorkspace()
                 
                 
     def undo(self):
