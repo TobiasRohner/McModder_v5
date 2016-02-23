@@ -32,3 +32,4 @@ restartRequired=Restart Required
 restartToLoadAddons=A restart of the program is needed for the addons to be loaded.
 craftingTableRecipe=Crafting Table Recipe
 save=Save
+delete=Delete

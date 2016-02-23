@@ -3,7 +3,7 @@ import sys
 import os
 import shutil
 import imp
-import pickle
+import json
 import widgets
 from utils import translations, gradlew, Config, History
 from classes import Project, source
@@ -92,6 +92,8 @@ class MainWindow(QtGui.QMainWindow):
         self.redoMenubar = QtGui.QAction(self.translations.getTranslation("redo"), self)
         self.redoMenubar.setShortcut("Ctrl+Y")
         self.addonsMenubar = QtGui.QAction(self.translations.getTranslation("addons"), self)
+        self.delMenubar = QtGui.QAction(self.translations.getTranslation("delete"), self)
+        self.delMenubar.setShortcut("Del")
         
         self.menubar = self.menuBar()
         
@@ -111,6 +113,7 @@ class MainWindow(QtGui.QMainWindow):
         
         self.editMenubar.addAction(self.undoMenubar)
         self.editMenubar.addAction(self.redoMenubar)
+        self.editMenubar.addAction(self.delMenubar)
         
         self.runMenubar.addAction(self.runClientMenubar)
         
@@ -129,6 +132,7 @@ class MainWindow(QtGui.QMainWindow):
         self.connect(self.redoMenubar, QtCore.SIGNAL('triggered()'), self.redo)
         self.connect(self.runClientMenubar, QtCore.SIGNAL('triggered()'), self.runClient)
         self.connect(self.addonsMenubar, QtCore.SIGNAL('triggered()'), self.openAddonDialog)
+        self.connect(self.delMenubar, QtCore.SIGNAL('triggered()'), self.delete)
         
         self.setCentralWidget(None)
         self.setDockNestingEnabled(True)
@@ -149,8 +153,8 @@ class MainWindow(QtGui.QMainWindow):
         
         proj = [f for f in os.listdir(self.config["workspace"]) if os.path.exists(self.config["workspace"]+"/"+f+"/mcmodderproject")]
         for p in proj:
-            f = open(self.config["workspace"]+"/"+p+"/moddata.mcmod")
-            data = pickle.load(f)
+            f = open(self.config["workspace"]+"/"+p+"/moddata.json")
+            data = json.load(f)
             f.close()
             
             self.projects.append(Project.Project(self, p))
@@ -221,6 +225,18 @@ class MainWindow(QtGui.QMainWindow):
         self.editor.tabWidget.setCurrentWidget(obj)
         
         
+    def delete(self):
+        
+        selected = self.projectExplorer.selectedObject()
+        if not isinstance(selected, Project.Project):
+            if selected.isdeleteable:
+                self.currentProject().objects[selected.identifier].remove(selected)
+                self.editor.closeTab(self.editor.tabWidget.indexOf(selected))
+                if len(self.currentProject().objects[selected.identifier]) == 0:
+                    self.currentProject().objects.pop(selected.identifier, None)
+        self.projectExplorer.updateWorkspace()
+        
+        
     def runClient(self):
         
         self.save()
@@ -250,7 +266,9 @@ class MainWindow(QtGui.QMainWindow):
             
             #generate a BaseMod instance
             self.projects.append(Project.Project(self, arg[0]))
-            self.projects[-1].addObject(self.baseModClass.BaseMod(self, self.projects[-1], arg[0]))
+            for n, p, addon in self.addons:
+                if "onProjectCreated" in dir(addon):
+                    addon.onProjectCreated(self, self.projects[-1])
             
             self.save(self.projects[-1])
             
@@ -258,6 +276,8 @@ class MainWindow(QtGui.QMainWindow):
             
             
     def exportProject(self):
+        
+        self.save()
         
         proj = self.currentProject()
         
@@ -303,12 +323,14 @@ class MainWindow(QtGui.QMainWindow):
         if proj == None:
             proj = self.currentProject()
         
-        f = open(self.config["workspace"]+"/"+proj.name+"/moddata.mcmod", "w")
+        f = open(self.config["workspace"]+"/"+proj.name+"/moddata.json", "w")
         
         data = proj.save()
-        pickle.dump(data, f)
+        json.dump(data, f, indent=4, separators=(',', ': '))
         
         f.close()
+        
+        proj.unsavedChanges = False
         
         self.projectExplorer.updateWorkspace()
                 

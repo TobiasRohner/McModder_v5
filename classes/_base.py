@@ -15,6 +15,7 @@ class _base(QtGui.QWidget):
         
         self.identifier = identifier
         self.classtype = classtype
+        self.deleteable = True
         
         self.mainWindow = mainWindow
         self.project = mainWindow.currentProject()

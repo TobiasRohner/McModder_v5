@@ -2,7 +2,7 @@
 import os
 import sys
 
-ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+ADDONPATH = "/".join(os.path.realpath(__file__).replace("\\", "/").split("/")[:-1])
 BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle

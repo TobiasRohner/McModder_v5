@@ -19,6 +19,8 @@ class Project():
         
         self.name = name
         
+        self.unsavedChanges = False
+        
         self.objects = {}
         
         

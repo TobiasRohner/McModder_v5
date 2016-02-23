@@ -2,7 +2,7 @@
 import os
 import sys
 
-ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+ADDONPATH = "/".join(os.path.realpath(__file__).replace("\\", "/").split("/")[:-1])
 BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle
@@ -28,6 +28,7 @@ class BaseMod(QtGui.QWidget):
         
         self.identifier = "BaseMod"
         self.classtype = "BaseMod"
+        self.deleteable = False
         
         self.mainWindow = mainWindow
         self.project = project
@@ -204,3 +205,9 @@ class Constructor(QtGui.QDialog):
 def init(mainWindow):
     
     return
+    
+    
+    
+def onProjectCreated(mainWindow, project):
+    
+    project.addObject(BaseMod(mainWindow, project, project.name))
