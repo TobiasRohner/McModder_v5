@@ -129,7 +129,10 @@ class Project(QtGui.QTreeWidgetItem):
         
     def updateProject(self):
         
+        expanded = []
         for c in range(self.childCount()):
+            if self.child(0).isExpanded():
+                expanded.append(self.child(0).text(0))
             self.removeChild(self.child(0))
         objects = self.mainWindow.getProject(self.name).objects
         for ident in objects.keys():
@@ -142,6 +145,9 @@ class Project(QtGui.QTreeWidgetItem):
                 subItem = QtGui.QTreeWidgetItem()
                 subItem.setText(0, ident)
                 self.addChild(subItem)
+                
+            if ident in expanded:
+                subItem.setExpanded(True)
                 
             for obj in objects[ident]:
                 exists = False

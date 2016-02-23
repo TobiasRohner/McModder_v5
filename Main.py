@@ -331,8 +331,6 @@ class MainWindow(QtGui.QMainWindow):
         f.close()
         
         proj.unsavedChanges = False
-        
-        self.projectExplorer.updateWorkspace()
                 
                 
     def undo(self):

@@ -1,0 +1,1442 @@
+{
+    "Enchanted Book": {
+        "maxdamage": 0,
+        "name": "Enchanted Book",
+        "optainable": true,
+        "texture": "book_enchanted.png",
+        "stacksize": 1,
+        "id": 403
+    },
+    "Slimeball": {
+        "maxdamage": 0,
+        "name": "Slimeball",
+        "optainable": true,
+        "texture": "slimeball.png",
+        "stacksize": 64,
+        "id": 341
+    },
+    "Leather Pants": {
+        "maxdamage": 75,
+        "name": "Leather Pants",
+        "optainable": true,
+        "texture": "leather_leggings.png",
+        "stacksize": 1,
+        "id": 300
+    },
+    "strad Disc": {
+        "maxdamage": 0,
+        "name": "strad Disc",
+        "optainable": true,
+        "texture": "record_strad.png",
+        "stacksize": 1,
+        "id": 440
+    },
+    "Written Book": {
+        "maxdamage": 0,
+        "name": "Written Book",
+        "optainable": true,
+        "texture": "book_written.png",
+        "stacksize": 1,
+        "id": 387
+    },
+    "Sugar": {
+        "maxdamage": 0,
+        "name": "Sugar",
+        "optainable": true,
+        "texture": "sugar.png",
+        "stacksize": 64,
+        "id": 353
+    },
+    "Golden Sword": {
+        "maxdamage": 32,
+        "name": "Golden Sword",
+        "optainable": true,
+        "texture": "gold_sword.png",
+        "stacksize": 1,
+        "id": 283
+    },
+    "Minecart with TNT": {
+        "maxdamage": 0,
+        "name": "Minecart with TNT",
+        "optainable": true,
+        "texture": "minecart_tnt.png",
+        "stacksize": 1,
+        "id": 407
+    },
+    "Oak Door": {
+        "maxdamage": 0,
+        "name": "Oak Door",
+        "optainable": true,
+        "texture": "door_wood.png",
+        "stacksize": 64,
+        "id": 324
+    },
+    "Potion": {
+        "maxdamage": 32767,
+        "name": "Potion",
+        "optainable": true,
+        "texture": "potion_bottle_drinkable.png",
+        "stacksize": 1,
+        "id": 373
+    },
+    "Chain Helmet": {
+        "maxdamage": 165,
+        "name": "Chain Helmet",
+        "optainable": true,
+        "texture": "chainmail_helmet.png",
+        "stacksize": 1,
+        "id": 302
+    },
+    "Painting": {
+        "maxdamage": 0,
+        "name": "Painting",
+        "optainable": true,
+        "texture": "painting.png",
+        "stacksize": 64,
+        "id": 321
+    },
+    "Rotten Flesh": {
+        "maxdamage": 0,
+        "name": "Rotten Flesh",
+        "optainable": true,
+        "texture": "rotten_flesh.png",
+        "stacksize": 64,
+        "id": 367
+    },
+    "Item Frame": {
+        "maxdamage": 0,
+        "name": "Item Frame",
+        "optainable": true,
+        "texture": "item_frame.png",
+        "stacksize": 64,
+        "id": 389
+    },
+    "Empty Map": {
+        "maxdamage": 0,
+        "name": "Empty Map",
+        "optainable": true,
+        "texture": "map_empty.png",
+        "stacksize": 64,
+        "id": 395
+    },
+    "Flint": {
+        "maxdamage": 0,
+        "name": "Flint",
+        "optainable": true,
+        "texture": "flint.png",
+        "stacksize": 64,
+        "id": 318
+    },
+    "Emerald": {
+        "maxdamage": 0,
+        "name": "Emerald",
+        "optainable": true,
+        "texture": "emerald.png",
+        "stacksize": 64,
+        "id": 388
+    },
+    "Water Bucket": {
+        "maxdamage": 0,
+        "name": "Water Bucket",
+        "optainable": true,
+        "texture": "bucket_water.png",
+        "stacksize": 1,
+        "id": 326
+    },
+    "Gunpowder": {
+        "maxdamage": 0,
+        "name": "Gunpowder",
+        "optainable": true,
+        "texture": "gunpowder.png",
+        "stacksize": 64,
+        "id": 289
+    },
+    "Iron Sword": {
+        "maxdamage": 250,
+        "name": "Iron Sword",
+        "optainable": true,
+        "texture": "iron_sword.png",
+        "stacksize": 1,
+        "id": 267
+    },
+    "Jungle Door": {
+        "maxdamage": 0,
+        "name": "Jungle Door",
+        "optainable": true,
+        "texture": "door_jungle.png",
+        "stacksize": 64,
+        "id": 429
+    },
+    "Potato": {
+        "maxdamage": 0,
+        "name": "Potato",
+        "optainable": true,
+        "texture": "potato.png",
+        "stacksize": 64,
+        "id": 392
+    },
+    "Raw Mutton": {
+        "maxdamage": 0,
+        "name": "Raw Mutton",
+        "optainable": true,
+        "texture": "mutton_raw.png",
+        "stacksize": 64,
+        "id": 423
+    },
+    "Dark Oak Door": {
+        "maxdamage": 0,
+        "name": "Dark Oak Door",
+        "optainable": true,
+        "texture": "door_dark_oak.png",
+        "stacksize": 64,
+        "id": 431
+    },
+    "Spider Eye": {
+        "maxdamage": 0,
+        "name": "Spider Eye",
+        "optainable": true,
+        "texture": "spider_eye.png",
+        "stacksize": 64,
+        "id": 375
+    },
+    "Nether Wart": {
+        "maxdamage": 0,
+        "name": "Nether Wart",
+        "optainable": true,
+        "texture": "nether_wart.png",
+        "stacksize": 64,
+        "id": 372
+    },
+    "Arrow": {
+        "maxdamage": 0,
+        "name": "Arrow",
+        "optainable": true,
+        "texture": "arrow.png",
+        "stacksize": 64,
+        "id": 262
+    },
+    "Minecart with Hopper": {
+        "maxdamage": 0,
+        "name": "Minecart with Hopper",
+        "optainable": true,
+        "texture": "minecart_hopper.png",
+        "stacksize": 1,
+        "id": 408
+    },
+    "Steak": {
+        "maxdamage": 0,
+        "name": "Steak",
+        "optainable": true,
+        "texture": "beef_cooked.png",
+        "stacksize": 64,
+        "id": 364
+    },
+    "Shears": {
+        "maxdamage": 238,
+        "name": "Shears",
+        "optainable": true,
+        "texture": "shears.png",
+        "stacksize": 1,
+        "id": 359
+    },
+    "Stone Pickaxe": {
+        "maxdamage": 131,
+        "name": "Stone Pickaxe",
+        "optainable": true,
+        "texture": "stone_pickaxe.png",
+        "stacksize": 1,
+        "id": 274
+    },
+    "Diamond Hoe": {
+        "maxdamage": 1561,
+        "name": "Diamond Hoe",
+        "optainable": true,
+        "texture": "diamond_hoe.png",
+        "stacksize": 1,
+        "id": 293
+    },
+    "13 Disc": {
+        "maxdamage": 0,
+        "name": "13 Disc",
+        "optainable": true,
+        "texture": "record_13.png",
+        "stacksize": 1,
+        "id": 432
+    },
+    "Acacia Door": {
+        "maxdamage": 0,
+        "name": "Acacia Door",
+        "optainable": true,
+        "texture": "door_acacia.png",
+        "stacksize": 64,
+        "id": 430
+    },
+    "Golden Leggings": {
+        "maxdamage": 105,
+        "name": "Golden Leggings",
+        "optainable": true,
+        "texture": "gold_leggings.png",
+        "stacksize": 1,
+        "id": 316
+    },
+    "Golden Horse Armor": {
+        "maxdamage": 0,
+        "name": "Golden Horse Armor",
+        "optainable": true,
+        "texture": "gold_horse_armor.png",
+        "stacksize": 1,
+        "id": 418
+    },
+    "Milk": {
+        "maxdamage": 0,
+        "name": "Milk",
+        "optainable": true,
+        "texture": "bucket_milk.png",
+        "stacksize": 1,
+        "id": 335
+    },
+    "far Disc": {
+        "maxdamage": 0,
+        "name": "far Disc",
+        "optainable": true,
+        "texture": "record_far.png",
+        "stacksize": 1,
+        "id": 436
+    },
+    "Bottle o' Enchanting": {
+        "maxdamage": 0,
+        "name": "Bottle o' Enchanting",
+        "optainable": true,
+        "texture": "experience_bottle.png",
+        "stacksize": 64,
+        "id": 384
+    },
+    "Clock": {
+        "maxdamage": 0,
+        "name": "Clock",
+        "optainable": true,
+        "texture": "clock.png",
+        "stacksize": 64,
+        "id": 347
+    },
+    "Diamond Leggings": {
+        "maxdamage": 495,
+        "name": "Diamond Leggings",
+        "optainable": true,
+        "texture": "diamond_leggings.png",
+        "stacksize": 1,
+        "id": 312
+    },
+    "Stone Axe": {
+        "maxdamage": 131,
+        "name": "Stone Axe",
+        "optainable": true,
+        "texture": "stone_axe.png",
+        "stacksize": 1,
+        "id": 275
+    },
+    "mall Disc": {
+        "maxdamage": 0,
+        "name": "mall Disc",
+        "optainable": true,
+        "texture": "record_mall.png",
+        "stacksize": 1,
+        "id": 437
+    },
+    "Melon": {
+        "maxdamage": 0,
+        "name": "Melon",
+        "optainable": true,
+        "texture": "melon.png",
+        "stacksize": 64,
+        "id": 360
+    },
+    "Diamond Helmet": {
+        "maxdamage": 363,
+        "name": "Diamond Helmet",
+        "optainable": true,
+        "texture": "diamond_helmet.png",
+        "stacksize": 1,
+        "id": 310
+    },
+    "Stone Hoe": {
+        "maxdamage": 131,
+        "name": "Stone Hoe",
+        "optainable": true,
+        "texture": "stone_hoe.png",
+        "stacksize": 1,
+        "id": 291
+    },
+    "Feather": {
+        "maxdamage": 0,
+        "name": "Feather",
+        "optainable": true,
+        "texture": "feather.png",
+        "stacksize": 64,
+        "id": 288
+    },
+    "Cooked Mutton": {
+        "maxdamage": 0,
+        "name": "Cooked Mutton",
+        "optainable": true,
+        "texture": "mutton_cooked.png",
+        "stacksize": 64,
+        "id": 424
+    },
+    "Fire Charge": {
+        "maxdamage": 0,
+        "name": "Fire Charge",
+        "optainable": true,
+        "texture": "fireball.png",
+        "stacksize": 64,
+        "id": 385
+    },
+    "Wheat": {
+        "maxdamage": 0,
+        "name": "Wheat",
+        "optainable": true,
+        "texture": "wheat.png",
+        "stacksize": 64,
+        "id": 296
+    },
+    "String": {
+        "maxdamage": 0,
+        "name": "String",
+        "optainable": true,
+        "texture": "string.png",
+        "stacksize": 64,
+        "id": 287
+    },
+    "Diamond Axe": {
+        "maxdamage": 1561,
+        "name": "Diamond Axe",
+        "optainable": true,
+        "texture": "diamond_axe.png",
+        "stacksize": 1,
+        "id": 279
+    },
+    "Golden Hoe": {
+        "maxdamage": 32,
+        "name": "Golden Hoe",
+        "optainable": true,
+        "texture": "gold_hoe.png",
+        "stacksize": 1,
+        "id": 294
+    },
+    "Snowball": {
+        "maxdamage": 0,
+        "name": "Snowball",
+        "optainable": true,
+        "texture": "snowball.png",
+        "stacksize": 16,
+        "id": 332
+    },
+    "Golden Boots": {
+        "maxdamage": 0,
+        "name": "Golden Boots",
+        "optainable": true,
+        "texture": "gold_boots.png",
+        "stacksize": 1,
+        "id": 317
+    },
+    "Iron Hoe": {
+        "maxdamage": 250,
+        "name": "Iron Hoe",
+        "optainable": true,
+        "texture": "iron_hoe.png",
+        "stacksize": 1,
+        "id": 292
+    },
+    "Stone Sword": {
+        "maxdamage": 131,
+        "name": "Stone Sword",
+        "optainable": true,
+        "texture": "stone_sword.png",
+        "stacksize": 1,
+        "id": 272
+    },
+    "Baked Potato": {
+        "maxdamage": 0,
+        "name": "Baked Potato",
+        "optainable": true,
+        "texture": "potato_baked.png",
+        "stacksize": 64,
+        "id": 393
+    },
+    "Golden Pickaxe": {
+        "maxdamage": 32,
+        "name": "Golden Pickaxe",
+        "optainable": true,
+        "texture": "gold_pickaxe.png",
+        "stacksize": 1,
+        "id": 285
+    },
+    "Golden Carrot": {
+        "maxdamage": 0,
+        "name": "Golden Carrot",
+        "optainable": true,
+        "texture": "carrot_golden.png",
+        "stacksize": 64,
+        "id": 396
+    },
+    "Spruce Door": {
+        "maxdamage": 0,
+        "name": "Spruce Door",
+        "optainable": true,
+        "texture": "door_spruce.png",
+        "stacksize": 64,
+        "id": 427
+    },
+    "Iron Boots": {
+        "maxdamage": 195,
+        "name": "Iron Boots",
+        "optainable": true,
+        "texture": "iron_boots.png",
+        "stacksize": 1,
+        "id": 309
+    },
+    "Birch Door": {
+        "maxdamage": 0,
+        "name": "Birch Door",
+        "optainable": true,
+        "texture": "door_birch.png",
+        "stacksize": 64,
+        "id": 428
+    },
+    "Seeds": {
+        "maxdamage": 0,
+        "name": "Seeds",
+        "optainable": true,
+        "texture": "seeds_wheat.png",
+        "stacksize": 64,
+        "id": 295
+    },
+    "Flower Pot": {
+        "maxdamage": 0,
+        "name": "Flower Pot",
+        "optainable": true,
+        "texture": "flower_pot.png",
+        "stacksize": 64,
+        "id": 390
+    },
+    "Clay": {
+        "maxdamage": 0,
+        "name": "Clay",
+        "optainable": true,
+        "texture": "clay_ball.png",
+        "stacksize": 64,
+        "id": 337
+    },
+    "blocks Disc": {
+        "maxdamage": 0,
+        "name": "blocks Disc",
+        "optainable": true,
+        "texture": "record_blocks.png",
+        "stacksize": 1,
+        "id": 434
+    },
+    "Iron Shovel": {
+        "maxdamage": 250,
+        "name": "Iron Shovel",
+        "optainable": true,
+        "texture": "iron_shovel.png",
+        "stacksize": 1,
+        "id": 256
+    },
+    "Bow": {
+        "maxdamage": 384,
+        "name": "Bow",
+        "optainable": true,
+        "texture": "bow_standby.png",
+        "stacksize": 1,
+        "id": 261
+    },
+    "Egg": {
+        "maxdamage": 0,
+        "name": "Egg",
+        "optainable": true,
+        "texture": "egg.png",
+        "stacksize": 16,
+        "id": 344
+    },
+    "Wooden Sword": {
+        "maxdamage": 59,
+        "name": "Wooden Sword",
+        "optainable": true,
+        "texture": "wood_sword.png",
+        "stacksize": 1,
+        "id": 268
+    },
+    "Firework Star": {
+        "maxdamage": 0,
+        "name": "Firework Star",
+        "optainable": true,
+        "texture": "fireworks_charge.png",
+        "stacksize": 64,
+        "id": 402
+    },
+    "Golden Axe": {
+        "maxdamage": 32,
+        "name": "Golden Axe",
+        "optainable": true,
+        "texture": "gold_axe.png",
+        "stacksize": 1,
+        "id": 286
+    },
+    "Diamond Sword": {
+        "maxdamage": 1561,
+        "name": "Diamond Sword",
+        "optainable": true,
+        "texture": "diamond_sword.png",
+        "stacksize": 1,
+        "id": 276
+    },
+    "Sign": {
+        "maxdamage": 0,
+        "name": "Sign",
+        "optainable": true,
+        "texture": "sign.png",
+        "stacksize": 16,
+        "id": 323
+    },
+    "Cooked Chicken": {
+        "maxdamage": 0,
+        "name": "Cooked Chicken",
+        "optainable": true,
+        "texture": "chicken_cooked.png",
+        "stacksize": 64,
+        "id": 366
+    },
+    "Paper": {
+        "maxdamage": 0,
+        "name": "Paper",
+        "optainable": true,
+        "texture": "paper.png",
+        "stacksize": 64,
+        "id": 339
+    },
+    "Iron Axe": {
+        "maxdamage": 250,
+        "name": "Iron Axe",
+        "optainable": true,
+        "texture": "iron_axe.png",
+        "stacksize": 1,
+        "id": 258
+    },
+    "Blaze Rod": {
+        "maxdamage": 0,
+        "name": "Blaze Rod",
+        "optainable": true,
+        "texture": "blaze_rod.png",
+        "stacksize": 64,
+        "id": 369
+    },
+    "mellohi Disc": {
+        "maxdamage": 0,
+        "name": "mellohi Disc",
+        "optainable": true,
+        "texture": "record_mellohi.png",
+        "stacksize": 1,
+        "id": 438
+    },
+    "Redstone": {
+        "maxdamage": 0,
+        "name": "Redstone",
+        "optainable": true,
+        "texture": "redstone_dust.png",
+        "stacksize": 64,
+        "id": 331
+    },
+    "chirp Disc": {
+        "maxdamage": 0,
+        "name": "chirp Disc",
+        "optainable": true,
+        "texture": "record_chirp.png",
+        "stacksize": 1,
+        "id": 435
+    },
+    "Iron Pickaxe": {
+        "maxdamage": 250,
+        "name": "Iron Pickaxe",
+        "optainable": true,
+        "texture": "iron_pickaxe.png",
+        "stacksize": 1,
+        "id": 257
+    },
+    "Bowl": {
+        "maxdamage": 0,
+        "name": "Bowl",
+        "optainable": true,
+        "texture": "bowl.png",
+        "stacksize": 64,
+        "id": 281
+    },
+    "Prismarine Crystals": {
+        "maxdamage": 0,
+        "name": "Prismarine Crystals",
+        "optainable": true,
+        "texture": "prismarine_crystals.png",
+        "stacksize": 64,
+        "id": 410
+    },
+    "Chain Boots": {
+        "maxdamage": 195,
+        "name": "Chain Boots",
+        "optainable": true,
+        "texture": "chainmail_boots.png",
+        "stacksize": 1,
+        "id": 305
+    },
+    "Book": {
+        "maxdamage": 0,
+        "name": "Book",
+        "optainable": true,
+        "texture": "book_normal.png",
+        "stacksize": 64,
+        "id": 340
+    },
+    "Leather Boots": {
+        "maxdamage": 65,
+        "name": "Leather Boots",
+        "optainable": true,
+        "texture": "leather_boots.png",
+        "stacksize": 1,
+        "id": 301
+    },
+    "Raw Porkchop": {
+        "maxdamage": 0,
+        "name": "Raw Porkchop",
+        "optainable": true,
+        "texture": "porkchop_raw.png",
+        "stacksize": 64,
+        "id": 319
+    },
+    "Nether Star": {
+        "maxdamage": 0,
+        "name": "Nether Star",
+        "optainable": true,
+        "texture": "nether_star.png",
+        "stacksize": 64,
+        "id": 399
+    },
+    "Brick": {
+        "maxdamage": 0,
+        "name": "Brick",
+        "optainable": true,
+        "texture": "brick.png",
+        "stacksize": 64,
+        "id": 336
+    },
+    "Blaze Powder": {
+        "maxdamage": 0,
+        "name": "Blaze Powder",
+        "optainable": true,
+        "texture": "blaze_powder.png",
+        "stacksize": 64,
+        "id": 377
+    },
+    "Book and Quill": {
+        "maxdamage": 0,
+        "name": "Book and Quill",
+        "optainable": true,
+        "texture": "book_writeable.png",
+        "stacksize": 1,
+        "id": 386
+    },
+    "Golden Chestplate": {
+        "maxdamage": 112,
+        "name": "Golden Chestplate",
+        "optainable": true,
+        "texture": "gold_chestplate.png",
+        "stacksize": 1,
+        "id": 315
+    },
+    "Diamond": {
+        "maxdamage": 0,
+        "name": "Diamond",
+        "optainable": true,
+        "texture": "diamond.png",
+        "stacksize": 64,
+        "id": 264
+    },
+    "Raw Chicken": {
+        "maxdamage": 0,
+        "name": "Raw Chicken",
+        "optainable": true,
+        "texture": "chicken_raw.png",
+        "stacksize": 64,
+        "id": 365
+    },
+    "Leather Tunic": {
+        "maxdamage": 80,
+        "name": "Leather Tunic",
+        "optainable": true,
+        "texture": "leather_chestplate.png",
+        "stacksize": 1,
+        "id": 299
+    },
+    "Minecart with Furnace": {
+        "maxdamage": 0,
+        "name": "Minecart with Furnace",
+        "optainable": true,
+        "texture": "minecart_furnace.png",
+        "stacksize": 1,
+        "id": 343
+    },
+    "Diamond Shovel": {
+        "maxdamage": 1561,
+        "name": "Diamond Shovel",
+        "optainable": true,
+        "texture": "diamond_shovel.png",
+        "stacksize": 1,
+        "id": 277
+    },
+    "11 Disc": {
+        "maxdamage": 0,
+        "name": "11 Disc",
+        "optainable": true,
+        "texture": "record_11.png",
+        "stacksize": 1,
+        "id": 442
+    },
+    "Spawn Egg": {
+        "maxdamage": 120,
+        "name": "Spawn Egg",
+        "optainable": true,
+        "texture": "spawn_egg.png",
+        "stacksize": 64,
+        "id": 383
+    },
+    "Cookie": {
+        "maxdamage": 0,
+        "name": "Cookie",
+        "optainable": true,
+        "texture": "cookie.png",
+        "stacksize": 64,
+        "id": 357
+    },
+    "Stick": {
+        "maxdamage": 0,
+        "name": "Stick",
+        "optainable": true,
+        "texture": "stick.png",
+        "stacksize": 64,
+        "id": 280
+    },
+    "Glistering Melon": {
+        "maxdamage": 0,
+        "name": "Glistering Melon",
+        "optainable": true,
+        "texture": "melon_speckled.png",
+        "stacksize": 64,
+        "id": 382
+    },
+    "Chain Leggings": {
+        "maxdamage": 225,
+        "name": "Chain Leggings",
+        "optainable": true,
+        "texture": "chainmail_leggings.png",
+        "stacksize": 1,
+        "id": 304
+    },
+    "Iron Horse Armor": {
+        "maxdamage": 0,
+        "name": "Iron Horse Armor",
+        "optainable": true,
+        "texture": "iron_horse_armor.png",
+        "stacksize": 1,
+        "id": 417
+    },
+    "Rabbit Hide": {
+        "maxdamage": 0,
+        "name": "Rabbit Hide",
+        "optainable": true,
+        "texture": "rabbit_hide.png",
+        "stacksize": 64,
+        "id": 415
+    },
+    "Eye of Ender": {
+        "maxdamage": 0,
+        "name": "Eye of Ender",
+        "optainable": true,
+        "texture": "ender_eye.png",
+        "stacksize": 64,
+        "id": 381
+    },
+    "Wooden Shovel": {
+        "maxdamage": 59,
+        "name": "Wooden Shovel",
+        "optainable": true,
+        "texture": "wod_shovel.png",
+        "stacksize": 1,
+        "id": 269
+    },
+    "Bread": {
+        "maxdamage": 0,
+        "name": "Bread",
+        "optainable": true,
+        "texture": "bread.png",
+        "stacksize": 64,
+        "id": 297
+    },
+    "Pumpkin Seeds": {
+        "maxdamage": 0,
+        "name": "Pumpkin Seeds",
+        "optainable": true,
+        "texture": "seeds_pumpkin.png",
+        "stacksize": 64,
+        "id": 361
+    },
+    "Iron Chestplate": {
+        "maxdamage": 240,
+        "name": "Iron Chestplate",
+        "optainable": true,
+        "texture": "iron_chestplate.png",
+        "stacksize": 1,
+        "id": 307
+    },
+    "Saddle": {
+        "maxdamage": 0,
+        "name": "Saddle",
+        "optainable": true,
+        "texture": "saddle.png",
+        "stacksize": 1,
+        "id": 329
+    },
+    "Leather": {
+        "maxdamage": 0,
+        "name": "Leather",
+        "optainable": true,
+        "texture": "leather.png",
+        "stacksize": 64,
+        "id": 334
+    },
+    "Compass": {
+        "maxdamage": 0,
+        "name": "Compass",
+        "optainable": true,
+        "texture": "compass.png",
+        "stacksize": 64,
+        "id": 345
+    },
+    "Wooden Pickaxe": {
+        "maxdamage": 59,
+        "name": "Wooden Pickaxe",
+        "optainable": true,
+        "texture": "wood_pickaxe.png",
+        "stacksize": 1,
+        "id": 270
+    },
+    "Bed": {
+        "maxdamage": 0,
+        "name": "Bed",
+        "optainable": true,
+        "texture": "bed.png",
+        "stacksize": 1,
+        "id": 355
+    },
+    "Golden Helmet": {
+        "maxdamage": 77,
+        "name": "Golden Helmet",
+        "optainable": true,
+        "texture": "gold_helmet.png",
+        "stacksize": 1,
+        "id": 314
+    },
+    "Fishing Rod": {
+        "maxdamage": 64,
+        "name": "Fishing Rod",
+        "optainable": true,
+        "texture": "fishing_rod_uncast.png",
+        "stacksize": 1,
+        "id": 346
+    },
+    "Gold Nugget": {
+        "maxdamage": 0,
+        "name": "Gold Nugget",
+        "optainable": true,
+        "texture": "gold_nugget.png",
+        "stacksize": 64,
+        "id": 371
+    },
+    "Minecart with Chest": {
+        "maxdamage": 0,
+        "name": "Minecart with Chest",
+        "optainable": true,
+        "texture": "minecart_chest.png",
+        "stacksize": 1,
+        "id": 342
+    },
+    "Magma Cream": {
+        "maxdamage": 0,
+        "name": "Magma Cream",
+        "optainable": true,
+        "texture": "magma_cream.png",
+        "stacksize": 64,
+        "id": 378
+    },
+    "Fermented Spider Eye": {
+        "maxdamage": 0,
+        "name": "Fermented Spider Eye",
+        "optainable": true,
+        "texture": "spider_eye_fermented.png",
+        "stacksize": 64,
+        "id": 376
+    },
+    "Pumpkin Pie": {
+        "maxdamage": 0,
+        "name": "Pumpkin Pie",
+        "optainable": true,
+        "texture": "pumpkin_pie.png",
+        "stacksize": 64,
+        "id": 400
+    },
+    "Ghast Tear": {
+        "maxdamage": 0,
+        "name": "Ghast Tear",
+        "optainable": true,
+        "texture": "ghast_tear.png",
+        "stacksize": 64,
+        "id": 370
+    },
+    "Raw Beef": {
+        "maxdamage": 0,
+        "name": "Raw Beef",
+        "optainable": true,
+        "texture": "beef_raw.png",
+        "stacksize": 64,
+        "id": 363
+    },
+    "Minecart": {
+        "maxdamage": 0,
+        "name": "Minecart",
+        "optainable": true,
+        "texture": "minecart_normal.png",
+        "stacksize": 1,
+        "id": 328
+    },
+    "Armor Stand": {
+        "maxdamage": 0,
+        "name": "Armor Stand",
+        "optainable": true,
+        "texture": "wooden_armorstand.png",
+        "stacksize": 16,
+        "id": 416
+    },
+    "Cauldron": {
+        "maxdamage": 0,
+        "name": "Cauldron",
+        "optainable": true,
+        "texture": "cauldron.png",
+        "stacksize": 64,
+        "id": 380
+    },
+    "Cooked Rabbit": {
+        "maxdamage": 0,
+        "name": "Cooked Rabbit",
+        "optainable": true,
+        "texture": "rabbit_cooked.png",
+        "stacksize": 64,
+        "id": 412
+    },
+    "Boat": {
+        "maxdamage": 0,
+        "name": "Boat",
+        "optainable": true,
+        "texture": "boat.png",
+        "stacksize": 1,
+        "id": 333
+    },
+    "Lava Bucket": {
+        "maxdamage": 0,
+        "name": "Lava Bucket",
+        "optainable": true,
+        "texture": "bucket_lava.png",
+        "stacksize": 1,
+        "id": 327
+    },
+    "Glowstone Dust": {
+        "maxdamage": 0,
+        "name": "Glowstone Dust",
+        "optainable": true,
+        "texture": "glowstone_dust.png",
+        "stacksize": 64,
+        "id": 348
+    },
+    "Minecart with Command Block": {
+        "maxdamage": 0,
+        "name": "Minecart with Command Block",
+        "optainable": true,
+        "texture": "minecart_command_block.png",
+        "stacksize": 1,
+        "id": 422
+    },
+    "Glass Bottle": {
+        "maxdamage": 0,
+        "name": "Glass Bottle",
+        "optainable": true,
+        "texture": "potion_bottle_empty.png",
+        "stacksize": 64,
+        "id": 374
+    },
+    "Rabbit Stew": {
+        "maxdamage": 0,
+        "name": "Rabbit Stew",
+        "optainable": true,
+        "texture": "rabbit_stew.png",
+        "stacksize": 1,
+        "id": 413
+    },
+    "Redstone Comparator": {
+        "maxdamage": 0,
+        "name": "Redstone Comparator",
+        "optainable": true,
+        "texture": "comparator.png",
+        "stacksize": 64,
+        "id": 404
+    },
+    "Poisonous Potato": {
+        "maxdamage": 0,
+        "name": "Poisonous Potato",
+        "optainable": true,
+        "texture": "potato_poisonous.png",
+        "stacksize": 64,
+        "id": 394
+    },
+    "Prismarine Shard": {
+        "maxdamage": 0,
+        "name": "Prismarine Shard",
+        "optainable": true,
+        "texture": "prismarine_shard.png",
+        "stacksize": 64,
+        "id": 409
+    },
+    "Ender Pearl": {
+        "maxdamage": 0,
+        "name": "Ender Pearl",
+        "optainable": true,
+        "texture": "ender_pearl.png",
+        "stacksize": 16,
+        "id": 368
+    },
+    "Leather Cap": {
+        "maxdamage": 55,
+        "name": "Leather Cap",
+        "optainable": true,
+        "texture": "leather_helmet.png",
+        "stacksize": 1,
+        "id": 298
+    },
+    "Iron Helmet": {
+        "maxdamage": 165,
+        "name": "Iron Helmet",
+        "optainable": true,
+        "texture": "iron_helmet.png",
+        "stacksize": 1,
+        "id": 306
+    },
+    "Map": {
+        "maxdamage": 32767,
+        "name": "Map",
+        "optainable": true,
+        "texture": "map_filled.png",
+        "stacksize": 1,
+        "id": 358
+    },
+    "Raw Rabbit": {
+        "maxdamage": 0,
+        "name": "Raw Rabbit",
+        "optainable": true,
+        "texture": "rabbit_raw.png",
+        "stacksize": 64,
+        "id": 411
+    },
+    "Bucket": {
+        "maxdamage": 0,
+        "name": "Bucket",
+        "optainable": true,
+        "texture": "bucket_empty.png",
+        "stacksize": 16,
+        "id": 325
+    },
+    "Firework Rocket": {
+        "maxdamage": 0,
+        "name": "Firework Rocket",
+        "optainable": true,
+        "texture": "fireworks.png",
+        "stacksize": 64,
+        "id": 401
+    },
+    "Wooden Hoe": {
+        "maxdamage": 59,
+        "name": "Wooden Hoe",
+        "optainable": true,
+        "texture": "wood_hoe.png",
+        "stacksize": 1,
+        "id": 290
+    },
+    "Redstone Repeater": {
+        "maxdamage": 0,
+        "name": "Redstone Repeater",
+        "optainable": true,
+        "texture": "repeater.png",
+        "stacksize": 64,
+        "id": 356
+    },
+    "Diamond Boots": {
+        "maxdamage": 429,
+        "name": "Diamond Boots",
+        "optainable": true,
+        "texture": "diamond_boots.png",
+        "stacksize": 1,
+        "id": 313
+    },
+    "cat Disc": {
+        "maxdamage": 0,
+        "name": "cat Disc",
+        "optainable": true,
+        "texture": "record_cat.png",
+        "stacksize": 1,
+        "id": 433
+    },
+    "Iron Ingot": {
+        "maxdamage": 0,
+        "name": "Iron Ingot",
+        "optainable": true,
+        "texture": "iron_ingot.png",
+        "stacksize": 64,
+        "id": 265
+    },
+    "stal Disc": {
+        "maxdamage": 0,
+        "name": "stal Disc",
+        "optainable": true,
+        "texture": "record_stal.png",
+        "stacksize": 1,
+        "id": 439
+    },
+    "Iron Door": {
+        "maxdamage": 0,
+        "name": "Iron Door",
+        "optainable": true,
+        "texture": "door_iron.png",
+        "stacksize": 64,
+        "id": 330
+    },
+    "Nether Brick": {
+        "maxdamage": 0,
+        "name": "Nether Brick",
+        "optainable": true,
+        "texture": "netherbrick.png",
+        "stacksize": 64,
+        "id": 405
+    },
+    "Chain Tunic": {
+        "maxdamage": 240,
+        "name": "Chain Tunic",
+        "optainable": true,
+        "texture": "chainmail_chestplate.png",
+        "stacksize": 1,
+        "id": 303
+    },
+    "Lead": {
+        "maxdamage": 0,
+        "name": "Lead",
+        "optainable": true,
+        "texture": "lead.png",
+        "stacksize": 64,
+        "id": 420
+    },
+    "Rabbit's Foot": {
+        "maxdamage": 0,
+        "name": "Rabbit's Foot",
+        "optainable": true,
+        "texture": "rabbit_foot.png",
+        "stacksize": 64,
+        "id": 414
+    },
+    "Stone Shovel": {
+        "maxdamage": 131,
+        "name": "Stone Shovel",
+        "optainable": true,
+        "texture": "stone_shovel.png",
+        "stacksize": 1,
+        "id": 273
+    },
+    "Diamond Horse Armor": {
+        "maxdamage": 0,
+        "name": "Diamond Horse Armor",
+        "optainable": true,
+        "texture": "diamond_horse_armor.png",
+        "stacksize": 1,
+        "id": 419
+    },
+    "Golden Shovel": {
+        "maxdamage": 32,
+        "name": "Golden Shovel",
+        "optainable": true,
+        "texture": "gold_shovel.png",
+        "stacksize": 1,
+        "id": 284
+    },
+    "ward Disc": {
+        "maxdamage": 0,
+        "name": "ward Disc",
+        "optainable": true,
+        "texture": "record_ward.png",
+        "stacksize": 1,
+        "id": 441
+    },
+    "Cooked Porkchop": {
+        "maxdamage": 0,
+        "name": "Cooked Porkchop",
+        "optainable": true,
+        "texture": "porkchop_cooked.png",
+        "stacksize": 64,
+        "id": 320
+    },
+    "Diamond Pickaxe": {
+        "maxdamage": 1561,
+        "name": "Diamond Pickaxe",
+        "optainable": true,
+        "texture": "diamond_pickaxe.png",
+        "stacksize": 1,
+        "id": 278
+    },
+    "wait Disc": {
+        "maxdamage": 0,
+        "name": "wait Disc",
+        "optainable": true,
+        "texture": "record_wait.png",
+        "stacksize": 1,
+        "id": 443
+    },
+    "Nether Quartz": {
+        "maxdamage": 0,
+        "name": "Nether Quartz",
+        "optainable": true,
+        "texture": "quartz.png",
+        "stacksize": 64,
+        "id": 406
+    },
+    "Mushroom Stew": {
+        "maxdamage": 0,
+        "name": "Mushroom Stew",
+        "optainable": true,
+        "texture": "mushroom_stew.png",
+        "stacksize": 1,
+        "id": 282
+    },
+    "Cake": {
+        "maxdamage": 0,
+        "name": "Cake",
+        "optainable": true,
+        "texture": "cake.png",
+        "stacksize": 1,
+        "id": 354
+    },
+    "Diamond Chestplate": {
+        "maxdamage": 528,
+        "name": "Diamond Chestplate",
+        "optainable": true,
+        "texture": "diamond_chestplate.png",
+        "stacksize": 1,
+        "id": 311
+    },
+    "Gold Ingot": {
+        "maxdamage": 0,
+        "name": "Gold Ingot",
+        "optainable": true,
+        "texture": "gold_ingot.png",
+        "stacksize": 64,
+        "id": 266
+    },
+    "Bone": {
+        "maxdamage": 0,
+        "name": "Bone",
+        "optainable": true,
+        "texture": "bone.png",
+        "stacksize": 64,
+        "id": 352
+    },
+    "Wooden Axe": {
+        "maxdamage": 59,
+        "name": "Wooden Axe",
+        "optainable": true,
+        "texture": "woood_axe.png",
+        "stacksize": 1,
+        "id": 271
+    },
+    "Iron Leggings": {
+        "maxdamage": 225,
+        "name": "Iron Leggings",
+        "optainable": true,
+        "texture": "iron_leggings.png",
+        "stacksize": 1,
+        "id": 308
+    },
+    "Melon Seeds": {
+        "maxdamage": 0,
+        "name": "Melon Seeds",
+        "optainable": true,
+        "texture": "seeds_melon.png",
+        "stacksize": 64,
+        "id": 362
+    },
+    "Apple": {
+        "maxdamage": 0,
+        "name": "Apple",
+        "optainable": true,
+        "texture": "apple.png",
+        "stacksize": 64,
+        "id": 260
+    },
+    "Flint and Steel": {
+        "maxdamage": 64,
+        "name": "Flint and Steel",
+        "optainable": true,
+        "texture": "flint_and_steel.png",
+        "stacksize": 1,
+        "id": 259
+    },
+    "Name Tag": {
+        "maxdamage": 0,
+        "name": "Name Tag",
+        "optainable": true,
+        "texture": "name_tag.png",
+        "stacksize": 64,
+        "id": 421
+    },
+    "Carrot on a Stick": {
+        "maxdamage": 25,
+        "name": "Carrot on a Stick",
+        "optainable": true,
+        "texture": "carrot_on_a_stick.png",
+        "stacksize": 1,
+        "id": 398
+    },
+    "Carrot": {
+        "maxdamage": 0,
+        "name": "Carrot",
+        "optainable": true,
+        "texture": "carrot.png",
+        "stacksize": 64,
+        "id": 391
+    },
+    "Brewing Stand": {
+        "maxdamage": 0,
+        "name": "Brewing Stand",
+        "optainable": true,
+        "texture": "brewing_stand.png",
+        "stacksize": 64,
+        "id": 379
+    },
+    "Sugar Cane": {
+        "maxdamage": 0,
+        "name": "Sugar Cane",
+        "optainable": true,
+        "texture": "reeds.png",
+        "stacksize": 64,
+        "id": 338
+    }
+}
