@@ -7,6 +7,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 import math
 import copy
+import json
 from utils import mathUtils as mu
 from PyQt4 import QtGui, QtCore, QtOpenGL, uic
 from PIL import Image
@@ -418,40 +419,6 @@ class BlockModelGenerator(QtGui.QMainWindow):
         return [self.cuboidList.item(i) for i in range(self.cuboidList.count())]
         
         
-    def dict2JSON(self, obj):
-        
-        if isinstance(obj, dict):
-            s = []
-            for key in obj.keys():
-                s.append('\t"'+str(key)+'": '+self.dict2JSON(obj[key]).replace("\n", "\n\t"))
-            
-            return "{\n"+",\n".join(s)+"\n}"
-            
-        if isinstance(obj, list):
-            if not sum([1 if isinstance(e, dict) or isinstance(e, list) else 0 for e in obj]):
-                
-                return str(obj).replace("'", '"')
-                
-            else:
-                s = []
-                for e in obj:
-                    s.append("\t"+self.dict2JSON(e).replace("\n", "\n\t"))
-                    
-                return "[\n"+",\n".join(s)+"\n]"
-            
-        if isinstance(obj, str):
-            return '"'+obj+'"'
-            
-        if isinstance(obj, bool):
-            return "True" if obj else "False"
-            
-        if obj == None:
-            return "Null"
-            
-        else:
-            return str(obj)
-        
-        
     def getJSON(self):
         
         self.textures = []
@@ -465,7 +432,7 @@ class BlockModelGenerator(QtGui.QMainWindow):
         for i in range(len(self.textures)):
             model["textures"]["texture"+str(i)] = "<modid>:blocks/<unlocalizedName>_"+str(i)
             
-        return self.dict2JSON(model)
+        return json.dumps(model, indent=4, separators=(',', ': '))
         
         
     def savedata(self):

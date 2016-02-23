@@ -2,7 +2,7 @@
 import os
 import sys
 
-ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+ADDONPATH = "/".join(os.path.realpath(__file__).replace("\\", "/").split("/")[:-1])
 BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle
@@ -23,7 +23,7 @@ BlockModelGenerator = imp.load_source("blockmodelGenerator", ADDONPATH+"/blockmo
 class Block(_base):
     
     def __init__(self, mainWindow, name):
-        _base.__init__(self, mainWindow, "Block")
+        _base.__init__(self, mainWindow, "Block", "Block")
         
         self.name = name
         self.texture = [BASEPATH+"/assets/textures/blocks/unknown.png"]*6
@@ -57,7 +57,7 @@ class Block(_base):
                             'rotationAxis': 0,
                             'dimensions': [16.0, 16.0, 16.0]}]},
                         '{\n\t"textures": {\n\t\t"#0": "<modid>:blocks/<unlocalizedName>_0"\n\t},\n\t"elements": [\n\t\t{\n\t\t\t"to": [16.0, 16.0, 16.0],\n\t\t\t"from": [0.0, 0.0, 0.0],\n\t\t\t"name": "unnamed",\n\t\t\t"faces": {\n\t\t\t\t"north": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"west": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"up": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"down": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"east": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t},\n\t\t\t\t"south": {\n\t\t\t\t\t"uv": [0.0, 0.0, 16.0, 16.0],\n\t\t\t\t\t"texture": "#0"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t]\n}',
-                        BASEPATH+'/assets/textures/blocks/unknown.png']
+                        [BASEPATH+'/assets/textures/blocks/unknown.png']]
         
         self.data = {"package":[],
                      "imports":[],
@@ -98,51 +98,38 @@ class Block(_base):
         
         self.mainWindow.updateName(self, name)
         
-        self.save()
-        
         
     def setTransparent(self, checked):
         
         if checked:
             self.transparency = "transparent"
-            
-        self.save()
         
         
     def setNonTransparent(self, checked):
         
         if checked:
             self.transparency = "nontransparent"
-            
-        self.save()
         
         
     def setAutoDetectTransparent(self, checked):
         
         if checked:
             self.transparency = "auto"
-            
-        self.save()
         
         
     def setCreativeTab(self, tab):
         
         self.creativeTab = tab
         
-        self.save()
-        
         
     def setRotateable(self, rotateable):
         
         self.rotateable = rotateable
         
-        self.save()
-        
         
     def editBlock(self):
         
         BlockModelGenerator(self.mainWindow, self)
-        self.save()
         
         
     def getRenderLayer(self):
@@ -167,19 +154,14 @@ class Block(_base):
         
     def save(self):
         
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "transparency":self.transparency,
                 "creativeTab":self.creativeTab,
                 "rotateable":self.rotateable,
                 "modeldata":self.modeldata}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
     def renewWidgetEntrys(self):
@@ -285,7 +267,7 @@ class Block(_base):
         
     def export(self):
         """Export the main java file"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".java", "w")
@@ -293,7 +275,7 @@ class Block(_base):
         f.close()
         
         """Export the blockstates"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -304,7 +286,7 @@ class Block(_base):
         f.close()
         
         """Export the blockmodel"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -312,7 +294,7 @@ class Block(_base):
         f.close()
         
         """Export the itemmodel"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -320,12 +302,13 @@ class Block(_base):
         f.close()
         
         """Export the textures"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
         if not os.path.exists(path):
             os.makedirs(path)
         for idx in range(len(self.modeldata[2])):
             shutil.copy2(self.modeldata[2][idx], path+"/"+self.unlocalizedName()+"_"+str(idx)+".png")
         
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
         self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
         

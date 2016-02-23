@@ -2,7 +2,7 @@
 import os
 import sys
 
-ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+ADDONPATH = "/".join(os.path.realpath(__file__).replace("\\", "/").split("/")[:-1])
 BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle
@@ -21,7 +21,7 @@ SrcItem = imp.load_source("SrcItem", ADDONPATH+"/SrcItem.py")
 class Item(_base):
     
     def __init__(self, mainWindow, name):
-        _base.__init__(self, mainWindow, "Item")
+        _base.__init__(self, mainWindow, "Item", "Item")
         
         self.name = name
         self.texture = BASEPATH+"/assets/textures/items/unknown.png"
@@ -59,14 +59,10 @@ class Item(_base):
         
         self.mainWindow.updateName(self, name)
         
-        self.save()
-        
         
     def setTexture(self, texture):
         
         self.texture = texture
-        
-        self.save()
         
         
     def setTextureButton(self):
@@ -77,15 +73,11 @@ class Item(_base):
         if txt != "":
             self.texture = txt
             self.textureInput.setText(self.texture)
-            
-        self.save()
         
         
     def setCreativeTab(self, tab):
         
         self.creativeTab = tab
-        
-        self.save()
         
         
     def renewWidgetEntrys(self):
@@ -97,17 +89,12 @@ class Item(_base):
         
     def save(self):
         
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.project.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "texture":self.texture,
                 "creativeTab":self.creativeTab}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
     def pull(self, cls):
@@ -192,25 +179,26 @@ class Item(_base):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package().replace(".", "/")
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+"/"+self.classname()+".java", "w")
         f.write(self.generateSrc())
         f.close()
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.unlocalizedName()+".json", "w")
         f.write(self.generateJsonSrc())
         f.close()
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/resources/assets/"+self.data["modid"][0]+"/textures/items"
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/textures/items"
         if not os.path.exists(path):
             os.makedirs(path)
         shutil.copy2(self.texture, path+"/"+self.unlocalizedName()+".png")
         
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
         self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
         

@@ -10,10 +10,12 @@ from PyQt4 import QtGui
 
 class _base(QtGui.QWidget):
     
-    def __init__(self, mainWindow, identifier):
+    def __init__(self, mainWindow, identifier, classtype):
         QtGui.QWidget.__init__(self)
         
         self.identifier = identifier
+        self.classtype = classtype
+        self.deleteable = True
         
         self.mainWindow = mainWindow
         self.project = mainWindow.currentProject()
@@ -39,18 +41,13 @@ class _base(QtGui.QWidget):
         return
 
 
-    def load(self, path):
+    def load(self, data):
         
-        f = open(path, "r")
-        
-        data = pickle.load(f)
         for key in data.keys():
             value = data[key]
             if isinstance(value, u"".__class__) or isinstance(value, str):
                 value = '"'+value+'"'
             exec("self."+key+"="+str(value))
-        
-        f.close()
         
         
     @abc.abstractmethod

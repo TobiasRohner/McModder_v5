@@ -19,23 +19,25 @@ class Project():
         
         self.name = name
         
+        self.unsavedChanges = False
+        
         self.objects = {}
         
         
-    def load(self):
+    def load(self, data):
         
-        for ident in os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod"):
-            self.objects[ident] = []
-            for c in os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+ident):
-                name, t = c.split(".")
-                if t == "mod":
-                    if ident != "BaseMod":
-                        exec("cls = self.getModule('"+ident+"')."+ident+"(self.mainWindow, name)")
-                    else:
-                        cls = self.mainWindow.baseModClass.BaseMod(self.mainWindow, self.name, name)
-                    cls.project = self
-                    cls.load(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+ident+"/"+name+".mod")
-                    self.objects[ident].append(cls)
+        for key in data.keys():
+            objData = data[key]
+            if not objData["identifier"] in self.objects.keys():
+                self.objects[objData["identifier"]] = []
+            cls = None
+            if objData["classtype"] == "BaseMod":
+                cls = self.mainWindow.baseModClass.BaseMod(self.mainWindow, self.name, objData["name"])
+            else:
+                exec("cls = self.getModule('"+objData["classtype"]+"')."+objData["classtype"]+"(self.mainWindow, objData['name'])")
+            cls.project = self
+            cls.load(objData)
+            self.objects[objData["identifier"]].append(cls)
                     
                     
     def getModule(self, name):
@@ -54,7 +56,14 @@ class Project():
         
         obj.project = self
         
-        obj.save()
+        
+    def save(self):
+        
+        data = {}
+        for key in self.objects.keys():
+            for obj in self.objects[key]:
+                data[obj.name] = obj.save()
+        return data
         
         
         

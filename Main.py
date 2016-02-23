@@ -3,6 +3,7 @@ import sys
 import os
 import shutil
 import imp
+import json
 import widgets
 from utils import translations, gradlew, Config, History
 from classes import Project, source
@@ -56,6 +57,7 @@ class MainWindow(QtGui.QMainWindow):
         self.projects = []
         
         self.baseModClass = None
+        self.guiClass = None
         
         self.initUI()
         self.initializeAddons()
@@ -77,6 +79,8 @@ class MainWindow(QtGui.QMainWindow):
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.console)
         
         self.newProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/newProject.png"), self.translations.getTranslation("newProject"), self)
+        self.saveProjectMenubar = QtGui.QAction(self.translations.getTranslation("save"), self)
+        self.saveProjectMenubar.setShortcut("Ctrl+S")
         self.exportProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/export.png"), self.translations.getTranslation("exportProject"), self)
         self.exportProjectMenubar.setShortcut("Ctrl+E")
         self.exportJarMenubar = QtGui.QAction(self.translations.getTranslation("exportJar"), self)
@@ -88,6 +92,8 @@ class MainWindow(QtGui.QMainWindow):
         self.redoMenubar = QtGui.QAction(self.translations.getTranslation("redo"), self)
         self.redoMenubar.setShortcut("Ctrl+Y")
         self.addonsMenubar = QtGui.QAction(self.translations.getTranslation("addons"), self)
+        self.delMenubar = QtGui.QAction(self.translations.getTranslation("delete"), self)
+        self.delMenubar.setShortcut("Del")
         
         self.menubar = self.menuBar()
         
@@ -101,11 +107,13 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar = self.addToolBar("Run")
         
         self.fileMenubar.addAction(self.newProjectMenubar)
+        self.fileMenubar.addAction(self.saveProjectMenubar)
         self.fileMenubar.addAction(self.exportProjectMenubar)
         self.fileMenubar.addAction(self.exportJarMenubar)
         
         self.editMenubar.addAction(self.undoMenubar)
         self.editMenubar.addAction(self.redoMenubar)
+        self.editMenubar.addAction(self.delMenubar)
         
         self.runMenubar.addAction(self.runClientMenubar)
         
@@ -117,12 +125,14 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar.addAction(self.runClientMenubar)
         
         self.connect(self.newProjectMenubar, QtCore.SIGNAL('triggered()'), self.createNewProject)
+        self.connect(self.saveProjectMenubar, QtCore.SIGNAL('triggered()'), self.save)
         self.connect(self.exportProjectMenubar, QtCore.SIGNAL('triggered()'), self.exportProject)
         self.connect(self.exportJarMenubar, QtCore.SIGNAL('triggered()'), self.exportJar)
         self.connect(self.undoMenubar, QtCore.SIGNAL('triggered()'), self.undo)
         self.connect(self.redoMenubar, QtCore.SIGNAL('triggered()'), self.redo)
         self.connect(self.runClientMenubar, QtCore.SIGNAL('triggered()'), self.runClient)
         self.connect(self.addonsMenubar, QtCore.SIGNAL('triggered()'), self.openAddonDialog)
+        self.connect(self.delMenubar, QtCore.SIGNAL('triggered()'), self.delete)
         
         self.setCentralWidget(None)
         self.setDockNestingEnabled(True)
@@ -143,8 +153,12 @@ class MainWindow(QtGui.QMainWindow):
         
         proj = [f for f in os.listdir(self.config["workspace"]) if os.path.exists(self.config["workspace"]+"/"+f+"/mcmodderproject")]
         for p in proj:
+            f = open(self.config["workspace"]+"/"+p+"/moddata.json")
+            data = json.load(f)
+            f.close()
+            
             self.projects.append(Project.Project(self, p))
-            self.projects[-1].load()
+            self.projects[-1].load(data)
             
         self.projectExplorer.updateWorkspace()
         
@@ -166,6 +180,8 @@ class MainWindow(QtGui.QMainWindow):
                 print("Initialized "+name)
                 if name == "BaseMod":
                     self.baseModClass = mod
+                elif name == "GUI":
+                    self.guiClass = mod
                 
                 
     def openAddonDialog(self):
@@ -191,6 +207,13 @@ class MainWindow(QtGui.QMainWindow):
         return None
         
         
+    def getProject(self, name):
+        
+        for proj in self.projects:
+            if proj.name == name:
+                return proj
+        
+        
     def addObject(self, obj):
         
         proj = self.currentProject()
@@ -202,7 +225,21 @@ class MainWindow(QtGui.QMainWindow):
         self.editor.tabWidget.setCurrentWidget(obj)
         
         
+    def delete(self):
+        
+        selected = self.projectExplorer.selectedObject()
+        if not isinstance(selected, Project.Project):
+            if selected.isdeleteable:
+                self.currentProject().objects[selected.identifier].remove(selected)
+                self.editor.closeTab(self.editor.tabWidget.indexOf(selected))
+                if len(self.currentProject().objects[selected.identifier]) == 0:
+                    self.currentProject().objects.pop(selected.identifier, None)
+        self.projectExplorer.updateWorkspace()
+        
+        
     def runClient(self):
+        
+        self.save()
         
         self.console.clear()
         
@@ -220,23 +257,27 @@ class MainWindow(QtGui.QMainWindow):
         if arg:
             #build the file structure
             os.mkdir(self.config["workspace"]+"/"+arg[0])
-            os.mkdir(self.config["workspace"]+"/"+arg[0]+"/mod")
-            os.mkdir(self.config["workspace"]+"/"+arg[0]+"/java")
             #file to mark the folder as a project
             f = open(self.config["workspace"]+"/"+arg[0]+"/mcmodderproject", "w")
             f.write(VERSION)
             f.close()
             #install forge modloader
-            gradlew.installForge(self.config["workspace"]+"/"+arg[0]+"/java", self.console)
+            gradlew.installForge(self.config["workspace"]+"/"+arg[0], self.console)
             
             #generate a BaseMod instance
             self.projects.append(Project.Project(self, arg[0]))
-            self.projects[-1].addObject(self.baseModClass.BaseMod(self, self.projects[-1], arg[0]))
+            for n, p, addon in self.addons:
+                if "onProjectCreated" in dir(addon):
+                    addon.onProjectCreated(self, self.projects[-1])
+            
+            self.save(self.projects[-1])
             
             self.projectExplorer.updateWorkspace()
             
             
     def exportProject(self):
+        
+        self.save()
         
         proj = self.currentProject()
         
@@ -275,6 +316,23 @@ class MainWindow(QtGui.QMainWindow):
                 shutil.copy2(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar",
                              path+"/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
                 os.remove(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
+                
+                
+    def save(self, proj=None):
+        
+        if proj == None:
+            proj = self.currentProject()
+        
+        f = open(self.config["workspace"]+"/"+proj.name+"/moddata.json", "w")
+        
+        data = proj.save()
+        json.dump(data, f, indent=4, separators=(',', ': '))
+        
+        f.close()
+        
+        proj.unsavedChanges = False
+        
+        self.projectExplorer.updateWorkspace()
                 
                 
     def undo(self):

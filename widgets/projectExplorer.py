@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import pickle
 from PyQt4 import QtGui, QtCore
 
 
@@ -35,26 +36,25 @@ class ProjectExplorer(QtGui.QDockWidget):
         
     def updateWorkspace(self):
         
-        folders = os.listdir(self.mainWindow.config["workspace"])
         #list all projects out of the folders
-        for folder in folders:
-            if os.path.exists(self.mainWindow.config["workspace"]+"/"+folder+"/mcmodderproject"):
-                exists = False
-                proj = None
-                for project in self.projects:
-                    if project.name == folder:
-                        exists = True
-                        proj = project
-                        break
-                if exists:
-                    proj.updateProject()
-                else:
-                    proj = Project(self.mainWindow, folder)
-                    self.projects.append(proj)
-                    proj.updateProject()
+        for proj in self.mainWindow.projects:
+            exists = False
+            p = None
+            for project in self.projects:
+                if project.name == proj.name:
+                    exists = True
+                    p = project
+                    break
+            if exists:
+                p.updateProject()
+            else:
+                p = Project(self.mainWindow, proj.name)
+                self.projects.append(p)
+                p.updateProject()
                     
         #self.treeWidget.clear()
         self.treeWidget.addTopLevelItems(self.projects)
+        self.treeWidget.sortItems(0, QtCore.Qt.AscendingOrder)
         
         
     def selectedProject(self):
@@ -67,6 +67,23 @@ class ProjectExplorer(QtGui.QDockWidget):
         
             return item.text(0)
             
+        return None
+        
+        
+    def selectedObject(self):
+        
+        items = self.treeWidget.selectedItems()
+        if len(items) > 0:
+            item = items[0]
+            if isinstance(item, Project):
+                for proj in self.mainWindow.projects:
+                    if proj.name == item.text(0):
+                        return proj
+            elif item.parent() and item.parent().parent() and not item.parent().parent().parent():
+                ident = item.parent().text(0)
+                for obj in self.mainWindow.currentProject().objects[ident]:
+                    if obj.name == item.text(0):
+                        return obj
         return None
         
         
@@ -112,27 +129,30 @@ class Project(QtGui.QTreeWidgetItem):
         
     def updateProject(self):
         
-        dirs = os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod")
-        for d in dirs:
+        for c in range(self.childCount()):
+            self.removeChild(self.child(0))
+        objects = self.mainWindow.getProject(self.name).objects
+        for ident in objects.keys():
             exists = False
             for c in range(self.childCount()):
-                if self.child(c).text(0) == d:
+                if self.child(c).text(0) == ident:
                     exists = True
                     subItem = self.child(c)
             if not exists:
                 subItem = QtGui.QTreeWidgetItem()
-                subItem.setText(0, d)
+                subItem.setText(0, ident)
                 self.addChild(subItem)
-            classes = os.listdir(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+d)
-            for c in classes:
-                name, t = c.split(".")
-                if t == "mod":
-                    exists = False
-                    for c in range(subItem.childCount()):
-                        if subItem.child(c).text(0) == name:
-                            exists = True
-                            subsubItem = subItem.child(c)
-                    if not exists:
-                        subsubItem = QtGui.QTreeWidgetItem()
-                        subsubItem.setText(0, name)
-                        subItem.addChild(subsubItem)
+                
+            for obj in objects[ident]:
+                exists = False
+                for c in range(subItem.childCount()):
+                    if subItem.child(c).text(0) == obj.name:
+                        exists = True
+                        subsubItem = subItem.child(c)
+                if not exists:
+                    subsubItem = QtGui.QTreeWidgetItem()
+                    subsubItem.setText(0, obj.name)
+                    subItem.addChild(subsubItem)
+                    
+            subItem.sortChildren(0, QtCore.Qt.AscendingOrder)
+        self.sortChildren(0, QtCore.Qt.AscendingOrder)

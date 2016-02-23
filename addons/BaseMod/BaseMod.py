@@ -2,7 +2,7 @@
 import os
 import sys
 
-ADDONPATH = "/".join(os.path.realpath(__file__).split("\\")[:-1])
+ADDONPATH = "/".join(os.path.realpath(__file__).replace("\\", "/").split("/")[:-1])
 BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle
@@ -27,6 +27,8 @@ class BaseMod(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         
         self.identifier = "BaseMod"
+        self.classtype = "BaseMod"
+        self.deleteable = False
         
         self.mainWindow = mainWindow
         self.project = project
@@ -62,7 +64,6 @@ class BaseMod(QtGui.QWidget):
         self.mainWindow.history.addStep(self.setVersion, [self.version], self.setName, [ver])
         
         self.version = ver
-        self.save()
         
         
     def renewWidgetEntrys(self):
@@ -71,31 +72,21 @@ class BaseMod(QtGui.QWidget):
         
         
     def save(self):
-        
-        if not os.path.exists(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier):
-            os.makedirs(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier)
-        
-        f = open(self.mainWindow.config["workspace"]+"/"+self.name+"/mod/"+self.identifier+"/"+self.name+".mod", "w")
-        
-        data = {"name":self.name,
+
+        data = {"identifier":self.identifier,
+                "classtype":self.classtype,
+                "name":self.name,
                 "version":self.version}
-        pickle.dump(data, f)
-        
-        f.close()
+        return data
         
         
-    def load(self, path):
-        
-        f = open(path, "r")
-        
-        data = pickle.load(f)
+    def load(self, data):
+
         for key in data.keys():
             value = data[key]
             if isinstance(value, u"".__class__) or isinstance(value, str):
                 value = '"'+value+'"'
             exec("self."+key+"="+str(value))
-        
-        f.close()
         
         
     def classname(self):
@@ -158,7 +149,7 @@ class BaseMod(QtGui.QWidget):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/java/src/main/java/"+self.package()
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package()
         
         if not os.path.exists(path):
             os.makedirs(path)
@@ -168,6 +159,7 @@ class BaseMod(QtGui.QWidget):
         
         f.close()
         
+        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
         self.mainWindow.console.write("BaseMod: Successfully exported to "+path+"/"+self.name+".java")
         
         
@@ -213,3 +205,9 @@ class Constructor(QtGui.QDialog):
 def init(mainWindow):
     
     return
+    
+    
+    
+def onProjectCreated(mainWindow, project):
+    
+    project.addObject(BaseMod(mainWindow, project, project.name))
