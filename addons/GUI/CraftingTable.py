@@ -115,6 +115,6 @@ def init(mainWindow):
     
     
     
-def onProjectCreated(mainWindow, project):
+def onProjectCreated(mainWindow):
     
-    project.addObject(CraftingTable(mainWindow, "CraftingTable"))
+    mainWindow.project.addObject(CraftingTable(mainWindow, "CraftingTable"))

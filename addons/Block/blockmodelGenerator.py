@@ -27,7 +27,7 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         self.textures = []
         
-        self.lastTexturePath = mainWindow.config["workspace"]
+        self.lastTexturePath = self.mainWindow.projectPath
         
         self.initUI()
         

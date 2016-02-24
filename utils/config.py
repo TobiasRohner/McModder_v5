@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import pickle
+import json
 
 
 
@@ -14,13 +14,13 @@ class Config():
     
     def loadData(self):
         f = open(self.path, "r")
-        self.data = pickle.load(f)
+        self.data = json.load(f)
         f.close()
         
         
     def saveData(self):
         f = open(self.path, "w")
-        pickle.dump(self.data, f)
+        json.dump(self.data, f, indent=4, separators=(',', ': '))
         f.close()
         
         

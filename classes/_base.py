@@ -18,7 +18,6 @@ class _base(QtGui.QWidget):
         self.deleteable = True
         
         self.mainWindow = mainWindow
-        self.project = mainWindow.currentProject()
         
         self.name = "unknown"
         
@@ -90,7 +89,7 @@ class _base(QtGui.QWidget):
         
     def package(self):
         
-        return self.project.name.replace(" ", "_")+"."+self.identifier
+        return self.mainWindow.project.name.replace(" ", "_")+"."+self.identifier
         
         
     @abc.abstractmethod
