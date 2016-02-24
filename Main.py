@@ -160,6 +160,10 @@ class MainWindow(QtGui.QMainWindow):
             self.projects.append(Project.Project(self, p))
             self.projects[-1].load(data)
             
+            for i in self.projects[-1].objects.keys():
+                for o in self.projects[-1].objects[i]:
+                    o.postInit(self.projects[-1])
+            
         self.projectExplorer.updateWorkspace()
         
         
@@ -220,9 +224,9 @@ class MainWindow(QtGui.QMainWindow):
         if proj:
             proj.addObject(obj)
             
-        self.projectExplorer.updateWorkspace()
         self.editor.openTab(obj)
         self.editor.tabWidget.setCurrentWidget(obj)
+        self.projectExplorer.updateWorkspace()
         
         
     def delete(self):

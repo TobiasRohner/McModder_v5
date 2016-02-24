@@ -25,6 +25,11 @@ class _base(QtGui.QWidget):
         self.data = {}
         
         
+    def postInit(self, project):
+        
+        return
+        
+        
     @abc.abstractmethod
     def initUI(self):
         

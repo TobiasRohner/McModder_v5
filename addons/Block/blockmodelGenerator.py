@@ -411,7 +411,6 @@ class BlockModelGenerator(QtGui.QMainWindow):
     def save(self):
         
         self.master.modeldata = [self.savedata(), self.getJSON(), self.textures]
-        self.master.save()
         
         
     def cuboids(self):

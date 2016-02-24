@@ -7,6 +7,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 import imp
 from classes import _base
+from widgets import menus
 from PyQt4 import QtGui, QtCore, uic
 
 SrcCraftingTable = imp.load_source("SrcCraftingTable", ADDONPATH+"/SrcCraftingTable.py")
@@ -27,9 +28,17 @@ class CraftingTable(_base):
         self.initUI()
         
         
+#    def postInit(self, project):
+#        
+#        self.itemList.project = project
+        
+        
     def initUI(self):
         
         self.ui = uic.loadUi(ADDONPATH+"/CraftingTable.ui", self)
+        
+#        self.itemList = menus.ItemList(self.mainWindow)
+#        self.tableLayout.addWidget(self.itemList)
         
         self.guiWidget = GUIGraphic(self)
         self.guiWidget.setMinimumSize(176, 166)
