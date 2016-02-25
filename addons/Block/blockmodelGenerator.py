@@ -27,7 +27,7 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         self.textures = []
         
-        self.lastTexturePath = mainWindow.config["workspace"]
+        self.lastTexturePath = self.mainWindow.projectPath
         
         self.initUI()
         
@@ -411,7 +411,6 @@ class BlockModelGenerator(QtGui.QMainWindow):
     def save(self):
         
         self.master.modeldata = [self.savedata(), self.getJSON(), self.textures]
-        self.master.save()
         
         
     def cuboids(self):

@@ -1,21 +1,9 @@
-(dp0
-S'addons'
-p1
-(lp2
-S'E:\\Programmieren\\Python\\McModder_v5/addons/BaseMod/BaseMod.py'
-p3
-aS'E:\\Programmieren\\Python\\McModder_v5/addons/Block/Block.py'
-p4
-aS'E:\\Programmieren\\Python\\McModder_v5/addons/Item/Item.py'
-p5
-aS'E:/Programmieren/Python/McModder_v5/addons/GUI/CraftingTable.py'
-p6
-asS'workspace'
-p7
-VE:\u005cProgrammieren\u005cPython\u005cMcModder_v5\u005cworkspace
-p8
-sS'language'
-p9
-S'English'
-p10
-s.
+{
+    "addons": [
+        "E:\\Programmieren\\Python\\McModder_v5/addons/BaseMod/BaseMod.py",
+        "E:\\Programmieren\\Python\\McModder_v5/addons/Block/Block.py",
+        "E:\\Programmieren\\Python\\McModder_v5/addons/Item/Item.py",
+        "E:\\Programmieren\\Python\\McModder_v5/addons/GUI/CraftingTable.py"
+    ],
+    "language": "English"
+}

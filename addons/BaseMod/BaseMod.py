@@ -23,7 +23,7 @@ description = """This is the representation of the main Mod File, where all elem
 
 class BaseMod(QtGui.QWidget):
     
-    def __init__(self, mainWindow, project, name):
+    def __init__(self, mainWindow, name):
         QtGui.QWidget.__init__(self)
         
         self.identifier = "BaseMod"
@@ -31,7 +31,6 @@ class BaseMod(QtGui.QWidget):
         self.deleteable = False
         
         self.mainWindow = mainWindow
-        self.project = project
         
         self.name = name
         self.version = "1.0"
@@ -52,6 +51,11 @@ class BaseMod(QtGui.QWidget):
         self.initUI()
         
         
+    def postInit(self, project):
+        
+        return
+        
+        
     def initUI(self):
         
         self.ui = uic.loadUi(ADDONPATH+"/BaseMod.ui", self)
@@ -60,8 +64,6 @@ class BaseMod(QtGui.QWidget):
         
         
     def setVersion(self, ver):
-        
-        self.mainWindow.history.addStep(self.setVersion, [self.version], self.setName, [ver])
         
         self.version = ver
         
@@ -101,7 +103,7 @@ class BaseMod(QtGui.QWidget):
         
     def package(self):
         
-        return self.project.name.replace(" ", "_")
+        return self.mainWindow.project.name.replace(" ", "_")
         
         
     def completeModData(self):
@@ -110,8 +112,8 @@ class BaseMod(QtGui.QWidget):
             self.data[k] = []
         
         success = True
-        for t in self.project.objects.keys():
-            for cls in self.project.objects[t]:
+        for t in self.mainWindow.project.objects.keys():
+            for cls in self.mainWindow.project.objects[t]:
                 toAdd = cls.pull(self)
                 for entry in toAdd.keys():
                     if entry in self.data.keys():
@@ -122,7 +124,7 @@ class BaseMod(QtGui.QWidget):
                         
         self.data["package"] += [self.package()]
         self.data["classname"] += [self.classname()]
-        self.data["name"] += [self.project.name]
+        self.data["name"] += [self.mainWindow.project.name]
         self.data["modid"] += [self.modid()]
         self.data["version"] += [self.version]
         self.data["proxies"] += [SrcBaseMod.proxies]
@@ -149,7 +151,7 @@ class BaseMod(QtGui.QWidget):
         
     def export(self):
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package()
+        path = self.mainWindow.projectPath+"/src/main/java/"+self.package()
         
         if not os.path.exists(path):
             os.makedirs(path)
@@ -159,7 +161,7 @@ class BaseMod(QtGui.QWidget):
         
         f.close()
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
+        path = self.mainWindow.projectPath+"/src/main/java"
         self.mainWindow.console.write("BaseMod: Successfully exported to "+path+"/"+self.name+".java")
         
         
@@ -208,6 +210,6 @@ def init(mainWindow):
     
     
     
-def onProjectCreated(mainWindow, project):
+def onProjectCreated(mainWindow):
     
-    project.addObject(BaseMod(mainWindow, project, project.name))
+    mainWindow.project.addObject(BaseMod(mainWindow, mainWindow.project.name))

@@ -54,31 +54,30 @@ class MainWindow(QtGui.QMainWindow):
         
         self.translations = translations.Translations(self.config["language"])
         
-        self.projects = []
+        self.project = widgets.ProjectExplorer(self, "")
+        self.projectPath = ""
         
         self.baseModClass = None
         self.guiClass = None
         
         self.initUI()
         self.initializeAddons()
-        self.initializeProjects()
-        
-        self.projectExplorer.updateWorkspace()
         
         
     def initUI(self):
         
         self.ui = uic.loadUi(BASEPATH+"/ui/MainWindow.ui", self)
         
-        self.projectExplorer = widgets.ProjectExplorer(self)
         self.editor = widgets.Editor(self)
         self.console = widgets.Console(self)
         
-        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.projectExplorer)
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.project)
         self.addDockWidget(QtCore.Qt.RightDockWidgetArea, self.editor)
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.console)
         
         self.newProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/newProject.png"), self.translations.getTranslation("newProject"), self)
+        self.openProjectMenubar = QtGui.QAction(self.translations.getTranslation("open"), self)
+        self.openProjectMenubar.setShortcut("Ctrl+O")
         self.saveProjectMenubar = QtGui.QAction(self.translations.getTranslation("save"), self)
         self.saveProjectMenubar.setShortcut("Ctrl+S")
         self.exportProjectMenubar = QtGui.QAction(QtGui.QIcon(BASEPATH+"/assets/icons/export.png"), self.translations.getTranslation("exportProject"), self)
@@ -107,6 +106,7 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar = self.addToolBar("Run")
         
         self.fileMenubar.addAction(self.newProjectMenubar)
+        self.fileMenubar.addAction(self.openProjectMenubar)
         self.fileMenubar.addAction(self.saveProjectMenubar)
         self.fileMenubar.addAction(self.exportProjectMenubar)
         self.fileMenubar.addAction(self.exportJarMenubar)
@@ -125,6 +125,7 @@ class MainWindow(QtGui.QMainWindow):
         self.runToolbar.addAction(self.runClientMenubar)
         
         self.connect(self.newProjectMenubar, QtCore.SIGNAL('triggered()'), self.createNewProject)
+        self.connect(self.openProjectMenubar, QtCore.SIGNAL('triggered()'), self.openProject)
         self.connect(self.saveProjectMenubar, QtCore.SIGNAL('triggered()'), self.save)
         self.connect(self.exportProjectMenubar, QtCore.SIGNAL('triggered()'), self.exportProject)
         self.connect(self.exportJarMenubar, QtCore.SIGNAL('triggered()'), self.exportJar)
@@ -140,27 +141,13 @@ class MainWindow(QtGui.QMainWindow):
         
     def initializeConfig(self):
         
-        self.config["workspace"] = QtGui.QFileDialog.getExistingDirectory(None, 'Select a workspace:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
         self.config["language"] = "English"
         self.config["addons"] = [BASEPATH+"/addons/BaseMod/BaseMod.py",
                                  BASEPATH+"/addons/Block/Block.py",
-                                 BASEPATH+"/addons/Item/Item.py"]
+                                 BASEPATH+"/addons/Item/Item.py",
+                                 BASEPATH+"/addons/GUI/CraftingTable.py"]
         
         self.config.saveData()
-            
-            
-    def initializeProjects(self):
-        
-        proj = [f for f in os.listdir(self.config["workspace"]) if os.path.exists(self.config["workspace"]+"/"+f+"/mcmodderproject")]
-        for p in proj:
-            f = open(self.config["workspace"]+"/"+p+"/moddata.json")
-            data = json.load(f)
-            f.close()
-            
-            self.projects.append(Project.Project(self, p))
-            self.projects[-1].load(data)
-            
-        self.projectExplorer.updateWorkspace()
         
         
     def initializeAddons(self):
@@ -191,50 +178,24 @@ class MainWindow(QtGui.QMainWindow):
         
     def updateName(self, obj, name):
         
-        os.rename(self.config["workspace"]+"/"+obj.project.name+"/mod/"+obj.identifier+"/"+obj.name+".mod",
-                  self.config["workspace"]+"/"+obj.project.name+"/mod/"+obj.identifier+"/"+name+".mod")
         self.editor.renameTab(obj, name)
-        self.projectExplorer.renameObject(obj, name)
+        self.project.renameObject(obj, name)
         obj.name = name
-        
-        
-    def currentProject(self):
-        
-        nme = self.projectExplorer.selectedProject()
-        for proj in self.projects:
-            if proj.name == nme:
-                return proj
-        return None
-        
-        
-    def getProject(self, name):
-        
-        for proj in self.projects:
-            if proj.name == name:
-                return proj
         
         
     def addObject(self, obj):
         
-        proj = self.currentProject()
-        if proj:
-            proj.addObject(obj)
-            
-        self.projectExplorer.updateWorkspace()
+        self.project.addObject(obj)
         self.editor.openTab(obj)
         self.editor.tabWidget.setCurrentWidget(obj)
         
         
     def delete(self):
         
-        selected = self.projectExplorer.selectedObject()
-        if not isinstance(selected, Project.Project):
-            if selected.isdeleteable:
-                self.currentProject().objects[selected.identifier].remove(selected)
-                self.editor.closeTab(self.editor.tabWidget.indexOf(selected))
-                if len(self.currentProject().objects[selected.identifier]) == 0:
-                    self.currentProject().objects.pop(selected.identifier, None)
-        self.projectExplorer.updateWorkspace()
+        selected = self.project.selectedObject()
+        if selected.isdeleteable:
+            self.project.removeObject(selected)
+            self.editor.closeTab(self.editor.tabWidget.indexOf(selected))
         
         
     def runClient(self):
@@ -245,92 +206,100 @@ class MainWindow(QtGui.QMainWindow):
         
         self.exportProject()
         
-        path = self.config["workspace"]+"/"+self.currentProject().name
+        path = self.projectPath
         gradlew.runClient(path, self.console)
         
         
     def createNewProject(self):
         
         self.console.clear()
-            
-        arg = Project.Constructor(self).getParams(self)
-        if arg:
-            #build the file structure
-            os.mkdir(self.config["workspace"]+"/"+arg[0])
-            #file to mark the folder as a project
-            f = open(self.config["workspace"]+"/"+arg[0]+"/mcmodderproject", "w")
-            f.write(VERSION)
-            f.close()
-            #install forge modloader
-            gradlew.installForge(self.config["workspace"]+"/"+arg[0], self.console)
-            
-            #generate a BaseMod instance
-            self.projects.append(Project.Project(self, arg[0]))
-            for n, p, addon in self.addons:
-                if "onProjectCreated" in dir(addon):
-                    addon.onProjectCreated(self, self.projects[-1])
-            
-            self.save(self.projects[-1])
-            
-            self.projectExplorer.updateWorkspace()
+        
+        path = QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
+        if path != "":
+            name, ok = QtGui.QInputDialog.getText(self, self.translations.getTranslation("newProject"), self.translations.getTranslation("name"))
+            if ok:
+                self.projectPath = path+"/"+name
+                self.project.name = name
+                #build the file structure
+                os.mkdir(self.projectPath)
+                #file to mark the folder as a project
+                f = open(self.projectPath+"/mcmodderproject", "w")
+                f.write(VERSION)
+                f.close()
+                #install forge modloader
+                gradlew.installForge(self.projectPath, self.console)
+                
+                #generate a BaseMod instance
+                for n, p, addon in self.addons:
+                    if "onProjectCreated" in dir(addon):
+                        addon.onProjectCreated(self)
+                
+                self.save()
+                
+                
+    def openProject(self):
+        
+        path = str(QtGui.QFileDialog.getOpenFileName(self, self.translations.getTranslation("openProject"),
+                                                           "C:/",
+                                                           "JSON-Files"+" (*.json)"))
+        if not path == "":
+            self.projectPath = "/".join(path.replace("\\", "/").split("/")[:-1])
+            self.project.load(path)
             
             
     def exportProject(self):
         
         self.save()
         
-        proj = self.currentProject()
-        
         #clear the current project
-        path = self.config["workspace"]+"/"+proj.name+"/java/src/main"
+        path = self.projectPath+"/src/main"
         if os.path.exists(path):
             shutil.rmtree(path)
         
         #export the newly compiled source code
-        for t in proj.objects.keys():
-            for cls in proj.objects[t]:
+        for t in self.project.objects.keys():
+            for cls in self.project.objects[t]:
                 cls.completeModData()
         
-        for t in proj.objects.keys():
-            for cls in proj.objects[t]:
+        for t in self.project.objects.keys():
+            for cls in self.project.objects[t]:
                 cls.export()
                 
                 
     def exportJar(self):
         
         path = QtGui.QFileDialog.getExistingDirectory(None, self.translations.getTranslation("destinationSelection"),
-                                                      self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs",
+                                                      self.projectPath+"/java/build/libs",
                                                       QtGui.QFileDialog.ShowDirsOnly)
         if path != "":
-            buildGradle = open(self.config["workspace"]+"/"+self.currentProject().name+"/java/build.gradle", "w")
+            buildGradle = open(self.projectPath+"/java/build.gradle", "w")
             gradleSrc = source.SrcBuildGradle.main
-            gradleSrc = gradleSrc.replace("<version>", self.currentProject().objects["BaseMod"][0].version)
-            gradleSrc = gradleSrc.replace("<mainPackage>", self.currentProject().objects["BaseMod"][0].package())
-            gradleSrc = gradleSrc.replace("<modname>", self.currentProject().objects["BaseMod"][0].name)
+            gradleSrc = gradleSrc.replace("<version>", self.project.objects["BaseMod"][0].version)
+            gradleSrc = gradleSrc.replace("<mainPackage>", self.project.objects["BaseMod"][0].package())
+            gradleSrc = gradleSrc.replace("<modname>", self.project.objects["BaseMod"][0].name)
             buildGradle.write(gradleSrc)
             buildGradle.close()
             
             self.exportProject()
-            gradlew.exportMod(self.config["workspace"]+"/"+self.currentProject().name, self.console)
-            if self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar" != path+"/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar":
-                shutil.copy2(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar",
-                             path+"/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
-                os.remove(self.config["workspace"]+"/"+self.currentProject().name+"/java/build/libs/"+self.currentProject().objects["BaseMod"][0].modid()+"-"+self.currentProject().objects["BaseMod"][0].version+".jar")
+            gradlew.exportMod(self.projectPath, self.console)
+            if self.projectPath+"/java/build/libs/"+self.project.objects["BaseMod"][0].modid()+"-"+self.project.objects["BaseMod"][0].version+".jar" != path+"/"+self.project.objects["BaseMod"][0].modid()+"-"+self.project.objects["BaseMod"][0].version+".jar":
+                shutil.copy2(self.projectPath+"/java/build/libs/"+self.project.objects["BaseMod"][0].modid()+"-"+self.project.objects["BaseMod"][0].version+".jar",
+                             path+"/"+self.project.objects["BaseMod"][0].modid()+"-"+self.project.objects["BaseMod"][0].version+".jar")
+                os.remove(self.projectPath+"/java/build/libs/"+self.project.objects["BaseMod"][0].modid()+"-"+self.project.objects["BaseMod"][0].version+".jar")
                 
                 
-    def save(self, proj=None):
+    def save(self):
         
-        if proj == None:
-            proj = self.currentProject()
+        f = open(self.projectPath+"/moddata.json", "w")
         
-        f = open(self.config["workspace"]+"/"+proj.name+"/moddata.json", "w")
-        
-        data = proj.save()
+        data = self.project.save()
         json.dump(data, f, indent=4, separators=(',', ': '))
         
         f.close()
         
-        proj.unsavedChanges = False
+        self.console.write("Saved Mod to "+self.projectPath)
+        
+        self.project.unsavedChanges = False
                 
                 
     def undo(self):

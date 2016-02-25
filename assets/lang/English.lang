@@ -33,3 +33,5 @@ restartToLoadAddons=A restart of the program is needed for the addons to be load
 craftingTableRecipe=Crafting Table Recipe
 save=Save
 delete=Delete
+openProject=Open Project
+open=Open

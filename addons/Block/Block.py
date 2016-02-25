@@ -73,8 +73,6 @@ class Block(_base):
                      "additionalAttributes":[],
                      "additionalDeclarations":[]}
         
-        self.mainWindow.projectExplorer.updateWorkspace()
-        
         self.initUI()
         
         
@@ -267,7 +265,7 @@ class Block(_base):
         
     def export(self):
         """Export the main java file"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java/"+self.package().replace(".", "/")
+        path = self.mainWindow.projectPath+"/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".java", "w")
@@ -275,7 +273,7 @@ class Block(_base):
         f.close()
         
         """Export the blockstates"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
+        path = self.mainWindow.projectPath+"/src/main/resources/assets/"+self.data["modid"][0]+"/blockstates"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -286,7 +284,7 @@ class Block(_base):
         f.close()
         
         """Export the blockmodel"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
+        path = self.mainWindow.projectPath+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/block"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -294,7 +292,7 @@ class Block(_base):
         f.close()
         
         """Export the itemmodel"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
+        path = self.mainWindow.projectPath+"/src/main/resources/assets/"+self.data["modid"][0]+"/models/item"
         if not os.path.exists(path):
             os.makedirs(path)
         f = open(path+"/"+self.classname()+".json", "w")
@@ -302,13 +300,13 @@ class Block(_base):
         f.close()
         
         """Export the textures"""
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
+        path = self.mainWindow.projectPath+"/src/main/resources/assets/"+self.data["modid"][0]+"/textures/blocks"
         if not os.path.exists(path):
             os.makedirs(path)
         for idx in range(len(self.modeldata[2])):
             shutil.copy2(self.modeldata[2][idx], path+"/"+self.unlocalizedName()+"_"+str(idx)+".png")
         
-        path = self.mainWindow.config["workspace"]+"/"+self.project.name+"/src/main/java"
+        path = self.mainWindow.projectPath+"/src/main/java"
         self.mainWindow.console.write(self.name+": Successfully exported to "+path+"/"+self.package().replace(".", "/")+"/"+self.classname()+".java")
         
         

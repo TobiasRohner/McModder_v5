@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-import pickle
+import json
 from PyQt4 import QtGui, QtCore
 
 
@@ -14,12 +14,16 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 class ProjectExplorer(QtGui.QDockWidget):
     
-    def __init__(self, mainWindow):
+    def __init__(self, mainWindow, name):
         QtGui.QDockWidget.__init__(self)
         
         self.mainWindow = mainWindow
         
-        self.projects = []
+        self.name = name
+        
+        self.unsavedChanges = False
+        
+        self.objects = {}
         
         self.initUI()
         
@@ -34,40 +38,65 @@ class ProjectExplorer(QtGui.QDockWidget):
         self.setWindowTitle(self.mainWindow.translations.getTranslation("projectExplorer"))
         
         
-    def updateWorkspace(self):
+    def load(self, path):
         
-        #list all projects out of the folders
-        for proj in self.mainWindow.projects:
-            exists = False
-            p = None
-            for project in self.projects:
-                if project.name == proj.name:
-                    exists = True
-                    p = project
-                    break
-            if exists:
-                p.updateProject()
-            else:
-                p = Project(self.mainWindow, proj.name)
-                self.projects.append(p)
-                p.updateProject()
-                    
-        #self.treeWidget.clear()
-        self.treeWidget.addTopLevelItems(self.projects)
+        f = open(path)
+        data = json.load(f)
+        f.close()
+        
+        self.name = path.replace("\\", "/").split("/")[-2]
+        
+        for key in data.keys():
+            objData = data[key]
+            cls = None
+            exec("cls = self.getModule('"+objData["classtype"]+"')."+objData["classtype"]+"(self.mainWindow, objData['name'])")
+            cls.load(objData)
+            self.addObject(cls)
+            
+            
+    def getModule(self, name):
+        
+        for mod in self.mainWindow.addons:
+            if mod[0] == name:
+                return mod[2]
+                
+                
+    def addObject(self, obj):
+        
+        if not obj.identifier in self.objects.keys():
+            self.objects[obj.identifier] = []
+            
+        self.objects[obj.identifier].append(obj)
+        
+        obj.project = self
+        
+        ident = self.treeWidget.findItems(obj.identifier, QtCore.Qt.MatchExactly)
+        if len(ident) == 0:
+            identItem = QtGui.QTreeWidgetItem()
+            identItem.setText(0, obj.identifier)
+            self.treeWidget.addTopLevelItem(identItem)
+        else:
+            identItem = ident[0]
+        subItem = QtGui.QTreeWidgetItem()
+        subItem.setText(0, obj.name)
+        identItem.addChild(subItem)
+        
         self.treeWidget.sortItems(0, QtCore.Qt.AscendingOrder)
         
         
-    def selectedProject(self):
+    def removeObject(self, obj):
         
-        items = self.treeWidget.selectedItems()
-        if len(items) > 0:
-            item = items[0]
-            while not isinstance(item, Project):
-                item = item.parent()
+        identItem = self.treeWidget.findItems(obj.identifier, QtCore.Qt.MatchExactly)[0]
+        for i in range(identItem.childCount()):
+            if identItem.child(i).text(0) == obj.name:
+                identItem.removeChild(identItem.child(i))
+                break
+        self.treeWidget.sortItems(0, QtCore.Qt.AscendingOrder)
         
-            return item.text(0)
-            
-        return None
+        self.objects[obj.identifier].remove(obj)
+        if len(self.objects[obj.identifier]) == 0:
+            self.objects.pop(obj.identifier, None)
+            self.treeWidget.removeItemWidget(self.treeWidget.findItems(obj.identifier, QtCore.Qt.MatchExactly))
         
         
     def selectedObject(self):
@@ -75,13 +104,9 @@ class ProjectExplorer(QtGui.QDockWidget):
         items = self.treeWidget.selectedItems()
         if len(items) > 0:
             item = items[0]
-            if isinstance(item, Project):
-                for proj in self.mainWindow.projects:
-                    if proj.name == item.text(0):
-                        return proj
-            elif item.parent() and item.parent().parent() and not item.parent().parent().parent():
+            if item.parent() and not item.parent().parent():
                 ident = item.parent().text(0)
-                for obj in self.mainWindow.currentProject().objects[ident]:
+                for obj in self.objects[ident]:
                     if obj.name == item.text(0):
                         return obj
         return None
@@ -91,11 +116,10 @@ class ProjectExplorer(QtGui.QDockWidget):
         
         #low level item
         cls = None
-        if item.parent() and item.parent().parent() and not item.parent().parent().parent():
+        if item.parent() and not item.parent().parent():
             name = item.text(0)
             identifier = item.parent().text(0)
-            classes = self.mainWindow.currentProject().objects[identifier]
-            for c in classes:
+            for c in self.objects[identifier]:
                 if c.name == name:
                     cls = c
                     
@@ -104,61 +128,16 @@ class ProjectExplorer(QtGui.QDockWidget):
         
     def renameObject(self, obj, name):
         
-        items = [i for i in self.treeWidget.findItems(obj.name, QtCore.Qt.MatchRecursive) if i.parent() and i.parent().parent() and not i.parent().parent().parent()]
+        items = [i for i in self.treeWidget.findItems(obj.name, QtCore.Qt.MatchRecursive) if i.parent() and not i.parent().parent()]
         for i in items:
             if i.parent().text(0) == obj.identifier:
                 i.setText(0, name)
                 
                 
-                
-                
-                
-class Project(QtGui.QTreeWidgetItem):
-    
-    def __init__(self, mainWindow, name):
-        QtGui.QTreeWidgetItem.__init__(self)
+    def save(self):
         
-        self.mainWindow = mainWindow
-        self.name = name
-        
-        self.icon = QtGui.QIcon(BASEPATH+"/assets/icons/mod.png")
-        
-        self.setText(0, self.name)
-        self.setIcon(0, self.icon)
-        
-        
-    def updateProject(self):
-        
-        expanded = []
-        for c in range(self.childCount()):
-            if self.child(0).isExpanded():
-                expanded.append(self.child(0).text(0))
-            self.removeChild(self.child(0))
-        objects = self.mainWindow.getProject(self.name).objects
-        for ident in objects.keys():
-            exists = False
-            for c in range(self.childCount()):
-                if self.child(c).text(0) == ident:
-                    exists = True
-                    subItem = self.child(c)
-            if not exists:
-                subItem = QtGui.QTreeWidgetItem()
-                subItem.setText(0, ident)
-                self.addChild(subItem)
-                
-            if ident in expanded:
-                subItem.setExpanded(True)
-                
-            for obj in objects[ident]:
-                exists = False
-                for c in range(subItem.childCount()):
-                    if subItem.child(c).text(0) == obj.name:
-                        exists = True
-                        subsubItem = subItem.child(c)
-                if not exists:
-                    subsubItem = QtGui.QTreeWidgetItem()
-                    subsubItem.setText(0, obj.name)
-                    subItem.addChild(subsubItem)
-                    
-            subItem.sortChildren(0, QtCore.Qt.AscendingOrder)
-        self.sortChildren(0, QtCore.Qt.AscendingOrder)
+        data = {}
+        for key in self.objects.keys():
+            for obj in self.objects[key]:
+                data[obj.name] = obj.save()
+        return data
