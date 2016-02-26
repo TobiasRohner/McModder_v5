@@ -10,6 +10,7 @@ from classes import _base
 from widgets import menus
 from PyQt4 import QtGui, QtCore, uic
 
+guiDef = imp.load_source("guiDef", ADDONPATH+"/guiDef.py")
 SrcCraftingTable = imp.load_source("SrcCraftingTable", ADDONPATH+"/SrcCraftingTable.py")
 
 
@@ -23,27 +24,31 @@ class CraftingTable(_base):
         
         self.guiType = "CraftingTable"
         self.name = "CraftingTable"
-        self.isdeleteable = False
+        self.deleteable = False
+        
+        self.gui = guiDef.GUIWidget(self, BASEPATH+"/assets/textures/gui/container/crafting_table.png")
+        self.gui.slots = [guiDef.Slot(self.gui, 30,17), guiDef.Slot(self.gui, 48,17), guiDef.Slot(self.gui, 66,17),
+                          guiDef.Slot(self.gui, 30,35), guiDef.Slot(self.gui, 48,35), guiDef.Slot(self.gui, 66,35),
+                          guiDef.Slot(self.gui, 30,53), guiDef.Slot(self.gui, 48,53), guiDef.Slot(self.gui, 66,53),
+                          guiDef.Slot(self.gui, 125,35)]
+                          
+        self.dragItem = None
         
         self.initUI()
-        
-        
-#    def postInit(self, project):
-#        
-#        self.itemList.project = project
         
         
     def initUI(self):
         
         self.ui = uic.loadUi(ADDONPATH+"/CraftingTable.ui", self)
         
-#        self.itemList = menus.ItemList(self.mainWindow)
-#        self.tableLayout.addWidget(self.itemList)
+        self.setAcceptDrops(True)
         
-        self.guiWidget = GUIGraphic(self)
-        self.guiWidget.setMinimumSize(176, 166)
-        self.guiWidget.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        self.tableLayout.addWidget(self.guiWidget)
+        self.itemList = menus.ItemList(self.mainWindow)
+        self.tableLayout.addWidget(self.itemList)
+        
+        self.gui.setMinimumSize(176, 166)
+        self.gui.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        self.tableLayout.addWidget(self.gui)
         
         
     def save(self):
@@ -52,45 +57,6 @@ class CraftingTable(_base):
                 "classtype":self.classtype,
                 "name":self.name}
         return data
-    
-    
-    
-    
-class GUIGraphic(QtGui.QWidget):
-    
-    def __init__(self, master):
-        QtGui.QWidget.__init__(self)
-        
-        self.master = master
-        
-        self.texture = QtGui.QPixmap(BASEPATH+"/assets/textures/gui/container/crafting_table.png")
-        
-        
-    def paintEvent(self, event):
-        
-        qp = QtGui.QPainter()
-        qp.begin(self)
-        self.drawTexture(qp)
-        qp.end()
-        
-        
-    def drawTexture(self, painter):
-        
-        width = self.texture.width()
-        height = self.texture.height()
-        aspect = float(width)/height
-        
-        if float(self.width())/self.height() > aspect:
-            h = self.height()
-            w = int(aspect*h)
-            xc = int(float(self.width()-w)/2)
-            yc = 0
-        else:
-            w = self.width()
-            h = int(float(w)/aspect)
-            xc = 0
-            yc = int(float(self.height()-h)/2)
-        painter.drawPixmap(xc, yc, w, h, self.texture)
         
         
         

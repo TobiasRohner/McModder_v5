@@ -27,6 +27,8 @@ class Item(_base):
         self.texture = BASEPATH+"/assets/textures/items/unknown.png"
         self.creativeTab = "Misc"
         
+        self.listWidgetItem.setText(self.name)
+        
         self.data = {"package":[],
                      "imports":[],
                      "classname":[],
@@ -56,11 +58,13 @@ class Item(_base):
     def setName(self, name):
         
         self.mainWindow.updateName(self, name)
+        self.listWidgetItem.setText(name)
         
         
     def setTexture(self, texture):
         
         self.texture = texture
+        self.listWidgetItem.updateIcon(texture)
         
         
     def setTextureButton(self):
@@ -71,6 +75,7 @@ class Item(_base):
         if txt != "":
             self.texture = txt
             self.textureInput.setText(self.texture)
+            self.listWidgetItem.updateIcon(self.texture)
         
         
     def setCreativeTab(self, tab):
@@ -83,6 +88,12 @@ class Item(_base):
         self.nameInput.setText(self.name)
         self.textureInput.setText(self.texture)
         self.creativeDropdown.setCurrentIndex(self.creativeDropdown.findText(self.creativeTab))
+        
+        
+    def updateListWidgetItem(self):
+        
+        self.listWidgetItem.setText(self.name)
+        self.listWidgetItem.updateIcon(self.texture)
         
         
     def save(self):
@@ -208,6 +219,7 @@ def createItem(mainWindow):
     name, ok = QtGui.QInputDialog.getText(mainWindow, mainWindow.translations.getTranslation("newItem"), mainWindow.translations.getTranslation("name"))
     if ok:
         mainWindow.addObject(Item(mainWindow, name))
+        mainWindow.emit(QtCore.SIGNAL("UPDATE_ITEMLIST"))
 
 
 def init(mainWindow):

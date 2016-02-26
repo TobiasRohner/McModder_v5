@@ -95,6 +95,7 @@ class Block(_base):
     def setName(self, name):
         
         self.mainWindow.updateName(self, name)
+        self.listWidgetItem.setText(name)
         
         
     def setTransparent(self, checked):

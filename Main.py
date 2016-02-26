@@ -6,7 +6,7 @@ import imp
 import json
 import widgets
 from utils import translations, gradlew, Config, History
-from classes import Project, source
+from classes import source
 from PyQt4 import QtGui, QtCore, uic
 
 
@@ -193,7 +193,7 @@ class MainWindow(QtGui.QMainWindow):
     def delete(self):
         
         selected = self.project.selectedObject()
-        if selected.isdeleteable:
+        if selected.deleteable:
             self.project.removeObject(selected)
             self.editor.closeTab(self.editor.tabWidget.indexOf(selected))
         

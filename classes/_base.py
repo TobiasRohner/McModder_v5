@@ -2,6 +2,7 @@
 import abc
 import os
 import pickle
+from widgets import menus
 from PyQt4 import QtGui
 
 
@@ -22,6 +23,8 @@ class _base(QtGui.QWidget):
         self.name = "unknown"
         
         self.data = {}
+        
+        self.listWidgetItem = menus.ListWidgetItem(self.name, self.identifier, self.package())
         
         
     def postInit(self, project):
@@ -52,6 +55,8 @@ class _base(QtGui.QWidget):
             if isinstance(value, u"".__class__) or isinstance(value, str):
                 value = '"'+value+'"'
             exec("self."+key+"="+str(value))
+            
+        self.updateListWidgetItem()
         
         
     @abc.abstractmethod
@@ -100,5 +105,15 @@ class _base(QtGui.QWidget):
         
     @abc.abstractmethod
     def export(self):
+        
+        return
+        
+        
+    def getListWidgetItem(self):
+        
+        return self.listWidgetItem
+        
+        
+    def updateListWidgetItem(self):
         
         return

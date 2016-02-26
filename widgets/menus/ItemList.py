@@ -2,7 +2,7 @@
 import os
 import sys
 import json
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 
 BASEPATH = os.path.dirname(sys.argv[0])
 
@@ -13,15 +13,22 @@ ITEMS = []
 
 class ItemList(QtGui.QListWidget):
     
-    def __init__(self, mainWindow, project=None):
+    def __init__(self, mainWindow):
         QtGui.QListWidget.__init__(self)
         
         self.mainWindow = mainWindow
         
         self.standardItems = []
-        self.project = project
         
         self.initMCItems()
+        for item in self.standardItems:
+            self.addItem(item)
+        self.reloadItems()
+        
+        self.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
+        self.setDropIndicatorShown(True)
+        
+        self.connect(self.mainWindow, QtCore.SIGNAL("UPDATE_ITEMLIST"), self.reloadItems)
         
         
     def initMCItems(self):
@@ -32,54 +39,66 @@ class ItemList(QtGui.QListWidget):
         for name in data.keys():
             texPath = BASEPATH+"/assets/textures/icons/"+data[name]["texture"]
             if data[name]["type"] == "Item":
-                self.standardItems.append(Item(None, name, "Items."+data[name]["name"], texPath))
+                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Items."+data[name]["name"], texPath))
             elif data[name]["type"] == "Block":
-                self.standardItems.append(Item(None, name, "Blocks."+data[name]["name"], texPath))
-    
-    
-    def customItems(self):
-        
-        items = []
-        for item in self.project.objects["Item"]:
-            items.append(Item(item))
-        return items
+                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Blocks."+data[name]["name"], texPath))
     
     
     def reloadItems(self):
         
-        self.clear()
-        for item in self.standardItems:
-            self.addItem(item)
-        for item in self.customItems(self.project):
-            self.addItem(item)
+        if "Item" in self.mainWindow.project.objects.keys():
+            for item in self.mainWindow.project.objects["Item"]:
+                i = self.findItems(item.name, QtCore.Qt.MatchExactly)
+                if len(i) == 0:
+                    self.addItem(item.getListWidgetItem())
+            itemnames = [it.name for it in self.mainWindow.project.objects["Item"]]+[self.item(it).text() for it in range(self.count())]
+            for i in range(self.count()):
+                if not self.item(i).text() in itemnames:
+                    self.removeItemWidget(self.item(i))
         self.sortItems()
         
         
-    def showEvent(self, event):
+    def startDrag(self, supportedActions):
         
-        self.reloadItems()
+        selectedItem = self.selectedItems()[0]
+        
+        drag = QtGui.QDrag(self)
+        
+        mimeData = QtCore.QMimeData()
+        mimeData.setText(selectedItem.text()+";"+selectedItem.identifier)
+        
+        pixmap = selectedItem.texture.scaled(50, 50)
+        painter = QtGui.QPainter(pixmap)
+        painter.setCompositionMode(painter.CompositionMode_DestinationIn)
+        painter.fillRect(pixmap.rect(), QtGui.QColor(0,0,0,127))
+        painter.end()
+        
+        drag.setMimeData(mimeData)
+        drag.setPixmap(pixmap)
+        
+        drag.exec_(QtCore.Qt.MoveAction)
         
         
         
         
-class Item(QtGui.QListWidgetItem):
+class ListWidgetItem(QtGui.QListWidgetItem):
     
-    def __init__(self, item):
+    def __init__(self, name, identifier, package, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
         QtGui.QListWidgetItem.__init__(self)
         
-        self.item = item
-        self.package = item.package()
-        self.texture = QtGui.QPixmap(item.texture)
+        if not os.path.exists(texturepath):
+            texturepath = BASEPATH+"/assets/textures/icons/unknown.png"
         
-        self.setText(item.name)
-        self.setIcon(QtGui.QIcon(self.texture))
+        self.setText(name)
+        self.identifier = identifier
+        self.package = package
+        self.texture = QtGui.QPixmap(texturepath)
+        self.iconObj = QtGui.QIcon(self.texture)
+        self.setIcon(self.iconObj)
         
         
-    def getName(self):
+    def updateIcon(self, path):
         
-        return self.item.name
-            
-            
-    def getPackage(self):
-        
-        return self.item.package()
+        self.texture = QtGui.QPixmap(path)
+        self.iconObj = QtGui.QIcon(self.texture)
+        self.setIcon(self.iconObj)
