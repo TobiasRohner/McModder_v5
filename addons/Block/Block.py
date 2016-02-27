@@ -96,6 +96,7 @@ class Block(_base):
         
         self.mainWindow.updateName(self, name)
         self.listWidgetItem.setText(name)
+        self.listWidgetItem.instancename = self.instancename()
         
         
     def setTransparent(self, checked):

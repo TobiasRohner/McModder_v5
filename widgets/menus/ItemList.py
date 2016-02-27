@@ -39,9 +39,9 @@ class ItemList(QtGui.QListWidget):
         for name in data.keys():
             texPath = BASEPATH+"/assets/textures/icons/"+data[name]["texture"]
             if data[name]["type"] == "Item":
-                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Items."+data[name]["name"], texPath))
+                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Items."+data[name]["name"], "net.minecraft.init.Items", texPath))
             elif data[name]["type"] == "Block":
-                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Blocks."+data[name]["name"], texPath))
+                self.standardItems.append(ListWidgetItem(name, "Vanilla", "Blocks."+data[name]["name"], "net.minecraft.init.Blocks", texPath))
     
     
     def reloadItems(self):
@@ -90,7 +90,7 @@ class ItemList(QtGui.QListWidget):
         
 class ListWidgetItem(QtGui.QListWidgetItem):
     
-    def __init__(self, name, identifier, instancename, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
+    def __init__(self, name, identifier, instancename, package, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
         QtGui.QListWidgetItem.__init__(self)
         
         if not os.path.exists(texturepath):
@@ -99,6 +99,7 @@ class ListWidgetItem(QtGui.QListWidgetItem):
         self.setText(name)
         self.identifier = identifier
         self.instancename = instancename
+        self.package = package
         self.texture = QtGui.QPixmap(texturepath)
         self.iconObj = QtGui.QIcon(self.texture)
         self.setIcon(self.iconObj)

@@ -258,3 +258,8 @@ class ItemStack():
         self.count = data["count"]
         if data["item"] != None:
             self.item = self.master.master.itemList.getItem(data["item"]["name"], data["item"]["identifier"])
+            
+            
+    def getItemStack(self):
+        
+        return "new ItemStack("+self.item.instancename+", "+str(self.count)+")"

@@ -172,7 +172,13 @@ class CraftingTable(_base):
         
         if cls.identifier == "BaseMod":
             
-            data["commonInit"] = self.generateSrc()
+            recSrc = []
+            for r in range(self.recipeList.count()):
+                recipe = self.recipeList.item(r)
+                recSrc.append(recipe.getSrc())
+            data["commonInit"] = ["\n\n".join(recSrc)]
+            
+        return data
             
             
     def generateSrc(self, src):
@@ -190,7 +196,9 @@ class CraftingTable(_base):
         
         success = True
         
-        self.data["output"] += [self.gui.slots[9].getItemStack()]
+        for r in range(self.recipeList.count()):
+            recipe = self.recipeList.item(r)
+            success = success and recipe.completeModData()
         
         if success:
             self.mainWindow.console.write(self.name+": Successfully completed Mod Data")
@@ -223,7 +231,19 @@ class Recipe(QtGui.QListWidgetItem):
                      "I6":[],
                      "I7":[],
                      "I8":[],
-                     "I9":[]}
+                     "I9":[],
+                     "items":[]}
+                     
+        self.ACRO = ["A", "B", "C", "D", "E", "F", "G", "H", "I", " "]
+        
+        
+    def is1x1(self):
+        
+        count = 0
+        for item in self.items:
+            if item.item != None:
+                count += 1
+        return count == 1
                      
                      
     def is2x2(self):
@@ -241,23 +261,39 @@ class Recipe(QtGui.QListWidgetItem):
         return ((s3 and s6 and s7 and s8 and s9) or 
                 (s1 and s4 and s7 and s8 and s9) or
                 (s1 and s2 and s3 and s6 and s9) or
-                (s1 and s2 and s3 and s4 and s7))
+                (s1 and s2 and s3 and s4 and s7),
+                ((s3 and s6 and s7 and s8 and s9),
+                 (s1 and s4 and s7 and s8 and s9),
+                 (s1 and s2 and s3 and s6 and s9),
+                 (s1 and s2 and s3 and s4 and s7)))
                 
                 
     def is3x3(self):
         
-        s1 = self.master.gui.slots[0].item == None
-        s2 = self.master.gui.slots[1].item == None
-        s3 = self.master.gui.slots[2].item == None
-        s4 = self.master.gui.slots[3].item == None
-        s5 = self.master.gui.slots[4].item == None
-        s6 = self.master.gui.slots[5].item == None
-        s7 = self.master.gui.slots[6].item == None
-        s8 = self.master.gui.slots[7].item == None
-        s9 = self.master.gui.slots[8].item == None
+        s1 = self.master.gui.slots[0].item != None
+        s2 = self.master.gui.slots[1].item != None
+        s3 = self.master.gui.slots[2].item != None
+        s4 = self.master.gui.slots[3].item != None
+        s5 = self.master.gui.slots[4].item != None
+        s6 = self.master.gui.slots[5].item != None
+        s7 = self.master.gui.slots[6].item != None
+        s8 = self.master.gui.slots[7].item != None
+        s9 = self.master.gui.slots[8].item != None
         
-        return ((not ((s1 or s2 or s3) and (s7 or s8 or s9))) and
-                (not ((s1 or s4 or s7) and (s3 or s6 or s9))))
+        return (((s1 or s2 or s3) and (s7 or s8 or s9)) or
+                ((s1 or s4 or s7) and (s3 or s6 or s9)))
+                
+                
+    def isShapeless(self):
+        
+        return self.is1x1()
+                
+                
+    def getItemAcronym(self, usedItems, item):
+        
+        if item in usedItems:
+            return self.ACRO[usedItems.index(item)]
+        return " "
                 
                 
     def completeModData(self):
@@ -267,7 +303,71 @@ class Recipe(QtGui.QListWidgetItem):
         
         success = True
         
+        usedItems = []
+        for stack in self.items:
+            if stack.item != None and not stack in usedItems:
+                usedItems.append(stack)
+        #if a 2x2 recipe is detected
+        is2 = self.is2x2()
+        if is2[0]:
+            if is2[1][0]:   #upper left
+                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[0])]
+                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[1])]
+                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[3])]
+                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[4])]
+            if is2[1][1]:   #upper right
+                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[1])]
+                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[2])]
+                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[4])]
+                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[5])]
+            if is2[1][2]:   #bottom left
+                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[3])]
+                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[4])]
+                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[6])]
+                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[7])]
+            if is2[1][3]:   #bottom right
+                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[4])]
+                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[5])]
+                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[7])]
+                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[8])]
+        #if a 3x3 recipe is detected
+        elif self.is3x3():
+            self.data["I1"] += [self.getItemAcronym(usedItems, self.items[0])]
+            self.data["I2"] += [self.getItemAcronym(usedItems, self.items[1])]
+            self.data["I3"] += [self.getItemAcronym(usedItems, self.items[2])]
+            self.data["I4"] += [self.getItemAcronym(usedItems, self.items[3])]
+            self.data["I5"] += [self.getItemAcronym(usedItems, self.items[4])]
+            self.data["I6"] += [self.getItemAcronym(usedItems, self.items[5])]
+            self.data["I7"] += [self.getItemAcronym(usedItems, self.items[6])]
+            self.data["I8"] += [self.getItemAcronym(usedItems, self.items[7])]
+            self.data["I9"] += [self.getItemAcronym(usedItems, self.items[8])]
+        #output
+        self.data["output"] += [self.items[9].getItemStack()]
+        #the items used with their acronym
+        items = []
+        for i in range(len(usedItems)):
+            items.append("'"+self.ACRO[i]+"'")
+            items.append(usedItems[i].item.instancename)
+        self.data["items"] += [", ".join(items)]
+        
         return success
+        
+        
+    def generateSrc(self, src):
+        
+        for d in self.data.keys():
+            src = src.replace("<"+d+">", "\n".join(self.data[d]))
+            
+        return src
+        
+        
+    def getSrc(self):
+        
+        if self.is2x2()[0]:
+            src = SrcCraftingTable.recipe2x2
+        elif self.is3x3():
+            src = SrcCraftingTable.recipe3x3
+        return self.generateSrc(src)
         
         
     def save(self):

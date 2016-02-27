@@ -24,7 +24,7 @@ class _base(QtGui.QWidget):
         
         self.data = {}
         
-        self.listWidgetItem = menus.ListWidgetItem(self.name, self.identifier, self.package())
+        self.listWidgetItem = menus.ListWidgetItem(self.name, self.identifier, self.instancename(), self.package())
         
         
     def postInit(self, project):
