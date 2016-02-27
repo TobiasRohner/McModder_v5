@@ -79,11 +79,18 @@ class ItemList(QtGui.QListWidget):
         drag.exec_(QtCore.Qt.MoveAction)
         
         
+    def getItem(self, name, identifier):
+        
+        for item in self.findItems(name, QtCore.Qt.MatchExactly):
+            if item.identifier == identifier:
+                return item
+        
+        
         
         
 class ListWidgetItem(QtGui.QListWidgetItem):
     
-    def __init__(self, name, identifier, package, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
+    def __init__(self, name, identifier, instancename, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
         QtGui.QListWidgetItem.__init__(self)
         
         if not os.path.exists(texturepath):
@@ -91,7 +98,7 @@ class ListWidgetItem(QtGui.QListWidgetItem):
         
         self.setText(name)
         self.identifier = identifier
-        self.package = package
+        self.instancename = instancename
         self.texture = QtGui.QPixmap(texturepath)
         self.iconObj = QtGui.QIcon(self.texture)
         self.setIcon(self.iconObj)
@@ -102,3 +109,8 @@ class ListWidgetItem(QtGui.QListWidgetItem):
         self.texture = QtGui.QPixmap(path)
         self.iconObj = QtGui.QIcon(self.texture)
         self.setIcon(self.iconObj)
+        
+        
+    def save(self):
+        
+        return {"identifier":self.identifier, "name":self.text()}

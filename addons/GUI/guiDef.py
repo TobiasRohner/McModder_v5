@@ -115,7 +115,7 @@ class GUIWidget(QtGui.QWidget):
             
     def itemFromInformation(self, identifier, name):
         
-        return self.master.itemList.findItems(name, QtCore.Qt.MatchExactly)[0]
+        return self.master.itemList.getItem(name, identifier)
         
         
     def dragEnterEvent(self, event):
@@ -144,7 +144,8 @@ class GUIWidget(QtGui.QWidget):
         
         slotIdx = self.inSlot(self.pos.x(), self.pos.y())
         if slotIdx != -1:
-            self.slots[slotIdx].item = self.itemFromInformation(identifier, name)
+            self.slots[slotIdx].setItem(self.itemFromInformation(identifier, name))
+            self.master.updateRecipe(self.slots)
         
         self.dragItem = None
         
@@ -156,19 +157,46 @@ class GUIWidget(QtGui.QWidget):
         
 class Slot():
     
-    def __init__(self, master, x, y):
+    def __init__(self, master, x, y, stackable=False):
         
         self.master = master
         
         self.x = x
         self.y = y
         
+        self.stackable = stackable
+        
         self.item = None
+        
+        self.count = 0
+        
+        self.font = QtGui.QPixmap(BASEPATH+"/assets/textures/font/ascii.png")
+        self.numberSize = (5,7)
+        self.numbers = [(0 ,24),
+                        (8 ,24),
+                        (16,24),
+                        (24,24),
+                        (32,24),
+                        (40,24),
+                        (48,24),
+                        (56,24),
+                        (64,24),
+                        (72,24)]
+        
+        
+    def setItem(self, item):
+        
+        if self.stackable and item == self.item:
+            self.count += 1
+        else:
+            self.item = item
+            self.count = 1
         
         
     def draw(self, painter):
         
         self.drawIcon(painter)
+        self.drawCount(painter)
     
     
     def drawIcon(self, painter):
@@ -177,3 +205,56 @@ class Slot():
             c, s = self.master.imageCornersInWidgetCoordinates()
             x, y = self.master.image2widgetCoords(self.x, self.y)
             painter.drawPixmap(x, y, 16*s[0]/self.master.texture.width(), 16*s[1]/self.master.texture.height(), self.item.texture)
+            
+            
+    def drawCount(self, painter):
+        
+        if self.count > 1:
+            c, s = self.master.imageCornersInWidgetCoordinates()
+            numbers = list(str(self.count))
+            numbers.reverse()
+            numbers = map(lambda n: int(n), numbers)
+            xpos = self.numberSize[0]
+            for n in numbers:
+                x, y = self.master.image2widgetCoords(self.x+16-xpos, self.y+16-self.numberSize[1])
+                painter.drawPixmap(x, y, self.numberSize[0]*s[0]/self.master.texture.width(), self.numberSize[1]*s[1]/self.master.texture.height(),
+                                   self.font,
+                                   self.numbers[n][0], self.numbers[n][1], self.numberSize[0], self.numberSize[1])
+                xpos += self.numberSize[0]
+                
+                
+    def getItemStack(self):
+        
+        return "new ItemStack("+self.item.instancename+", "+str(self.count)+")"
+        
+        
+        
+        
+        
+class ItemStack():
+    
+    def __init__(self, master, item, count=1):
+        
+        self.item = item
+        self.count = count
+        
+        self.master = master
+        
+        
+    def save(self):
+        
+        data = {}
+        
+        data["count"] = self.count
+        data["item"] = None
+        if self.item != None:
+            data["item"] = self.item.save()
+        
+        return data
+        
+        
+    def load(self, data):
+        
+        self.count = data["count"]
+        if data["item"] != None:
+            self.item = self.master.master.itemList.getItem(data["item"]["name"], data["item"]["identifier"])

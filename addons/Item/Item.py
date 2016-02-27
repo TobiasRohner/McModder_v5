@@ -59,6 +59,7 @@ class Item(_base):
         
         self.mainWindow.updateName(self, name)
         self.listWidgetItem.setText(name)
+        self.listWidgetItem.instancename = self.instancename()
         
         
     def setTexture(self, texture):
