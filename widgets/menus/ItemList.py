@@ -65,7 +65,7 @@ class ItemList(QtGui.QListWidget):
         drag = QtGui.QDrag(self)
         
         mimeData = QtCore.QMimeData()
-        mimeData.setText(selectedItem.text()+";"+selectedItem.identifier)
+        mimeData.setText(selectedItem.text()+";"+selectedItem.identifier+";1")
         
         pixmap = selectedItem.texture.scaled(50, 50)
         painter = QtGui.QPainter(pixmap)

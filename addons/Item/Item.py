@@ -28,6 +28,7 @@ class Item(_base):
         self.creativeTab = "Misc"
         
         self.listWidgetItem.setText(self.name)
+        self.listWidgetItem.instancename = self.instancename()
         
         self.data = {"package":[],
                      "imports":[],

@@ -26,6 +26,8 @@ class GUIWidget(QtGui.QWidget):
         
         self.dragItem = None
         
+        self.lastClick = [False, QtCore.QPoint(), -1]
+        
         self.setAcceptDrops(True)
                       
                       
@@ -118,11 +120,67 @@ class GUIWidget(QtGui.QWidget):
         return self.master.itemList.getItem(name, identifier)
         
         
+    def mousePressEvent(self, event):
+        
+        slotIdx = self.inSlot(event.pos().x(), event.pos().y())
+        
+        self.lastClick[0] = True
+        self.lastClick[1] = event.pos()
+        self.lastClick[2] = slotIdx
+        
+        
+    def mouseReleaseEvent(self, event):
+        
+        self.lastClick[0] = False
+                
+                
+    def mouseMoveEvent(self, event):
+        
+        if self.lastClick[0]:
+            if (self.lastClick[1].x()-event.pos().x())**2+(self.lastClick[1].y()-event.pos().y())**2 > 5:
+                if self.lastClick[2] != -1:
+                    
+                    selectedSlot = self.slots[self.lastClick[2]]
+                    selectedItem = selectedSlot.item
+                    
+                    if selectedItem != None:
+                        
+                        drag = QtGui.QDrag(self)
+                        
+                        mimeData = QtCore.QMimeData()
+                        mimeData.setText(selectedItem.text()+";"+selectedItem.identifier+";"+str(selectedSlot.count))
+                        
+                        pixmap = selectedItem.texture.scaled(50, 50)
+                        painter = QtGui.QPainter(pixmap)
+                        painter.setCompositionMode(painter.CompositionMode_DestinationIn)
+                        painter.fillRect(pixmap.rect(), QtGui.QColor(0,0,0,127))
+                        painter.end()
+                        
+                        drag.setMimeData(mimeData)
+                        drag.setPixmap(pixmap)
+                        
+                        self.slots[self.lastClick[2]].item = None
+                        self.slots[self.lastClick[2]].count = 0
+                        
+                        drag.exec_(QtCore.Qt.MoveAction)
+            
+            
+    def mouseDoubleClickEvent(self, event):
+        
+        slotIdx = self.inSlot(event.pos().x(), event.pos().y())
+        
+        if slotIdx != -1:
+            count, ok = QtGui.QInputDialog.getInt(self, "Count", "Number:", value=self.slots[slotIdx].count, min=1, max=64)
+            if ok:
+                if self.slots[slotIdx].stackable:
+                    self.slots[slotIdx].count = count
+        
+        
     def dragEnterEvent(self, event):
         
         event.accept()
         data = event.mimeData().text()
-        name, identifier = data.split(";")
+        name, identifier, count = data.split(";")
         self.dragItem = self.itemFromInformation(identifier, name)
         
         
@@ -140,15 +198,23 @@ class GUIWidget(QtGui.QWidget):
     def dropEvent(self, event):
         
         data = event.mimeData().text()
-        name, identifier = data.split(";")
+        name, identifier, count = data.split(";")
         
         slotIdx = self.inSlot(self.pos.x(), self.pos.y())
         if slotIdx != -1:
-            self.slots[slotIdx].setItem(self.itemFromInformation(identifier, name))
+            self.slots[slotIdx].setItem(self.itemFromInformation(identifier, name), int(count))
             self.master.updateRecipe(self.slots)
         
         self.dragItem = None
         
+        self.repaint()
+        
+        
+    def resetSlots(self):
+        
+        for slot in self.slots:
+            slot.item = None
+            slot.count = 0
         self.repaint()
         
         
@@ -184,10 +250,14 @@ class Slot():
                         (72,24)]
         
         
-    def setItem(self, item):
+    def setItem(self, item, count=1):
         
-        if self.stackable and item == self.item:
-            self.count += 1
+        if self.stackable:
+            if item == self.item:
+                self.count += count
+            else:
+                self.item = item
+                self.count = count
         else:
             self.item = item
             self.count = 1

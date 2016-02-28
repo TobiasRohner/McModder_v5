@@ -51,7 +51,9 @@ class CraftingTable(_base):
         self.tableLayout.addWidget(self.gui)
         
         self.connect(self.newRecipeButton, QtCore.SIGNAL("clicked()"), self.addRecipe)
+        self.connect(self.removeRecipeButton, QtCore.SIGNAL("clicked()"), self.removeRecipe)
         self.connect(self.recipeList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.selectRecipe)
+        self.connect(self.recipeList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.renameRecipe)
         
         
     def addRecipe(self):
@@ -83,6 +85,14 @@ class CraftingTable(_base):
         self.selectRecipe(recipe)
         
         self.gui.repaint()
+        
+        
+    def removeRecipe(self):
+        
+        recipe = self.recipeList.currentItem()
+        self.recipeList.takeItem(self.recipeList.row(recipe))
+        
+        self.gui.resetSlots()
         
         
     def selectRecipe(self, recipe):
@@ -137,6 +147,16 @@ class CraftingTable(_base):
         recipe.items[7].count = slots[7].count
         recipe.items[8].count = slots[8].count
         recipe.items[9].count = slots[9].count
+        
+        
+    def renameRecipe(self, recipe):
+        
+        dialog = QtGui.QInputDialog()
+        dialog.setTextValue(recipe.text())
+        txt, ok = dialog.getText(self, "Change Name", "Name:")
+        
+        if ok:
+            recipe.setText(txt)
         
         
     def save(self):
