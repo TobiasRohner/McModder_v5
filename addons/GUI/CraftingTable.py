@@ -177,6 +177,7 @@ class CraftingTable(_base):
                 recipe = self.recipeList.item(r)
                 recSrc.append(recipe.getSrc())
             data["commonInit"] = ["\n\n".join(recSrc)]
+            data["imports"] = SrcCraftingTable.imports
             
         return data
             
@@ -223,15 +224,7 @@ class Recipe(QtGui.QListWidgetItem):
                       guiDef.ItemStack(self, None)]
         
         self.data = {"output":[],
-                     "I1":[],
-                     "I2":[],
-                     "I3":[],
-                     "I4":[],
-                     "I5":[],
-                     "I6":[],
-                     "I7":[],
-                     "I8":[],
-                     "I9":[],
+                     "grid":[],
                      "items":[]}
                      
         self.ACRO = ["A", "B", "C", "D", "E", "F", "G", "H", "I", " "]
@@ -284,15 +277,33 @@ class Recipe(QtGui.QListWidgetItem):
                 ((s1 or s4 or s7) and (s3 or s6 or s9)))
                 
                 
+    def crop(self, acro):
+        
+        while acro[0][0]==" " and acro[1][0]==" " and acro[2][0]==" ":
+            acro[0] = acro[0][1:]
+            acro[1] = acro[1][1:]
+            acro[2] = acro[2][1:]
+        while acro[0][-1]==" " and acro[1][-1]==" " and acro[2][-1]==" ":
+            acro[0] = acro[0][:-1]
+            acro[1] = acro[1][:-1]
+            acro[2] = acro[2][:-1]
+        while acro[0].count(" ") == len(acro[0]):
+            acro = acro[1:]
+        while acro[-1].count(" ") == len(acro[-1]):
+            acro = acro[:-1]
+            
+        return acro
+                
+                
     def isShapeless(self):
         
         return self.is1x1()
                 
                 
-    def getItemAcronym(self, usedItems, item):
+    def getItemAcronym(self, usedItems, stack):
         
-        if item in usedItems:
-            return self.ACRO[usedItems.index(item)]
+        if stack.item != None and stack.item in usedItems:
+            return self.ACRO[usedItems.index(stack.item)]
         return " "
                 
                 
@@ -305,49 +316,20 @@ class Recipe(QtGui.QListWidgetItem):
         
         usedItems = []
         for stack in self.items:
-            if stack.item != None and not stack in usedItems:
-                usedItems.append(stack)
-        #if a 2x2 recipe is detected
-        is2 = self.is2x2()
-        if is2[0]:
-            if is2[1][0]:   #upper left
-                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[0])]
-                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[1])]
-                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[3])]
-                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[4])]
-            if is2[1][1]:   #upper right
-                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[1])]
-                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[2])]
-                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[4])]
-                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[5])]
-            if is2[1][2]:   #bottom left
-                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[3])]
-                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[4])]
-                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[6])]
-                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[7])]
-            if is2[1][3]:   #bottom right
-                self.data["I1"] += [self.getItemAcronym(usedItems, self.items[4])]
-                self.data["I2"] += [self.getItemAcronym(usedItems, self.items[5])]
-                self.data["I3"] += [self.getItemAcronym(usedItems, self.items[7])]
-                self.data["I4"] += [self.getItemAcronym(usedItems, self.items[8])]
-        #if a 3x3 recipe is detected
-        elif self.is3x3():
-            self.data["I1"] += [self.getItemAcronym(usedItems, self.items[0])]
-            self.data["I2"] += [self.getItemAcronym(usedItems, self.items[1])]
-            self.data["I3"] += [self.getItemAcronym(usedItems, self.items[2])]
-            self.data["I4"] += [self.getItemAcronym(usedItems, self.items[3])]
-            self.data["I5"] += [self.getItemAcronym(usedItems, self.items[4])]
-            self.data["I6"] += [self.getItemAcronym(usedItems, self.items[5])]
-            self.data["I7"] += [self.getItemAcronym(usedItems, self.items[6])]
-            self.data["I8"] += [self.getItemAcronym(usedItems, self.items[7])]
-            self.data["I9"] += [self.getItemAcronym(usedItems, self.items[8])]
+            if stack.item != None and not stack.item.identifier+";"+stack.item.text() in [item.identifier+";"+item.text() for item in usedItems]:
+                usedItems.append(stack.item)
+        recipe = [[self.getItemAcronym(usedItems, self.items[0]), self.getItemAcronym(usedItems, self.items[1]), self.getItemAcronym(usedItems, self.items[2])],
+                  [self.getItemAcronym(usedItems, self.items[3]), self.getItemAcronym(usedItems, self.items[4]), self.getItemAcronym(usedItems, self.items[5])],
+                  [self.getItemAcronym(usedItems, self.items[6]), self.getItemAcronym(usedItems, self.items[7]), self.getItemAcronym(usedItems, self.items[8])]]
+        recipe = ",\n".join(['"'+"".join(c)+'"' for c in self.crop(recipe)])
+        self.data["grid"] += [recipe]
         #output
         self.data["output"] += [self.items[9].getItemStack()]
         #the items used with their acronym
         items = []
         for i in range(len(usedItems)):
             items.append("'"+self.ACRO[i]+"'")
-            items.append(usedItems[i].item.instancename)
+            items.append(usedItems[i].instancename)
         self.data["items"] += [", ".join(items)]
         
         return success
@@ -363,10 +345,7 @@ class Recipe(QtGui.QListWidgetItem):
         
     def getSrc(self):
         
-        if self.is2x2()[0]:
-            src = SrcCraftingTable.recipe2x2
-        elif self.is3x3():
-            src = SrcCraftingTable.recipe3x3
+        src = SrcCraftingTable.recipeShaped
         return self.generateSrc(src)
         
         

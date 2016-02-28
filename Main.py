@@ -255,6 +255,9 @@ class MainWindow(QtGui.QMainWindow):
         path = self.projectPath+"/src/main"
         if os.path.exists(path):
             shutil.rmtree(path)
+            
+        os.makedirs(path+"/java")
+        os.makedirs(path+"/resources")
         
         #export the newly compiled source code
         for t in self.project.objects.keys():
