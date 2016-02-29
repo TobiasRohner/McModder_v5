@@ -21,6 +21,16 @@ if BASEPATH[-5:] == "utils":
 
 
 def installForge(installationPath, console):
+    """
+    installForge(str, widgets.console.Console)
+    
+    Install Forge to the specified path.
+    Stream the console output to the specified console.
+    
+    :param installationPath: The path for Forge to be installed to
+    :type installationPath: String
+    :param console: The console for the output to be streamed to
+    """
     
     #download forge
     zipPath = _downloadForge(installationPath)
@@ -42,6 +52,12 @@ def installForge(installationPath, console):
 
 
 def runClient(projectPath, console):
+    """
+    Run the Minecraft Client with the Forge Mod installed.
+    
+    :param projectPath: Path to the root folder of Forge
+    :param console: The console for the output to be streamed to
+    """
     
     os.chdir(projectPath)
     process = subprocess.Popen('"'+projectPath+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
@@ -54,6 +70,12 @@ def runClient(projectPath, console):
 
 
 def exportMod(projectPath, console):
+    """
+    Export the Mod as a .jar.
+    
+    :param projectPath: Path to the root folder of Forge
+    :param console: The console for the output to be streamed to
+    """
     
     path = projectPath+"/java"
     
@@ -68,6 +90,9 @@ def exportMod(projectPath, console):
 
 
 def _downloadForge(path):
+    """
+    Download Forge from FORGE_URL
+    """
     
     zipPath = path+"/"+FORGE_URL.split("/")[-1]
     f = open(zipPath, "wb")

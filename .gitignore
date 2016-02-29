@@ -111,3 +111,6 @@ $RECYCLE.BIN/
 #modder workspace
 workspace/
 dev/
+doc/
+config.dox
+buildDoc.bat

@@ -203,8 +203,6 @@ class MainWindow(QtGui.QMainWindow):
     def addObject(self, obj):
         """
         Add a new Minecraft object to the project.
-        
-        :param obj: An instance of the object to be added
         """
         
         self.project.addObject(obj)
