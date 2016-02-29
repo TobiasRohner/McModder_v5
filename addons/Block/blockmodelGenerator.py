@@ -18,6 +18,9 @@ from OpenGL.GL import shaders
 
 
 class BlockModelGenerator(QtGui.QMainWindow):
+    """
+    Block Model Generator is a 3D-Modelling Software for custom block models.
+    """
     
     def __init__(self, mainWindow, master):
         QtGui.QMainWindow.__init__(self)

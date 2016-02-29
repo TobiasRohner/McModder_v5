@@ -9,6 +9,8 @@ from utils import translations, gradlew, Config, History
 from classes import source
 from PyQt4 import QtGui, QtCore, uic
 
+import addons
+
 
 
 BASEPATH = os.path.dirname(sys.argv[0])
@@ -38,6 +40,9 @@ def getPythonFiles(path):
 
 
 class MainWindow(QtGui.QMainWindow):
+    """
+    Main Window operates as a common parent of all objects, over which they can communicate.
+    """
     
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
@@ -140,6 +145,9 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def initializeConfig(self):
+        """
+        Write the most rudamentary config to disk.
+        """
         
         self.config["language"] = "English"
         self.config["addons"] = [BASEPATH+"/addons/BaseMod/BaseMod.py",
@@ -151,6 +159,9 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def initializeAddons(self):
+        """
+        Load all the addons from the paths found in the config.
+        """
         
         self.addons = []
         
@@ -177,6 +188,12 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def updateName(self, obj, name):
+        """
+        Update the name of a Minecraft object.
+        
+        :param obj: The object itself
+        :param name: The new name of the object
+        """
         
         self.editor.renameTab(obj, name)
         self.project.renameObject(obj, name)
@@ -184,6 +201,11 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def addObject(self, obj):
+        """
+        Add a new Minecraft object to the project.
+        
+        :param obj: An instance of the object to be added
+        """
         
         self.project.addObject(obj)
         self.editor.openTab(obj)
@@ -191,6 +213,9 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def delete(self):
+        """
+        Delete the currently selected object, if the 'deleteable' flag is set to true.
+        """
         
         selected = self.project.selectedObject()
         if selected.deleteable:
@@ -199,6 +224,9 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def runClient(self):
+        """
+        Run Minecraft with the current Mod loaded.
+        """
         
         self.save()
         
@@ -211,6 +239,9 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def createNewProject(self):
+        """
+        Create a new project and set up the forge modding environment.
+        """
         
         self.console.clear()
         
@@ -238,6 +269,9 @@ class MainWindow(QtGui.QMainWindow):
                 
                 
     def openProject(self):
+        """
+        Open a project from disk.
+        """
         
         path = str(QtGui.QFileDialog.getOpenFileName(self, self.translations.getTranslation("openProject"),
                                                            "C:/",
@@ -248,6 +282,9 @@ class MainWindow(QtGui.QMainWindow):
             
             
     def exportProject(self):
+        """
+        Export the current project's java source code.
+        """
         
         self.save()
         
@@ -270,6 +307,9 @@ class MainWindow(QtGui.QMainWindow):
                 
                 
     def exportJar(self):
+        """
+        Export the current project as a .jar file.
+        """
         
         path = QtGui.QFileDialog.getExistingDirectory(None, self.translations.getTranslation("destinationSelection"),
                                                       self.projectPath+"/java/build/libs",
@@ -292,6 +332,9 @@ class MainWindow(QtGui.QMainWindow):
                 
                 
     def save(self):
+        """
+        Save the current project to disk.
+        """
         
         f = open(self.projectPath+"/moddata.json", "w")
         

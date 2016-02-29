@@ -1,0 +1,984 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module addons.GUI.CraftingTable</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="addons.html"><font color="#ffffff">addons</font></a>.<a href="addons.GUI.html"><font color="#ffffff">GUI</font></a>.CraftingTable</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///E:/programmieren/python/mcmodder_v5/addons/gui/craftingtable.py">e:\programmieren\python\mcmodder_v5\addons\gui\craftingtable.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="PyQt4.QtCore.html">PyQt4.QtCore</a><br>
+<a href="PyQt4.QtGui.html">PyQt4.QtGui</a><br>
+<a href="SrcCraftingTable.html">SrcCraftingTable</a><br>
+</td><td width="25%" valign=top><a href="guiDef.html">guiDef</a><br>
+<a href="imp.html">imp</a><br>
+<a href="widgets.menus.html">widgets.menus</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="sys.html">sys</a><br>
+<a href="PyQt4.uic.html">PyQt4.uic</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a>(<a href="sip.html#wrapper">sip.wrapper</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="addons.GUI.CraftingTable.html#Recipe">Recipe</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="classes._base.html#_base">classes._base._base</a>(<a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="addons.GUI.CraftingTable.html#CraftingTable">CraftingTable</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CraftingTable">class <strong>CraftingTable</strong></a>(<a href="classes._base.html#_base">classes._base._base</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="addons.GUI.CraftingTable.html#CraftingTable">CraftingTable</a></dd>
+<dd><a href="classes._base.html#_base">classes._base._base</a></dd>
+<dd><a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a></dd>
+<dd><a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CraftingTable-__init__"><strong>__init__</strong></a>(self, mainWindow, name)</dt></dl>
+
+<dl><dt><a name="CraftingTable-addRecipe"><strong>addRecipe</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-completeModData"><strong>completeModData</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-generateSrc"><strong>generateSrc</strong></a>(self, src)</dt></dl>
+
+<dl><dt><a name="CraftingTable-initUI"><strong>initUI</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-load"><strong>load</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="CraftingTable-pull"><strong>pull</strong></a>(self, cls)</dt></dl>
+
+<dl><dt><a name="CraftingTable-removeRecipe"><strong>removeRecipe</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-renameRecipe"><strong>renameRecipe</strong></a>(self, recipe)</dt></dl>
+
+<dl><dt><a name="CraftingTable-save"><strong>save</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-selectRecipe"><strong>selectRecipe</strong></a>(self, recipe)</dt></dl>
+
+<dl><dt><a name="CraftingTable-updateRecipe"><strong>updateRecipe</strong></a>(self, slots)</dt></dl>
+
+<hr>
+Methods inherited from <a href="classes._base.html#_base">classes._base._base</a>:<br>
+<dl><dt><a name="CraftingTable-classname"><strong>classname</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-export"><strong>export</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-generateIcon"><strong>generateIcon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-getListWidgetItem"><strong>getListWidgetItem</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-instancename"><strong>instancename</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-package"><strong>package</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-postInit"><strong>postInit</strong></a>(self, project)</dt></dl>
+
+<dl><dt><a name="CraftingTable-renewWidgetEntrys"><strong>renewWidgetEntrys</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-unlocalizedName"><strong>unlocalizedName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CraftingTable-updateListWidgetItem"><strong>updateListWidgetItem</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><a name="CraftingTable-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-acceptDrops">acceptDrops</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-actionEvent"><strong>actionEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-actionEvent">actionEvent</a>(QActionEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-actions"><strong>actions</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-actions">actions</a>()&nbsp;-&gt;&nbsp;list-of-QAction</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-activateWindow"><strong>activateWindow</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-activateWindow">activateWindow</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-addAction"><strong>addAction</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-addAction">addAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-addActions"><strong>addActions</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-addActions">addActions</a>(list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-adjustSize"><strong>adjustSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-adjustSize">adjustSize</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-autoFillBackground">autoFillBackground</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-backgroundRole">backgroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-baseSize"><strong>baseSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-baseSize">baseSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-changeEvent"><strong>changeEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-changeEvent">changeEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-childAt"><strong>childAt</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-childAt">childAt</a>(QPoint)&nbsp;-&gt;&nbsp;QWidget<br>
+QWidget.<a href="#CraftingTable-childAt">childAt</a>(int,&nbsp;int)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-childrenRect"><strong>childrenRect</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-childrenRect">childrenRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-childrenRegion">childrenRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-clearFocus"><strong>clearFocus</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-clearFocus">clearFocus</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-clearMask"><strong>clearMask</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-clearMask">clearMask</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-close"><strong>close</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-close">close</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-closeEvent"><strong>closeEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-closeEvent">closeEvent</a>(QCloseEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-contentsMargins">contentsMargins</a>()&nbsp;-&gt;&nbsp;QMargins</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-contentsRect"><strong>contentsRect</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-contentsRect">contentsRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-contextMenuEvent">contextMenuEvent</a>(QContextMenuEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-contextMenuPolicy">contextMenuPolicy</a>()&nbsp;-&gt;&nbsp;Qt.ContextMenuPolicy</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-create"><strong>create</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-create">create</a>(sip.voidptr&nbsp;window=None,&nbsp;bool&nbsp;initializeWindow=True,&nbsp;bool&nbsp;destroyOldWindow=True)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-cursor"><strong>cursor</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-cursor">cursor</a>()&nbsp;-&gt;&nbsp;QCursor</tt></dd></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;unbound signal customContextMenuRequested&gt;
+<dl><dt><a name="CraftingTable-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-destroy"><strong>destroy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-destroy">destroy</a>(bool&nbsp;destroyWindow=True,&nbsp;bool&nbsp;destroySubWindows=True)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-devType"><strong>devType</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-devType">devType</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-dragEnterEvent">dragEnterEvent</a>(QDragEnterEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-dragLeaveEvent">dragLeaveEvent</a>(QDragLeaveEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-dragMoveEvent">dragMoveEvent</a>(QDragMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dropEvent"><strong>dropEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-dropEvent">dropEvent</a>(QDropEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-effectiveWinId">effectiveWinId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-enabledChange"><strong>enabledChange</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-enabledChange">enabledChange</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-ensurePolished">ensurePolished</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-enterEvent"><strong>enterEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-enterEvent">enterEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-event"><strong>event</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-event">event</a>(QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-find"><strong>find</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-find">find</a>(sip.voidptr)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusInEvent">focusInEvent</a>(QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusNextChild">focusNextChild</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusNextPrevChild">focusNextPrevChild</a>(bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusOutEvent">focusOutEvent</a>(QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusPolicy">focusPolicy</a>()&nbsp;-&gt;&nbsp;Qt.FocusPolicy</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusPreviousChild">focusPreviousChild</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusProxy"><strong>focusProxy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusProxy">focusProxy</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-focusWidget"><strong>focusWidget</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-focusWidget">focusWidget</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-font"><strong>font</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-font">font</a>()&nbsp;-&gt;&nbsp;QFont</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-fontChange"><strong>fontChange</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-fontChange">fontChange</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-fontInfo"><strong>fontInfo</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-fontInfo">fontInfo</a>()&nbsp;-&gt;&nbsp;QFontInfo</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-fontMetrics">fontMetrics</a>()&nbsp;-&gt;&nbsp;QFontMetrics</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-foregroundRole">foregroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-frameGeometry">frameGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-frameSize"><strong>frameSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-frameSize">frameSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-geometry"><strong>geometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-geometry">geometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-getContentsMargins">getContentsMargins</a>()&nbsp;-&gt;&nbsp;(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-grabGesture"><strong>grabGesture</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-grabGesture">grabGesture</a>(Qt.GestureType,&nbsp;Qt.GestureFlags&nbsp;flags=Qt.GestureFlags(0))</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-grabKeyboard">grabKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-grabMouse"><strong>grabMouse</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-grabMouse">grabMouse</a>()<br>
+QWidget.<a href="#CraftingTable-grabMouse">grabMouse</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-grabShortcut">grabShortcut</a>(QKeySequence,&nbsp;Qt.ShortcutContext&nbsp;context=Qt.WindowShortcut)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-graphicsEffect">graphicsEffect</a>()&nbsp;-&gt;&nbsp;QGraphicsEffect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-graphicsProxyWidget">graphicsProxyWidget</a>()&nbsp;-&gt;&nbsp;QGraphicsProxyWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-hasFocus"><strong>hasFocus</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-hasFocus">hasFocus</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-hasMouseTracking">hasMouseTracking</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-height"><strong>height</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-height">height</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-heightForWidth">heightForWidth</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-hide"><strong>hide</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-hide">hide</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-hideEvent"><strong>hideEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-hideEvent">hideEvent</a>(QHideEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-inputContext"><strong>inputContext</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-inputContext">inputContext</a>()&nbsp;-&gt;&nbsp;QInputContext</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-inputMethodEvent">inputMethodEvent</a>(QInputMethodEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-inputMethodHints">inputMethodHints</a>()&nbsp;-&gt;&nbsp;Qt.InputMethodHints</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-inputMethodQuery">inputMethodQuery</a>(Qt.InputMethodQuery)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-insertAction"><strong>insertAction</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-insertAction">insertAction</a>(QAction,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-insertActions"><strong>insertActions</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-insertActions">insertActions</a>(QAction,&nbsp;list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isActiveWindow">isActiveWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isAncestorOf">isAncestorOf</a>(QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isEnabled"><strong>isEnabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isEnabled">isEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isEnabledTo">isEnabledTo</a>(QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isEnabledToTLW"><strong>isEnabledToTLW</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isEnabledToTLW">isEnabledToTLW</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isFullScreen">isFullScreen</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isHidden"><strong>isHidden</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isHidden">isHidden</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isLeftToRight">isLeftToRight</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isMaximized"><strong>isMaximized</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isMaximized">isMaximized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isMinimized"><strong>isMinimized</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isMinimized">isMinimized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isModal"><strong>isModal</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isModal">isModal</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isRightToLeft">isRightToLeft</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isTopLevel"><strong>isTopLevel</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isTopLevel">isTopLevel</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isVisible"><strong>isVisible</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isVisible">isVisible</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isVisibleTo">isVisibleTo</a>(QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isWindow"><strong>isWindow</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isWindow">isWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-isWindowModified">isWindowModified</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-keyPressEvent">keyPressEvent</a>(QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-keyReleaseEvent">keyReleaseEvent</a>(QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-keyboardGrabber">keyboardGrabber</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-languageChange"><strong>languageChange</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-languageChange">languageChange</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-layout"><strong>layout</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-layout">layout</a>()&nbsp;-&gt;&nbsp;QLayout</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-layoutDirection">layoutDirection</a>()&nbsp;-&gt;&nbsp;Qt.LayoutDirection</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-leaveEvent">leaveEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-locale"><strong>locale</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-locale">locale</a>()&nbsp;-&gt;&nbsp;QLocale</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-lower"><strong>lower</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-lower">lower</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapFrom"><strong>mapFrom</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapFrom">mapFrom</a>(QWidget,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapFromGlobal">mapFromGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapFromParent">mapFromParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapTo"><strong>mapTo</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapTo">mapTo</a>(QWidget,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapToGlobal">mapToGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mapToParent"><strong>mapToParent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mapToParent">mapToParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mask"><strong>mask</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mask">mask</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-maximumHeight">maximumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-maximumSize"><strong>maximumSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-maximumSize">maximumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-maximumWidth">maximumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-metric"><strong>metric</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-metric">metric</a>(QPaintDevice.PaintDeviceMetric)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-minimumHeight">minimumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-minimumSize"><strong>minimumSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-minimumSize">minimumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-minimumSizeHint">minimumSizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-minimumWidth">minimumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mouseDoubleClickEvent">mouseDoubleClickEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mouseGrabber">mouseGrabber</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mouseMoveEvent">mouseMoveEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mousePressEvent">mousePressEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-mouseReleaseEvent">mouseReleaseEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-move"><strong>move</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-move">move</a>(QPoint)<br>
+QWidget.<a href="#CraftingTable-move">move</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-moveEvent"><strong>moveEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-moveEvent">moveEvent</a>(QMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-nativeParentWidget">nativeParentWidget</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-nextInFocusChain">nextInFocusChain</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-normalGeometry">normalGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-overrideWindowFlags">overrideWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-overrideWindowState">overrideWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-paintEngine"><strong>paintEngine</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-paintEngine">paintEngine</a>()&nbsp;-&gt;&nbsp;QPaintEngine</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-paintEvent"><strong>paintEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-paintEvent">paintEvent</a>(QPaintEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-palette"><strong>palette</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-palette">palette</a>()&nbsp;-&gt;&nbsp;QPalette</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-paletteChange"><strong>paletteChange</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-paletteChange">paletteChange</a>(QPalette)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-parentWidget"><strong>parentWidget</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-parentWidget">parentWidget</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-pos"><strong>pos</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-pos">pos</a>()&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-previousInFocusChain">previousInFocusChain</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-raise_"><strong>raise_</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-raise_">raise_</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-rect"><strong>rect</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-rect">rect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-releaseKeyboard">releaseKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-releaseMouse">releaseMouse</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-releaseShortcut">releaseShortcut</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-removeAction"><strong>removeAction</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-removeAction">removeAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-render"><strong>render</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-render">render</a>(QPaintDevice,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;QWidget.RenderFlags&nbsp;flags=QWidget.DrawWindowBackground|QWidget.DrawChildren)<br>
+QWidget.<a href="#CraftingTable-render">render</a>(QPainter,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;QWidget.RenderFlags&nbsp;flags=QWidget.DrawWindowBackground|QWidget.DrawChildren)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-repaint"><strong>repaint</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-repaint">repaint</a>()<br>
+QWidget.<a href="#CraftingTable-repaint">repaint</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-repaint">repaint</a>(QRect)<br>
+QWidget.<a href="#CraftingTable-repaint">repaint</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-resetInputContext">resetInputContext</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-resize"><strong>resize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-resize">resize</a>(QSize)<br>
+QWidget.<a href="#CraftingTable-resize">resize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-resizeEvent">resizeEvent</a>(QResizeEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-restoreGeometry">restoreGeometry</a>(QByteArray)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-saveGeometry">saveGeometry</a>()&nbsp;-&gt;&nbsp;QByteArray</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-scroll"><strong>scroll</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-scroll">scroll</a>(int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-scroll">scroll</a>(int,&nbsp;int,&nbsp;QRect)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setAcceptDrops">setAcceptDrops</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setAttribute"><strong>setAttribute</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setAttribute">setAttribute</a>(Qt.WidgetAttribute,&nbsp;bool&nbsp;on=True)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setAutoFillBackground">setAutoFillBackground</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setBackgroundRole">setBackgroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setBaseSize">setBaseSize</a>(int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-setBaseSize">setBaseSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setContentsMargins">setContentsMargins</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-setContentsMargins">setContentsMargins</a>(QMargins)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setContextMenuPolicy">setContextMenuPolicy</a>(Qt.ContextMenuPolicy)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setCursor"><strong>setCursor</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setCursor">setCursor</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setDisabled"><strong>setDisabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setDisabled">setDisabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setEnabled"><strong>setEnabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setEnabled">setEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFixedHeight">setFixedHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFixedSize">setFixedSize</a>(QSize)<br>
+QWidget.<a href="#CraftingTable-setFixedSize">setFixedSize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFixedWidth">setFixedWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFocus"><strong>setFocus</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFocus">setFocus</a>()<br>
+QWidget.<a href="#CraftingTable-setFocus">setFocus</a>(Qt.FocusReason)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFocusPolicy">setFocusPolicy</a>(Qt.FocusPolicy)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFocusProxy">setFocusProxy</a>(QWidget)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setFont"><strong>setFont</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setFont">setFont</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setForegroundRole">setForegroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setGeometry"><strong>setGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setGeometry">setGeometry</a>(QRect)<br>
+QWidget.<a href="#CraftingTable-setGeometry">setGeometry</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setGraphicsEffect">setGraphicsEffect</a>(QGraphicsEffect)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setHidden"><strong>setHidden</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setHidden">setHidden</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setInputContext"><strong>setInputContext</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setInputContext">setInputContext</a>(QInputContext)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setInputMethodHints">setInputMethodHints</a>(Qt.InputMethodHints)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setLayout"><strong>setLayout</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setLayout">setLayout</a>(QLayout)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setLayoutDirection">setLayoutDirection</a>(Qt.LayoutDirection)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setLocale"><strong>setLocale</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setLocale">setLocale</a>(QLocale)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMask"><strong>setMask</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMask">setMask</a>(QBitmap)<br>
+QWidget.<a href="#CraftingTable-setMask">setMask</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMaximumHeight">setMaximumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMaximumSize">setMaximumSize</a>(int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-setMaximumSize">setMaximumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMaximumWidth">setMaximumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMinimumHeight">setMinimumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMinimumSize">setMinimumSize</a>(int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-setMinimumSize">setMinimumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMinimumWidth">setMinimumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setMouseTracking">setMouseTracking</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setPalette"><strong>setPalette</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setPalette">setPalette</a>(QPalette)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setParent">setParent</a>(QWidget)<br>
+QWidget.<a href="#CraftingTable-setParent">setParent</a>(QWidget,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setShortcutAutoRepeat">setShortcutAutoRepeat</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setShortcutEnabled">setShortcutEnabled</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setShown"><strong>setShown</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setShown">setShown</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setSizeIncrement">setSizeIncrement</a>(int,&nbsp;int)<br>
+QWidget.<a href="#CraftingTable-setSizeIncrement">setSizeIncrement</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setSizePolicy">setSizePolicy</a>(QSizePolicy)<br>
+QWidget.<a href="#CraftingTable-setSizePolicy">setSizePolicy</a>(QSizePolicy.Policy,&nbsp;QSizePolicy.Policy)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setStatusTip">setStatusTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setStyle"><strong>setStyle</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setStyle">setStyle</a>(QStyle)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setStyleSheet">setStyleSheet</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setTabOrder">setTabOrder</a>(QWidget,&nbsp;QWidget)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setToolTip"><strong>setToolTip</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setToolTip">setToolTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setUpdatesEnabled">setUpdatesEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setVisible"><strong>setVisible</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setVisible">setVisible</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWhatsThis">setWhatsThis</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowFilePath">setWindowFilePath</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowFlags">setWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowIcon">setWindowIcon</a>(QIcon)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowIconText">setWindowIconText</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowModality">setWindowModality</a>(Qt.WindowModality)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowModified">setWindowModified</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowOpacity">setWindowOpacity</a>(float)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowRole">setWindowRole</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowState"><strong>setWindowState</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowState">setWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-setWindowTitle">setWindowTitle</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-show"><strong>show</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-show">show</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-showEvent"><strong>showEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-showEvent">showEvent</a>(QShowEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-showFullScreen">showFullScreen</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-showMaximized"><strong>showMaximized</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-showMaximized">showMaximized</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-showMinimized"><strong>showMinimized</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-showMinimized">showMinimized</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-showNormal"><strong>showNormal</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-showNormal">showNormal</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-size"><strong>size</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-size">size</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-sizeHint"><strong>sizeHint</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-sizeHint">sizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-sizeIncrement">sizeIncrement</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-sizePolicy">sizePolicy</a>()&nbsp;-&gt;&nbsp;QSizePolicy</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-stackUnder"><strong>stackUnder</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-stackUnder">stackUnder</a>(QWidget)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-statusTip"><strong>statusTip</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-statusTip">statusTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-style"><strong>style</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-style">style</a>()&nbsp;-&gt;&nbsp;QStyle</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-styleSheet"><strong>styleSheet</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-styleSheet">styleSheet</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-tabletEvent">tabletEvent</a>(QTabletEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-testAttribute"><strong>testAttribute</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-testAttribute">testAttribute</a>(Qt.WidgetAttribute)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CraftingTable-toolTip"><strong>toolTip</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-toolTip">toolTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-topLevelWidget"><strong>topLevelWidget</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-topLevelWidget">topLevelWidget</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-underMouse"><strong>underMouse</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-underMouse">underMouse</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-ungrabGesture">ungrabGesture</a>(Qt.GestureType)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-unsetCursor">unsetCursor</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-unsetLayoutDirection">unsetLayoutDirection</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-unsetLocale">unsetLocale</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-update"><strong>update</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-update">update</a>()<br>
+QWidget.<a href="#CraftingTable-update">update</a>(QRect)<br>
+QWidget.<a href="#CraftingTable-update">update</a>(QRegion)<br>
+QWidget.<a href="#CraftingTable-update">update</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-updateGeometry">updateGeometry</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-updateMicroFocus">updateMicroFocus</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-updatesEnabled">updatesEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-visibleRegion">visibleRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-whatsThis"><strong>whatsThis</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-whatsThis">whatsThis</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-wheelEvent">wheelEvent</a>(QWheelEvent)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-width"><strong>width</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-width">width</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-winEvent"><strong>winEvent</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-winEvent">winEvent</a>(MSG)&nbsp;-&gt;&nbsp;(bool,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-winId"><strong>winId</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-winId">winId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-window"><strong>window</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-window">window</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowActivationChange"><strong>windowActivationChange</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowActivationChange">windowActivationChange</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowFilePath">windowFilePath</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowFlags"><strong>windowFlags</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowFlags">windowFlags</a>()&nbsp;-&gt;&nbsp;Qt.WindowFlags</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowIcon"><strong>windowIcon</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowIcon">windowIcon</a>()&nbsp;-&gt;&nbsp;QIcon</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowIconText"><strong>windowIconText</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowIconText">windowIconText</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowModality"><strong>windowModality</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowModality">windowModality</a>()&nbsp;-&gt;&nbsp;Qt.WindowModality</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowOpacity">windowOpacity</a>()&nbsp;-&gt;&nbsp;float</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowRole"><strong>windowRole</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowRole">windowRole</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowState"><strong>windowState</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowState">windowState</a>()&nbsp;-&gt;&nbsp;Qt.WindowStates</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowTitle"><strong>windowTitle</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowTitle">windowTitle</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-windowType"><strong>windowType</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-windowType">windowType</a>()&nbsp;-&gt;&nbsp;Qt.WindowType</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-x"><strong>x</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-x">x</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-y"><strong>y</strong></a>(...)</dt><dd><tt>QWidget.<a href="#CraftingTable-y">y</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = 2</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = 1</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = 4</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PyQt4.QtGui.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'PyQt4.QtGui.RenderFlags'&gt;<dd><tt>QWidget.<a href="#CraftingTable-RenderFlags">RenderFlags</a>(QWidget.RenderFlags)<br>
+QWidget.<a href="#CraftingTable-RenderFlags">RenderFlags</a>(int)<br>
+QWidget.<a href="#CraftingTable-RenderFlags">RenderFlags</a>()</tt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><a name="CraftingTable-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-__getattr__">__getattr__</a>(str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-blockSignals">blockSignals</a>(bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-children"><strong>children</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-children">children</a>()&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-connect"><strong>connect</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#CraftingTable-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable,&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#CraftingTable-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-deleteLater">deleteLater</a>()</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="CraftingTable-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT())&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#CraftingTable-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-dumpObjectInfo">dumpObjectInfo</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-dumpObjectTree">dumpObjectTree</a>()</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-dynamicPropertyNames">dynamicPropertyNames</a>()&nbsp;-&gt;&nbsp;list-of-QByteArray</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-emit"><strong>emit</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-emit">emit</a>(SIGNAL(),&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-eventFilter">eventFilter</a>(QObject,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-findChild">findChild</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject<br>
+QObject.<a href="#CraftingTable-findChild">findChild</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-findChildren">findChildren</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#CraftingTable-findChildren">findChildren</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#CraftingTable-findChildren">findChildren</a>(type,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#CraftingTable-findChildren">findChildren</a>(tuple,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-inherits">inherits</a>(str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-installEventFilter">installEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-isWidgetType">isWidgetType</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-killTimer">killTimer</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-metaObject">metaObject</a>()&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-moveToThread">moveToThread</a>(QThread)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-objectName">objectName</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-parent"><strong>parent</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-parent">parent</a>()&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-property"><strong>property</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-property">property</a>(str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-removeEventFilter">removeEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-setObjectName">setObjectName</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-setProperty">setProperty</a>(str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-signalsBlocked">signalsBlocked</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-startTimer">startTimer</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-thread"><strong>thread</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-thread">thread</a>()&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-tr"><strong>tr</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-tr">tr</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-trUtf8"><strong>trUtf8</strong></a>(...)</dt><dd><tt>QObject.<a href="#CraftingTable-trUtf8">trUtf8</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="CraftingTable-colorCount"><strong>colorCount</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-colorCount">colorCount</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-depth"><strong>depth</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-depth">depth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-heightMM"><strong>heightMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-heightMM">heightMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-logicalDpiX">logicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-logicalDpiY">logicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-numColors"><strong>numColors</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-numColors">numColors</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-paintingActive"><strong>paintingActive</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-paintingActive">paintingActive</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-physicalDpiX">physicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-physicalDpiY">physicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CraftingTable-widthMM"><strong>widthMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#CraftingTable-widthMM">widthMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PyQt4.QtGui.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = 6</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = 7</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = 8</dl>
+
+<dl><dt><strong>PdmHeight</strong> = 2</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = 4</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = 5</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = 9</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = 10</dl>
+
+<dl><dt><strong>PdmWidth</strong> = 1</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = 3</dl>
+
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#CraftingTable-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Recipe">class <strong>Recipe</strong></a>(<a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="addons.GUI.CraftingTable.html#Recipe">Recipe</a></dd>
+<dd><a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Recipe-__init__"><strong>__init__</strong></a>(self, mainWindow, master, name)</dt></dl>
+
+<dl><dt><a name="Recipe-completeModData"><strong>completeModData</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-crop"><strong>crop</strong></a>(self, acro)</dt></dl>
+
+<dl><dt><a name="Recipe-generateSrc"><strong>generateSrc</strong></a>(self, src)</dt></dl>
+
+<dl><dt><a name="Recipe-getItemAcronym"><strong>getItemAcronym</strong></a>(self, usedItems, stack)</dt></dl>
+
+<dl><dt><a name="Recipe-getSrc"><strong>getSrc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-is1x1"><strong>is1x1</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-is2x2"><strong>is2x2</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-is3x3"><strong>is3x3</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-isShapeless"><strong>isShapeless</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Recipe-load"><strong>load</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="Recipe-save"><strong>save</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a>:<br>
+<dl><dt><a name="Recipe-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Recipe-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="Recipe-background"><strong>background</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-background">background</a>()&nbsp;-&gt;&nbsp;QBrush</tt></dd></dl>
+
+<dl><dt><a name="Recipe-backgroundColor"><strong>backgroundColor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-backgroundColor">backgroundColor</a>()&nbsp;-&gt;&nbsp;QColor</tt></dd></dl>
+
+<dl><dt><a name="Recipe-checkState"><strong>checkState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-checkState">checkState</a>()&nbsp;-&gt;&nbsp;Qt.CheckState</tt></dd></dl>
+
+<dl><dt><a name="Recipe-clone"><strong>clone</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-clone">clone</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a></tt></dd></dl>
+
+<dl><dt><a name="Recipe-data"><strong>data</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-data">data</a>(int)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="Recipe-flags"><strong>flags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-flags">flags</a>()&nbsp;-&gt;&nbsp;Qt.ItemFlags</tt></dd></dl>
+
+<dl><dt><a name="Recipe-font"><strong>font</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-font">font</a>()&nbsp;-&gt;&nbsp;QFont</tt></dd></dl>
+
+<dl><dt><a name="Recipe-foreground"><strong>foreground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-foreground">foreground</a>()&nbsp;-&gt;&nbsp;QBrush</tt></dd></dl>
+
+<dl><dt><a name="Recipe-icon"><strong>icon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-icon">icon</a>()&nbsp;-&gt;&nbsp;QIcon</tt></dd></dl>
+
+<dl><dt><a name="Recipe-isHidden"><strong>isHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-isHidden">isHidden</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Recipe-isSelected"><strong>isSelected</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-isSelected">isSelected</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Recipe-listWidget"><strong>listWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-listWidget">listWidget</a>()&nbsp;-&gt;&nbsp;QListWidget</tt></dd></dl>
+
+<dl><dt><a name="Recipe-read"><strong>read</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-read">read</a>(QDataStream)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setBackground"><strong>setBackground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setBackground">setBackground</a>(QBrush)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setBackgroundColor"><strong>setBackgroundColor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setBackgroundColor">setBackgroundColor</a>(QColor)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setCheckState"><strong>setCheckState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setCheckState">setCheckState</a>(Qt.CheckState)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setData"><strong>setData</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setData">setData</a>(int,&nbsp;QVariant)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setFlags"><strong>setFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setFlags">setFlags</a>(Qt.ItemFlags)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setFont"><strong>setFont</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setFont">setFont</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setForeground"><strong>setForeground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setForeground">setForeground</a>(QBrush)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setHidden"><strong>setHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setHidden">setHidden</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setIcon"><strong>setIcon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setIcon">setIcon</a>(QIcon)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setSelected"><strong>setSelected</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setSelected">setSelected</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setSizeHint"><strong>setSizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setSizeHint">setSizeHint</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setStatusTip">setStatusTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setText"><strong>setText</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setText">setText</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setTextAlignment"><strong>setTextAlignment</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setTextAlignment">setTextAlignment</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setTextColor"><strong>setTextColor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setTextColor">setTextColor</a>(QColor)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setToolTip"><strong>setToolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setToolTip">setToolTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-setWhatsThis">setWhatsThis</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Recipe-sizeHint"><strong>sizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-sizeHint">sizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Recipe-statusTip"><strong>statusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-statusTip">statusTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Recipe-text"><strong>text</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-text">text</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Recipe-textAlignment"><strong>textAlignment</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-textAlignment">textAlignment</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Recipe-textColor"><strong>textColor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-textColor">textColor</a>()&nbsp;-&gt;&nbsp;QColor</tt></dd></dl>
+
+<dl><dt><a name="Recipe-toolTip"><strong>toolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-toolTip">toolTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Recipe-type"><strong>type</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-type">type</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Recipe-whatsThis"><strong>whatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-whatsThis">whatsThis</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Recipe-write"><strong>write</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QListWidgetItem">QListWidgetItem</a>.<a href="#Recipe-write">write</a>(QDataStream)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QListWidgetItem">PyQt4.QtGui.QListWidgetItem</a>:<br>
+<dl><dt><strong>ItemType</strong> = &lt;class 'PyQt4.QtGui.ItemType'&gt;</dl>
+
+<dl><dt><strong>Type</strong> = 0</dl>
+
+<dl><dt><strong>UserType</strong> = 1000</dl>
+
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#Recipe-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-init"><strong>init</strong></a>(mainWindow)</dt></dl>
+ <dl><dt><a name="-onProjectCreated"><strong>onProjectCreated</strong></a>(mainWindow)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ADDONPATH</strong> = 'E:/Programmieren/Python/McModder_v5/addons/GUI'<br>
+<strong>BASEPATH</strong> = r'C:\Python27\Lib'</td></tr></table>
+</body></html>

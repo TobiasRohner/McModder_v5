@@ -1,0 +1,1581 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module addons.BaseMod.BaseMod</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="addons.html"><font color="#ffffff">addons</font></a>.<a href="addons.BaseMod.html"><font color="#ffffff">BaseMod</font></a>.BaseMod</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///E:/programmieren/python/mcmodder_v5/addons/basemod/basemod.py">e:\programmieren\python\mcmodder_v5\addons\basemod\basemod.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="PyQt4.QtCore.html">PyQt4.QtCore</a><br>
+<a href="PyQt4.QtGui.html">PyQt4.QtGui</a><br>
+</td><td width="25%" valign=top><a href="SrcBaseMod.html">SrcBaseMod</a><br>
+<a href="imp.html">imp</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pickle.html">pickle</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="PyQt4.uic.html">PyQt4.uic</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PyQt4.QtGui.html#QDialog">PyQt4.QtGui.QDialog</a>(<a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="addons.BaseMod.BaseMod.html#Constructor">Constructor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>(<a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>, <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="addons.BaseMod.BaseMod.html#BaseMod">BaseMod</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseMod">class <strong>BaseMod</strong></a>(<a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="addons.BaseMod.BaseMod.html#BaseMod">BaseMod</a></dd>
+<dd><a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a></dd>
+<dd><a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseMod-__init__"><strong>__init__</strong></a>(self, mainWindow, name)</dt></dl>
+
+<dl><dt><a name="BaseMod-classname"><strong>classname</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-completeModData"><strong>completeModData</strong></a>(self)</dt><dd><tt>ask&nbsp;every&nbsp;class&nbsp;in&nbsp;the&nbsp;project,&nbsp;if&nbsp;it&nbsp;has&nbsp;to&nbsp;add&nbsp;something&nbsp;to&nbsp;the&nbsp;mod&nbsp;data&nbsp;of&nbsp;the&nbsp;base&nbsp;mod</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-export"><strong>export</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-generateSrc"><strong>generateSrc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-initUI"><strong>initUI</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-load"><strong>load</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="BaseMod-modid"><strong>modid</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-package"><strong>package</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-postInit"><strong>postInit</strong></a>(self, project)</dt></dl>
+
+<dl><dt><a name="BaseMod-pull"><strong>pull</strong></a>(self, cls)</dt></dl>
+
+<dl><dt><a name="BaseMod-renewWidgetEntrys"><strong>renewWidgetEntrys</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-save"><strong>save</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseMod-setVersion"><strong>setVersion</strong></a>(self, ver)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><a name="BaseMod-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-acceptDrops">acceptDrops</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-actionEvent"><strong>actionEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-actionEvent">actionEvent</a>(QActionEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-actions"><strong>actions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-actions">actions</a>()&nbsp;-&gt;&nbsp;list-of-QAction</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-activateWindow"><strong>activateWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-activateWindow">activateWindow</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-addAction"><strong>addAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-addAction">addAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-addActions"><strong>addActions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-addActions">addActions</a>(list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-adjustSize"><strong>adjustSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-adjustSize">adjustSize</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-autoFillBackground">autoFillBackground</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-backgroundRole">backgroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-baseSize"><strong>baseSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-baseSize">baseSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-changeEvent"><strong>changeEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-changeEvent">changeEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-childAt"><strong>childAt</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-childAt">childAt</a>(QPoint)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a><br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-childAt">childAt</a>(int,&nbsp;int)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-childrenRect"><strong>childrenRect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-childrenRect">childrenRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-childrenRegion">childrenRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-clearFocus"><strong>clearFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-clearFocus">clearFocus</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-clearMask"><strong>clearMask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-clearMask">clearMask</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-close"><strong>close</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-close">close</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-closeEvent"><strong>closeEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-closeEvent">closeEvent</a>(QCloseEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-contentsMargins">contentsMargins</a>()&nbsp;-&gt;&nbsp;QMargins</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-contentsRect"><strong>contentsRect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-contentsRect">contentsRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-contextMenuEvent">contextMenuEvent</a>(QContextMenuEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-contextMenuPolicy">contextMenuPolicy</a>()&nbsp;-&gt;&nbsp;Qt.ContextMenuPolicy</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-create"><strong>create</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-create">create</a>(sip.voidptr&nbsp;window=None,&nbsp;bool&nbsp;initializeWindow=True,&nbsp;bool&nbsp;destroyOldWindow=True)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-cursor"><strong>cursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-cursor">cursor</a>()&nbsp;-&gt;&nbsp;QCursor</tt></dd></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;unbound signal customContextMenuRequested&gt;
+<dl><dt><a name="BaseMod-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-destroy"><strong>destroy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-destroy">destroy</a>(bool&nbsp;destroyWindow=True,&nbsp;bool&nbsp;destroySubWindows=True)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-devType"><strong>devType</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-devType">devType</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-dragEnterEvent">dragEnterEvent</a>(QDragEnterEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-dragLeaveEvent">dragLeaveEvent</a>(QDragLeaveEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-dragMoveEvent">dragMoveEvent</a>(QDragMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dropEvent"><strong>dropEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-dropEvent">dropEvent</a>(QDropEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-effectiveWinId">effectiveWinId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-enabledChange"><strong>enabledChange</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-enabledChange">enabledChange</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-ensurePolished">ensurePolished</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-enterEvent"><strong>enterEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-enterEvent">enterEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-event"><strong>event</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-event">event</a>(QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-find"><strong>find</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-find">find</a>(sip.voidptr)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusInEvent">focusInEvent</a>(QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusNextChild">focusNextChild</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusNextPrevChild">focusNextPrevChild</a>(bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusOutEvent">focusOutEvent</a>(QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusPolicy">focusPolicy</a>()&nbsp;-&gt;&nbsp;Qt.FocusPolicy</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusPreviousChild">focusPreviousChild</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusProxy"><strong>focusProxy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusProxy">focusProxy</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-focusWidget"><strong>focusWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-focusWidget">focusWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-font"><strong>font</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-font">font</a>()&nbsp;-&gt;&nbsp;QFont</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-fontChange"><strong>fontChange</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-fontChange">fontChange</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-fontInfo"><strong>fontInfo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-fontInfo">fontInfo</a>()&nbsp;-&gt;&nbsp;QFontInfo</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-fontMetrics">fontMetrics</a>()&nbsp;-&gt;&nbsp;QFontMetrics</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-foregroundRole">foregroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-frameGeometry">frameGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-frameSize"><strong>frameSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-frameSize">frameSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-geometry"><strong>geometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-geometry">geometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-getContentsMargins">getContentsMargins</a>()&nbsp;-&gt;&nbsp;(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-grabGesture"><strong>grabGesture</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-grabGesture">grabGesture</a>(Qt.GestureType,&nbsp;Qt.GestureFlags&nbsp;flags=Qt.GestureFlags(0))</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-grabKeyboard">grabKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-grabMouse"><strong>grabMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-grabMouse">grabMouse</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-grabMouse">grabMouse</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-grabShortcut">grabShortcut</a>(QKeySequence,&nbsp;Qt.ShortcutContext&nbsp;context=Qt.WindowShortcut)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-graphicsEffect">graphicsEffect</a>()&nbsp;-&gt;&nbsp;QGraphicsEffect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-graphicsProxyWidget">graphicsProxyWidget</a>()&nbsp;-&gt;&nbsp;QGraphicsProxyWidget</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-hasFocus"><strong>hasFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-hasFocus">hasFocus</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-hasMouseTracking">hasMouseTracking</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-height"><strong>height</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-height">height</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-heightForWidth">heightForWidth</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-hide"><strong>hide</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-hide">hide</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-hideEvent"><strong>hideEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-hideEvent">hideEvent</a>(QHideEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-inputContext"><strong>inputContext</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-inputContext">inputContext</a>()&nbsp;-&gt;&nbsp;QInputContext</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-inputMethodEvent">inputMethodEvent</a>(QInputMethodEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-inputMethodHints">inputMethodHints</a>()&nbsp;-&gt;&nbsp;Qt.InputMethodHints</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-inputMethodQuery">inputMethodQuery</a>(Qt.InputMethodQuery)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-insertAction"><strong>insertAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-insertAction">insertAction</a>(QAction,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-insertActions"><strong>insertActions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-insertActions">insertActions</a>(QAction,&nbsp;list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isActiveWindow">isActiveWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isAncestorOf">isAncestorOf</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isEnabled"><strong>isEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isEnabled">isEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isEnabledTo">isEnabledTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isEnabledToTLW"><strong>isEnabledToTLW</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isEnabledToTLW">isEnabledToTLW</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isFullScreen">isFullScreen</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isHidden"><strong>isHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isHidden">isHidden</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isLeftToRight">isLeftToRight</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isMaximized"><strong>isMaximized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isMaximized">isMaximized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isMinimized"><strong>isMinimized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isMinimized">isMinimized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isModal"><strong>isModal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isModal">isModal</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isRightToLeft">isRightToLeft</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isTopLevel"><strong>isTopLevel</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isTopLevel">isTopLevel</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isVisible"><strong>isVisible</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isVisible">isVisible</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isVisibleTo">isVisibleTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isWindow"><strong>isWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isWindow">isWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-isWindowModified">isWindowModified</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-keyPressEvent">keyPressEvent</a>(QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-keyReleaseEvent">keyReleaseEvent</a>(QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-keyboardGrabber">keyboardGrabber</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-languageChange"><strong>languageChange</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-languageChange">languageChange</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-layout"><strong>layout</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-layout">layout</a>()&nbsp;-&gt;&nbsp;QLayout</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-layoutDirection">layoutDirection</a>()&nbsp;-&gt;&nbsp;Qt.LayoutDirection</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-leaveEvent">leaveEvent</a>(QEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-locale"><strong>locale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-locale">locale</a>()&nbsp;-&gt;&nbsp;QLocale</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-lower"><strong>lower</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-lower">lower</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapFrom"><strong>mapFrom</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapFrom">mapFrom</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapFromGlobal">mapFromGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapFromParent">mapFromParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapTo"><strong>mapTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapTo">mapTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapToGlobal">mapToGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mapToParent"><strong>mapToParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mapToParent">mapToParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mask"><strong>mask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mask">mask</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-maximumHeight">maximumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-maximumSize"><strong>maximumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-maximumSize">maximumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-maximumWidth">maximumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-metric"><strong>metric</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-metric">metric</a>(QPaintDevice.PaintDeviceMetric)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-minimumHeight">minimumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-minimumSize"><strong>minimumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-minimumSize">minimumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-minimumSizeHint">minimumSizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-minimumWidth">minimumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mouseDoubleClickEvent">mouseDoubleClickEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mouseGrabber">mouseGrabber</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mouseMoveEvent">mouseMoveEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mousePressEvent">mousePressEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-mouseReleaseEvent">mouseReleaseEvent</a>(QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-move"><strong>move</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-move">move</a>(QPoint)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-move">move</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-moveEvent"><strong>moveEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-moveEvent">moveEvent</a>(QMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-nativeParentWidget">nativeParentWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-nextInFocusChain">nextInFocusChain</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-normalGeometry">normalGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-overrideWindowFlags">overrideWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-overrideWindowState">overrideWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-paintEngine"><strong>paintEngine</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-paintEngine">paintEngine</a>()&nbsp;-&gt;&nbsp;QPaintEngine</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-paintEvent"><strong>paintEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-paintEvent">paintEvent</a>(QPaintEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-palette"><strong>palette</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-palette">palette</a>()&nbsp;-&gt;&nbsp;QPalette</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-paletteChange"><strong>paletteChange</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-paletteChange">paletteChange</a>(QPalette)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-parentWidget"><strong>parentWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-parentWidget">parentWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-pos"><strong>pos</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-pos">pos</a>()&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-previousInFocusChain">previousInFocusChain</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-raise_"><strong>raise_</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-raise_">raise_</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-rect"><strong>rect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-rect">rect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-releaseKeyboard">releaseKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-releaseMouse">releaseMouse</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-releaseShortcut">releaseShortcut</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-removeAction"><strong>removeAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-removeAction">removeAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-render"><strong>render</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-render">render</a>(QPaintDevice,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags&nbsp;flags=<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawWindowBackground|<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawChildren)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-render">render</a>(QPainter,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags&nbsp;flags=<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawWindowBackground|<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawChildren)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-repaint"><strong>repaint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-repaint">repaint</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-repaint">repaint</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-repaint">repaint</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-repaint">repaint</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-resetInputContext">resetInputContext</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-resize"><strong>resize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-resize">resize</a>(QSize)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-resize">resize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-resizeEvent">resizeEvent</a>(QResizeEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-restoreGeometry">restoreGeometry</a>(QByteArray)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-saveGeometry">saveGeometry</a>()&nbsp;-&gt;&nbsp;QByteArray</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-scroll"><strong>scroll</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-scroll">scroll</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-scroll">scroll</a>(int,&nbsp;int,&nbsp;QRect)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setAcceptDrops">setAcceptDrops</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setAttribute"><strong>setAttribute</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setAttribute">setAttribute</a>(Qt.WidgetAttribute,&nbsp;bool&nbsp;on=True)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setAutoFillBackground">setAutoFillBackground</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setBackgroundRole">setBackgroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setBaseSize">setBaseSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setBaseSize">setBaseSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setContentsMargins">setContentsMargins</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setContentsMargins">setContentsMargins</a>(QMargins)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setContextMenuPolicy">setContextMenuPolicy</a>(Qt.ContextMenuPolicy)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setCursor"><strong>setCursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setCursor">setCursor</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setDisabled"><strong>setDisabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setDisabled">setDisabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setEnabled"><strong>setEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setEnabled">setEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFixedHeight">setFixedHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFixedSize">setFixedSize</a>(QSize)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFixedSize">setFixedSize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFixedWidth">setFixedWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFocus"><strong>setFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFocus">setFocus</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFocus">setFocus</a>(Qt.FocusReason)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFocusPolicy">setFocusPolicy</a>(Qt.FocusPolicy)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFocusProxy">setFocusProxy</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setFont"><strong>setFont</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setFont">setFont</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setForegroundRole">setForegroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setGeometry"><strong>setGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setGeometry">setGeometry</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setGeometry">setGeometry</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setGraphicsEffect">setGraphicsEffect</a>(QGraphicsEffect)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setHidden"><strong>setHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setHidden">setHidden</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setInputContext"><strong>setInputContext</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setInputContext">setInputContext</a>(QInputContext)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setInputMethodHints">setInputMethodHints</a>(Qt.InputMethodHints)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setLayout"><strong>setLayout</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setLayout">setLayout</a>(QLayout)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setLayoutDirection">setLayoutDirection</a>(Qt.LayoutDirection)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setLocale"><strong>setLocale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setLocale">setLocale</a>(QLocale)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMask"><strong>setMask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMask">setMask</a>(QBitmap)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMask">setMask</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMaximumHeight">setMaximumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMaximumSize">setMaximumSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMaximumSize">setMaximumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMaximumWidth">setMaximumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMinimumHeight">setMinimumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMinimumSize">setMinimumSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMinimumSize">setMinimumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMinimumWidth">setMinimumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setMouseTracking">setMouseTracking</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setPalette"><strong>setPalette</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setPalette">setPalette</a>(QPalette)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setParent">setParent</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setParent">setParent</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setShortcutAutoRepeat">setShortcutAutoRepeat</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setShortcutEnabled">setShortcutEnabled</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setShown"><strong>setShown</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setShown">setShown</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setSizeIncrement">setSizeIncrement</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setSizeIncrement">setSizeIncrement</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setSizePolicy">setSizePolicy</a>(QSizePolicy)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setSizePolicy">setSizePolicy</a>(QSizePolicy.Policy,&nbsp;QSizePolicy.Policy)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setStatusTip">setStatusTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setStyle"><strong>setStyle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setStyle">setStyle</a>(QStyle)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setStyleSheet">setStyleSheet</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setTabOrder">setTabOrder</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setToolTip"><strong>setToolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setToolTip">setToolTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setUpdatesEnabled">setUpdatesEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setVisible"><strong>setVisible</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setVisible">setVisible</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWhatsThis">setWhatsThis</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowFilePath">setWindowFilePath</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowFlags">setWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowIcon">setWindowIcon</a>(QIcon)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowIconText">setWindowIconText</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowModality">setWindowModality</a>(Qt.WindowModality)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowModified">setWindowModified</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowOpacity">setWindowOpacity</a>(float)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowRole">setWindowRole</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowState"><strong>setWindowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowState">setWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-setWindowTitle">setWindowTitle</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-show"><strong>show</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-show">show</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-showEvent"><strong>showEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-showEvent">showEvent</a>(QShowEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-showFullScreen">showFullScreen</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-showMaximized"><strong>showMaximized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-showMaximized">showMaximized</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-showMinimized"><strong>showMinimized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-showMinimized">showMinimized</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-showNormal"><strong>showNormal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-showNormal">showNormal</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-size"><strong>size</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-size">size</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-sizeHint"><strong>sizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-sizeHint">sizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-sizeIncrement">sizeIncrement</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-sizePolicy">sizePolicy</a>()&nbsp;-&gt;&nbsp;QSizePolicy</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-stackUnder"><strong>stackUnder</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-stackUnder">stackUnder</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-statusTip"><strong>statusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-statusTip">statusTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-style"><strong>style</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-style">style</a>()&nbsp;-&gt;&nbsp;QStyle</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-styleSheet"><strong>styleSheet</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-styleSheet">styleSheet</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-tabletEvent">tabletEvent</a>(QTabletEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-testAttribute"><strong>testAttribute</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-testAttribute">testAttribute</a>(Qt.WidgetAttribute)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BaseMod-toolTip"><strong>toolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-toolTip">toolTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-topLevelWidget"><strong>topLevelWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-topLevelWidget">topLevelWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-underMouse"><strong>underMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-underMouse">underMouse</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-ungrabGesture">ungrabGesture</a>(Qt.GestureType)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-unsetCursor">unsetCursor</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-unsetLayoutDirection">unsetLayoutDirection</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-unsetLocale">unsetLocale</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-update"><strong>update</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-update">update</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-update">update</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-update">update</a>(QRegion)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-update">update</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-updateGeometry">updateGeometry</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-updateMicroFocus">updateMicroFocus</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-updatesEnabled">updatesEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-visibleRegion">visibleRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-whatsThis"><strong>whatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-whatsThis">whatsThis</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-wheelEvent">wheelEvent</a>(QWheelEvent)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-width"><strong>width</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-width">width</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-winEvent"><strong>winEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-winEvent">winEvent</a>(MSG)&nbsp;-&gt;&nbsp;(bool,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-winId"><strong>winId</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-winId">winId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-window"><strong>window</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-window">window</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowActivationChange"><strong>windowActivationChange</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowActivationChange">windowActivationChange</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowFilePath">windowFilePath</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowFlags"><strong>windowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowFlags">windowFlags</a>()&nbsp;-&gt;&nbsp;Qt.WindowFlags</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowIcon"><strong>windowIcon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowIcon">windowIcon</a>()&nbsp;-&gt;&nbsp;QIcon</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowIconText"><strong>windowIconText</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowIconText">windowIconText</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowModality"><strong>windowModality</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowModality">windowModality</a>()&nbsp;-&gt;&nbsp;Qt.WindowModality</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowOpacity">windowOpacity</a>()&nbsp;-&gt;&nbsp;float</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowRole"><strong>windowRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowRole">windowRole</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowState"><strong>windowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowState">windowState</a>()&nbsp;-&gt;&nbsp;Qt.WindowStates</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowTitle"><strong>windowTitle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowTitle">windowTitle</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-windowType"><strong>windowType</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-windowType">windowType</a>()&nbsp;-&gt;&nbsp;Qt.WindowType</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-x"><strong>x</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-x">x</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-y"><strong>y</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-y">y</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = 2</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = 1</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = 4</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PyQt4.QtGui.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'PyQt4.QtGui.RenderFlags'&gt;<dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-RenderFlags">RenderFlags</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-RenderFlags">RenderFlags</a>(int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#BaseMod-RenderFlags">RenderFlags</a>()</tt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><a name="BaseMod-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-__getattr__">__getattr__</a>(str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-blockSignals">blockSignals</a>(bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-children"><strong>children</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-children">children</a>()&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-connect"><strong>connect</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#BaseMod-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable,&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#BaseMod-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-deleteLater">deleteLater</a>()</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="BaseMod-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT())&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#BaseMod-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-dumpObjectInfo">dumpObjectInfo</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-dumpObjectTree">dumpObjectTree</a>()</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-dynamicPropertyNames">dynamicPropertyNames</a>()&nbsp;-&gt;&nbsp;list-of-QByteArray</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-emit"><strong>emit</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-emit">emit</a>(SIGNAL(),&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-eventFilter">eventFilter</a>(QObject,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-findChild">findChild</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject<br>
+QObject.<a href="#BaseMod-findChild">findChild</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-findChildren">findChildren</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#BaseMod-findChildren">findChildren</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#BaseMod-findChildren">findChildren</a>(type,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#BaseMod-findChildren">findChildren</a>(tuple,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-inherits">inherits</a>(str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-installEventFilter">installEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-isWidgetType">isWidgetType</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-killTimer">killTimer</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-metaObject">metaObject</a>()&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-moveToThread">moveToThread</a>(QThread)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-objectName">objectName</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-parent"><strong>parent</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-parent">parent</a>()&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-property"><strong>property</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-property">property</a>(str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-removeEventFilter">removeEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-setObjectName">setObjectName</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-setProperty">setProperty</a>(str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-signalsBlocked">signalsBlocked</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-startTimer">startTimer</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-thread"><strong>thread</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-thread">thread</a>()&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-tr"><strong>tr</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-tr">tr</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-trUtf8"><strong>trUtf8</strong></a>(...)</dt><dd><tt>QObject.<a href="#BaseMod-trUtf8">trUtf8</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="BaseMod-colorCount"><strong>colorCount</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-colorCount">colorCount</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-depth"><strong>depth</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-depth">depth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-heightMM"><strong>heightMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-heightMM">heightMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-logicalDpiX">logicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-logicalDpiY">logicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-numColors"><strong>numColors</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-numColors">numColors</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-paintingActive"><strong>paintingActive</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-paintingActive">paintingActive</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-physicalDpiX">physicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-physicalDpiY">physicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="BaseMod-widthMM"><strong>widthMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#BaseMod-widthMM">widthMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PyQt4.QtGui.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = 6</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = 7</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = 8</dl>
+
+<dl><dt><strong>PdmHeight</strong> = 2</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = 4</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = 5</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = 9</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = 10</dl>
+
+<dl><dt><strong>PdmWidth</strong> = 1</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = 3</dl>
+
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#BaseMod-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Constructor">class <strong>Constructor</strong></a>(<a href="PyQt4.QtGui.html#QDialog">PyQt4.QtGui.QDialog</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="addons.BaseMod.BaseMod.html#Constructor">Constructor</a></dd>
+<dd><a href="PyQt4.QtGui.html#QDialog">PyQt4.QtGui.QDialog</a></dd>
+<dd><a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a></dd>
+<dd><a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Constructor-__init__"><strong>__init__</strong></a>(self, mainWindow, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Constructor-initUI"><strong>initUI</strong></a>(self, mainWindow)</dt></dl>
+
+<dl><dt><a name="Constructor-params"><strong>params</strong></a>(self)</dt><dd><tt>returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;all&nbsp;parameters&nbsp;that&nbsp;were&nbsp;given</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Constructor-getParams"><strong>getParams</strong></a>(mainWindow, parent<font color="#909090">=None</font>)</dt><dd><tt>returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;all&nbsp;parameters.&nbsp;the&nbsp;first&nbsp;element&nbsp;in&nbsp;the&nbsp;tuple&nbsp;is&nbsp;a&nbsp;boolean&nbsp;if&nbsp;the&nbsp;dialog&nbsp;was&nbsp;accepted</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QDialog">PyQt4.QtGui.QDialog</a>:<br>
+<dl><dt><a name="Constructor-accept"><strong>accept</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-accept">accept</a>()</tt></dd></dl>
+
+<strong>accepted</strong> = &lt;unbound signal accepted&gt;
+<dl><dt><a name="Constructor-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-closeEvent"><strong>closeEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-closeEvent">closeEvent</a>(QCloseEvent)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-contextMenuEvent">contextMenuEvent</a>(QContextMenuEvent)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-done"><strong>done</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-done">done</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-enabledChange"><strong>enabledChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-eventFilter">eventFilter</a>(QObject,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-exec_"><strong>exec_</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-exec_">exec_</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-extension"><strong>extension</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-extension">extension</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<strong>finished</strong> = &lt;unbound signal finished&gt;
+<dl><dt><a name="Constructor-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-fontChange"><strong>fontChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-isSizeGripEnabled">isSizeGripEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-keyPressEvent">keyPressEvent</a>(QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-minimumSizeHint">minimumSizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-open"><strong>open</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-open">open</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-orientation"><strong>orientation</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-orientation">orientation</a>()&nbsp;-&gt;&nbsp;Qt.Orientation</tt></dd></dl>
+
+<dl><dt><a name="Constructor-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-paletteChange"><strong>paletteChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-reject"><strong>reject</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-reject">reject</a>()</tt></dd></dl>
+
+<strong>rejected</strong> = &lt;unbound signal rejected&gt;
+<dl><dt><a name="Constructor-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-resizeEvent">resizeEvent</a>(QResizeEvent)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-result"><strong>result</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-result">result</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-setExtension"><strong>setExtension</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setExtension">setExtension</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setModal"><strong>setModal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setModal">setModal</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setOrientation"><strong>setOrientation</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setOrientation">setOrientation</a>(Qt.Orientation)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setResult"><strong>setResult</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setResult">setResult</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setSizeGripEnabled">setSizeGripEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setVisible"><strong>setVisible</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-setVisible">setVisible</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showEvent"><strong>showEvent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-showEvent">showEvent</a>(QShowEvent)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showExtension"><strong>showExtension</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-showExtension">showExtension</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-sizeHint"><strong>sizeHint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QDialog">QDialog</a>.<a href="#Constructor-sizeHint">sizeHint</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-winEvent"><strong>winEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Constructor-windowActivationChange"><strong>windowActivationChange</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QDialog">PyQt4.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = 1</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PyQt4.QtGui.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = 0</dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><a name="Constructor-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-acceptDrops">acceptDrops</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-actions"><strong>actions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-actions">actions</a>()&nbsp;-&gt;&nbsp;list-of-QAction</tt></dd></dl>
+
+<dl><dt><a name="Constructor-activateWindow"><strong>activateWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-activateWindow">activateWindow</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-addAction"><strong>addAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-addAction">addAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-addActions"><strong>addActions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-addActions">addActions</a>(list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-adjustSize"><strong>adjustSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-adjustSize">adjustSize</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-autoFillBackground">autoFillBackground</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-backgroundRole">backgroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="Constructor-baseSize"><strong>baseSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-baseSize">baseSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-childAt"><strong>childAt</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-childAt">childAt</a>(QPoint)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a><br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-childAt">childAt</a>(int,&nbsp;int)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-childrenRect"><strong>childrenRect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-childrenRect">childrenRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-childrenRegion">childrenRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="Constructor-clearFocus"><strong>clearFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-clearFocus">clearFocus</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-clearMask"><strong>clearMask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-clearMask">clearMask</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-close"><strong>close</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-close">close</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-contentsMargins">contentsMargins</a>()&nbsp;-&gt;&nbsp;QMargins</tt></dd></dl>
+
+<dl><dt><a name="Constructor-contentsRect"><strong>contentsRect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-contentsRect">contentsRect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-contextMenuPolicy">contextMenuPolicy</a>()&nbsp;-&gt;&nbsp;Qt.ContextMenuPolicy</tt></dd></dl>
+
+<dl><dt><a name="Constructor-cursor"><strong>cursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-cursor">cursor</a>()&nbsp;-&gt;&nbsp;QCursor</tt></dd></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;unbound signal customContextMenuRequested&gt;
+<dl><dt><a name="Constructor-devType"><strong>devType</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-devType">devType</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-effectiveWinId">effectiveWinId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="Constructor-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-ensurePolished">ensurePolished</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-find"><strong>find</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-find">find</a>(sip.voidptr)&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-focusPolicy">focusPolicy</a>()&nbsp;-&gt;&nbsp;Qt.FocusPolicy</tt></dd></dl>
+
+<dl><dt><a name="Constructor-focusProxy"><strong>focusProxy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-focusProxy">focusProxy</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-focusWidget"><strong>focusWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-focusWidget">focusWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-font"><strong>font</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-font">font</a>()&nbsp;-&gt;&nbsp;QFont</tt></dd></dl>
+
+<dl><dt><a name="Constructor-fontInfo"><strong>fontInfo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-fontInfo">fontInfo</a>()&nbsp;-&gt;&nbsp;QFontInfo</tt></dd></dl>
+
+<dl><dt><a name="Constructor-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-fontMetrics">fontMetrics</a>()&nbsp;-&gt;&nbsp;QFontMetrics</tt></dd></dl>
+
+<dl><dt><a name="Constructor-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-foregroundRole">foregroundRole</a>()&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="Constructor-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-frameGeometry">frameGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-frameSize"><strong>frameSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-frameSize">frameSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-geometry"><strong>geometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-geometry">geometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-getContentsMargins">getContentsMargins</a>()&nbsp;-&gt;&nbsp;(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-grabGesture"><strong>grabGesture</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-grabGesture">grabGesture</a>(Qt.GestureType,&nbsp;Qt.GestureFlags&nbsp;flags=Qt.GestureFlags(0))</tt></dd></dl>
+
+<dl><dt><a name="Constructor-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-grabKeyboard">grabKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-grabMouse"><strong>grabMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-grabMouse">grabMouse</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-grabMouse">grabMouse</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-grabShortcut">grabShortcut</a>(QKeySequence,&nbsp;Qt.ShortcutContext&nbsp;context=Qt.WindowShortcut)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-graphicsEffect">graphicsEffect</a>()&nbsp;-&gt;&nbsp;QGraphicsEffect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-graphicsProxyWidget">graphicsProxyWidget</a>()&nbsp;-&gt;&nbsp;QGraphicsProxyWidget</tt></dd></dl>
+
+<dl><dt><a name="Constructor-hasFocus"><strong>hasFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-hasFocus">hasFocus</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-hasMouseTracking">hasMouseTracking</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-height"><strong>height</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-height">height</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-heightForWidth">heightForWidth</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-hide"><strong>hide</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-hide">hide</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-inputContext"><strong>inputContext</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-inputContext">inputContext</a>()&nbsp;-&gt;&nbsp;QInputContext</tt></dd></dl>
+
+<dl><dt><a name="Constructor-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-inputMethodHints">inputMethodHints</a>()&nbsp;-&gt;&nbsp;Qt.InputMethodHints</tt></dd></dl>
+
+<dl><dt><a name="Constructor-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-inputMethodQuery">inputMethodQuery</a>(Qt.InputMethodQuery)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="Constructor-insertAction"><strong>insertAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-insertAction">insertAction</a>(QAction,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-insertActions"><strong>insertActions</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-insertActions">insertActions</a>(QAction,&nbsp;list-of-QAction)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isActiveWindow">isActiveWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isAncestorOf">isAncestorOf</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isEnabled"><strong>isEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isEnabled">isEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isEnabledTo">isEnabledTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isEnabledToTLW"><strong>isEnabledToTLW</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isEnabledToTLW">isEnabledToTLW</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isFullScreen">isFullScreen</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isHidden"><strong>isHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isHidden">isHidden</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isLeftToRight">isLeftToRight</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isMaximized"><strong>isMaximized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isMaximized">isMaximized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isMinimized"><strong>isMinimized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isMinimized">isMinimized</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isModal"><strong>isModal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isModal">isModal</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isRightToLeft">isRightToLeft</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isTopLevel"><strong>isTopLevel</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isTopLevel">isTopLevel</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isVisible"><strong>isVisible</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isVisible">isVisible</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isVisibleTo">isVisibleTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isWindow"><strong>isWindow</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isWindow">isWindow</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-isWindowModified">isWindowModified</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-keyboardGrabber">keyboardGrabber</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-layout"><strong>layout</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-layout">layout</a>()&nbsp;-&gt;&nbsp;QLayout</tt></dd></dl>
+
+<dl><dt><a name="Constructor-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-layoutDirection">layoutDirection</a>()&nbsp;-&gt;&nbsp;Qt.LayoutDirection</tt></dd></dl>
+
+<dl><dt><a name="Constructor-locale"><strong>locale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-locale">locale</a>()&nbsp;-&gt;&nbsp;QLocale</tt></dd></dl>
+
+<dl><dt><a name="Constructor-lower"><strong>lower</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-lower">lower</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapFrom"><strong>mapFrom</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapFrom">mapFrom</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapFromGlobal">mapFromGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapFromParent">mapFromParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapTo"><strong>mapTo</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapTo">mapTo</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapToGlobal">mapToGlobal</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mapToParent"><strong>mapToParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mapToParent">mapToParent</a>(QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mask"><strong>mask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mask">mask</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="Constructor-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-maximumHeight">maximumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-maximumSize"><strong>maximumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-maximumSize">maximumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-maximumWidth">maximumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-minimumHeight">minimumHeight</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-minimumSize"><strong>minimumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-minimumSize">minimumSize</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-minimumWidth">minimumWidth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-mouseGrabber">mouseGrabber</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-move"><strong>move</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-move">move</a>(QPoint)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-move">move</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-nativeParentWidget">nativeParentWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-nextInFocusChain">nextInFocusChain</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-normalGeometry">normalGeometry</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-overrideWindowFlags">overrideWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-overrideWindowState">overrideWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-paintEngine"><strong>paintEngine</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-paintEngine">paintEngine</a>()&nbsp;-&gt;&nbsp;QPaintEngine</tt></dd></dl>
+
+<dl><dt><a name="Constructor-palette"><strong>palette</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-palette">palette</a>()&nbsp;-&gt;&nbsp;QPalette</tt></dd></dl>
+
+<dl><dt><a name="Constructor-parentWidget"><strong>parentWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-parentWidget">parentWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-pos"><strong>pos</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-pos">pos</a>()&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="Constructor-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-previousInFocusChain">previousInFocusChain</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-raise_"><strong>raise_</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-raise_">raise_</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-rect"><strong>rect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-rect">rect</a>()&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="Constructor-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-releaseKeyboard">releaseKeyboard</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-releaseMouse">releaseMouse</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-releaseShortcut">releaseShortcut</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-removeAction"><strong>removeAction</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-removeAction">removeAction</a>(QAction)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-render"><strong>render</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-render">render</a>(QPaintDevice,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags&nbsp;flags=<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawWindowBackground|<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawChildren)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-render">render</a>(QPainter,&nbsp;QPoint&nbsp;targetOffset=QPoint(),&nbsp;QRegion&nbsp;sourceRegion=QRegion(),&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags&nbsp;flags=<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawWindowBackground|<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.DrawChildren)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-repaint"><strong>repaint</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-repaint">repaint</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-repaint">repaint</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-repaint">repaint</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-repaint">repaint</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-resize"><strong>resize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-resize">resize</a>(QSize)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-resize">resize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-restoreGeometry">restoreGeometry</a>(QByteArray)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-saveGeometry">saveGeometry</a>()&nbsp;-&gt;&nbsp;QByteArray</tt></dd></dl>
+
+<dl><dt><a name="Constructor-scroll"><strong>scroll</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-scroll">scroll</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-scroll">scroll</a>(int,&nbsp;int,&nbsp;QRect)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setAcceptDrops">setAcceptDrops</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setAttribute"><strong>setAttribute</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setAttribute">setAttribute</a>(Qt.WidgetAttribute,&nbsp;bool&nbsp;on=True)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setAutoFillBackground">setAutoFillBackground</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setBackgroundRole">setBackgroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setBaseSize">setBaseSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setBaseSize">setBaseSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setContentsMargins">setContentsMargins</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setContentsMargins">setContentsMargins</a>(QMargins)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setContextMenuPolicy">setContextMenuPolicy</a>(Qt.ContextMenuPolicy)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setCursor"><strong>setCursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setCursor">setCursor</a>(QCursor)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setDisabled"><strong>setDisabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setDisabled">setDisabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setEnabled"><strong>setEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setEnabled">setEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFixedHeight">setFixedHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFixedSize">setFixedSize</a>(QSize)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFixedSize">setFixedSize</a>(int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFixedWidth">setFixedWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFocus"><strong>setFocus</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFocus">setFocus</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFocus">setFocus</a>(Qt.FocusReason)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFocusPolicy">setFocusPolicy</a>(Qt.FocusPolicy)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFocusProxy">setFocusProxy</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setFont"><strong>setFont</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setFont">setFont</a>(QFont)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setForegroundRole">setForegroundRole</a>(QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setGeometry"><strong>setGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setGeometry">setGeometry</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setGeometry">setGeometry</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setGraphicsEffect">setGraphicsEffect</a>(QGraphicsEffect)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setHidden"><strong>setHidden</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setHidden">setHidden</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setInputContext"><strong>setInputContext</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setInputContext">setInputContext</a>(QInputContext)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setInputMethodHints">setInputMethodHints</a>(Qt.InputMethodHints)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setLayout"><strong>setLayout</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setLayout">setLayout</a>(QLayout)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setLayoutDirection">setLayoutDirection</a>(Qt.LayoutDirection)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setLocale"><strong>setLocale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setLocale">setLocale</a>(QLocale)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMask"><strong>setMask</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMask">setMask</a>(QBitmap)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMask">setMask</a>(QRegion)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMaximumHeight">setMaximumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMaximumSize">setMaximumSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMaximumSize">setMaximumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMaximumWidth">setMaximumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMinimumHeight">setMinimumHeight</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMinimumSize">setMinimumSize</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMinimumSize">setMinimumSize</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMinimumWidth">setMinimumWidth</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setMouseTracking">setMouseTracking</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setPalette"><strong>setPalette</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setPalette">setPalette</a>(QPalette)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setParent">setParent</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setParent">setParent</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setShortcutAutoRepeat">setShortcutAutoRepeat</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setShortcutEnabled">setShortcutEnabled</a>(int,&nbsp;bool&nbsp;enabled=True)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setShown"><strong>setShown</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setShown">setShown</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setSizeIncrement">setSizeIncrement</a>(int,&nbsp;int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setSizeIncrement">setSizeIncrement</a>(QSize)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setSizePolicy">setSizePolicy</a>(QSizePolicy)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setSizePolicy">setSizePolicy</a>(QSizePolicy.Policy,&nbsp;QSizePolicy.Policy)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setStatusTip">setStatusTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setStyle"><strong>setStyle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setStyle">setStyle</a>(QStyle)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setStyleSheet">setStyleSheet</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setTabOrder">setTabOrder</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>,&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setToolTip"><strong>setToolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setToolTip">setToolTip</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setUpdatesEnabled">setUpdatesEnabled</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWhatsThis">setWhatsThis</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowFilePath">setWindowFilePath</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowFlags">setWindowFlags</a>(Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowIcon">setWindowIcon</a>(QIcon)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowIconText">setWindowIconText</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowModality">setWindowModality</a>(Qt.WindowModality)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowModified">setWindowModified</a>(bool)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowOpacity">setWindowOpacity</a>(float)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowRole">setWindowRole</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowState"><strong>setWindowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowState">setWindowState</a>(Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-setWindowTitle">setWindowTitle</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-show"><strong>show</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-show">show</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-showFullScreen">showFullScreen</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showMaximized"><strong>showMaximized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-showMaximized">showMaximized</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showMinimized"><strong>showMinimized</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-showMinimized">showMinimized</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-showNormal"><strong>showNormal</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-showNormal">showNormal</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-size"><strong>size</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-size">size</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-sizeIncrement">sizeIncrement</a>()&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="Constructor-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-sizePolicy">sizePolicy</a>()&nbsp;-&gt;&nbsp;QSizePolicy</tt></dd></dl>
+
+<dl><dt><a name="Constructor-stackUnder"><strong>stackUnder</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-stackUnder">stackUnder</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-statusTip"><strong>statusTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-statusTip">statusTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-style"><strong>style</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-style">style</a>()&nbsp;-&gt;&nbsp;QStyle</tt></dd></dl>
+
+<dl><dt><a name="Constructor-styleSheet"><strong>styleSheet</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-styleSheet">styleSheet</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-testAttribute"><strong>testAttribute</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-testAttribute">testAttribute</a>(Qt.WidgetAttribute)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-toolTip"><strong>toolTip</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-toolTip">toolTip</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-topLevelWidget"><strong>topLevelWidget</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-topLevelWidget">topLevelWidget</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-underMouse"><strong>underMouse</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-underMouse">underMouse</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-ungrabGesture">ungrabGesture</a>(Qt.GestureType)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-unsetCursor">unsetCursor</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-unsetLayoutDirection">unsetLayoutDirection</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-unsetLocale">unsetLocale</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-update"><strong>update</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-update">update</a>()<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-update">update</a>(QRect)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-update">update</a>(QRegion)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-update">update</a>(int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-updateGeometry">updateGeometry</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-updatesEnabled">updatesEnabled</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-visibleRegion">visibleRegion</a>()&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="Constructor-whatsThis"><strong>whatsThis</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-whatsThis">whatsThis</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-width"><strong>width</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-width">width</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-winId"><strong>winId</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-winId">winId</a>()&nbsp;-&gt;&nbsp;sip.voidptr</tt></dd></dl>
+
+<dl><dt><a name="Constructor-window"><strong>window</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-window">window</a>()&nbsp;-&gt;&nbsp;<a href="PyQt4.QtGui.html#QWidget">QWidget</a></tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowFilePath">windowFilePath</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowFlags"><strong>windowFlags</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowFlags">windowFlags</a>()&nbsp;-&gt;&nbsp;Qt.WindowFlags</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowIcon"><strong>windowIcon</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowIcon">windowIcon</a>()&nbsp;-&gt;&nbsp;QIcon</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowIconText"><strong>windowIconText</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowIconText">windowIconText</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowModality"><strong>windowModality</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowModality">windowModality</a>()&nbsp;-&gt;&nbsp;Qt.WindowModality</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowOpacity">windowOpacity</a>()&nbsp;-&gt;&nbsp;float</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowRole"><strong>windowRole</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowRole">windowRole</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowState"><strong>windowState</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowState">windowState</a>()&nbsp;-&gt;&nbsp;Qt.WindowStates</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowTitle"><strong>windowTitle</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowTitle">windowTitle</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-windowType"><strong>windowType</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-windowType">windowType</a>()&nbsp;-&gt;&nbsp;Qt.WindowType</tt></dd></dl>
+
+<dl><dt><a name="Constructor-x"><strong>x</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-x">x</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-y"><strong>y</strong></a>(...)</dt><dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-y">y</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QWidget">PyQt4.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = 2</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = 1</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = 4</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PyQt4.QtGui.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'PyQt4.QtGui.RenderFlags'&gt;<dd><tt><a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-RenderFlags">RenderFlags</a>(<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.RenderFlags)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-RenderFlags">RenderFlags</a>(int)<br>
+<a href="PyQt4.QtGui.html#QWidget">QWidget</a>.<a href="#Constructor-RenderFlags">RenderFlags</a>()</tt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><a name="Constructor-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-__getattr__">__getattr__</a>(str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Constructor-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-blockSignals">blockSignals</a>(bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-children"><strong>children</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-children">children</a>()&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="Constructor-connect"><strong>connect</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#Constructor-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable,&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#Constructor-connect">connect</a>(QObject,&nbsp;SIGNAL(),&nbsp;SLOT(),&nbsp;Qt.ConnectionType=Qt.AutoConnection)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-deleteLater">deleteLater</a>()</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="Constructor-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;QObject,&nbsp;SLOT())&nbsp;-&gt;&nbsp;bool<br>
+QObject.<a href="#Constructor-disconnect">disconnect</a>(QObject,&nbsp;SIGNAL(),&nbsp;callable)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-dumpObjectInfo">dumpObjectInfo</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-dumpObjectTree">dumpObjectTree</a>()</tt></dd></dl>
+
+<dl><dt><a name="Constructor-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-dynamicPropertyNames">dynamicPropertyNames</a>()&nbsp;-&gt;&nbsp;list-of-QByteArray</tt></dd></dl>
+
+<dl><dt><a name="Constructor-emit"><strong>emit</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-emit">emit</a>(SIGNAL(),&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-findChild">findChild</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject<br>
+QObject.<a href="#Constructor-findChild">findChild</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="Constructor-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-findChildren">findChildren</a>(type,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#Constructor-findChildren">findChildren</a>(tuple,&nbsp;QString&nbsp;name=QString())&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#Constructor-findChildren">findChildren</a>(type,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject<br>
+QObject.<a href="#Constructor-findChildren">findChildren</a>(tuple,&nbsp;QRegExp)&nbsp;-&gt;&nbsp;list-of-QObject</tt></dd></dl>
+
+<dl><dt><a name="Constructor-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-inherits">inherits</a>(str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-installEventFilter">installEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-isWidgetType">isWidgetType</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-killTimer">killTimer</a>(int)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-metaObject">metaObject</a>()&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="Constructor-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-moveToThread">moveToThread</a>(QThread)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-objectName">objectName</a>()&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-parent"><strong>parent</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-parent">parent</a>()&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="Constructor-property"><strong>property</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-property">property</a>(str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="Constructor-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="Constructor-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-removeEventFilter">removeEventFilter</a>(QObject)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-setObjectName">setObjectName</a>(QString)</tt></dd></dl>
+
+<dl><dt><a name="Constructor-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-setProperty">setProperty</a>(str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-signalsBlocked">signalsBlocked</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-startTimer">startTimer</a>(int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-thread"><strong>thread</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-thread">thread</a>()&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="Constructor-tr"><strong>tr</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-tr">tr</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<dl><dt><a name="Constructor-trUtf8"><strong>trUtf8</strong></a>(...)</dt><dd><tt>QObject.<a href="#Constructor-trUtf8">trUtf8</a>(str,&nbsp;str&nbsp;disambiguation=None,&nbsp;int&nbsp;n=-1)&nbsp;-&gt;&nbsp;QString</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt4.QtCore.html#QObject">PyQt4.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="Constructor-colorCount"><strong>colorCount</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-colorCount">colorCount</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-depth"><strong>depth</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-depth">depth</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-heightMM"><strong>heightMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-heightMM">heightMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-logicalDpiX">logicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-logicalDpiY">logicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-numColors"><strong>numColors</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-numColors">numColors</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-paintingActive"><strong>paintingActive</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-paintingActive">paintingActive</a>()&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Constructor-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-physicalDpiX">physicalDpiX</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-physicalDpiY">physicalDpiY</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Constructor-widthMM"><strong>widthMM</strong></a>(...)</dt><dd><tt>QPaintDevice.<a href="#Constructor-widthMM">widthMM</a>()&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt4.QtGui.html#QPaintDevice">PyQt4.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PyQt4.QtGui.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = 6</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = 7</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = 8</dl>
+
+<dl><dt><strong>PdmHeight</strong> = 2</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = 4</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = 5</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = 9</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = 10</dl>
+
+<dl><dt><strong>PdmWidth</strong> = 1</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = 3</dl>
+
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#Constructor-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-init"><strong>init</strong></a>(mainWindow)</dt></dl>
+ <dl><dt><a name="-onProjectCreated"><strong>onProjectCreated</strong></a>(mainWindow)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ADDONPATH</strong> = 'E:/Programmieren/Python/McModder_v5/addons/BaseMod'<br>
+<strong>BASEPATH</strong> = r'C:\Python27\Lib'<br>
+<strong>description</strong> = 'This is the representation of the main Mod File, where all elements of the mod are initialized.'</td></tr></table>
+</body></html>
