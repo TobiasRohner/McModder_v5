@@ -27,9 +27,9 @@ def installForge(installationPath, console):
     Install Forge to the specified path.
     Stream the console output to the specified console.
     
-    :param installationPath: The path for Forge to be installed to
-    :type installationPath: String
-    :param console: The console for the output to be streamed to
+    Args:
+        installationPath (str):             Path to the installation folder of Forge
+        console (widgets.console.Console):  Console to stream the output to
     """
     
     #download forge
@@ -53,10 +53,13 @@ def installForge(installationPath, console):
 
 def runClient(projectPath, console):
     """
+    runClient(str, widgets.console.Console)
+    
     Run the Minecraft Client with the Forge Mod installed.
     
-    :param projectPath: Path to the root folder of Forge
-    :param console: The console for the output to be streamed to
+    Args:
+        projectPath (str):                  Path to the root folder of Forge
+        console (widgets.console.Console):  Console to stream the output to
     """
     
     os.chdir(projectPath)
@@ -71,10 +74,13 @@ def runClient(projectPath, console):
 
 def exportMod(projectPath, console):
     """
+    exportMod(str, widgets.console.Console)
+    
     Export the Mod as a .jar.
     
-    :param projectPath: Path to the root folder of Forge
-    :param console: The console for the output to be streamed to
+    Args:
+        projectPath (str):                  Path to the root folder of Forge
+        console (widgets.console.Console):  Console to stream the output to
     """
     
     path = projectPath+"/java"
@@ -91,6 +97,8 @@ def exportMod(projectPath, console):
 
 def _downloadForge(path):
     """
+    _downloadForge(str)
+    
     Download Forge from FORGE_URL
     """
     
@@ -121,6 +129,9 @@ def _downloadForge(path):
     
     
 def _setupEnvironment(path, console):
+    """
+    _setupEnvironment(str, widgets.console.Console)
+    """
 
     #setup the environment
     os.chdir(path)
@@ -133,6 +144,9 @@ def _setupEnvironment(path, console):
     
     
 def _deleteExampleCode(path):
+    """
+    _deleteExampleCode(str)
+    """
     
     shutil.rmtree(path+"/src/main/java/com")
     os.remove(path+"/src/main/resources/mcmod.info")

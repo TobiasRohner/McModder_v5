@@ -12,8 +12,18 @@ from PyQt4 import QtGui, QtCore
 
 
 class GUIWidget(QtGui.QWidget):
+    """
+    Class for the graphical representation of a Minecraft GUI
+    """
     
     def __init__(self, master, texturepath):
+        """
+        GUIWidget(classes._base, str)
+        
+        Args:
+            master (classes._base):     Class, which contains an instance of GUIWidget
+            texturepath (str):          Path to the GUI texture
+        """
         QtGui.QWidget.__init__(self)
         
         self.master = master
@@ -32,6 +42,14 @@ class GUIWidget(QtGui.QWidget):
                       
                       
     def imageCornersInWidgetCoordinates(self):
+        """
+        GUIWidget.imageCornersInWidgetCoordinates() -> list[list[int], list[int]]
+        
+        Return the position of the top left corner of the GUI texture and its width and height in the QtGui.QWidget's coordinate system.
+        
+        Returns:
+            list[list[int], list[int]]:     [[Corner X, Corner Y], [Width, Height]]
+        """
         
         width = self.texture.width()
         height = self.texture.height()
@@ -52,6 +70,18 @@ class GUIWidget(QtGui.QWidget):
         
         
     def image2widgetCoords(self, x, y):
+        """
+        GUIWidget.image2widgetCoords(int, int) -> (int, int)
+        
+        Convert image to QtGui.QWidget coordinates (Coordinates in Pixels)
+        
+        Args:
+            x (int):        X Coordinate of a pixel in the image
+            y (int):        Y Coordinate of a pixel in the image
+            
+        Returns:
+            (int, int):     Coordinates of the given pixel in QtGui.QWidget coordinates
+        """
         
         c, s = self.imageCornersInWidgetCoordinates()
         
@@ -62,6 +92,18 @@ class GUIWidget(QtGui.QWidget):
         
         
     def widget2imageCoords(self, x, y):
+        """
+        GUIWidget.widget2imageCoords(int, int) -> (int, int)
+        
+        Convert QtGui.QWidget to image coordinates (Coordinates in Pixels)
+        
+        Args:
+            x (int):        X Coordinate of a pixel in the QtGui.QWidget
+            y (int):        Y Coordinate of a pixel in the QtGui.QWidget
+            
+        Returns:
+            (int, int):     Coordinates of the given pixel in image coordinates
+        """
         
         c, s = self.imageCornersInWidgetCoordinates()
         
@@ -88,6 +130,19 @@ class GUIWidget(QtGui.QWidget):
         
         
     def inSlot(self, x, y):
+        """
+        GUIWidget.inSlot(int, int) -> int
+        
+        Return the index of the Slot the coordinate is in.
+        If it's not over any Slot, return -1.
+        
+        Args:
+            x (int):    QtGui.QWidget x coordinate in pixels
+            y (int):    QtGui.QWidget y coordinate in pixels
+            
+        Returns:
+            int:        Index of the Slot lying under the given pixel
+        """
         
         imgCoords = self.widget2imageCoords(x, y)
         for i in range(len(self.slots)):
@@ -97,6 +152,14 @@ class GUIWidget(QtGui.QWidget):
         
         
     def drawOverlayIcon(self, painter):
+        """
+        GUIWidget.drawOverlayIcon(QtGui.QPainter)
+        
+        Draw a transparent in a Slot, over which a drag object hovers.
+        
+        Args:
+            painter (QtGui.QPainter):   The QtGui.QPainter instance
+        """
         
         if self.dragItem != None:
             slotIdx = self.inSlot(self.pos.x(), self.pos.y())
@@ -116,6 +179,18 @@ class GUIWidget(QtGui.QWidget):
             
             
     def itemFromInformation(self, identifier, name):
+        """
+        GUIWidget.itemFromInformation(str, str) -> ListWidgetItem
+        
+        Return a pointer to the ListWidgetItem instance of an ItemList corresponding to the given information.
+        
+        Args:
+            identifier (str):   Identifier of the item (Vanilla, Item, Block)
+            name (str):         Name of the item
+            
+        Returns:
+            ListWidgetItem:     Pointer to the ListWidgetItem instance corresponding to the given information
+        """
         
         return self.master.itemList.getItem(name, identifier)
         
@@ -222,8 +297,20 @@ class GUIWidget(QtGui.QWidget):
         
         
 class Slot():
+    """
+    Container to store an ItemStack
+    """
     
     def __init__(self, master, x, y, stackable=False):
+        """
+        Slot(GUIWidget, int, int, bool)
+        
+        Args:
+            master (GUIWidget):     GUIWidget instance, to which this Slot belongs to
+            x (int):                X position of the Slot in image pixels
+            y (int):                Y position of the Slot in image pixels
+            stackable (bool):       If items could be stacked inside this Slot (default=False)
+        """
         
         self.master = master
         
@@ -251,6 +338,15 @@ class Slot():
         
         
     def setItem(self, item, count=1):
+        """
+        Slot.setItem(ListWidgetItem, int)
+        
+        Add the specified number of items to the Slot.
+        
+        Args:
+            item (ListWidgetItem):  Item to be added
+            count (int):            Number of items to be added (default=1)
+        """
         
         if self.stackable:
             if item == self.item:
@@ -294,6 +390,14 @@ class Slot():
                 
                 
     def getItemStack(self):
+        """
+        Slot.getItemStack() -> str
+        
+        Return the Java code for the Minecraft item stack inside this Slot.
+        
+        Returns:
+            str:    Java source code of the Minecraft item stack inside this Slot
+        """
         
         return "new ItemStack("+self.item.instancename+", "+str(self.count)+")"
         
@@ -302,8 +406,19 @@ class Slot():
         
         
 class ItemStack():
+    """
+    Container for a specific number of items
+    """
     
     def __init__(self, master, item, count=1):
+        """
+        ItemStack(object, ListWidgetItem, int)
+        
+        Args:
+            master (object):        The object the ItemStack instance belongs to (mostly Recipes)
+            item (ListWidgetItem):  Item stored in this ItemStack
+            count (int):            Number of items stored
+        """
         
         self.item = item
         self.count = count

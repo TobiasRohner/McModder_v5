@@ -15,6 +15,12 @@ BASEPATH = os.path.dirname(sys.argv[0])
 class Addons(QtGui.QDialog):
     
     def __init__(self, mainWindow):
+        """
+        Addons(Main.MainWindow)
+        
+        Args:
+            mainWindow (Main.MainWindow):   Pointer to the main window
+        """
         QtGui.QDialog.__init__(self)
         
         self.mainWindow = mainWindow
@@ -40,11 +46,32 @@ class Addons(QtGui.QDialog):
         
         
     def descriptionText(self, name, path, description):
+        """
+        Addons.descriptionText(str, str, str) -> str
+        
+        Generate the information text displayed when the addon is selected.
+        
+        Args:
+            name (str):         Name of the addon
+            path (str):         Path to the main addon file
+            description (str):  The description loaded from the main addon file
+            
+        Returns:
+            str:                Formatted information text
+        """
 
         return "Name: "+name+"\nPath: "+path+"\n\n"+description
         
         
     def loadedAddons(self):
+        """
+        Addons.loadedAddons() -> list[_AddonListEntry]
+        
+        Get all loaded addons.
+        
+        Returns:
+            list[_AddonListEntry]:  Information on all currently loaded addons
+        """
         
         addons = []
         for addon in self.mainWindow.addons:
@@ -58,6 +85,12 @@ class Addons(QtGui.QDialog):
         
         
     def addAddon(self):
+        """
+        Add an addon from a specified path.
+        
+        Adds a new _AddonListEntry to the addon list.
+        File path gets determined by a file dialog.
+        """
         
         path = str(QtGui.QFileDialog.getOpenFileName(self, self.mainWindow.translations.getTranslation("addonSelection"),
                                                           BASEPATH,
@@ -93,8 +126,19 @@ class Addons(QtGui.QDialog):
         
         
 class _AddonListEntry(QtGui.QListWidgetItem):
+    """
+    Container for the addon information
+    """
     
     def __init__(self, name, path, description):
+        """
+        _AddonListEntry(str, str, str)
+        
+        Args:
+            name (str):         Name of the addon
+            path (str):         Path to the main addon file
+            description (str):  The description loaded from the main addon file
+        """
         QtGui.QListWidgetItem.__init__(self, name)
         
         self.name = name

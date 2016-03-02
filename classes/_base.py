@@ -10,8 +10,19 @@ from PyQt4 import QtGui
 
 
 class _base(QtGui.QWidget):
+    """
+    This class acts as a parent to all Mod objects.
+    """
     
     def __init__(self, mainWindow, identifier, classtype):
+        """
+        _base(Main.MainWindow, str, str)
+        
+        Args:
+            mainWindow (Main.MainWindow):       Pointer to the main window
+            identifier (str):                   Identiifer (Tab) under which this object should be listen in the project explorer
+            classtype (str):                    Name of the inheriting class
+        """
         QtGui.QWidget.__init__(self)
         
         self.identifier = identifier
@@ -49,6 +60,14 @@ class _base(QtGui.QWidget):
 
 
     def load(self, data):
+        """
+        _base.load(dict)
+        
+        Load the data from a Python dictionary
+        
+        Args:
+            data (dict):    The saved data as a dictionary
+        """
         
         for key in data.keys():
             value = data[key]

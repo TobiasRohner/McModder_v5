@@ -17,7 +17,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 CONFIGPATH = BASEPATH+"/config"
 
-VERSION = "0.0.1"
+VERSION = "5.4.4"   """Project . Savefile compatibility . Minecraft objects"""
 
 
 
@@ -189,10 +189,13 @@ class MainWindow(QtGui.QMainWindow):
         
     def updateName(self, obj, name):
         """
+        MainWindow.updateName(classes._base, str)
+        
         Update the name of a Minecraft object.
         
-        :param obj: The object itself
-        :param name: The new name of the object
+        Args:
+            obj (classes._base):    The object to rename
+            name (str):             The new name of the object
         """
         
         self.editor.renameTab(obj, name)
@@ -202,7 +205,12 @@ class MainWindow(QtGui.QMainWindow):
         
     def addObject(self, obj):
         """
+        MainWindow.addObject(classes._base)
+        
         Add a new Minecraft object to the project.
+        
+        Args:
+            obj (classes._base):    The object to add
         """
         
         self.project.addObject(obj)

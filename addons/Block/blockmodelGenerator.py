@@ -19,10 +19,17 @@ from OpenGL.GL import shaders
 
 class BlockModelGenerator(QtGui.QMainWindow):
     """
-    Block Model Generator is a 3D-Modelling Software for custom block models.
+    A 3D-Modelling Software for custom block models and texturing.
     """
     
     def __init__(self, mainWindow, master):
+        """
+        BlockModelGenerator(Main.MainWindow, Block)
+        
+        Args:
+            mainWindow (Main.MainWindow):   Pointer to the main window
+            master (Block):                 Pointer to the Block class
+        """
         QtGui.QMainWindow.__init__(self)
         
         self.mainWindow = mainWindow
@@ -357,6 +364,14 @@ class BlockModelGenerator(QtGui.QMainWindow):
             
             
     def selectedCuboid(self):
+        """
+        BlockModelGenerator.selectedCuboid() -> Cuboid
+        
+        Return the in the cuboid list currently selected cuboid.
+        
+        Returns:
+            Cuboid:     Currently selected Cuboid
+        """
         
         return self.cuboidList.currentItem()
         
@@ -405,6 +420,18 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         
     def addTexture(self, path):
+        """
+        BlockModelGenerator.addTexture(str) -> int
+        
+        Get the path to a texture and return an index for it.
+        If the texture was already added once, return the index of the earlier one. Else, generate a new index.
+        
+        Args:
+            path (str):     Path to the texture to add
+            
+        Returns:
+            int:            Index for that specific texture path
+        """
         
         if not path in self.textures:
             self.textures.append(path)
@@ -412,16 +439,35 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         
     def save(self):
+        """
+        Modify the modeldata of the master to fit the current block model.
+        """
         
         self.master.modeldata = [self.savedata(), self.getJSON(), self.textures]
         
         
     def cuboids(self):
+        """
+        BlockModelGenerator.cuboids() -> list[Cuboid]
+        
+        Return a list of all cuboids, which build up the current block model.
+        
+        Returns:
+            list[Cuboid]:   List of all Cuboids
+        """
         
         return [self.cuboidList.item(i) for i in range(self.cuboidList.count())]
         
         
     def getJSON(self):
+        """
+        BlockModelGenerator.getJSON() -> str
+        
+        Return the JSON-representation of the block model (blockmodel.json)
+        
+        Returns:
+            str:    The block model in JSON format
+        """
         
         self.textures = []
         model = {}
@@ -438,11 +484,27 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         
     def savedata(self):
+        """
+        BlockModelGenerator.save() -> dict
+        
+        Return all nessecary data to store the block model on disk.
+        
+        Returns:
+            dict:   Data to store
+        """
         
         return {"cuboids":[cub.savedata() for cub in self.cuboids()]}
         
         
     def loadData(self, data):
+        """
+        BlockModelGenerator.loadData(dict)
+        
+        Load the data of a block model.
+        
+        Args:
+            data (dict):    The data to load
+        """
         
         for cubData in data["cuboids"]:
             cub = Cuboid(cubData["name"], cubData["dimensions"], self)
@@ -456,12 +518,21 @@ class BlockModelGenerator(QtGui.QMainWindow):
         
         
 class ModelGLWidget(QtOpenGL.QGLWidget):
+    """
+    3D-View of the BlockModelGenerator UI
+    """
     
     xRotationChanged = QtCore.pyqtSignal(int)
     yRotationChanged = QtCore.pyqtSignal(int)
     zRotationChanged = QtCore.pyqtSignal(int)
     
     def __init__(self, modelGenerator):
+        """
+        ModelGLWidget(BlockModelGenerator)
+        
+        Args:
+            modelGenerator (BlockModelGenerator):   The BlockModelGenerator owning this instance of ModelGLWidget
+        """
         QtOpenGL.QGLWidget.__init__(self)
         
         self.modelGenerator = modelGenerator
@@ -548,6 +619,9 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         
         
     def drawGrid(self):
+        """
+        Draw the Grid on the floor as an orientation aid.
+        """
         
         GL.glBegin(GL.GL_LINES)
         GL.glColor(0.75, 0.75, 0.75)
@@ -561,6 +635,9 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         
         
     def drawCoordinateSystem(self):
+        """
+        Draw the coordinate system axis.
+        """
         
         GL.glBegin(GL.GL_LINES)
         GL.glColor(0.0, 0.0, 1.0)
@@ -600,6 +677,7 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
 
 
     def normalizeAngle(self, angle):
+        
         while angle < 0:
             angle += 360 * 16
         while angle > 360 * 16:
@@ -610,6 +688,9 @@ class ModelGLWidget(QtOpenGL.QGLWidget):
         
         
 class UVEditor(QtGui.QWidget):
+    """
+    Editor for mapping textures on a cuboid.
+    """
     
     def __init__(self, modelGenerator, texture):
         QtGui.QWidget.__init__(self)

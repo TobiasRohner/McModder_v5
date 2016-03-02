@@ -21,6 +21,18 @@ VANILLA_TABS = {"Building Blocks":"CreativeTabs.tabBlock",
                 
                 
 def mergeDicts(x, y):
+    """
+    mergeDicts(dict, dict) -> dict
+    
+    Merge two dictionarys together.
+    
+    Args:
+        x (dict):   First dictionary
+        y (dict):   Second dictionary
+    
+    Returns:
+        dict:       Merged dictionary
+    """
     
     z = x.copy()
     z.update(y)
@@ -34,6 +46,12 @@ def mergeDicts(x, y):
 class CreativeDropdown(QtGui.QComboBox):
     
     def __init__(self, mainWindow):
+        """
+        CreativeDropdown(Main.MainWindow)
+        
+        Args:
+            mainWindow (Main.MainWindow):   Pointer to the main window
+        """
         QtGui.QComboBox.__init__(self)
         
         self.mainWindow = mainWindow
@@ -57,5 +75,16 @@ class CreativeDropdown(QtGui.QComboBox):
                 
                 
     def getTabClass(self, tabName):
+        """
+        CreativeDropdown.getTabClass(str) -> str
+        
+        Get the Java class of a tab.
+        
+        Args:
+            tabName (str):  The name of the tab in English
+            
+        Returns:
+            str:            The corresponding Java class
+        """
         
         return self.tabs[tabName]

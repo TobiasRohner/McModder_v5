@@ -112,5 +112,7 @@ $RECYCLE.BIN/
 workspace/
 dev/
 doc/
+PyDocs/
+Forge/
 config.dox
 buildDoc.bat

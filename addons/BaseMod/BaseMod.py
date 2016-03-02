@@ -51,11 +51,6 @@ class BaseMod(QtGui.QWidget):
         self.initUI()
         
         
-    def postInit(self, project):
-        
-        return
-        
-        
     def initUI(self):
         
         self.ui = uic.loadUi(ADDONPATH+"/BaseMod.ui", self)

@@ -12,8 +12,17 @@ ITEMS = []
 
 
 class ItemList(QtGui.QListWidget):
+    """
+    List of all Items in the Game. This includes Vanilla and Modded Items.
+    """
     
     def __init__(self, mainWindow):
+        """
+        ItemList(Main.MainWindow)
+        
+        Args:
+            mainWindow (Main.MainWindow):   Pointer to the main window
+        """
         QtGui.QListWidget.__init__(self)
         
         self.mainWindow = mainWindow
@@ -32,6 +41,9 @@ class ItemList(QtGui.QListWidget):
         
         
     def initMCItems(self):
+        """
+        Load all Vanilla Minecraft Items from the icons.json file and add them to the List.
+        """
         
         f = open(BASEPATH+"/assets/icons.json")
         data = json.load(f)
@@ -45,6 +57,9 @@ class ItemList(QtGui.QListWidget):
     
     
     def reloadItems(self):
+        """
+        Reload all Modded Items.
+        """
         
         if "Item" in self.mainWindow.project.objects.keys():
             for item in self.mainWindow.project.objects["Item"]:
@@ -80,6 +95,18 @@ class ItemList(QtGui.QListWidget):
         
         
     def getItem(self, name, identifier):
+        """
+        ItemList.getItem(str, str) -> ListWidgetItem
+        
+        Get a pointer to the ListWidgetItem representing the specified Item.
+        
+        Args:
+            name (str):         Name of the Item
+            identifier (str):   The Identifier String (Vanilla, Item or Block)
+            
+        Returns:
+            ListWidgetItem:     Pointer to the ListWidgetItem of the specified Item
+        """
         
         for item in self.findItems(name, QtCore.Qt.MatchExactly):
             if item.identifier == identifier:
@@ -89,8 +116,21 @@ class ItemList(QtGui.QListWidget):
         
         
 class ListWidgetItem(QtGui.QListWidgetItem):
+    """
+    QtGui.QListWidgetItem representation of an Item or Block in the Game.
+    """
     
     def __init__(self, name, identifier, instancename, package, texturepath=BASEPATH+"/assets/textures/icons/unknown.png"):
+        """
+        ListWidgetItem(str, str, str, str, str)
+        
+        Args:
+            name (str):             The Items name
+            identifier (str):       Identifier of the Item (Vanilla, Item, Block)
+            instancename (str):     Name of the Instance inside the Java source
+            package (str):          Java package
+            texturepath (str):      Path to the Items texture (default=BASEPATH+"/assets/textures/icons/unknown.png")
+        """
         QtGui.QListWidgetItem.__init__(self)
         
         if not os.path.exists(texturepath):
@@ -106,6 +146,12 @@ class ListWidgetItem(QtGui.QListWidgetItem):
         
         
     def updateIcon(self, path):
+        """
+        ListWidgetItem.updateIcon(str)
+        
+        Args:
+            path (str):     Path to the new texture
+        """
         
         self.texture = QtGui.QPixmap(path)
         self.iconObj = QtGui.QIcon(self.texture)

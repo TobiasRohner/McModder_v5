@@ -21,8 +21,18 @@ BlockModelGenerator = imp.load_source("blockmodelGenerator", ADDONPATH+"/blockmo
 
 
 class Block(_base):
+    """
+    UI and Java Code Generator for Blocks.
+    """
     
     def __init__(self, mainWindow, name):
+        """
+        Block(Main.MainWindow, str)
+        
+        Args:
+            mainWindow (Main.MaimWindow):   Pointer to the main window
+            name (str):                     Block name
+        """
         _base.__init__(self, mainWindow, "Block", "Block")
         
         self.name = name
@@ -133,6 +143,14 @@ class Block(_base):
         
         
     def getRenderLayer(self):
+        """
+        Block.getRenderLayer() -> str
+        
+        Get the render layer, on which the block should be rendered.
+        
+        Returns:
+            str:    Render layer ("SOLID", "TRANSLUCENT" or "CUTOUT")
+        """
         
         if self.transparency == "nontransparent":
             return "SOLID"
@@ -153,6 +171,14 @@ class Block(_base):
         
         
     def save(self):
+        """
+        Block.save() -> dict
+        
+        Return all nessecary data to store on disk.
+        
+        Returns:
+            dict:   Data to store
+        """
         
         data = {"identifier":self.identifier,
                 "classtype":self.classtype,
@@ -165,6 +191,9 @@ class Block(_base):
         
         
     def renewWidgetEntrys(self):
+        """
+        Load the data stored in the class to the UI elements.
+        """
         
         self.nameInput.setText(self.name)
         self.transparentButton.setChecked(self.transparency == "transparent")
@@ -175,6 +204,17 @@ class Block(_base):
         
         
     def pull(self, cls):
+        """
+        Block.pull(classes._base) -> dict
+        
+        Return code/data for a specific class (mostly used to upload data to a BaseMod instance)
+        
+        Args:
+            cls (classes._base):    The class requesting the specific data
+            
+        Returns:
+            dict:                   Data specifically for the calling class
+        """
         
         data = {}
         
@@ -200,7 +240,10 @@ class Block(_base):
         
         
     def completeModData(self):
-        """ask every class in the project, if it has to add something to the mod data of the base mod"""
+        """
+        Collect all data used for the Java Source generation by iterationg over all Mod objects in the project.
+        """
+        
         for k in self.data.keys():
             self.data[k] = []
         
@@ -258,6 +301,17 @@ class Block(_base):
             
             
     def generateSrc(self, src):
+        """
+        Block.generateSrc(str) -> str
+        
+        Return the source code with the specific strings (marked with <...>) replaced
+        
+        Args:
+            src (str):  Source without replaced specific strings
+            
+        Returns:
+            str:        Source with replaced specific strings
+        """
         
         for d in self.data.keys():
             src = src.replace("<"+d+">", "\n".join(self.data[d]))
@@ -266,6 +320,10 @@ class Block(_base):
         
         
     def export(self):
+        """
+        Export all mod files (Java source file, blockstates.json, blockmodel.json, itemmodel.json and textures)
+        """
+        
         """Export the main java file"""
         path = self.mainWindow.projectPath+"/src/main/java/"+self.package().replace(".", "/")
         if not os.path.exists(path):
