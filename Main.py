@@ -9,9 +9,26 @@ from utils import translations, gradlew, Config, History
 from classes import source
 from PyQt4 import QtGui, QtCore, uic
 
+import logging
+logging.basicConfig()
+
 try:
     import addons
 except:
+    pass
+
+#Tricking py2exe Package Compilation
+try:
+    from OpenGL.platform import win32
+except AttributeError:
+    pass
+try:
+    from OpenGL import wrapper
+except TypeError:
+    pass
+try:
+    from OpenGL import converters
+except TypeError:
     pass
 
 
@@ -20,7 +37,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 CONFIGPATH = BASEPATH+"/config"
 
-VERSION = "5.5.4"   """Project . Savefile compatibility . Minecraft objects"""
+VERSION = "5.5.4"   #Project . Savefile compatibility . Minecraft objects
 
 
 
@@ -254,9 +271,10 @@ class MainWindow(QtGui.QMainWindow):
         
         self.console.clear()
         
-        path = QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly)
+        path = str(QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly))
         if path != "":
             name, ok = QtGui.QInputDialog.getText(self, self.translations.getTranslation("newProject"), self.translations.getTranslation("name"))
+            name = str(name)
             if ok:
                 self.projectPath = path+"/"+name
                 self.project.name = name
@@ -320,9 +338,9 @@ class MainWindow(QtGui.QMainWindow):
         Export the current project as a .jar file.
         """
         
-        path = QtGui.QFileDialog.getExistingDirectory(None, self.translations.getTranslation("destinationSelection"),
-                                                      self.projectPath+"/java/build/libs",
-                                                      QtGui.QFileDialog.ShowDirsOnly)
+        path = str(QtGui.QFileDialog.getExistingDirectory(None, self.translations.getTranslation("destinationSelection"),
+                                                          self.projectPath+"/java/build/libs",
+                                                          QtGui.QFileDialog.ShowDirsOnly))
         if path != "":
             buildGradle = open(self.projectPath+"/java/build.gradle", "w")
             gradleSrc = source.SrcBuildGradle.main
@@ -345,7 +363,8 @@ class MainWindow(QtGui.QMainWindow):
         Save the current project to disk after creating a backup of the current savefile.
         """
         
-        shutil.copy2(self.projectPath+"/moddata.json", self.projectPath+"/moddata.backup")
+        if os.path.exists(self.projectPath+"/moddata.json"):
+            shutil.copy2(self.projectPath+"/moddata.json", self.projectPath+"/moddata.backup")
         
         f = open(self.projectPath+"/moddata.json", "w")
         

@@ -173,7 +173,7 @@ class ProjectExplorer(QtGui.QDockWidget):
         cls = None
         if item.parent() and not item.parent().parent():
             name = item.text(0)
-            identifier = item.parent().text(0)
+            identifier = str(item.parent().text(0))
             for c in self.objects[identifier]:
                 if c.name == name:
                     cls = c

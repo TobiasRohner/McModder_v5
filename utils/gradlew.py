@@ -33,20 +33,20 @@ def installForge(installationPath, console):
     """
     
     #download forge
-    zipPath = _downloadForge(installationPath)
+    zipPath = str(_downloadForge(installationPath))
     
     #extract forge to the selected path
     forgeZip = zipfile.ZipFile(zipPath, "r")
-    forgeZip.extractall(installationPath)
+    forgeZip.extractall(str(installationPath))
     forgeZip.close()
     #delete the forge zip file
     os.remove(zipPath)
     
     #setup the environment (Eclipse)
-    _setupEnvironment(installationPath, console)
+    _setupEnvironment(str(installationPath), console)
     
     #delete the example mod
-    _deleteExampleCode(installationPath)
+    _deleteExampleCode(str(installationPath))
     
     
 
