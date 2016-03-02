@@ -44,11 +44,11 @@ class CraftingTable(_base):
         self.setAcceptDrops(True)
         
         self.itemList = menus.ItemList(self.mainWindow)
-        self.tableLayout.addWidget(self.itemList)
+        self.tableLayout.insertWidget(0, self.itemList)
         
         self.gui.setMinimumSize(176, 166)
         self.gui.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        self.tableLayout.addWidget(self.gui)
+        self.guiLayout.insertWidget(0, self.gui)
         
         self.connect(self.newRecipeButton, QtCore.SIGNAL("clicked()"), self.addRecipe)
         self.connect(self.removeRecipeButton, QtCore.SIGNAL("clicked()"), self.removeRecipe)
@@ -242,6 +242,8 @@ class Recipe(QtGui.QListWidgetItem):
                       guiDef.ItemStack(self, None), guiDef.ItemStack(self, None), guiDef.ItemStack(self, None),
                       guiDef.ItemStack(self, None), guiDef.ItemStack(self, None), guiDef.ItemStack(self, None),
                       guiDef.ItemStack(self, None)]
+                      
+        self.shaped = True
         
         self.data = {"output":[],
                      "grid":[],
@@ -377,6 +379,7 @@ class Recipe(QtGui.QListWidgetItem):
         for i in self.items:
             data["items"].append(i.save())
         data["name"] = self.text()
+        data["shaped"] = self.shaped
         
         return data
         
@@ -384,6 +387,7 @@ class Recipe(QtGui.QListWidgetItem):
     def load(self, data):
         
         self.setText(data["name"])
+        self.shaped = data["shaped"]
         for i in range(len(data["items"])):
             self.items[i].load(data["items"][i])
 

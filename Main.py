@@ -9,7 +9,10 @@ from utils import translations, gradlew, Config, History
 from classes import source
 from PyQt4 import QtGui, QtCore, uic
 
-import addons
+try:
+    import addons
+except:
+    pass
 
 
 
@@ -17,7 +20,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 CONFIGPATH = BASEPATH+"/config"
 
-VERSION = "5.4.4"   """Project . Savefile compatibility . Minecraft objects"""
+VERSION = "5.5.4"   """Project . Savefile compatibility . Minecraft objects"""
 
 
 
@@ -339,8 +342,10 @@ class MainWindow(QtGui.QMainWindow):
                 
     def save(self):
         """
-        Save the current project to disk.
+        Save the current project to disk after creating a backup of the current savefile.
         """
+        
+        shutil.copy2(self.projectPath+"/moddata.json", self.projectPath+"/moddata.backup")
         
         f = open(self.projectPath+"/moddata.json", "w")
         
