@@ -54,6 +54,7 @@ class CraftingTable(_base):
         self.connect(self.removeRecipeButton, QtCore.SIGNAL("clicked()"), self.removeRecipe)
         self.connect(self.recipeList, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.selectRecipe)
         self.connect(self.recipeList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.renameRecipe)
+        self.connect(self.shapedCheckbox, QtCore.SIGNAL("stateChanged(int)"), self.setShaped)
         
         
     def addRecipe(self):
@@ -119,6 +120,8 @@ class CraftingTable(_base):
         self.gui.slots[8].count = recipe.items[8].count
         self.gui.slots[9].count = recipe.items[9].count
         
+        self.shapedCheckbox.setCheckState(QtCore.Qt.Checked if recipe.shaped else QtCore.Qt.Unchecked)
+        
         self.gui.repaint()
         
         
@@ -157,6 +160,13 @@ class CraftingTable(_base):
         
         if ok:
             recipe.setText(txt)
+            
+            
+    def setShaped(self, shaped):
+        
+        recipe = self.recipeList.currentItem()
+        
+        recipe.shaped = shaped == QtCore.Qt.Checked
         
         
     def save(self):
@@ -247,7 +257,8 @@ class Recipe(QtGui.QListWidgetItem):
         
         self.data = {"output":[],
                      "grid":[],
-                     "items":[]}
+                     "items":[],
+                     "inputs":[]}
                      
         self.ACRO = ["A", "B", "C", "D", "E", "F", "G", "H", "I", " "]
         
@@ -337,22 +348,34 @@ class Recipe(QtGui.QListWidgetItem):
         success = True
         
         usedItems = []
+        usedStacks = []
         for stack in self.items:
             if stack.item != None and not stack.item.identifier+";"+stack.item.text() in [item.identifier+";"+item.text() for item in usedItems]:
                 usedItems.append(stack.item)
-        recipe = [[self.getItemAcronym(usedItems, self.items[0]), self.getItemAcronym(usedItems, self.items[1]), self.getItemAcronym(usedItems, self.items[2])],
-                  [self.getItemAcronym(usedItems, self.items[3]), self.getItemAcronym(usedItems, self.items[4]), self.getItemAcronym(usedItems, self.items[5])],
-                  [self.getItemAcronym(usedItems, self.items[6]), self.getItemAcronym(usedItems, self.items[7]), self.getItemAcronym(usedItems, self.items[8])]]
-        recipe = ",\n".join(['"'+"".join(c)+'"' for c in self.crop(recipe)])
-        self.data["grid"] += [recipe]
-        #output
-        self.data["output"] += [self.items[9].getItemStack()]
-        #the items used with their acronym
-        items = []
-        for i in range(len(usedItems)):
-            items.append("'"+self.ACRO[i]+"'")
-            items.append(usedItems[i].instancename)
-        self.data["items"] += [", ".join(items)]
+                
+        usedStacks = []
+        for stack in self.items[:-1]:
+            if stack.item != None and not stack.item.identifier+";"+stack.item.text() in [s.item.identifier+";"+s.item.text() for s in usedStacks]:
+                usedStacks.append(stack)
+                
+        if self.shaped:
+            recipe = [[self.getItemAcronym(usedItems, self.items[0]), self.getItemAcronym(usedItems, self.items[1]), self.getItemAcronym(usedItems, self.items[2])],
+                      [self.getItemAcronym(usedItems, self.items[3]), self.getItemAcronym(usedItems, self.items[4]), self.getItemAcronym(usedItems, self.items[5])],
+                      [self.getItemAcronym(usedItems, self.items[6]), self.getItemAcronym(usedItems, self.items[7]), self.getItemAcronym(usedItems, self.items[8])]]
+            recipe = ",\n".join(['"'+"".join(c)+'"' for c in self.crop(recipe)])
+            self.data["grid"] += [recipe]
+            #output
+            self.data["output"] += [self.items[9].getItemStack()]
+            #the items used with their acronym
+            items = []
+            for i in range(len(usedItems)):
+                items.append("'"+self.ACRO[i]+"'")
+                items.append(usedItems[i].instancename)
+            self.data["items"] += [", ".join(items)]
+            
+        else:
+            self.data["output"] += [self.items[9].getItemStack()]
+            self.data["inputs"] += [", ".join([s.getItemStack() for s in usedStacks])]
         
         return success
         
@@ -367,7 +390,10 @@ class Recipe(QtGui.QListWidgetItem):
         
     def getSrc(self):
         
-        src = SrcCraftingTable.recipeShaped
+        if self.shaped:
+            src = SrcCraftingTable.recipeShaped
+        else:
+            src = SrcCraftingTable.recipeShapeless
         return self.generateSrc(src)
         
         

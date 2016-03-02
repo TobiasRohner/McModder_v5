@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-recipeShapeless = """GameRegistry.addShapelessRecipe(<output>, <imputs>);"""
+recipeShapeless = """GameRegistry.addShapelessRecipe(<output>, <inputs>);"""
 
 recipeShaped = """GameRegistry.addRecipe(<output>,
 <grid>,
