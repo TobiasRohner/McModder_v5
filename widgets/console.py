@@ -41,7 +41,9 @@ class Console(QtGui.QDockWidget):
             text (str):     Text to be written in the console
         """
         
+        print(text)
         self.textEdit.appendPlainText(text)
+        self.textEdit.setLineWrapMode(QtGui.QPlainTextEdit.NoWrap)
         QtGui.qApp.processEvents()
         
         

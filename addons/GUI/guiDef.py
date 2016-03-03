@@ -257,6 +257,7 @@ class GUIWidget(QtGui.QWidget):
         data = event.mimeData().text()
         name, identifier, count = data.split(";")
         self.dragItem = self.itemFromInformation(identifier, name)
+        self.master.updateRecipe(self.slots)
         
         
     def dragLeaveEvent(self, event):

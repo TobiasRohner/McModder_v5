@@ -116,6 +116,3 @@ PyDocs/
 Forge/
 build/
 builds/
-config.dox
-buildDoc.bat
-buildExe.bat

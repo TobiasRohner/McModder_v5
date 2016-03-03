@@ -915,10 +915,6 @@ class Cuboid(QtGui.QListWidgetItem):
         
         self.shader = 0
         
-#        verts = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0], [0,0,1], [1,0,1], [1,1,1], [0,1,1]], dtype="f")
-#        self.vertVBO = [vbo.VBO(v) for v in verts]
-#        indices = np.array([3,2,1,0, 0,1,5,4, 0,4,7,3, 4,5,6,7, 3,7,6,2, 2,6,5,1], dtype=np.int32)
-#        self.inxVBO = vbo.VBO(indices, target=GL.GL_ELEMENT_ARRAY_BUFFER)
         self.verts = [[[1,0,0], [0,0,0], [0,1,0], [1,1,0]],
                       [[0,0,1], [1,0,1], [1,1,1], [0,1,1]],
                       [[0,1,1], [0,1,0], [0,0,0], [0,0,1]],
@@ -1078,15 +1074,15 @@ class Cuboid(QtGui.QListWidgetItem):
         
     def setName(self, name):
         
-        self.name = name
-        self.setText(name)
+        self.name = str(name)
+        self.setText(str(name))
                     
                     
     def getDictRepr(self):
         
         cub = {}
         
-        cub["name"]  = self.name
+        cub["name"]  = str(self.name)
         cub["from"]  = self.inMCCoordinates(self.translation)
         cub["to"]    = self.inMCCoordinates([trans+size for trans, size in zip(self.translation, self.dimensions)])
         cub["rotation"] = {"origin": self.inMCCoordinates(self.rotationCenter),
@@ -1104,13 +1100,13 @@ class Cuboid(QtGui.QListWidgetItem):
         
     def savedata(self):
         
-        return {"name":self.name,
+        return {"name":str(self.name),
                 "dimensions":self.dimensions,
                 "translation":self.translation,
                 "rotation":self.rotation,
                 "rotationAxis":self.rotationAxis,
                 "uvs":self.uvs,
-                "textures":[tex[0] for tex in self.textures]}
+                "textures":[str(tex[0]) for tex in self.textures]}
                 
                 
     def loadData(self, data):

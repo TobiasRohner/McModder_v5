@@ -84,7 +84,7 @@ setup(windows=[{"script":"Main.py"}],
                                           "powrprof.dll"],
                          "bundle_files":1,
                          "compressed":False,
-                         "optimize":0,
+                         "optimize":2,
                          "dist_dir":"builds/"+VERSION}},
                          
       zipfile=None,
@@ -95,9 +95,11 @@ shutil.copytree(BASEPATH+r"\ui", "builds/"+VERSION+"/ui")
 shutil.copytree(BASEPATH+r"\assets", "builds/"+VERSION+"/assets")
 shutil.copytree(BASEPATH+r"\addons", "builds/"+VERSION+"/addons")
 shutil.copytree(BASEPATH+r"\doc\html", "builds/"+VERSION+"/doc")
+
+os.makedirs("builds/"+VERSION+"/Projects")
       
       
-shutil.rmtree(BASEPATH+"/build")      
+shutil.rmtree(BASEPATH+"/build")
       
 endtime = time.time()
 

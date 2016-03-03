@@ -160,4 +160,4 @@ class ListWidgetItem(QtGui.QListWidgetItem):
         
     def save(self):
         
-        return {"identifier":self.identifier, "name":self.text()}
+        return {"identifier":str(self.identifier), "name":str(self.text())}

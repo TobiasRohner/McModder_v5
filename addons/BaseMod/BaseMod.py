@@ -60,7 +60,7 @@ class BaseMod(QtGui.QWidget):
         
     def setVersion(self, ver):
         
-        self.version = ver
+        self.version = str(ver)
         
         
     def renewWidgetEntrys(self):

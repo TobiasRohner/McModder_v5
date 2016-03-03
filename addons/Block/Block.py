@@ -104,9 +104,9 @@ class Block(_base):
         
     def setName(self, name):
         
-        self.mainWindow.updateName(self, name)
-        self.listWidgetItem.setText(name)
-        self.listWidgetItem.instancename = self.instancename()
+        self.mainWindow.updateName(self, str(name))
+        self.listWidgetItem.setText(str(name))
+        self.listWidgetItem.instancename = str(self.instancename())
         
         
     def setTransparent(self, checked):
@@ -129,7 +129,7 @@ class Block(_base):
         
     def setCreativeTab(self, tab):
         
-        self.creativeTab = tab
+        self.creativeTab = str(tab)
         
         
     def setRotateable(self, rotateable):
@@ -376,7 +376,7 @@ def createBlock(mainWindow):
     
     name, ok = QtGui.QInputDialog.getText(mainWindow, mainWindow.translations.getTranslation("newBlock"), mainWindow.translations.getTranslation("name"))
     if ok:
-        mainWindow.addObject(Block(mainWindow, name))
+        mainWindow.addObject(Block(mainWindow, str(name)))
 
 
 def init(mainWindow):

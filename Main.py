@@ -271,7 +271,8 @@ class MainWindow(QtGui.QMainWindow):
         
         self.console.clear()
         
-        path = str(QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', 'C:\\', QtGui.QFileDialog.ShowDirsOnly))
+        projectpath = BASEPATH+"/Projects" if os.path.exists(BASEPATH+"/Projects") else "C:/"
+        path = str(QtGui.QFileDialog.getExistingDirectory(None, 'Select a folder:', projectpath, QtGui.QFileDialog.ShowDirsOnly))
         if path != "":
             name, ok = QtGui.QInputDialog.getText(self, self.translations.getTranslation("newProject"), self.translations.getTranslation("name"))
             name = str(name)
@@ -300,8 +301,9 @@ class MainWindow(QtGui.QMainWindow):
         Open a project from disk.
         """
         
+        projectpath = BASEPATH+"/Projects" if os.path.exists(BASEPATH+"/Projects") else "C:/"
         path = str(QtGui.QFileDialog.getOpenFileName(self, self.translations.getTranslation("openProject"),
-                                                           "C:/",
+                                                           projectpath,
                                                            "JSON-Files"+" (*.json)"))
         if not path == "":
             self.projectPath = "/".join(path.replace("\\", "/").split("/")[:-1])

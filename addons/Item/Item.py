@@ -58,15 +58,15 @@ class Item(_base):
         
     def setName(self, name):
         
-        self.mainWindow.updateName(self, name)
-        self.listWidgetItem.setText(name)
-        self.listWidgetItem.instancename = self.instancename()
+        self.mainWindow.updateName(self, str(name))
+        self.listWidgetItem.setText(str(name))
+        self.listWidgetItem.instancename = str(self.instancename())
         
         
     def setTexture(self, texture):
         
-        self.texture = texture
-        self.listWidgetItem.updateIcon(texture)
+        self.texture = str(texture)
+        self.listWidgetItem.updateIcon(str(texture))
         
         
     def setTextureButton(self):
@@ -82,7 +82,7 @@ class Item(_base):
         
     def setCreativeTab(self, tab):
         
-        self.creativeTab = tab
+        self.creativeTab = str(tab)
         
         
     def renewWidgetEntrys(self):
@@ -100,11 +100,11 @@ class Item(_base):
         
     def save(self):
         
-        data = {"identifier":self.identifier,
-                "classtype":self.classtype,
-                "name":self.name,
-                "texture":self.texture,
-                "creativeTab":self.creativeTab}
+        data = {"identifier":str(self.identifier),
+                "classtype":str(self.classtype),
+                "name":str(self.name),
+                "texture":str(self.texture),
+                "creativeTab":str(self.creativeTab)}
         return data
         
         
@@ -220,7 +220,7 @@ def createItem(mainWindow):
     
     name, ok = QtGui.QInputDialog.getText(mainWindow, mainWindow.translations.getTranslation("newItem"), mainWindow.translations.getTranslation("name"))
     if ok:
-        mainWindow.addObject(Item(mainWindow, name))
+        mainWindow.addObject(Item(mainWindow, str(name)))
         mainWindow.emit(QtCore.SIGNAL("UPDATE_ITEMLIST"))
 
 

@@ -159,7 +159,7 @@ class CraftingTable(_base):
         txt, ok = dialog.getText(self, "Change Name", "Name:")
         
         if ok:
-            recipe.setText(txt)
+            recipe.setText(str(txt))
             
             
     def setShaped(self, shaped):
@@ -175,7 +175,7 @@ class CraftingTable(_base):
         
         data["identifier"] = self.identifier
         data["classtype"] = self.classtype
-        data["name"] = self.name
+        data["name"] = str(self.name)
         data["recipes"] = []
         for r in range(self.recipeList.count()):
             recipe = self.recipeList.item(r)
@@ -404,7 +404,7 @@ class Recipe(QtGui.QListWidgetItem):
         data["items"] = []
         for i in self.items:
             data["items"].append(i.save())
-        data["name"] = self.text()
+        data["name"] = str(self.text())
         data["shaped"] = self.shaped
         
         return data

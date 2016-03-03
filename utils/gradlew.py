@@ -65,7 +65,6 @@ def runClient(projectPath, console):
     os.chdir(projectPath)
     process = subprocess.Popen('"'+projectPath+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
     for line in iter(process.stdout.readline, ''):
-        sys.stdout.write(line)
         console.write(line.replace("\n", "").replace("\r", ""))
         QtGui.qApp.processEvents()
         
