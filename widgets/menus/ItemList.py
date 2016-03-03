@@ -70,6 +70,17 @@ class ItemList(QtGui.QListWidget):
             for i in range(self.count()):
                 if not self.item(i).text() in itemnames:
                     self.removeItemWidget(self.item(i))
+                    
+        if "Block" in self.mainWindow.project.objects.keys():
+            for item in self.mainWindow.project.objects["Block"]:
+                i = self.findItems(item.name, QtCore.Qt.MatchExactly)
+                if len(i) == 0:
+                    self.addItem(item.getListWidgetItem())
+            itemnames = [it.name for it in self.mainWindow.project.objects["Block"]]+[self.item(it).text() for it in range(self.count())]
+            for i in range(self.count()):
+                if not self.item(i).text() in itemnames:
+                    self.removeItemWidget(self.item(i))
+                    
         self.sortItems()
         
         

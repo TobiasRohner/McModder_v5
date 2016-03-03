@@ -17,6 +17,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 
 def findData(path):
+    
     data = {"\\".join(str(path).split("\\")[6:]):[]}
     
     for e in os.listdir(path):
@@ -29,12 +30,20 @@ def findData(path):
     
     
 def transformData(data):
+    
     dataList = []
     
     for d in data:
         dataList.append(tuple([d, data[d]]))
         
     return dataList
+    
+    
+def zipdir(path, ziph):
+
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
 
 
 
@@ -49,6 +58,13 @@ uiFiles = transformData(findData(BASEPATH+r"\ui"))
 assetFiles = transformData(findData(BASEPATH+r"\assets"))
 addonFiles = transformData(findData(BASEPATH+r"\addons"))
 docFiles = transformData(findData(BASEPATH+r"\doc\html"))
+
+build = 1
+for f in os.listdir("builds/"):
+    if os.path.isdir("builds/"+f):
+        if int(f.split("+")[-1])+1 > build:
+            build = int(f.split("+")[-1])+1
+releaseFolder = "builds/MCModder_v"+VERSION+"+"+str(build).zfill(3)
 
 
 setup(windows=[{"script":"Main.py"}],
@@ -85,18 +101,28 @@ setup(windows=[{"script":"Main.py"}],
                          "bundle_files":1,
                          "compressed":False,
                          "optimize":2,
-                         "dist_dir":"builds/"+VERSION}},
+                         "dist_dir":releaseFolder}},
                          
       zipfile=None,
                
       data_files=imageformatFiles)
 
-shutil.copytree(BASEPATH+r"\ui", "builds/"+VERSION+"/ui")
-shutil.copytree(BASEPATH+r"\assets", "builds/"+VERSION+"/assets")
-shutil.copytree(BASEPATH+r"\addons", "builds/"+VERSION+"/addons")
-shutil.copytree(BASEPATH+r"\doc\html", "builds/"+VERSION+"/doc")
+print("Copying Dependency Files...")
+shutil.copytree(BASEPATH+r"\dependencies", releaseFolder+"/dependencies")
+print("Copying UI Files...")
+shutil.copytree(BASEPATH+r"\ui", releaseFolder+"/ui")
+print("Copying Asset Files...")
+shutil.copytree(BASEPATH+r"\assets", releaseFolder+"/assets")
+print("Copying Addon Files...")
+shutil.copytree(BASEPATH+r"\addons", releaseFolder+"/addons")
+print("Copying Documentation Files...")
+shutil.copytree(BASEPATH+r"\doc\html", releaseFolder+"/doc")
 
-os.makedirs("builds/"+VERSION+"/Projects")
+print("Creating Project Folder")
+os.makedirs(releaseFolder+"/Projects")
+
+print("Zipping Contents")
+shutil.make_archive(releaseFolder, "zip", releaseFolder)
       
       
 shutil.rmtree(BASEPATH+"/build")

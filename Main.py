@@ -37,7 +37,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 CONFIGPATH = BASEPATH+"/config"
 
-VERSION = "5.5.4"   #Project . Savefile compatibility . Minecraft objects
+VERSION = "1.0.0-beta"   #Semantic versioning
 
 
 
@@ -371,6 +371,7 @@ class MainWindow(QtGui.QMainWindow):
         f = open(self.projectPath+"/moddata.json", "w")
         
         data = self.project.save()
+        data["Version"] = VERSION
         json.dump(data, f, indent=4, separators=(',', ': '))
         
         f.close()
