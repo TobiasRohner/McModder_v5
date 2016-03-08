@@ -7,6 +7,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 import pickle
 import imp
+from classes import _base
 from PyQt4 import QtGui, QtCore, uic
 
 SrcBaseMod = imp.load_source("SrcBaseMod", ADDONPATH+"/SrcBaseMod.py")
@@ -21,16 +22,12 @@ description = """This is the representation of the main Mod File, where all elem
 
 
 
-class BaseMod(QtGui.QWidget):
+class BaseMod(_base):
     
     def __init__(self, mainWindow, name):
-        QtGui.QWidget.__init__(self)
+        _base.__init__(self, mainWindow, "BaseMod", "BaseMod")
         
-        self.identifier = "BaseMod"
-        self.classtype = "BaseMod"
         self.deleteable = False
-        
-        self.mainWindow = mainWindow
         
         self.name = name
         self.version = "1.0"
@@ -197,7 +194,6 @@ class Constructor(QtGui.QDialog):
         return dialog.params()
         
         
-
 
 def init(mainWindow):
     

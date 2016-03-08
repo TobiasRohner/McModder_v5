@@ -1,0 +1,13 @@
+bla('hi')
+bla('hi', f='Anton')
+bla('hi') -> ('h', 'i', ',', ' ', 'c', 'l', 'k')
+bla('hi', f='Anton') -> ('h', 'i', ',', ' ', 'A', 'n', 't', 'o', 'n')
+bla('hi') -> ('h', 'i', ',', ' ', 'c', 'l', 'k')
+bla('hi', f='Anton') -> ('h', 'i', ',', ' ', 'A', 'n', 't', 'o', 'n')
+bla('hi') -> ('h', 'i', ',', ' ', 'c', 'l', 'k')
+bla('hi', f='Anton') -> ('h', 'i', ',', ' ', 'A', 'n', 't', 'o', 'n')
+bla('hi') -> 'hi, clk'
+bla('hi', f='Anton') -> 'hi, Anton'
+bla('hi')
+bla('hi', f='Anton')
+bla('hi')

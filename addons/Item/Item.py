@@ -10,6 +10,7 @@ import shutil
 import imp
 from widgets import menus
 from classes import _base
+from utils import Decorators as dec
 from PyQt4 import QtGui, QtCore, uic
 
 SrcItem = imp.load_source("SrcItem", ADDONPATH+"/SrcItem.py")

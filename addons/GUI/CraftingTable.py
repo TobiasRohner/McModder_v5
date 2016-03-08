@@ -8,6 +8,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 import imp
 from classes import _base
 from widgets import menus
+from utils import Decorators as dec
 from PyQt4 import QtGui, QtCore, uic
 
 guiDef = imp.load_source("guiDef", ADDONPATH+"/guiDef.py")
@@ -420,7 +421,6 @@ class Recipe(QtGui.QListWidgetItem):
         self.shaped = data["shaped"]
         for i in range(len(data["items"])):
             self.items[i].load(data["items"][i])
-
 
 
 

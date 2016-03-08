@@ -6,7 +6,8 @@ import imp
 import json
 import widgets
 from utils import translations, gradlew, Config, History
-from classes import source
+from utils import Decorators as dec
+from classes import source, _base
 from PyQt4 import QtGui, QtCore, uic
 
 import logging
@@ -207,6 +208,7 @@ class MainWindow(QtGui.QMainWindow):
         widgets.Addons(self)
         
         
+    @dec.accepts(_base, str)
     def updateName(self, obj, name):
         """
         MainWindow.updateName(classes._base, str)
@@ -223,6 +225,7 @@ class MainWindow(QtGui.QMainWindow):
         obj.name = name
         
         
+    @dec.accepts(_base)
     def addObject(self, obj):
         """
         MainWindow.addObject(classes._base)
@@ -395,6 +398,10 @@ class MainWindow(QtGui.QMainWindow):
         
         
 if __name__ == "__main__":
+    
+    logfile = open(BASEPATH+"/log.txt", "w")
+    logfile.write("")
+    logfile.close()
     
     app = QtGui.QApplication(sys.argv)
     mainWindow = MainWindow()

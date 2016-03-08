@@ -2,6 +2,8 @@
 import os
 import sys
 import json
+from classes import _base
+from utils import Decorators as dec
 from PyQt4 import QtGui, QtCore
 
 import Main
@@ -82,6 +84,7 @@ class ProjectExplorer(QtGui.QDockWidget):
                 self.addObject(cls)
             
             
+    @dec.accepts(str)
     def getModule(self, name):
         """
         ProjectExplorer.getModule(str) -> module
@@ -101,6 +104,7 @@ class ProjectExplorer(QtGui.QDockWidget):
                 return mod[2]
                 
                 
+    @dec.accepts(_base)
     def addObject(self, obj):
         """
         ProjectExplorer.addObject(classes._base)
@@ -132,6 +136,7 @@ class ProjectExplorer(QtGui.QDockWidget):
         self.treeWidget.sortItems(0, QtCore.Qt.AscendingOrder)
         
         
+    @dec.accepts(_base)
     def removeObject(self, obj):
         """
         ProjectExplorer.removeObject(classes._base)

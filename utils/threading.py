@@ -12,7 +12,9 @@ class Thread(QtCore.QThread):
         """
         QtCore.QThread.__init__(self)
         
-        self.task = lambda: None
+        def noTaskDef():
+            print("Thread "+str(self.currentThreadId())+" has no function to run!")
+        self.task = noTaskDef
         self.args = ()
         
         

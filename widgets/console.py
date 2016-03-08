@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from PyQt4 import QtGui, QtCore
 from utils import threading
+from utils import Decorators as dec
+import subprocess
 
 
 
@@ -60,7 +62,7 @@ class Console(QtGui.QDockWidget):
         
         
         
-        
+@dec.accepts(Console, subprocess.Popen)
 def streamToConsole(console, process):
     """
     streamToConsole(Console, stdout.Popen)

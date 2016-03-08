@@ -12,6 +12,7 @@ from PyQt4 import QtGui, QtCore, uic
 from classes import _base
 from widgets import menus
 from utils import textureAttributes
+from utils import Decorators as dec
 
 SrcBlock = imp.load_source("SrcBlock", ADDONPATH+"/SrcBlock.py")
 BlockModelGenerator = imp.load_source("blockmodelGenerator", ADDONPATH+"/blockmodelGenerator.py").BlockModelGenerator
