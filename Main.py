@@ -37,7 +37,7 @@ BASEPATH = os.path.dirname(sys.argv[0])
 
 CONFIGPATH = BASEPATH+"/config"
 
-VERSION = "1.0.0-beta"   #Semantic versioning
+VERSION = "1.1.0-beta"   #Semantic versioning
 
 
 

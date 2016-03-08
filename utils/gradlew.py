@@ -6,6 +6,8 @@ import zipfile
 import subprocess
 import shutil
 
+from widgets import console as c
+
 from PyQt4 import QtGui
 
 
@@ -27,9 +29,10 @@ def installForge(installationPath, console):
     Install Forge to the specified path.
     Stream the console output to the specified console.
     
-    Args:
-        installationPath (str):             Path to the installation folder of Forge
-        console (widgets.console.Console):  Console to stream the output to
+    Args
+    ----
+    installationPath (str):             Path to the installation folder of Forge
+    console (widgets.console.Console):  Console to stream the output to
     """
     
     #download forge
@@ -57,16 +60,15 @@ def runClient(projectPath, console):
     
     Run the Minecraft Client with the Forge Mod installed.
     
-    Args:
-        projectPath (str):                  Path to the root folder of Forge
-        console (widgets.console.Console):  Console to stream the output to
+    Args
+    ----
+    projectPath (str):                  Path to the root folder of Forge
+    console (widgets.console.Console):  Console to stream the output to
     """
-    
+
     os.chdir(projectPath)
     process = subprocess.Popen('"'+projectPath+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
-    for line in iter(process.stdout.readline, ''):
-        console.write(line.replace("\n", "").replace("\r", ""))
-        QtGui.qApp.processEvents()
+    c.streamToConsole(console, process)
         
         
 
@@ -77,19 +79,17 @@ def exportMod(projectPath, console):
     
     Export the Mod as a .jar.
     
-    Args:
-        projectPath (str):                  Path to the root folder of Forge
-        console (widgets.console.Console):  Console to stream the output to
+    Args
+    ----
+    projectPath (str):                  Path to the root folder of Forge
+    console (widgets.console.Console):  Console to stream the output to
     """
     
     path = projectPath+"/java"
     
     os.chdir(path)
     process = subprocess.Popen('"'+path+'/gradlew" build', stdout=subprocess.PIPE, shell=True)
-    for line in iter(process.stdout.readline, ''):
-        sys.stdout.write(line)
-        console.write(line.replace("\n", "").replace("\r", ""))
-        QtGui.qApp.processEvents()
+    c.streamToConsole(console, process)
 
 
 
@@ -135,10 +135,7 @@ def _setupEnvironment(path, console):
     #setup the environment
     os.chdir(path)
     process = subprocess.Popen('"'+path+'/gradlew" setupDecompWorkspace eclipse', stdout=subprocess.PIPE, shell=True)
-    for line in iter(process.stdout.readline, ''):
-        sys.stdout.write(line)
-        console.write(line.replace("\n", "").replace("\r", ""))
-        QtGui.qApp.processEvents()
+    c.streamToConsole(console, process)
     
     
     

@@ -4,6 +4,8 @@ import sys
 import json
 from PyQt4 import QtGui, QtCore
 
+import Main
+
 
 
 BASEPATH = os.path.dirname(sys.argv[0])
@@ -65,12 +67,19 @@ class ProjectExplorer(QtGui.QDockWidget):
         
         self.name = path.replace("\\", "/").split("/")[-2]
         
+        if data["Version"].split("+")[0] != Main.VERSION.split("+")[0]:
+                QtGui.QMessageBox.warning(self, "Version error",
+                                          "Fileversion: "+data["Version"]+" incompatible with version "+Main.VERSION+" of program.",
+                                          QtGui.QMessageBox.Cancel)
+                return
+                    
         for key in data.keys():
-            objData = data[key]
-            cls = None
-            exec("cls = self.getModule('"+objData["classtype"]+"')."+objData["classtype"]+"(self.mainWindow, objData['name'])")
-            cls.load(objData)
-            self.addObject(cls)
+            if key != "Version":
+                objData = data[key]
+                cls = None
+                exec("cls = self.getModule('"+objData["classtype"]+"')."+objData["classtype"]+"(self.mainWindow, objData['name'])")
+                cls.load(objData)
+                self.addObject(cls)
             
             
     def getModule(self, name):

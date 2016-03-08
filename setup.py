@@ -62,7 +62,7 @@ docFiles = transformData(findData(BASEPATH+r"\doc\html"))
 build = 1
 for f in os.listdir("builds/"):
     if os.path.isdir("builds/"+f):
-        if int(f.split("+")[-1])+1 > build:
+        if int(f.split("+")[-1])+1 > build and VERSION in f:
             build = int(f.split("+")[-1])+1
 releaseFolder = "builds/MCModder_v"+VERSION+"+"+str(build).zfill(3)
 
@@ -108,7 +108,8 @@ setup(windows=[{"script":"Main.py"}],
       data_files=imageformatFiles)
 
 print("Copying Dependency Files...")
-shutil.copytree(BASEPATH+r"\dependencies", releaseFolder+"/dependencies")
+for f in os.listdir(BASEPATH+r"\dependencies"):
+    shutil.copy(BASEPATH+r"\dependencies/"+f, releaseFolder)
 print("Copying UI Files...")
 shutil.copytree(BASEPATH+r"\ui", releaseFolder+"/ui")
 print("Copying Asset Files...")

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
+from utils import threading
 
 
 
@@ -11,8 +12,9 @@ class Console(QtGui.QDockWidget):
         """
         Console(Main.MainWindow)
         
-        Args:
-            mainWindow (Main.MainWindow):   Pointer to the main window
+        Args
+        ----
+        mainWindow (Main.MainWindow):   Pointer to the main window
         """
         QtGui.QDockWidget.__init__(self)
         
@@ -26,6 +28,8 @@ class Console(QtGui.QDockWidget):
         self.textEdit = QtGui.QPlainTextEdit()
         self.textEdit.setReadOnly(True)
         
+        self.textEdit.setLineWrapMode(QtGui.QPlainTextEdit.NoWrap)
+        
         self.setWidget(self.textEdit)
         
         self.setWindowTitle(self.mainWindow.translations.getTranslation("console"))
@@ -37,14 +41,13 @@ class Console(QtGui.QDockWidget):
         
         Output some text to the console.
         
-        Args:
-            text (str):     Text to be written in the console
+        Args
+        ----
+        text (str):     Text to be written in the console
         """
         
         print(text)
         self.textEdit.appendPlainText(text)
-        self.textEdit.setLineWrapMode(QtGui.QPlainTextEdit.NoWrap)
-        QtGui.qApp.processEvents()
         
         
     def clear(self):
@@ -53,3 +56,30 @@ class Console(QtGui.QDockWidget):
         """
         
         self.textEdit.clear()
+        
+        
+        
+        
+        
+def streamToConsole(console, process):
+    """
+    streamToConsole(Console, stdout.Popen)
+    
+    Stream the text output of the specified process to a Console object.
+    
+    Args
+    ----
+    console (Console):          The console for the process's output to be streamed to
+    process (stdout.Popen):     Process, which output should be streamed to the console
+    """
+    
+    t = threading.Thread()
+    
+    def task():
+        for line in iter(process.stdout.readline, ''):
+            t.emit(QtCore.SIGNAL("WRITE_TO_CONSOLE"), line.replace("\n", "").replace("\r", ""))
+#            console.write(line.replace("\n", "").replace("\r", ""))
+    
+    console.connect(t, QtCore.SIGNAL("WRITE_TO_CONSOLE"), console.write)
+    t.setTask(task)
+    t.start()

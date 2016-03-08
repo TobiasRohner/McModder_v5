@@ -34,6 +34,8 @@ class CraftingTable(_base):
                           
         self.dragItem = None
         
+        self.tempRecipe = Recipe(self.mainWindow, self, "unknown")
+        
         self.initUI()
         
         
@@ -69,16 +71,16 @@ class CraftingTable(_base):
         self.gui.slots[7].item = None
         self.gui.slots[8].item = None
         self.gui.slots[9].item = None
-        self.gui.slots[0].count = 1
-        self.gui.slots[1].count = 1
-        self.gui.slots[2].count = 1
-        self.gui.slots[3].count = 1
-        self.gui.slots[4].count = 1
-        self.gui.slots[5].count = 1
-        self.gui.slots[6].count = 1
-        self.gui.slots[7].count = 1
-        self.gui.slots[8].count = 1
-        self.gui.slots[9].count = 1
+        self.gui.slots[0].count = 0
+        self.gui.slots[1].count = 0
+        self.gui.slots[2].count = 0
+        self.gui.slots[3].count = 0
+        self.gui.slots[4].count = 0
+        self.gui.slots[5].count = 0
+        self.gui.slots[6].count = 0
+        self.gui.slots[7].count = 0
+        self.gui.slots[8].count = 0
+        self.gui.slots[9].count = 0
         
         recipe = Recipe(self.mainWindow, self, "unknown")
         self.recipeList.addItem(recipe)
@@ -128,6 +130,8 @@ class CraftingTable(_base):
     def updateRecipe(self, slots):
         
         recipe = self.recipeList.currentItem()
+        if recipe == None:
+            recipe = self.tempRecipe
         
         recipe.items[0].item = slots[0].item
         recipe.items[1].item = slots[1].item
@@ -312,17 +316,17 @@ class Recipe(QtGui.QListWidgetItem):
                 
     def crop(self, acro):
         
-        while acro[0][0]==" " and acro[1][0]==" " and acro[2][0]==" ":
+        while  acro.count([]) == 0 and (acro[0][0]==" " and acro[1][0]==" " and acro[2][0]==" "):
             acro[0] = acro[0][1:]
             acro[1] = acro[1][1:]
             acro[2] = acro[2][1:]
-        while acro[0][-1]==" " and acro[1][-1]==" " and acro[2][-1]==" ":
+        while acro.count([]) == 0 and (acro[0][-1]==" " and acro[1][-1]==" " and acro[2][-1]==" "):
             acro[0] = acro[0][:-1]
             acro[1] = acro[1][:-1]
             acro[2] = acro[2][:-1]
-        while acro[0].count(" ") == len(acro[0]):
+        while len(acro)!= 0 and acro[0].count(" ") == len(acro[0]):
             acro = acro[1:]
-        while acro[-1].count(" ") == len(acro[-1]):
+        while len(acro)!= 0 and acro[-1].count(" ") == len(acro[-1]):
             acro = acro[:-1]
             
         return acro
