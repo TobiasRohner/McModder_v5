@@ -18,7 +18,7 @@ try:
 except:
     pass
 
-#Tricking py2exe Package Compilation
+#Tricking out py2exe Package Compilation
 try:
     from OpenGL.platform import win32
 except AttributeError:
@@ -68,6 +68,11 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         
+        self.logfile = open(BASEPATH+"/log.txt", "w")
+        self.logfile.write("")
+        self.logfile.close()
+        self.logfile = open(BASEPATH+"/log.txt", "a")
+        
         self.addons = []
         
         #load the config
@@ -96,6 +101,7 @@ class MainWindow(QtGui.QMainWindow):
         
         self.editor = widgets.Editor(self)
         self.console = widgets.Console(self)
+#        self.console.streamToConsole(sys.stdout)
         
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.project)
         self.addDockWidget(QtCore.Qt.RightDockWidgetArea, self.editor)
@@ -398,10 +404,6 @@ class MainWindow(QtGui.QMainWindow):
         
         
 if __name__ == "__main__":
-    
-    logfile = open(BASEPATH+"/log.txt", "w")
-    logfile.write("")
-    logfile.close()
     
     app = QtGui.QApplication(sys.argv)
     mainWindow = MainWindow()

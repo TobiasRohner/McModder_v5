@@ -379,6 +379,8 @@ class Recipe(QtGui.QListWidgetItem):
             self.data["items"] += [", ".join(items)]
             
         else:
+            if self.items[9].item == None:
+                raise RuntimeError("No Output defined for Recipe "+self.text())
             self.data["output"] += [self.items[9].getItemStack()]
             self.data["inputs"] += [", ".join([s.getItemStack() for s in usedStacks])]
         

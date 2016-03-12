@@ -86,6 +86,9 @@ class Block(_base):
         
         self.initUI()
         
+        self.listWidgetItem.setText(self.name)
+        self.listWidgetItem.instancename = self.instancename()
+        
         
     def initUI(self):
         

@@ -82,6 +82,8 @@ class ProjectExplorer(QtGui.QDockWidget):
                 exec("cls = self.getModule('"+objData["classtype"]+"')."+objData["classtype"]+"(self.mainWindow, objData['name'])")
                 cls.load(objData)
                 self.addObject(cls)
+                
+        self.mainWindow.emit(QtCore.SIGNAL("UPDATE_ITEMLIST"))
             
             
     @dec.accepts(str)

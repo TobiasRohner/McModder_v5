@@ -2,7 +2,6 @@
 from PyQt4 import QtGui, QtCore
 from utils import threading
 from utils import Decorators as dec
-import subprocess
 
 
 
@@ -37,6 +36,7 @@ class Console(QtGui.QDockWidget):
         self.setWindowTitle(self.mainWindow.translations.getTranslation("console"))
         
         
+    @dec.accepts((str, unicode))
     def write(self, text):
         """
         Console.write(str)
@@ -60,28 +60,25 @@ class Console(QtGui.QDockWidget):
         self.textEdit.clear()
         
         
+    @dec.accepts(file)
+    def streamToConsole(self, stdout):
+        """
+        Console.streamToConsole(file)
         
+        Stream the text output of the specified process to this Console object.
         
-@dec.accepts(Console, subprocess.Popen)
-def streamToConsole(console, process):
-    """
-    streamToConsole(Console, stdout.Popen)
-    
-    Stream the text output of the specified process to a Console object.
-    
-    Args
-    ----
-    console (Console):          The console for the process's output to be streamed to
-    process (stdout.Popen):     Process, which output should be streamed to the console
-    """
-    
-    t = threading.Thread()
-    
-    def task():
-        for line in iter(process.stdout.readline, ''):
-            t.emit(QtCore.SIGNAL("WRITE_TO_CONSOLE"), line.replace("\n", "").replace("\r", ""))
-#            console.write(line.replace("\n", "").replace("\r", ""))
-    
-    console.connect(t, QtCore.SIGNAL("WRITE_TO_CONSOLE"), console.write)
-    t.setTask(task)
-    t.start()
+        Args
+        ----
+        process (file):     Process, which output should be streamed to the console
+        """
+        
+        t = threading.Thread()
+        
+        def task():
+            for line in iter(stdout.readline, ''):
+                t.emit(QtCore.SIGNAL("WRITE_TO_CONSOLE"), line.replace("\n", "").replace("\r", ""))
+    #            console.write(line.replace("\n", "").replace("\r", ""))
+        
+        self.connect(t, QtCore.SIGNAL("WRITE_TO_CONSOLE"), self.write)
+        t.setTask(task)
+        t.start()

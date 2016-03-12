@@ -4,6 +4,7 @@ import sys
 import warnings
 import functools
 import inspect
+import traceback
 
 
 
@@ -48,7 +49,7 @@ def singleton(class_):
     
     
     
-def toStr(obj):
+def _toStr(obj):
     
     if isinstance(obj, str):
         return "'"+obj+"'"
@@ -56,37 +57,36 @@ def toStr(obj):
         return str(obj)
     
     
-def log(func_):
+def log(message=None):
     """
-    @log
+    @log(str=None, file)
     function(*args, **kwargs)
     
     Write the function to a log file
     """
     
-    def wrapper(*args, **kwargs):
-        otp = func_(*args, **kwargs)
-        argsStrLst = []
-        for arg in args:
-            argsStrLst.append(toStr(arg))
-        for name, kwarg in kwargs.items():
-            argsStrLst.append(name+"="+toStr(kwarg))
-        argStr = ", ".join(argsStrLst)
-        inf = "[Module: "+func_.__module__+"]" if "__module__" in dir(func_) else ""
-        if inf != "":
-            inf += " "*(30-len(inf))
-        fun = func_.__name__+"("+argStr+")"
-        logstring = inf+fun
-        print(logstring)
-        logfile = open(BASEPATH+"/log.txt", "a")
-        logfile.write(logstring+"\n")
-        logfile.close()
-        return otp
-    
-    wrapper.__name__ = func_.__name__
-    wrapper.__doc__ = func_.__doc__
-    wrapper.__dict__.update(func_.__dict__)
-    return wrapper
+    def wrap(func_):
+        
+        def wrapper(*args, **kwargs):
+            txt = message
+            if message == None:
+                txt = func_.__name__
+            logfile = open(BASEPATH+"/log.txt", "a")
+            logfile.write(txt+"\n")
+            try:
+                otp = func_(*args, **kwargs)
+                logfile.close()
+                return otp
+            except Exception:
+                txt = logfile.write(traceback.format_exc()+"\n")
+            finally:
+                logfile.close()
+        
+        wrapper.__name__ = func_.__name__
+        wrapper.__doc__ = func_.__doc__
+        wrapper.__dict__.update(func_.__dict__)
+        return wrapper
+    return wrap
     
     
     

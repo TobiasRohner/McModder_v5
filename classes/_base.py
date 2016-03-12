@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import abc
 import os
 import pickle
 from widgets import menus
+import utils.Decorators as dec
 from PyQt4 import QtGui
 
 
@@ -43,7 +43,6 @@ class _base(QtGui.QWidget):
         return
         
         
-    @abc.abstractmethod
     def initUI(self):
         
         return
@@ -78,19 +77,16 @@ class _base(QtGui.QWidget):
         self.updateListWidgetItem()
         
         
-    @abc.abstractmethod
     def renewWidgetEntrys(self):
         
         return
         
     
-    @abc.abstractmethod
     def pull(self, cls):
         
         return {}
         
         
-    @abc.abstractmethod
     def completeModData(self):
         
         return
@@ -116,13 +112,11 @@ class _base(QtGui.QWidget):
         return self.mainWindow.project.name.replace(" ", "_")+"."+self.identifier
         
         
-    @abc.abstractmethod
     def generateSrc(self):
         
         return
         
         
-    @abc.abstractmethod
     def export(self):
         
         return

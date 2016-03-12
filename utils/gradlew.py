@@ -6,8 +6,6 @@ import zipfile
 import subprocess
 import shutil
 
-from widgets import console as c
-
 from PyQt4 import QtGui
 
 
@@ -68,7 +66,7 @@ def runClient(projectPath, console):
 
     os.chdir(projectPath)
     process = subprocess.Popen('"'+projectPath+'/gradlew" runClient', stdout=subprocess.PIPE, shell=True)
-    c.streamToConsole(console, process)
+    console.streamToConsole(process.stdout)
         
         
 
@@ -89,7 +87,7 @@ def exportMod(projectPath, console):
     
     os.chdir(path)
     process = subprocess.Popen('"'+path+'/gradlew" build', stdout=subprocess.PIPE, shell=True)
-    c.streamToConsole(console, process)
+    console.streamToConsole(process.stdout)
 
 
 
@@ -135,7 +133,7 @@ def _setupEnvironment(path, console):
     #setup the environment
     os.chdir(path)
     process = subprocess.Popen('"'+path+'/gradlew" setupDecompWorkspace eclipse', stdout=subprocess.PIPE, shell=True)
-    c.streamToConsole(console, process)
+    console.streamToConsole(process.stdout)
     
     
     
